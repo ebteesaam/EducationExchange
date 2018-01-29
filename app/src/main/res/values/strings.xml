@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Education Exchange</string>
+    <string name="add_book_activity">Add Book</string>
+    <string name="all">All</string>
+    <string name="text_book">Text Book</string>
+    <string name="lecture_notes">Lecture Notes</string>
+
+
+    <string name="name_of_book">Name of material</string>
+    <string name="number_of_course">Number of course</string>
+    <string name="state">State</string>
+    <string name="price">Price</string>
+
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+
+
+    <string name="action_save">Save</string>
+    <string name="goToRigister">No Account yet? Create one</string>
+
+    <string name="register">REGISTER A NEW ACCOUNT</string>
+    <string name="profile">My Profile</string>
+    <string name="edit_profile">Edit My Profile</string>
+
+
+
+
+</resources>
