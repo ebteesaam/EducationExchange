@@ -50,7 +50,6 @@
                     android:layout_height="match_parent"
                     android:paddingTop="12dp"
                     android:text="Ahmaad"
-
                     android:textColor="@color/black" />
 
             </LinearLayout>
