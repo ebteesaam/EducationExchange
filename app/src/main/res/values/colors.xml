@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B2EBF2</color>
-    <color name="colorPrimaryDark">#00B8D4</color>
-    <color name="colorAccent">#FFA000</color>
-    <color name="edit">#dfe3e4</color>
+    <color name="colorPrimary">#0277BD</color>
+    <color name="colorPrimaryDark">#01579B</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="taplayout">#64DD17</color>
 
+    <color name="edit">#c2c6c7</color>
     <color name="gray">#aaaeaf</color>
     <color name="white">#fcfeff</color>
     <color name="blue">#FF1435EF</color>

@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.ebtesam.educationexchange.Fragment.All;
+import com.example.ebtesam.educationexchange.Fragment.GeneralBook;
 import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
 import com.example.ebtesam.educationexchange.Fragment.TextBook;
 import com.example.ebtesam.educationexchange.R;
@@ -25,7 +25,7 @@ public class AdapterFragment extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new All();
+            return new GeneralBook();
         } else if (position == 1) {
             return new LectureNotes();
         } else  {

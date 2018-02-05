@@ -15,9 +15,9 @@ import com.example.ebtesam.educationexchange.R;
  * Created by ebtesam on 29/01/2018 AD.
  */
 
-public class All extends Fragment {
+public class GeneralBook extends Fragment {
 
-    public All(){
+    public GeneralBook(){
 
     }
 

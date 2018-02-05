@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Education Exchange</string>
     <string name="add_book_activity">Add Book</string>
-    <string name="all">All</string>
+    <string name="all">General Book</string>
     <string name="text_book">Text Book</string>
     <string name="lecture_notes">Lecture Notes</string>
 
@@ -14,6 +14,7 @@
 
     <string name="name">Name</string>
     <string name="email">Email</string>
+    <string name="action_search">Search</string>
 
 
     <string name="action_save">Save</string>
@@ -22,8 +23,6 @@
     <string name="register">REGISTER A NEW ACCOUNT</string>
     <string name="profile">My Profile</string>
     <string name="edit_profile">Edit My Profile</string>
-
-
 
 
 </resources>

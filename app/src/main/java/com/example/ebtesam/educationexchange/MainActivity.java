@@ -1,20 +1,19 @@
 package com.example.ebtesam.educationexchange;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.ebtesam.educationexchange.addBook.AdapterFragment;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
-import com.example.ebtesam.educationexchange.login.LoginPage;
-import com.example.ebtesam.educationexchange.login.RegisterPage;
 import com.example.ebtesam.educationexchange.profile.ProfilePage;
+import com.example.ebtesam.educationexchange.search.SearchBook;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.profile:
             Intent intent=new Intent(MainActivity.this,ProfilePage.class) ;
             startActivity(intent);
+                return true;
+            case R.id.search:
+                Intent i=new Intent(MainActivity.this, SearchBook.class) ;
+                startActivity(i);
                 return true;
 
         }
