@@ -106,7 +106,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/white_rounded_buttom"
-            android:text="My Book"/>
+            android:text="@string/my_books"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

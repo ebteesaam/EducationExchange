@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,28 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="55dp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
+        android:paddingTop="55dp"
         >
+
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/book"
+            android:layout_width="126dp"
+            android:layout_height="119dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="25dp"/>
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/logo______" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
             <EditText
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:hint="email"
-                android:id="@+id/input_email"
+                android:inputType="textEmailAddress"
                 />
 
         </android.support.design.widget.TextInputLayout>
@@ -39,15 +39,15 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
             <EditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:hint="password"
-                android:id="@+id/input_password"
+                android:inputType="textEmailAddress"
                 />
 
         </android.support.design.widget.TextInputLayout>
@@ -64,14 +64,14 @@
 
 
         <TextView
+            android:id="@+id/link_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="@string/goToRigister"
             android:gravity="center"
-            android:textSize="17dp"
-            android:id="@+id/link_signup"
-            android:textColor="@color/blue"/>
+            android:text="@string/goToRigister"
+            android:textColor="@color/blue"
+            android:textSize="17dp"/>
 
 
     </LinearLayout>

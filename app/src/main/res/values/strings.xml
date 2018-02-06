@@ -6,11 +6,12 @@
     <string name="lecture_notes">Lecture Notes</string>
 
 
-    <string name="name_of_book">Name of material</string>
+    <string name="name_of_book">Name of Book</string>
     <string name="number_of_course">Number of course</string>
     <string name="state">State</string>
     <string name="price">Price</string>
 
+    <string name="my_books">My Books</string>
 
     <string name="name">Name</string>
     <string name="email">Email</string>
