@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "353861771281",
+    "firebase_url": "https://educationexchange-bc324.firebaseio.com",
+    "project_id": "educationexchange-bc324",
+    "storage_bucket": "educationexchange-bc324.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353861771281:android:f487e7b6ae96dc2b",
+        "android_client_info": {
+          "package_name": "com.example.ebtesam.educationexchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353861771281-1i221bo22noqovgftjc4bik0edcjj97s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ebtesam.educationexchange",
+            "certificate_hash": "df11066f2635949bf85e9abe75659b344ff57f2f"
+          }
+        },
+        {
+          "client_id": "353861771281-l8n4att7v4ffntkqo4fjf7f0nl03q8mq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxojtPEY93GWt7ahUif6eTwXPH6so9cL8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353861771281-l8n4att7v4ffntkqo4fjf7f0nl03q8mq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,13 +1,10 @@
-package com.example.ebtesam.educationexchange.addBook;
+package com.example.ebtesam.educationexchange.Fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.ebtesam.educationexchange.Fragment.GeneralBook;
-import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
-import com.example.ebtesam.educationexchange.Fragment.TextBook;
 import com.example.ebtesam.educationexchange.R;
 
 /**
