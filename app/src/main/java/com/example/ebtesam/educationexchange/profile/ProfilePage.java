@@ -13,7 +13,7 @@ public class ProfilePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_page);//
+        setContentView(R.layout.activity_profile_page);
 
         Button editProfile=findViewById(R.id.edit_user);
         editProfile.setOnClickListener(new View.OnClickListener() {
