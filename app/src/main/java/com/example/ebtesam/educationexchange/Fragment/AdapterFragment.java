@@ -22,8 +22,10 @@ public class AdapterFragment extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new GeneralBook();
+            return new HomeActivity();
         } else if (position == 1) {
+            return new GeneralBook();
+        } else if (position == 2) {
             return new LectureNotes();
         } else  {
             return new TextBook();
@@ -32,9 +34,11 @@ public class AdapterFragment extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position == 0) {
-            return mContext.getString(R.string.all);
+        if (position ==0) {
+            return mContext.getString(R.string.general_book);
         } else if (position == 1) {
+            return mContext.getString(R.string.general_book);
+        } else if (position == 2) {
             return mContext.getString(R.string.lecture_notes);
         } else {
             return mContext.getString(R.string.text_book);

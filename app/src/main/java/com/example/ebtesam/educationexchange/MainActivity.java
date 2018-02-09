@@ -9,11 +9,17 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-import com.example.ebtesam.educationexchange.Fragment.AdapterFragment;
+import com.example.ebtesam.educationexchange.Fragment.GeneralBook;
+import com.example.ebtesam.educationexchange.Fragment.HomeActivity;
+import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
+import com.example.ebtesam.educationexchange.Fragment.TextBook;
+import com.example.ebtesam.educationexchange.Fragment.ViewPagerAdapter;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.login.LoginPage;
 import com.example.ebtesam.educationexchange.profile.ProfilePage;
@@ -23,9 +29,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    TabLayout tabLayout;
     private Context mContext = MainActivity.this;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +48,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ViewPager viewPager=findViewById(R.id.view_pager);
+        createViewPager(viewPager);
 
-        AdapterFragment adapter=new AdapterFragment(this,getSupportFragmentManager());
-
-        viewPager.setAdapter(adapter);
-
-        TabLayout tabLayout=findViewById(R.id.tab);
-
+        tabLayout=findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
-        //mAuth.signOut();
-    }
 
+
+        //mAuth.signOut();
+        createTabIcons();
+    }
+    private void createTabIcons() {
+
+        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_home, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabTwo.setText(getString(R.string.general_book));
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabThree.setText(getString(R.string.lecture_notes));
+        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        tabLayout.getTabAt(2).setCustomView(tabThree);
+
+        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabFour.setText(getString(R.string.text_book));
+        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        tabLayout.getTabAt(3).setCustomView(tabFour);
+    }
+    private void createViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new HomeActivity(), "Tab 1");
+        adapter.addFrag(new GeneralBook(), "Tab 2");
+        adapter.addFrag(new LectureNotes(), "Tab 3");
+        adapter.addFrag(new TextBook(), "Tab 4");
+        viewPager.setAdapter(adapter);
+    }
     //............................Firebase.................................//
     private void checkCurrentUser(FirebaseUser user){
         Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
