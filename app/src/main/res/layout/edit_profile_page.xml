@@ -10,13 +10,36 @@
     <RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="15dp">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:paddingTop="24dp"
-            android:src="@drawable/ic_profile" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_profile_photo"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:paddingTop="24dp"
+                android:src="@drawable/ic_profile"
+                app:civ_border_color="@color/gray"
+                app:civ_border_width="2dp" />
+
+
+            <TextView
+                android:id="@+id/change_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/change_photo"
+                android:textColor="@color/blue" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -24,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relative1"
+
         android:paddingLeft="15dp">
         <!-- Overview category -->
         <LinearLayout
@@ -46,11 +70,11 @@
 
                 <!-- Name field -->
                 <EditText
-                    android:id="@+id/edit_inventory_name"
+                    android:id="@+id/edit_user_name"
                     style="@style/EditorFieldStyle"
                     android:layout_height="match_parent"
                     android:paddingTop="12dp"
-                    android:text="Ahmaad"
+                    android:text="@string/un_known_name"
 
                     android:textColor="@color/black" />
 
@@ -85,10 +109,10 @@
 
                 <!-- price -->
                 <EditText
-                    android:id="@+id/edit_price"
+                    android:id="@+id/edit_email"
                     style="@style/EditorFieldStyle"
                     android:inputType="numberDecimal"
-                    android:text="123@gnmk.com"
+                    android:text="@string/un_known_email"
                     android:textColor="@color/black" />
 
 

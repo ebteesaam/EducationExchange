@@ -24,14 +24,19 @@
     <string name="register">REGISTER A NEW ACCOUNT</string>
     <string name="profile">My Profile</string>
     <string name="edit_profile">Edit My Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="un_known_email">unKnown email</string>
+    <string name="un_known_name">unKnown name</string>
+    <string name="change_photo">Change photo</string>
+
 
     <!-- Firebase messages -->
     <string name="auth_failed">Failed to Authenticate</string>
     <string name="auth_success">Authentication Success</string>
 
     <!-- Firebase database fields -->
-     <string name="dbname_users">users</string>
-     <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="dbname_users">users</string>
+    <string name="dbname_user_account_settings">user_account_settings</string>
 
 
 </resources>

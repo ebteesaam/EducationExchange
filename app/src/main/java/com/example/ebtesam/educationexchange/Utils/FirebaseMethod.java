@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
+import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -119,7 +120,7 @@ myRef=mFirebaseDatabase.getReference();
 
         UserAccountSettings settings = new UserAccountSettings(
                 profile_photo,
-                username,
+                StringManipulation.condenseUsername(username),
                 email,
                 0,
                 my_lecture_note
@@ -131,5 +132,88 @@ myRef=mFirebaseDatabase.getReference();
                 .setValue(settings);
 
     }
+
+    /**
+     * Retrieves the account settings for teh user currently logged in
+     * Database: user_acount_Settings node
+     * @param dataSnapshot
+     * @return
+     */
+    public UserSettings getUserSettings(DataSnapshot dataSnapshot){
+        Log.d(TAG, "getUserAccountSettings: retrieving user account settings from firebase.");
+
+
+        UserAccountSettings settings  = new UserAccountSettings();
+        User user = new User();
+
+        for(DataSnapshot ds: dataSnapshot.getChildren()){
+
+            // user_account_settings node
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_account_settings))) {
+                Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
+
+                try {
+
+                    settings.setMy_book(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getMy_book()
+                    );
+                    settings.setUsername(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getUsername()
+                    );
+                    settings.setProfile_photo(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getProfile_photo()
+                    );
+                    settings.setMy_lecture_note(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getMy_lecture_note()
+                    );
+                    settings.setEmail(
+                            ds.child(userID)
+                                    .getValue(UserAccountSettings.class)
+                                    .getEmail()
+                    );
+
+                    Log.d(TAG, "getUserAccountSettings: retrieved user_account_settings information: " + settings.toString());
+                } catch (NullPointerException e) {
+                    Log.e(TAG, "getUserAccountSettings: NullPointerException: " + e.getMessage());
+                }
+            }
+
+                // users node
+                if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
+                    Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
+
+                    user.setUsername(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getUsername()
+                    );
+                    user.setEmail(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getEmail()
+                    );
+                    user.setUser_id(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getUser_id()
+                    );
+
+
+                    Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
+                }
+
+        }
+        return new UserSettings(user, settings);
+
+    }
+
 
 }
