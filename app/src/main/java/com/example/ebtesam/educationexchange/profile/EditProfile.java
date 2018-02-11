@@ -5,10 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -37,6 +41,8 @@ public class EditProfile extends AppCompatActivity {
 
     private TextView user_name,email;
     private CircleImageView mProfilePhoto;
+    private String userID;
+    private UserSettings mUserSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +68,17 @@ public class EditProfile extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                saveProfileSettings();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         return;
@@ -70,7 +87,7 @@ public class EditProfile extends AppCompatActivity {
     private void setProfileWidgets(UserSettings userSettings){
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
-
+        mUserSettings = userSettings;
 
         //User user = userSettings.getUser();
         UserAccountSettings settings = userSettings.getSettings();
@@ -88,6 +105,84 @@ public class EditProfile extends AppCompatActivity {
     }
 
     //............................Firebase.................................//
+    /**
+     * Retrieves the data contained in the widgets and submits it to the database
+     * Before donig so it chekcs to make sure the username chosen is unqiue
+     */
+    private void saveProfileSettings(){
+       // final String displayName = mDisplayName.getText().toString();
+        final String username = user_name.getText().toString();
+        final String memail = email.getText().toString();
+//        final String website = mWebsite.getText().toString();
+//        final String description = mDescription.getText().toString();
+//        final long phoneNumber = Long.parseLong(mPhoneNumber.getText().toString());
+
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                //case1: the user did not change their username
+                if(!mUserSettings.getUser().getUsername().equals(username)){
+                    checkIfUsernameExists(username);
+
+                }
+                //case2: the user changed their username therefore we need to check for uniqueness
+                else{
+
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    /**
+     * Check is @param username already exists in teh database
+     * @param username
+     */
+    private void checkIfUsernameExists(final String username) {
+        Log.d(TAG, "checkIfUsernameExists: Checking if  " + username + " already exists.");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference
+                .child(getString(R.string.dbname_users))
+                .orderByChild(getString(R.string.field_username))
+                .equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(!dataSnapshot.exists()){
+                    //add the username
+                    firebaseMethod.updateUsername(username);
+                    Toast.makeText(EditProfile.this, "saved username.", Toast.LENGTH_SHORT).show();
+
+                }
+                for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
+                    if (singleSnapshot.exists()){
+                        Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + singleSnapshot.getValue(User.class).getUsername());
+                        Toast.makeText(EditProfile.this, "That username already exists.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     private void setupFirebaseAuth(){
         Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
@@ -95,6 +190,7 @@ public class EditProfile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase= FirebaseDatabase.getInstance();
         myRef=mFirebaseDatabase.getReference();
+        userID=mAuth.getCurrentUser().getUid();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override

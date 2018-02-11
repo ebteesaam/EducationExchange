@@ -44,25 +44,25 @@ myRef=mFirebaseDatabase.getReference();
             userID = mAuth.getCurrentUser().getUid();
         }
     }
-
-    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
-        Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
-
-        User user = new User();
-
-        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
-            Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
-
-            user.setUsername(ds.getValue(User.class).getUsername());
-            Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
-
-            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
-                Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
-                return true;
-            }
-        }
-        return false;
-    }
+//
+//    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
+//        Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
+//
+//        User user = new User();
+//
+//        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
+//            Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
+//
+//            user.setUsername(ds.getValue(User.class).getUsername());
+//            Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
+//
+//            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
+//                Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public void registerNewEmail(final String email, String password, final String username) {
 
@@ -109,6 +109,8 @@ myRef=mFirebaseDatabase.getReference();
                     });
         }
     }
+
+
 
     public void addNewUser(String email, String username, String my_book, String my_lecture_note, String profile_photo){
 
@@ -213,6 +215,20 @@ myRef=mFirebaseDatabase.getReference();
         }
         return new UserSettings(user, settings);
 
+    }
+
+    public void updateUsername(String username){
+        Log.d(TAG, "updateUsername: upadting username to: " + username);
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(userID)
+                .child(mContext.getString(R.string.field_username))
+                .setValue(username);
+
+        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+                .child(userID)
+                .child(mContext.getString(R.string.field_username))
+                .setValue(username);
     }
 
 

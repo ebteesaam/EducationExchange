@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-        //mAuth.signOut();
+       // mAuth.signOut();
         createTabIcons();
     }
     private void createTabIcons() {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         tabLayout.getTabAt(3).setCustomView(tabFour);
     }
-    
+
     private void createViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new HomeActivity(), "Tab 1");

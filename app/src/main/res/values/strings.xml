@@ -5,31 +5,6 @@
     <string name="text_book">Text Book</string>
     <string name="lecture_notes">Lecture Notes</string>
 
-
-    <string name="name_of_book">Name of Book</string>
-    <string name="number_of_course">Number of course</string>
-    <string name="state">State</string>
-    <string name="price">Price</string>
-
-    <string name="my_books">My Books</string>
-
-    <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="action_search">Search</string>
-
-
-    <string name="action_save">Save</string>
-    <string name="goToRigister">No Account yet? Create one</string>
-
-    <string name="register">REGISTER A NEW ACCOUNT</string>
-    <string name="profile">My Profile</string>
-    <string name="edit_profile">Edit My Profile</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="un_known_email">unKnown email</string>
-    <string name="un_known_name">unKnown name</string>
-    <string name="change_photo">Change photo</string>
-
-
     <!-- Firebase messages -->
     <string name="auth_failed">Failed to Authenticate</string>
     <string name="auth_success">Authentication Success</string>
@@ -37,6 +12,79 @@
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
+    <string name="field_username">username</string>
 
+    <!--adding book page-->
+    <string name="name_of_book">Name of book</string>
+    <string name="nameBook">Enter the name</string>
+    <string name="type">Type of material</string>
+    <string name="number_of_course">Number of course</string>
+    <string name="state">State</string>
+    <string name="ava">Availability</string>
+    <string name="enter_price">Enter the price</string>
+    <string name="price">Price</string>
+
+    <!--profiel page-->
+    <string name="my_books">My Books</string>
+    <string name="view_my_announcement">View My announcement</string>
+    <string name="edit">Edit Profile</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="un_known_email">unKnown email</string>
+    <string name="un_known_name">unKnown name</string>
+    <string name="change_photo">Change photo</string>
+
+
+    <string name="action_search">Search</string>
+
+
+    <string name="action_save">Save</string>
+
+
+    <string name="register">REGISTER A NEW ACCOUNT</string>
+    <string name="profile">My Profile</string>
+    <string name="edit_profile">Edit My Profile</string>
+
+    <!--announcement page-->
+    <string name="title">Title</string>
+    <string name="enter_title">Enter the title</string>
+    <string name="enter_the_text">Enter the text</string>
+    <string name="text">Text</string>
+    <string name="send_the_announcement">Send The Announcement</string>
+    <string name="announcement_request">Please fill the following detail to publish the announcement.</string>
+
+    <!--veiw textBook-->
+    <string name="comment">comment:</string>
+    <string name="request">Request This material</string>
+
+    <!---login page-->
+    <string name="sign_out">Sign Out</string>
+    <string name="goToRigister">No Account yet? Create one</string>
+
+    <!---Home page-->
+    <string name="information_about_app">Education Exchange is an application design to help students at King Abdulaziz University in Rabigh to exchange their textbooks and lecture notes.</string>
+    <string name="about_us">About Us:</string>
+    <string name="announcement">Announcement:</string>
+    <string name="add_announcement">Add announcement</string>
+
+
+    <!--array for add material pag-->
+    <string-array name="availability">
+        <item>Available</item>
+        <item>Blocked</item>
+        <item>Pied</item>
+    </string-array>
+
+    <string-array name="type">
+        <item>TextBooks</item>
+        <item>Lecture Notes</item>
+        <item>General Books</item>
+    </string-array>
+
+    <string-array name="state">
+        <item>New</item>
+        <item>Used</item>
+    </string-array>
+    <!--end array for adding pag-->
 
 </resources>
