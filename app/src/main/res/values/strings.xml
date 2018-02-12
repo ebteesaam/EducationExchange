@@ -13,6 +13,7 @@
     <string name="dbname_users">users</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
     <string name="field_username">username</string>
+    <string name="field_email">email</string>
 
     <!--adding book page-->
     <string name="name_of_book">Name of book</string>
@@ -33,6 +34,10 @@
     <string name="un_known_email">unKnown email</string>
     <string name="un_known_name">unKnown name</string>
     <string name="change_photo">Change photo</string>
+    <string name="profile_fragment">Profile</string>
+
+    <!-- dialog names -->
+    <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
 
 
     <string name="action_search">Search</string>

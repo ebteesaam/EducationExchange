@@ -217,6 +217,11 @@ myRef=mFirebaseDatabase.getReference();
 
     }
 
+    /**
+     * update username in the 'users' node and 'user_account_settings' node
+     * @param username
+     */
+
     public void updateUsername(String username){
         Log.d(TAG, "updateUsername: upadting username to: " + username);
 
@@ -231,5 +236,19 @@ myRef=mFirebaseDatabase.getReference();
                 .setValue(username);
     }
 
+    /**
+     * update the email in the 'user's' node
+     * @param email
+     */
+    public void updateEmail(String email) {
 
+        Log.d(TAG, "updateUsername: upadting username to: " + email);
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(userID)
+                .child(mContext.getString(R.string.field_email))
+                .setValue(email);
+
+
+    }
 }
