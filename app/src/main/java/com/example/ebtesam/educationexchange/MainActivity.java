@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-       // mAuth.signOut();
+        //mAuth.signOut();
         createTabIcons();
     }
     private void createTabIcons() {

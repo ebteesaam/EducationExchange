@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.SignOutActivity;
+import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ProfilePage extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
@@ -67,6 +69,8 @@ public class ProfilePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        initImageLoader();
+        setProfileImage();
         setupFirebaseAuth();
     }
 
@@ -77,6 +81,19 @@ public class ProfilePage extends AppCompatActivity {
         super.onBackPressed();
         return;
     }
+    private void initImageLoader(){
+        UnvirsalImageLoader universalImageLoader = new UnvirsalImageLoader(ProfilePage.this);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
+    }
+
+    private void setProfileImage(){
+        Log.d(TAG, "setProfileImage: setting profile image");
+        String imgURL="www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
+        UnvirsalImageLoader.setImage(imgURL,mProfilePhoto,"http://");
+
+
+    }
+
 
     private void setProfileWidgets(UserSettings userSettings){
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());

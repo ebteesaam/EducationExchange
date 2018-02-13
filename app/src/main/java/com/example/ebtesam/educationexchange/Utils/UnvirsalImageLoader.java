@@ -44,11 +44,11 @@ public class UnvirsalImageLoader {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
 
+
             }
 
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
 
             }
 
@@ -60,7 +60,6 @@ public class UnvirsalImageLoader {
 
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
-
 
             }
         });
