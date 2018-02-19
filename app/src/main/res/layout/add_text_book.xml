@@ -24,7 +24,17 @@
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="14dp"
-                android:background="@color/edit">
+                android:background="@color/edit"
+                >
+
+            <ImageView
+                android:id="@+id/book_photo"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="14dp"
+                android:background="@color/edit"
+                android:src="@drawable/ic_grey_book"/>
 
                 <ImageView
                     android:id="@+id/photo"
@@ -37,18 +47,6 @@
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
                     android:src="@drawable/ic_action_photo" />
-
-                <ImageView
-                    android:id="@+id/attach"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/photo"
-                    android:layout_marginEnd="18dp"
-                    android:layout_marginRight="18dp"
-                    android:layout_toLeftOf="@+id/photo"
-                    android:layout_toStartOf="@+id/photo"
-                    android:paddingLeft="10dp"
-                    android:src="@drawable/ic_action_name" />
 
             </RelativeLayout>
 
@@ -82,7 +80,7 @@
 
                         <!-- Name field -->
                         <EditText
-                            android:id="@+id/edit_inventory_name"
+                            android:id="@+id/edit_name"
                             style="@style/EditorFieldStyle"
                             android:layout_height="match_parent"
                             android:hint="@string/nameBook"
@@ -208,6 +206,7 @@
 
                         <!-- Name field -->
                         <EditText
+                            android:id="@+id/numberOfCourse"
                             style="@style/EditorFieldStyle"
                             android:layout_margin="4dp"
                             android:hint="@string/number_of_course"
@@ -319,7 +318,10 @@
 
             </RelativeLayout>
 
+
         </TableLayout>
+
+
     </ScrollView>
 
 

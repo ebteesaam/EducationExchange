@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
@@ -40,6 +41,7 @@ public class ProfilePage extends AppCompatActivity {
     private FirebaseStorage firebaseStorage;
     private TextView user_name,email;
     private ImageView mProfilePhoto;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class ProfilePage extends AppCompatActivity {
         user_name=findViewById(R.id.user_name);
         email=findViewById(R.id.email);
         mProfilePhoto=findViewById(R.id.profile_photo);
+        progressBar=findViewById(R.id.profileProgressBar);
         firebaseMethod=new FirebaseMethod(ProfilePage.this);
 
 
@@ -69,7 +72,7 @@ public class ProfilePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        initImageLoader();
+        //initImageLoader();
         setProfileImage();
         setupFirebaseAuth();
     }
@@ -89,7 +92,7 @@ public class ProfilePage extends AppCompatActivity {
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: setting profile image");
         String imgURL="www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
-        UnvirsalImageLoader.setImage(imgURL,mProfilePhoto,"http://");
+        UnvirsalImageLoader.setImage(imgURL,mProfilePhoto,progressBar,"http://");
 
 
     }
@@ -107,7 +110,7 @@ public class ProfilePage extends AppCompatActivity {
 //        StorageReference storageRef = firebaseStorage.getReference();
 //        StorageReference imagesRef = storageRef.child("profile_photo");
 //        mStorageRef=FirebaseStorage.getInstance().getReference();
-//        //UnvirsalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, "");
+        UnvirsalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto,progressBar, "");
 //        Glide.with(this /* context */)
 //                .using(new FirebaseImageLoader())
 //                .load(mStorageRef)

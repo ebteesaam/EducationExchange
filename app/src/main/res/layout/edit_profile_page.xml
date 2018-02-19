@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.ebtesam.educationexchange.profile.ProfilePage">
-
-    <RelativeLayout
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,6 +121,50 @@
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
+
+            <ProgressBar
+                android:id="@+id/profileProgressBar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"/>
+
+
+
+
+        </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabsBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+
+            </android.support.design.widget.TabLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
 
 </LinearLayout>

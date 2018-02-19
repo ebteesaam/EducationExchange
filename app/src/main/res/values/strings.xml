@@ -11,9 +11,15 @@
 
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
+    <string name="dbname_user_books">user_books</string>
+    <string name="dbname_photos">photos</string>
     <string name="dbname_user_account_settings">user_account_settings</string>
     <string name="field_username">username</string>
     <string name="field_email">email</string>
+
+    <!-- photo types -->
+    <string name="new_book">new_book</string>
+    <string name="profile_photo">profile_photo</string>
 
     <!--adding book page-->
     <string name="name_of_book">Name of book</string>
@@ -25,6 +31,13 @@
     <string name="enter_price">Enter the price</string>
     <string name="price">Price</string>
 
+    <!-- fragment photo -->
+    <string name="gallery">GALLERY</string>
+    <string name="photo">PHOTO</string>
+    <string name="string_open_camera">Open Camera</string>
+    <string name="choose_photo">Take Photo</string>
+    <string name="string_next">Next</string>
+
     <!--profiel page-->
     <string name="my_books">My Books</string>
     <string name="view_my_announcement">View My announcement</string>
@@ -35,6 +48,12 @@
     <string name="un_known_name">unKnown name</string>
     <string name="change_photo">Change photo</string>
     <string name="profile_fragment">Profile</string>
+    <string name="change_password">Change password</string>
+    <string name="change">Change</string>
+    <string name="password">password</string>
+    <string name="cancel">CANCEL</string>
+
+
 
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
@@ -49,6 +68,9 @@
     <string name="register">REGISTER A NEW ACCOUNT</string>
     <string name="profile">My Profile</string>
     <string name="edit_profile">Edit My Profile</string>
+
+
+    <string name="selected_image">selected_image</string>
 
     <!--announcement page-->
     <string name="title">Title</string>
@@ -65,6 +87,7 @@
     <!---login page-->
     <string name="sign_out">Sign Out</string>
     <string name="goToRigister">No Account yet? Create one</string>
+    <string name="forgot">Forgot password!</string>
 
     <!---Home page-->
     <string name="information_about_app">Education Exchange is an application design to help students at King Abdulaziz University in Rabigh to exchange their textbooks and lecture notes.</string>

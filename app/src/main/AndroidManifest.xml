@@ -59,6 +59,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".addBook.TakePhotoActivity"
+            android:parentActivityName=".addBook.AddTextBook">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".addBook.AddTextBook" />
+        </activity>
+        <activity android:name=".addBook.NextActivity"
+        android:parentActivityName=".addBook.TakePhotoActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".addBook.TakePhotoActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -65,7 +65,7 @@
                 <ListView
                     android:id="@+id/list_announcement"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="245dp"
                     android:drawSelectorOnTop="true"
                     android:orientation="vertical"></ListView>
             </RelativeLayout>
@@ -74,17 +74,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/relative2"
-                android:padding="18dp">
+                >
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/add_announcement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/fab_margin"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="@dimen/fab_margin"
+                    android:layout_marginLeft="@dimen/fab_margin"
                     android:background="@drawable/white_rounded_buttom"
-                    android:padding="16dp"
-                    android:text="@string/add_announcement"/>
+                    android:padding="10dp"
+                    android:text="@string/add_announcement" />
 
             </RelativeLayout>
 

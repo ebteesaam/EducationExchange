@@ -67,12 +67,20 @@
             android:id="@+id/link_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/goToRigister"
             android:textColor="@color/blue"
             android:textSize="17dp"/>
 
+        <TextView
+            android:id="@+id/link_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/forgot"
+            android:textColor="@color/blue"
+            android:textSize="17dp"/>
 
     </LinearLayout>
 

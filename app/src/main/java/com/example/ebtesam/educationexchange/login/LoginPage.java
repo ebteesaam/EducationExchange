@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginPage extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     EditText input_email, input_password;
+    TextView forgotPassword;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Context mContext = LoginPage.this;
@@ -33,6 +34,22 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.login_page);
         input_email = findViewById(R.id.input_email);
         input_password = findViewById(R.id.input_password);
+        forgotPassword=findViewById(R.id.link_forgot_password);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(input_email.getText().toString().trim())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(mContext, "Email sent, Check your email please..", Toast.LENGTH_LONG).show();
+                                    Log.d(TAG, "Email sent.");
+                                }
+                            }
+                        });
+            }
+        });
 
         setupFirebaseAuth();
         init();
@@ -116,6 +133,8 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
          /*
          If the user is logged in then navigate to HomeActivity and call 'finish()'
           */

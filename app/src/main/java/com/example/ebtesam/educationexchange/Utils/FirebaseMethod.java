@@ -1,6 +1,8 @@
 package com.example.ebtesam.educationexchange.Utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +12,8 @@ import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +21,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 
 /**
  * Created by ebtesam on 07/02/2018 AD.
@@ -34,16 +43,84 @@ public class FirebaseMethod {
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private StorageReference mStorageReference;
+    private double mPhotoUploadProgress = 0;
 
     public FirebaseMethod(Context context){
         mAuth= FirebaseAuth.getInstance();
         mContext=context;
         mFirebaseDatabase=FirebaseDatabase.getInstance();
-myRef=mFirebaseDatabase.getReference();
+        myRef=mFirebaseDatabase.getReference();
+        mStorageReference = FirebaseStorage.getInstance().getReference();
         if(mAuth.getCurrentUser()!=null){
             userID = mAuth.getCurrentUser().getUid();
         }
     }
+
+
+    public void uploadNewPhoto( String photoType, final String caption,final int count, final String imgUrl){
+        Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
+
+        FilePaths filePaths = new FilePaths();
+        //case1) new photo
+        if(photoType.equals(mContext.getString(R.string.new_book))){
+            Log.d(TAG, "uploadNewPhoto: uploading NEW book photo.");
+
+            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            StorageReference storageReference = mStorageReference
+                    .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/book" + (count + 1));
+
+            //convert image url to bitmap
+            Bitmap bm = com.example.ebtesam.educationexchange.Utils.ImageManager.getBitmap(imgUrl);
+            byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
+
+            UploadTask uploadTask = null;
+            uploadTask = storageReference.putBytes(bytes);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri firebaseUrl = taskSnapshot.getDownloadUrl();
+
+                    Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
+
+                    //add the new photo to 'photos' node and 'user_photos' node
+                   // addPhotoToDatabase(caption, firebaseUrl.toString());
+
+                    //navigate to the main feed so the user can see their photo
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, "onFailure:  upload failed.");
+                    Toast.makeText(mContext, " upload failed ", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                    if(progress - 15 > mPhotoUploadProgress){
+                        Toast.makeText(mContext, " upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
+                        mPhotoUploadProgress = progress;
+                    }
+
+                    Log.d(TAG, "onProgress: upload progress: " + progress + "% done");
+                }
+            });
+
+
+        }
+        //case new profile photo
+        else if(photoType.equals(mContext.getString(R.string.profile_photo))){
+            Log.d(TAG, "uploadNewPhoto: uploading new PROFILE photo");
+        }
+
+    }
+
+
+
 //
 //    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
 //        Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
@@ -63,7 +140,16 @@ myRef=mFirebaseDatabase.getReference();
 //        }
 //        return false;
 //    }
-
+    public int getBooksCount(DataSnapshot dataSnapshot){
+        int count = 0;
+        for(DataSnapshot ds: dataSnapshot
+                .child(mContext.getString(R.string.dbname_user_books))
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .getChildren()){
+            count++;
+        }
+        return count;
+    }
     public void registerNewEmail(final String email, String password, final String username) {
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -250,5 +336,39 @@ myRef=mFirebaseDatabase.getReference();
                 .setValue(email);
 
 
+    }
+
+    public void updateUserAccountSettings(String displayName, String website, String description, long phoneNumber){
+
+        Log.d(TAG, "updateUserAccountSettings: updating user account settings.");
+
+//        if(displayName != null){
+//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//                    .child(userID)
+//                    .child(mContext.getString(R.string.field_display_name))
+//                    .setValue(displayName);
+//        }
+//
+//
+//        if(website != null) {
+//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//                    .child(userID)
+//                    .child(mContext.getString(R.string.field_website))
+//                    .setValue(website);
+//        }
+//
+//        if(description != null) {
+//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//                    .child(userID)
+//                    .child(mContext.getString(R.string.field_description))
+//                    .setValue(description);
+//        }
+//
+//        if(phoneNumber != 0) {
+//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//                    .child(userID)
+//                    .child(mContext.getString(R.string.field_phone_number))
+//                    .setValue(phoneNumber);
+//        }
     }
 }

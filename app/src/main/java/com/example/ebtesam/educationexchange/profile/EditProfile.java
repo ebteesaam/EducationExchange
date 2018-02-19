@@ -1,16 +1,25 @@
 package com.example.ebtesam.educationexchange.profile;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.Utils.Permissions;
+import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
+import com.example.ebtesam.educationexchange.addBook.TakePhotoActivity;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
@@ -27,8 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import de.hdodenhof.circleimageview.CircleImageView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by ebtesam on 29/01/2018 AD.
@@ -37,21 +45,29 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfile extends AppCompatActivity implements ConfirmPasswordDialog.OnConfirmPasswordListener {
 
     private static final String TAG = "editProfileActivity";
+    private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseMethod firebaseMethod;
-    private TextView user_name, email;
-    private CircleImageView mProfilePhoto;
+    private TextView user_name, email, changePassword;
+    private ImageView mProfilePhoto;
+    private ProgressBar progressBar;
     private String userID;
+    private FirebaseUser user;
     private UserSettings mUserSettings;
+    //vars
+    private String mAppend = "file:/";
+    private int imageCount = 0;
+    private String imgUrl;
+    private TextView changePhoto;
 
     @Override
     public void onConfirmPassword(String password) {
         Log.d(TAG, "onConfirmPassword: got the password: " + password);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+         user = FirebaseAuth.getInstance().getCurrentUser();
 
         // Get auth credentials from the user for re-authentication. The example below shows
         // email and password credentials but there are multiple possible providers,
@@ -108,6 +124,41 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
                 });
     }
 
+    public void onConfirmchangePassword(final String password) {
+        Log.d(TAG, "onConfirmPassword: got the password: " + password);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        // Get auth credentials from the user for re-authentication. The example below shows
+        // email and password credentials but there are multiple possible providers,
+        // such as GoogleAuthProvider or FacebookAuthProvider.
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(mAuth.getCurrentUser().getEmail(), password);
+
+        // Prompt the user to re-provide their sign-in credentials
+        user.reauthenticate(credential)
+                .
+
+                        addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "Password updated");
+                                            } else {
+                                                Log.d(TAG, "Error password not updated");
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    Log.d(TAG, "Error auth failed");
+                                }
+                            }
+                        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,19 +167,104 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
 
         user_name = findViewById(R.id.edit_user_name);
         email = findViewById(R.id.edit_email);
-        firebaseMethod = new FirebaseMethod(EditProfile.this);
+        mProfilePhoto=findViewById(R.id.edit_profile_photo);
+        progressBar=findViewById(R.id.profileProgressBar);
+//        changePassword=findViewById(R.id.change_password);
+//        changePassword.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ConfirmPasswordDialog dialog = new ConfirmPasswordDialog();
+//                dialog.show(getFragmentManager(), getString(R.string.confirm_password_dialog));
+//
+//
+//
+//            }
+//        });
+        changePhoto=findViewById(R.id.change_photo);
+        changePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkPermissionsArray(Permissions.PERMISSIONS)) {
+                    Intent intent = new Intent(EditProfile.this, TakePhotoActivity.class);
+                    startActivity(intent);
+                } else {
+                    verifyPermissions(Permissions.PERMISSIONS);
+                }
 
+            }
+        });
+        firebaseMethod = new FirebaseMethod(EditProfile.this);
+//initImageLoader();
+setProfileImage();
 
         setupFirebaseAuth();
 
 
     }
 
+    public void verifyPermissions(String[] permissions) {
+        Log.d(TAG, "verifyPermissions: verifying permissions.");
+
+        ActivityCompat.requestPermissions(
+                EditProfile.this,
+                permissions,
+                VERIFY_PERMISSIONS_REQUEST
+        );
+    }
+
+    /**
+     * Check an array of permissions
+     *
+     * @param permissions
+     * @return
+     */
+    public boolean checkPermissionsArray(String[] permissions) {
+        Log.d(TAG, "checkPermissionsArray: checking permissions array.");
+
+        for (int i = 0; i < permissions.length; i++) {
+            String check = permissions[i];
+            if (!checkPermissions(check)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Check a single permission is it has been verified
+     *
+     * @param permission
+     * @return
+     */
+    public boolean checkPermissions(String permission) {
+        Log.d(TAG, "checkPermissions: checking permission: " + permission);
+
+        int permissionRequest = ActivityCompat.checkSelfPermission(EditProfile.this, permission);
+
+        if (permissionRequest != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "checkPermissions: \n Permission was not granted for: " + permission);
+            return false;
+        } else {
+            Log.d(TAG, "checkPermissions: \n Permission was granted for: " + permission);
+            return true;
+        }
+    }
+    private void setProfileImage(){
+        Log.d(TAG, "setProfileImage: setting profile image");
+        String imgURL="www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
+        UnvirsalImageLoader.setImage(imgURL,mProfilePhoto, progressBar,"http://");
+
+
+    }
+    private void initImageLoader(){
+        UnvirsalImageLoader universalImageLoader = new UnvirsalImageLoader(EditProfile.this);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_editor.xml file.
         // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.save_book, menu);
+        getMenuInflater().inflate(R.menu.save, menu);
         return true;
     }
 
@@ -157,7 +293,7 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
         //User user = userSettings.getUser();
         UserAccountSettings settings = userSettings.getSettings();
 
-        //UniversalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, null, "");
+        UnvirsalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, progressBar, "");
 
         user_name.setText(settings.getUsername());
         email.setText(settings.getEmail());
@@ -177,8 +313,8 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
      */
     private void saveProfileSettings() {
         // final String displayName = mDisplayName.getText().toString();
-        final String username = user_name.getText().toString();
-        final String memail = email.getText().toString();
+         String username = user_name.getText().toString();
+         String memail = email.getText().toString();
         //        final String website = mWebsite.getText().toString();
         //        final String description = mDescription.getText().toString();
         //        final long phoneNumber = Long.parseLong(mPhoneNumber.getText().toString());
@@ -187,6 +323,7 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
         //case1: the user did not change their username
         if (!mUserSettings.getUser().getUsername().equals(username)) {
             checkIfUsernameExists(username);
+
         }
         //case2: if the user made a change to their email
         if (!mUserSettings.getUser().getEmail().equals(memail)) {
@@ -205,6 +342,25 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
             // step3) change the email
             //          -submit the new email to the database and authentication
         }
+//        /**
+//         * change the rest of the settings that do not require uniqueness
+//         */
+//        if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
+//            //update displayname
+//            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, 0);
+//        }
+//        if(!mUserSettings.getSettings().getWebsite().equals(website)){
+//            //update website
+//            mFirebaseMethods.updateUserAccountSettings(null, website, null, 0);
+//        }
+//        if(!mUserSettings.getSettings().getDescription().equals(description)){
+//            //update description
+//            mFirebaseMethods.updateUserAccountSettings(null, null, description, 0);
+//        }
+//        if(!mUserSettings.getSettings().getProfile_photo().equals(phoneNumber)){
+//            //update phoneNumber
+//            mFirebaseMethods.updateUserAccountSettings(null, null, null, phoneNumber);
+//        }
 
 
     }

@@ -20,12 +20,12 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
  * Created by ebtesam on 8/22/2017 AD.
  */
 
-public class UnvirsalImageLoader {
+public class UnvirsalProfileImageLoader {
 
-    private static  final  int defaultImage= R.drawable.ic_grey_book;
+    private static  final  int defaultImage= R.drawable.ic_profile;
     private Context mContext;
 
-    public UnvirsalImageLoader(Context context){
+    public UnvirsalProfileImageLoader(Context context){
         mContext=context;
     }
 

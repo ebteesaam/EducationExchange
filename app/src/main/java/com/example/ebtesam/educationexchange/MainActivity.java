@@ -20,12 +20,14 @@ import com.example.ebtesam.educationexchange.Fragment.HomeActivity;
 import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
 import com.example.ebtesam.educationexchange.Fragment.TextBook;
 import com.example.ebtesam.educationexchange.Fragment.ViewPagerAdapter;
+import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.login.LoginPage;
 import com.example.ebtesam.educationexchange.profile.ProfilePage;
 import com.example.ebtesam.educationexchange.search.SearchBook;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initImageLoader();
         setupFirebaseAuth();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-        //mAuth.signOut();
+       // mAuth.signOut();
         createTabIcons();
+    }
+    private void initImageLoader(){
+        UnvirsalImageLoader universalImageLoader = new UnvirsalImageLoader(MainActivity.this);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
     private void createTabIcons() {
 
