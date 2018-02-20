@@ -4,20 +4,47 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
+import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddTextBook extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
+
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    private FirebaseMethod mFirebaseMethods;
+
+    //widgets
+    //private EditText mCaption;
+
+    //vars
+    private String mAppend = "file:/";
+    private int imageCount = 0;
+    private String imgUrl;
 
 
     private Context mContext = AddTextBook.this;
@@ -30,12 +57,18 @@ public class AddTextBook extends AppCompatActivity {
         setContentView(R.layout.add_text_book);
         setTitle(getString(R.string.add_book_activity));
 
+        mFirebaseMethods = new FirebaseMethod(mContext);
+        //mCaption = (EditText) findViewById(R.id.caption) ;
+
+        setupFirebaseAuth();
+
+
         takePhoto = findViewById(R.id.photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (checkPermissionsArray(Permissions.PERMISSIONS)) {
-                    Intent intent = new Intent(AddTextBook.this, TakePhotoActivity.class);
+                    Intent intent = new Intent(mContext, TakePhotoActivity.class);
                     startActivity(intent);
                 } else {
                     verifyPermissions(Permissions.PERMISSIONS);
@@ -81,10 +114,6 @@ public class AddTextBook extends AppCompatActivity {
         }
         return true;
     }
-    public int getTask(){
-        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
-        return getIntent().getFlags();
-    }
 
     /**
      * Check a single permission is it has been verified
@@ -105,6 +134,94 @@ public class AddTextBook extends AppCompatActivity {
             return true;
         }
     }
+
+    /**
+     * gets the image url from the incoming intent and displays the chosen image
+     */
+    private void setImage(){
+        Intent intent = getIntent();
+        ImageView image = (ImageView) findViewById(R.id.imageShare);
+        imgUrl = intent.getStringExtra(getString(R.string.selected_image));
+        UnvirsalImageLoader.setImage(imgUrl, image, null, mAppend);
+    }
+
+     /*
+     ------------------------------------ Firebase ---------------------------------------------
+     */
+
+    /**
+     * Setup the firebase auth object
+     */
+    private void setupFirebaseAuth(){
+        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+        Log.d(TAG, "onDataChange: image count: " + imageCount);
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                imageCount = mFirebaseMethods.getBooksCount(dataSnapshot);
+                Log.d(TAG, "onDataChange: image count: " + imageCount);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                Log.d(TAG, "onClick: navigating to the final share screen.");
+                Toast.makeText(AddTextBook.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
+                String caption = "nothing".toString();
+                mFirebaseMethods.uploadNewPhoto(getString(R.string.new_book), caption, imageCount, imgUrl);
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
