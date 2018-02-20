@@ -73,7 +73,7 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
         //initImageLoader();
-        setProfileImage();
+       // setProfileImage();
         setupFirebaseAuth();
     }
 

@@ -19,7 +19,6 @@ import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
-import com.example.ebtesam.educationexchange.addBook.TakePhotoActivity;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
@@ -51,7 +50,7 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseMethod firebaseMethod;
-    private TextView user_name, email, changePassword;
+    private TextView user_name, email;
     private ImageView mProfilePhoto;
     private ProgressBar progressBar;
     private String userID;
@@ -169,35 +168,15 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
         email = findViewById(R.id.edit_email);
         mProfilePhoto=findViewById(R.id.edit_profile_photo);
         progressBar=findViewById(R.id.profileProgressBar);
-//        changePassword=findViewById(R.id.change_password);
-//        changePassword.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ConfirmPasswordDialog dialog = new ConfirmPasswordDialog();
-//                dialog.show(getFragmentManager(), getString(R.string.confirm_password_dialog));
-//
-//
-//
-//            }
-//        });
-        changePhoto=findViewById(R.id.change_photo);
-        changePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (checkPermissionsArray(Permissions.PERMISSIONS)) {
-                    Intent intent = new Intent(EditProfile.this, TakePhotoActivity.class);
-                    startActivity(intent);
-                } else {
-                    verifyPermissions(Permissions.PERMISSIONS);
-                }
 
-            }
-        });
+        changePhoto=findViewById(R.id.change_photo);
+
         firebaseMethod = new FirebaseMethod(EditProfile.this);
-//initImageLoader();
-setProfileImage();
+        //initImageLoader();
+        //setProfileImage();
 
         setupFirebaseAuth();
+        getIncomingIntent();
 
 
     }
@@ -249,6 +228,20 @@ setProfileImage();
             return true;
         }
     }
+
+    private void getIncomingIntent(){
+        Intent intent = getIntent();
+
+        //if there is an imageUrl attached as an extra, then it was chosen from the gallery/photo fragment
+        if(intent.hasExtra(getString(R.string.selected_image))){
+            Log.d(TAG, "getIncomingIntent: New incoming imgUrl");
+
+                //set the new profile picture
+                FirebaseMethod firebaseMethods = new FirebaseMethod(EditProfile.this);
+                firebaseMethods.uploadNewProfilePhoto(getString(R.string.profile_photo), null, 0,
+                        intent.getStringExtra(getString(R.string.selected_image)));
+
+        }}
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: setting profile image");
         String imgURL="www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
@@ -303,6 +296,27 @@ setProfileImage();
         //        mFollowing.setText(String.valueOf(settings.getFollowing()));
         //        mFollowers.setText(String.valueOf(settings.getFollowers()));
         //        mProgressBar.setVisibility(View.GONE);
+
+        changePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkPermissionsArray(Permissions.PERMISSIONS)) {
+                    Intent intent = new Intent(EditProfile.this, TakeProfilePhotoActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //268435456
+                    startActivity(intent);
+
+//                    Intent intent = new Intent(EditProfile.this, EditProfile.class);
+//                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+//                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
+//                    startActivity(intent);
+        //        Intent intent = new Intent(EditProfile.this, TakePhotoActivity.class);
+        //                    startActivity(intent);
+                } else {
+                    verifyPermissions(Permissions.PERMISSIONS);
+                }
+
+            }
+        });
     }
 
     //............................Firebase.................................//

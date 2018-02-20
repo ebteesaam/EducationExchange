@@ -72,6 +72,13 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".addBook.TakePhotoActivity" />
         </activity>
+
+        <activity android:name=".profile.TakeProfilePhotoActivity"
+            android:parentActivityName=".profile.EditProfile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".profile.EditProfile" />
+        </activity>
     </application>
 
 </manifest>

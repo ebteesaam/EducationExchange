@@ -95,6 +95,9 @@
     <string name="announcement">Announcement:</string>
     <string name="add_announcement">Add announcement</string>
 
+    <!---put Extra-->
+    <string name="return_to_fragment">return_to_fragment</string>
+
 
     <!--array for add material pag-->
     <string-array name="availability">

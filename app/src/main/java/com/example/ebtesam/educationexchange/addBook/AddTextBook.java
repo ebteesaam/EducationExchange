@@ -81,6 +81,10 @@ public class AddTextBook extends AppCompatActivity {
         }
         return true;
     }
+    public int getTask(){
+        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
+        return getIntent().getFlags();
+    }
 
     /**
      * Check a single permission is it has been verified

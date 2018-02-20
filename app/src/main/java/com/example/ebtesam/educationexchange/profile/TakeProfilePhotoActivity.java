@@ -1,4 +1,4 @@
-package com.example.ebtesam.educationexchange.addBook;
+package com.example.ebtesam.educationexchange.profile;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -10,12 +10,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.ebtesam.educationexchange.Fragment.GalleryFragment;
-import com.example.ebtesam.educationexchange.Fragment.PhotoFragment;
+import com.example.ebtesam.educationexchange.Fragment.GalleryProfileFragment;
+import com.example.ebtesam.educationexchange.Fragment.PhotoProfileFragment;
 import com.example.ebtesam.educationexchange.Fragment.SectionsPagerAdapter;
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 
-public class TakePhotoActivity extends AppCompatActivity {
+public class TakeProfilePhotoActivity extends AppCompatActivity {
     private static final String TAG = "TakePhotoActivity";
     AddTextBook addTextBook;
     private ViewPager mViewPager;
@@ -40,8 +41,8 @@ public class TakePhotoActivity extends AppCompatActivity {
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GalleryFragment());
-        adapter.addFragment(new PhotoFragment());
+        adapter.addFragment(new GalleryProfileFragment());
+        adapter.addFragment(new PhotoProfileFragment());
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(adapter);
@@ -62,7 +63,7 @@ public class TakePhotoActivity extends AppCompatActivity {
     public boolean checkPermissions(String permission){
         Log.d(TAG, "checkPermissions: checking permission");
 
-        int permissionRequest= ActivityCompat.checkSelfPermission(TakePhotoActivity.this, permission);
+        int permissionRequest= ActivityCompat.checkSelfPermission(TakeProfilePhotoActivity.this, permission);
 
         if(permissionRequest != PackageManager.PERMISSION_GRANTED){
             Log.d(TAG, "checkPermissions: \n permissin was not granted for: "+permission);
@@ -84,16 +85,12 @@ public class TakePhotoActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_next:
                 Log.d(TAG, "onClick: navigating to the next share screen.");
-//                if(GalleryFragment.isRootTask()){
-//                    Intent intent = new Intent(TakePhotoActivity.this, NextActivity.class);
-//                    intent.putExtra(getString(R.string.selected_image), GalleryFragment.mSelectedImage);
-//                    startActivity(intent);
-//                }else{
-//                    Intent intent = new Intent(TakePhotoActivity.this, EditProfile.class);
-//                    intent.putExtra(getString(R.string.selected_image), GalleryFragment.mSelectedImage);
+
+//                    Intent intent = new Intent(TakeProfilePhotoActivity.this, EditProfile.class);
+//                    intent.putExtra(getString(R.string.selected_image), GalleryProfileFragment);
 //                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
 //                    startActivity(intent);
-//                }
+
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FilePaths;
 import com.example.ebtesam.educationexchange.Utils.FileSearch;
-import com.example.ebtesam.educationexchange.addBook.NextActivity;
+import com.example.ebtesam.educationexchange.profile.EditProfile;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -32,24 +32,20 @@ import java.util.ArrayList;
  * Created by ebtesam on 14/02/2018 AD.
  */
 
-public class GalleryFragment extends Fragment {
-    private static final String TAG = "GalleryFragment";
+public class GalleryProfileFragment extends Fragment {
+    private static final String TAG = "GalleryProfileFragment";
 
     //constants
     private static final int NUM_GRID_COLUMNS = 3;
-
+    public String mSelectedImage;
     //widgets
     private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar mProgressBar;
     private Spinner directorySpinner;
-
     //vars
     private ArrayList<String> directories;
     private String mAppend = "file:/";
-    private String mSelectedImage;
-
-
 
     @Nullable
     @Override
@@ -80,9 +76,7 @@ public class GalleryFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
 
-
-
-                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    Intent intent = new Intent(getActivity(), EditProfile.class);
                     intent.putExtra(getString(R.string.selected_image), mSelectedImage);
                     startActivity(intent);
 
