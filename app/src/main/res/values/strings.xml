@@ -37,6 +37,7 @@
     <string name="string_open_camera">Open Camera</string>
     <string name="choose_photo">Take Photo</string>
     <string name="string_next">Next</string>
+    <string name="empty_view_subtitle_text">Get started by adding a TextBook</string>
 
     <!--profiel page-->
     <string name="my_books">My Books</string>

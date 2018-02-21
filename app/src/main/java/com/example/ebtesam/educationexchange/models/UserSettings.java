@@ -9,8 +9,9 @@ public class UserSettings  {
 
         private User user;
         private UserAccountSettings settings;
+        private Book book;
 
-        public UserSettings(User user, UserAccountSettings settings) {
+    public UserSettings(User user, UserAccountSettings settings) {
             this.user = user;
             this.settings = settings;
         }
@@ -19,6 +20,13 @@ public class UserSettings  {
 
         }
 
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
         public User getUser() {
             return user;

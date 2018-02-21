@@ -22,14 +22,15 @@ import java.util.ArrayList;
  * Created by ebtesam on 8/23/2017 AD.
  */
 
-public class GridImageAdapter extends ArrayAdapter<String> {
+public class GridAdapter extends ArrayAdapter<String> {
 
     private Context mContext;
     private LayoutInflater mInflater;
     private int layoutResoures;
     private String mAppend;
+
     private ArrayList<String> imgURLs;
-    public GridImageAdapter(Context context, int layoutResoures, String append, ArrayList<String> imgURLs){
+    public GridAdapter(Context context, int layoutResoures, String append, ArrayList<String> imgURLs){
        super(context ,layoutResoures ,imgURLs);
         mInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mContext= context;
@@ -45,13 +46,17 @@ public class GridImageAdapter extends ArrayAdapter<String> {
         //view holder build pattern (similar to recycleview)
         final ViewHolder holder;
         if(convertView ==null){
-            convertView=mInflater.inflate(layoutResoures, parent,false);
+            convertView=mInflater.inflate(R.layout.list, parent,false);
             holder =new ViewHolder();
             holder.mProgressBar=(ProgressBar)convertView.findViewById(R.id.profileProgressBar);
-            holder.image=(SqaureImageView) convertView.findViewById(R.id.gridImageView);
-
-
-
+            holder.image=(SqaureImageView) convertView.findViewById(R.id.relative1);
+           // holder.nameTextView = (TextView) view.findViewById(R.id.nameBook);
+//        TextView summaryTextView = (TextView) view.findViewById(R.id.courseIdBook);
+//   TextView bookname=(TextView)convertView.findViewById(R.id.nameBook);
+//            UserSettings userSettings=new UserSettings();
+//            Book book =userSettings.getBook();
+//
+//            bookname.setText(book.getBook_name());
             convertView.setTag(holder);
         }
         else {
@@ -92,7 +97,6 @@ public class GridImageAdapter extends ArrayAdapter<String> {
                 }
 
             }
-
         });
 
 
@@ -102,8 +106,6 @@ public class GridImageAdapter extends ArrayAdapter<String> {
     private static class ViewHolder{
         SqaureImageView image;
         ProgressBar mProgressBar;
-        TextBook bookname;
-
 
     }
 }
