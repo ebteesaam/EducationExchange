@@ -178,7 +178,7 @@ public class NextActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
                 Toast.makeText(NextActivity.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
                 String caption = "nothing".toString();
-                mFirebaseMethods.uploadNewPhoto(getString(R.string.new_book), caption, imageCount, imgUrl);
+               // mFirebaseMethods.uploadNewPhoto(getString(R.string.new_book), caption, imageCount, imgUrl);
 
                 return true;
         }

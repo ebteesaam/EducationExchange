@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -48,8 +49,9 @@ public class AddTextBook extends AppCompatActivity {
 
 
     private Context mContext = AddTextBook.this;
-    private ImageView takePhoto;
+    private ImageView takePhoto, bookPhoto;
     private ViewPager mViewPager;
+    private EditText editName,editPrice,numOfCourse;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class AddTextBook extends AppCompatActivity {
         setTitle(getString(R.string.add_book_activity));
 
         mFirebaseMethods = new FirebaseMethod(mContext);
+        bookPhoto=findViewById(R.id.book_photo);
+        editName=findViewById(R.id.edit_name);
+        editPrice=findViewById(R.id.numberOfCourse);
         //mCaption = (EditText) findViewById(R.id.caption) ;
 
         setupFirebaseAuth();
@@ -76,6 +81,7 @@ public class AddTextBook extends AppCompatActivity {
 
             }
         });
+        setImage();
 
     }
     /**
@@ -140,9 +146,8 @@ public class AddTextBook extends AppCompatActivity {
      */
     private void setImage(){
         Intent intent = getIntent();
-        ImageView image = (ImageView) findViewById(R.id.imageShare);
         imgUrl = intent.getStringExtra(getString(R.string.selected_image));
-        UnvirsalImageLoader.setImage(imgUrl, image, null, mAppend);
+        UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
     }
 
      /*
@@ -209,14 +214,28 @@ public class AddTextBook extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.action_save:
                 Log.d(TAG, "onClick: navigating to the final share screen.");
                 Toast.makeText(AddTextBook.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
-                String caption = "nothing".toString();
-                mFirebaseMethods.uploadNewPhoto(getString(R.string.new_book), caption, imageCount, imgUrl);
-
+                //String caption = "nothing".toString();
+               // String bookNmae=editName.getText().toString();
+//                if (bookNmae == null ) {
+//                    Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
+//                    throw new IllegalArgumentException("Book requires Namer");
+//                }
+               // String courseId=numOfCourse.getText().toString();
+//                if (courseId == null ) {
+//                    Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
+//                    throw new IllegalArgumentException("Book requires courseId");
+//                }
+//                String price=editPrice.getText().toString();
+//                int PriceBook=Integer.getInteger(price);
+                //if(courseId!=null&& bookNmae!=null){
+                mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl);
+                 //finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

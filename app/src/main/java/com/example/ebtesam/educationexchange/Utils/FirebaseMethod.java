@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
-import com.example.ebtesam.educationexchange.models.Photo;
+import com.example.ebtesam.educationexchange.models.Book;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
@@ -64,7 +64,7 @@ public class FirebaseMethod {
     }
 
 
-    public void uploadNewPhoto( String photoType, final String caption,final int count, final String imgUrl){
+    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final int price,final int count, final String imgUrl){
         Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
 
         FilePaths filePaths = new FilePaths();
@@ -91,7 +91,7 @@ public class FirebaseMethod {
                     Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
 
                     //add the new photo to 'photos' node and 'user_photos' node
-                    addPhotoToDatabase(caption, firebaseUrl.toString());
+                    addPhotoToDatabase(bookNmae, courseId , price, firebaseUrl.toString());
 
                     //navigate to the main feed so the user can see their photo
 //                    Intent intent = new Intent(mContext, HomeActivity.class);
@@ -192,24 +192,29 @@ public class FirebaseMethod {
         return sdf.format(new Date());
     }
 
-    private void addPhotoToDatabase(String caption, String url){
+    private void addPhotoToDatabase(String bookNmae, String courseId , int price, String url){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
-        String tags = StringManipulation.getTags(caption);
+        //String tags = StringManipulation.getTags(caption);
         String newPhotoKey = myRef.child(mContext.getString(R.string.dbname_photos)).push().getKey();
-        Photo photo = new Photo();
-        photo.setCaption(caption);
-        photo.setDate_created(getTimestamp());
-        photo.setImage_path(url);
-        photo.setTags(tags);
-        photo.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        photo.setPhoto_id(newPhotoKey);
+        Book book = new Book();
+        book.setBook_name(bookNmae);
+        book.setCourse_id(courseId);
+        book.setAvailability(" ");
+        book.setStatus(" ");
+        book.setPrice(Integer.toString(price));
+
+        book.setDate_created(getTimestamp());
+        book.setImage_path(url);
+        //photo.setTags(tags);
+        book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        book.setPhoto_id(newPhotoKey);
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_user_books))
                 .child(FirebaseAuth.getInstance().getCurrentUser()
-                        .getUid()).child(newPhotoKey).setValue(photo);
-        myRef.child(mContext.getString(R.string.dbname_photos)).child(newPhotoKey).setValue(photo);
+                        .getUid()).child(newPhotoKey).setValue(book);
+        myRef.child(mContext.getString(R.string.dbname_photos)).child(newPhotoKey).setValue(book);
 
     }
 

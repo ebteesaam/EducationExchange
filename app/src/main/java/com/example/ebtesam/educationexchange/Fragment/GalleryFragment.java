@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FilePaths;
 import com.example.ebtesam.educationexchange.Utils.FileSearch;
-import com.example.ebtesam.educationexchange.addBook.NextActivity;
+import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -82,7 +82,7 @@ public class GalleryFragment extends Fragment {
 
 
 
-                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    Intent intent = new Intent(getActivity(), AddTextBook.class);
                     intent.putExtra(getString(R.string.selected_image), mSelectedImage);
                     startActivity(intent);
 
