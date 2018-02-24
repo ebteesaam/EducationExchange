@@ -3,6 +3,7 @@ package com.example.ebtesam.educationexchange.addBook;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -145,10 +146,24 @@ public class AddTextBook extends AppCompatActivity {
      * gets the image url from the incoming intent and displays the chosen image
      */
     private void setImage(){
+        Bitmap bitmap;
         Intent intent = getIntent();
-        imgUrl = intent.getStringExtra(getString(R.string.selected_image));
-        UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
-    }
+        if(intent.hasExtra(getString(R.string.selected_image))){
+            imgUrl = intent.getStringExtra(getString(R.string.selected_image));
+            Log.d(TAG, "setImage: got new image url: " + imgUrl);
+            UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
+            }
+         else if(intent.hasExtra(getString(R.string.selected_bitmap))){
+            bitmap = (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
+            Log.d(TAG, "setImage: got new bitmap");
+            bookPhoto.setImageBitmap(bitmap);
+
+            }
+//        imgUrl = intent.getStringExtra(getString(R.string.selected_image));
+//        UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
+
+        }
+
 
      /*
      ------------------------------------ Firebase ---------------------------------------------
@@ -220,6 +235,7 @@ public class AddTextBook extends AppCompatActivity {
             case R.id.action_save:
                 Log.d(TAG, "onClick: navigating to the final share screen.");
                 Toast.makeText(AddTextBook.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
+                Intent intent=getIntent();
                 //String caption = "nothing".toString();
                // String bookNmae=editName.getText().toString();
 //                if (bookNmae == null ) {
@@ -234,7 +250,17 @@ public class AddTextBook extends AppCompatActivity {
 //                String price=editPrice.getText().toString();
 //                int PriceBook=Integer.getInteger(price);
                 //if(courseId!=null&& bookNmae!=null){
-                mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
+                if (intent.hasExtra(getString(R.string.selected_image))) {
+                    //set the new profile picture
+                    FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
+                } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
+                    //set the new profile picture
+                    FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+
+                }
+                //mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
                  //finish();
                 return true;
         }

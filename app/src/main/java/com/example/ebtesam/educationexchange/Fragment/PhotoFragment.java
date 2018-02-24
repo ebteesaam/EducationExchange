@@ -2,6 +2,7 @@ package com.example.ebtesam.educationexchange.Fragment;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.Button;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
+import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.addBook.TakePhotoActivity;
 
 /**
@@ -65,6 +67,21 @@ public class PhotoFragment extends Fragment {
             Log.d(TAG, "onActivityResult: done taking a photo.");
             Log.d(TAG, "onActivityResult: attempting to navigate to final share screen.");
             //navigate to the final share screen to publish photo
+            //navigate to the final share screen to publish photo
+            Bitmap bitmap;
+            bitmap = (Bitmap) data.getExtras().get("data");
+
+            try{
+                Log.d(TAG, "onActivityResult: received new bitmap from camera: " + bitmap);
+                Intent intent = new Intent(getActivity(), AddTextBook.class);
+                intent.putExtra(getString(R.string.selected_bitmap), bitmap);
+                //intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
+                startActivity(intent);
+                getActivity().finish();
+            }catch (NullPointerException e){
+                Log.d(TAG, "onActivityResult: NullPointerException: " + e.getMessage());
+            }
+
         }
     }
 }
