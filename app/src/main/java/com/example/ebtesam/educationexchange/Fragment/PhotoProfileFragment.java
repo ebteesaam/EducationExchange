@@ -2,6 +2,7 @@ package com.example.ebtesam.educationexchange.Fragment;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -11,10 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
-import com.example.ebtesam.educationexchange.addBook.TakePhotoActivity;
+import com.example.ebtesam.educationexchange.profile.EditProfile;
+import com.example.ebtesam.educationexchange.profile.TakeProfilePhotoActivity;
 
 /**
  * Created by ebtesam on 14/02/2018 AD.
@@ -41,13 +44,13 @@ public class PhotoProfileFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: launching camera.");
 
-                if(((TakePhotoActivity)getActivity()).getCurrentTabNumber() == PHOTO_FRAGMENT_NUM){
-                    if(((TakePhotoActivity)getActivity()).checkPermissions(Permissions.CAMERA_PERMISSION[0])){
+                if(((TakeProfilePhotoActivity)getActivity()).getCurrentTabNumber() == PHOTO_FRAGMENT_NUM){
+                    if(((TakeProfilePhotoActivity)getActivity()).checkPermissions(Permissions.CAMERA_PERMISSION[0])){
                         Log.d(TAG, "onClick: starting camera");
                         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
                     }else{
-                        Intent intent = new Intent(getActivity(), TakePhotoActivity.class);
+                        Intent intent = new Intent(getActivity(), EditProfile.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }
@@ -57,6 +60,17 @@ public class PhotoProfileFragment extends Fragment {
         return view;
     }
 
+
+//    private boolean isRootTask(){
+//        if(((TakeProfilePhotoActivity)getActivity()).getTask() == 0){
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+//    }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -65,6 +79,20 @@ public class PhotoProfileFragment extends Fragment {
             Log.d(TAG, "onActivityResult: done taking a photo.");
             Log.d(TAG, "onActivityResult: attempting to navigate to final share screen.");
             //navigate to the final share screen to publish photo
+            Bitmap bitmap;
+            bitmap = (Bitmap) data.getExtras().get("data");
+
+            try{
+                Log.d(TAG, "onActivityResult: received new bitmap from camera: " + bitmap);
+                Intent intent = new Intent(getActivity(), EditText.class);
+                intent.putExtra(getString(R.string.selected_bitmap), bitmap);
+                //intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
+                startActivity(intent);
+                getActivity().finish();
+                }catch (NullPointerException e){
+                Log.d(TAG, "onActivityResult: NullPointerException: " + e.getMessage());
+                }
+
         }
     }
 }

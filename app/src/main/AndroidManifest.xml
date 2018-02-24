@@ -39,11 +39,11 @@
         </activity>
         <activity
             android:name=".profile.EditProfile"
-            android:parentActivityName=".profile.ProfilePage">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".profile.ProfilePage" />
-        </activity>
+        android:parentActivityName=".profile.ProfilePage">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".profile.ProfilePage" />
+    </activity>
         <activity
             android:name=".search.SearchBook"
             android:parentActivityName=".MainActivity">
@@ -66,19 +66,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".addBook.AddTextBook" />
         </activity>
-        <activity android:name=".addBook.NextActivity"
-        android:parentActivityName=".addBook.TakePhotoActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".addBook.TakePhotoActivity" />
+        <activity
+            android:name=".addBook.NextActivity"
+            android:parentActivityName=".addBook.TakePhotoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".addBook.TakePhotoActivity" />
         </activity>
-
-        <activity android:name=".profile.TakeProfilePhotoActivity"
+        <activity
+            android:name=".profile.TakeProfilePhotoActivity"
             android:parentActivityName=".profile.EditProfile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".profile.EditProfile" />
         </activity>
+        <activity android:name=".profile.MyBooksActivity"></activity>
     </application>
 
 </manifest>

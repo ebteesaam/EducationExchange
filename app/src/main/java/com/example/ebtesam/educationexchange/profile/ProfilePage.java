@@ -32,6 +32,7 @@ public class ProfilePage extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
     Button signOut;
     Button editProfile;
+    Button myBook;
     StorageReference mStorageRef;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -72,6 +73,15 @@ public class ProfilePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        myBook=findViewById(R.id.my_book);
+        myBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfilePage.this,MyBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //initImageLoader();
        // setProfileImage();
         setupFirebaseAuth();

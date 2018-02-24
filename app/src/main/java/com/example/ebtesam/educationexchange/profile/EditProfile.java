@@ -2,6 +2,7 @@ package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -233,15 +234,36 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
         Intent intent = getIntent();
 
         //if there is an imageUrl attached as an extra, then it was chosen from the gallery/photo fragment
-        if(intent.hasExtra(getString(R.string.selected_image))){
+        //if(intent.hasExtra(getString(R.string.selected_image))){
             Log.d(TAG, "getIncomingIntent: New incoming imgUrl");
 
                 //set the new profile picture
-                FirebaseMethod firebaseMethods = new FirebaseMethod(EditProfile.this);
-                firebaseMethods.uploadNewProfilePhoto(getString(R.string.profile_photo), null, 0,
-                        intent.getStringExtra(getString(R.string.selected_image)));
+//                FirebaseMethod firebaseMethods = new FirebaseMethod(EditProfile.this);
+//                firebaseMethods.uploadNewProfilePhoto(getString(R.string.profile_photo), null, 0,
+//                        intent.getStringExtra(getString(R.string.selected_image)));
 
-        }}
+//        if(intent.hasExtra(getString(R.string.selected_image))
+//                || intent.hasExtra(getString(R.string.selected_bitmap))) {
+
+            //if there is an imageUrl attached as an extra, then it was chosen from the gallery/photo fragment
+            Log.d(TAG, "getIncomingIntent: New incoming imgUrl");
+            //if(intent.getStringExtra(getString(R.string.return_to_fragment)).equals(getString(R.string.edit_profile))){
+
+            if (intent.hasExtra(getString(R.string.selected_image))) {
+                //set the new profile picture
+                FirebaseMethod firebaseMethod = new FirebaseMethod(EditProfile.this);
+                firebaseMethod.uploadNewProfilePhoto(getString(R.string.profile_photo), null, 0,
+                        intent.getStringExtra(getString(R.string.selected_image)), null);
+            } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
+                //set the new profile picture
+                FirebaseMethod firebaseMethod = new FirebaseMethod(EditProfile.this);
+                firebaseMethod.uploadNewProfilePhoto(getString(R.string.profile_photo), null, 0,
+                        null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+            }
+
+            // }
+
+        }//}
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: setting profile image");
         String imgURL="www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";

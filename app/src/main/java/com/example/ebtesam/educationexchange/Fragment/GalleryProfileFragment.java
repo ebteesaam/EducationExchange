@@ -76,6 +76,7 @@ public class GalleryProfileFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
 
+
                     Intent intent = new Intent(getActivity(), EditProfile.class);
                     intent.putExtra(getString(R.string.selected_image), mSelectedImage);
                     startActivity(intent);

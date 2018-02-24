@@ -53,7 +53,7 @@
     <string name="change">Change</string>
     <string name="password">password</string>
     <string name="cancel">CANCEL</string>
-
+    <string name="selected_bitmap">selected_bitmap</string>
 
 
     <!-- dialog names -->

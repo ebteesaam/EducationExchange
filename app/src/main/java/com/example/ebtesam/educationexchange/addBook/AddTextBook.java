@@ -234,7 +234,7 @@ public class AddTextBook extends AppCompatActivity {
 //                String price=editPrice.getText().toString();
 //                int PriceBook=Integer.getInteger(price);
                 //if(courseId!=null&& bookNmae!=null){
-                mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl);
+                mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
                  //finish();
                 return true;
         }

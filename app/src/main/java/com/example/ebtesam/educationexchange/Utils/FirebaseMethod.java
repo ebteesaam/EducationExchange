@@ -64,7 +64,7 @@ public class FirebaseMethod {
     }
 
 
-    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final int price,final int count, final String imgUrl){
+    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final int price,final int count, final String imgUrl, Bitmap bm){
         Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
 
         FilePaths filePaths = new FilePaths();
@@ -77,7 +77,9 @@ public class FirebaseMethod {
                     .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/book" + (count + 1));
 
             //convert image url to bitmap
-            Bitmap bm = com.example.ebtesam.educationexchange.Utils.ImageManager.getBitmap(imgUrl);
+            if(bm == null){
+                bm = ImageManager.getBitmap(imgUrl);
+            }
             byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
 
             UploadTask uploadTask = null;
@@ -123,7 +125,7 @@ public class FirebaseMethod {
 
         }}
         //case new profile photo
-        public void uploadNewProfilePhoto( String photoType, final String caption,final int count, final String imgUrl){
+        public void uploadNewProfilePhoto( String photoType, final String caption,final int count, final String imgUrl, Bitmap bm){
 
             Log.d(TAG, "uploadNewPhoto: uploading new PROFILE photo");
             FilePaths filePaths = new FilePaths();
@@ -133,7 +135,10 @@ public class FirebaseMethod {
                     .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/profile_photo");
 
             //convert image url to bitmap
-            Bitmap bm = com.example.ebtesam.educationexchange.Utils.ImageManager.getBitmap(imgUrl);
+            if(bm == null){
+                                bm = ImageManager.getBitmap(imgUrl);
+                  }
+//            bm = com.example.ebtesam.educationexchange.Utils.ImageManager.getBitmap(imgUrl);
             byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
 
             UploadTask uploadTask = null;
