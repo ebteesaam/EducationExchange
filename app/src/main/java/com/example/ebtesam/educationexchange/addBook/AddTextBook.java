@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
@@ -254,14 +255,20 @@ public class AddTextBook extends AppCompatActivity {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
                     firebaseMethod.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
+
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
                     firebaseMethod.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
 
+
                 }
                 //mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
                  //finish();
+                Intent intent1=new Intent(AddTextBook.this, MainActivity.class);
+                startActivity(intent1);
+                AddTextBook.this.finish();
+
                 return true;
         }
         return super.onOptionsItemSelected(item);

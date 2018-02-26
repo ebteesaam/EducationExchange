@@ -1,5 +1,6 @@
 package com.example.ebtesam.educationexchange.addBook;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -85,7 +86,7 @@ public class TakePhotoActivity extends AppCompatActivity {
             case R.id.action_next:
                 Log.d(TAG, "onClick: navigating to the next share screen.");
 //                if(GalleryFragment.isRootTask()){
-//                    Intent intent = new Intent(TakePhotoActivity.this, NextActivity.class);
+//                    Intent intent = new Intent(TakePhotoActivity.this, .class);
 //                    intent.putExtra(getString(R.string.selected_image), GalleryFragment.mSelectedImage);
 //                    startActivity(intent);
 //                }else{
@@ -94,6 +95,10 @@ public class TakePhotoActivity extends AppCompatActivity {
 //                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
 //                    startActivity(intent);
 //                }
+                Intent intent = new Intent(TakePhotoActivity.this, AddTextBook.class);
+                intent.putExtra(getString(R.string.selected_image), GalleryFragment.image);
+                startActivity(intent);
+                TakePhotoActivity.this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

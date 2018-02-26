@@ -19,7 +19,7 @@
             android:layout_height="119dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="25dp"
-            android:src="@drawable/logo______" />
+            android:src="@drawable/bestlogo" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

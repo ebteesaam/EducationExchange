@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#81C784</color>
-    <color name="colorPrimaryDark">#81C784</color>
-    <color name="colorAccent">#0091EA</color>
-    <color name="taplayout">#64DD17</color>
+    <color name="colorPrimary">#57b989</color>
+    <color name="colorPrimaryDark">#378e63</color>
+    <color name="colorAccent">#7accc8</color>
+    <color name="taplayout">#ffa304</color>
+    <color name="yellow">#ffd039</color>
+    <color name="red">#ff6137</color>
 
     <color name="edit">#c2c6c7</color>
     <color name="gray">#aaaeaf</color>
+<color name="darkgrey">#FF8F9293</color>
     <color name="white">#fcfeff</color>
     <color name="blue">#FF1435EF</color>
     <color name="black">#000000</color>

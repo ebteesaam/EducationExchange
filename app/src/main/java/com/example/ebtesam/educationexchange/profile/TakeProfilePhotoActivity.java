@@ -1,5 +1,6 @@
 package com.example.ebtesam.educationexchange.profile;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ public class TakeProfilePhotoActivity extends AppCompatActivity {
     private static final String TAG = "TakePhotoActivity";
     AddTextBook addTextBook;
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,10 @@ public class TakeProfilePhotoActivity extends AppCompatActivity {
 //                    intent.putExtra(getString(R.string.selected_image), GalleryProfileFragment);
 //                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
 //                    startActivity(intent);
-
+                Intent intent = new Intent(TakeProfilePhotoActivity.this, EditProfile.class);
+                intent.putExtra(getString(R.string.selected_image), GalleryProfileFragment.image);
+                startActivity(intent);
+                TakeProfilePhotoActivity.this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

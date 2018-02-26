@@ -28,9 +28,9 @@ import com.google.firebase.database.ValueEventListener;
 public class RegisterPage extends AppCompatActivity {
 
     private static final String TAG = "RegisterPage";
-    EditText input_email, input_password, input_username;
+    EditText input_email, input_password, input_username, confirmPassword;
     FirebaseMethod firebaseMethods;
-    private String email, username, password;
+    private String email, username, password, confirmPasswords;
     private Button btnRegister;
     private Context mContext = RegisterPage.this;
     private FirebaseAuth mAuth;
@@ -58,18 +58,30 @@ public class RegisterPage extends AppCompatActivity {
                 email = input_email.getText().toString();
                 username = input_username.getText().toString();
                 password = input_password.getText().toString();
+                confirmPasswords = confirmPassword.getText().toString();
 
-                if (checkInputs(email, username, password)) {
+
+                if (checkInputs(email, username, password, confirmPasswords)) {
                     firebaseMethods.registerNewEmail(email, password, username);
                 }
             }
         });
     }
 
-    private boolean checkInputs(String email, String username, String password) {
+    private boolean checkInputs(String email, String username, String password, String confirmPasswords) {
         Log.d(TAG, "checkInputs: checking inputs for null values.");
-        if (email.equals("") || username.equals("") || password.equals("")) {
+        if (email.equals("") || username.equals("") || password.equals("")||confirmPasswords.equals("")) {
             Toast.makeText(mContext, "All fields must be filled out.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        String p=password.toString();
+        if (p.length()<=6) {
+            Toast.makeText(mContext, "The password must be at least 6 digits.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!password.equals(confirmPasswords)){
+            Toast.makeText(mContext, "The tow passwords must be match each other.", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -83,8 +95,10 @@ public class RegisterPage extends AppCompatActivity {
         Log.d(TAG, "initWidgets: Initializing Widgets.");
         input_email = findViewById(R.id.input_email);
         input_password = findViewById(R.id.input_password);
+        confirmPassword = findViewById(R.id.input_password2);
         input_username = findViewById(R.id.input_username);
         btnRegister = findViewById(R.id.btn_register);
+
 
     }
 

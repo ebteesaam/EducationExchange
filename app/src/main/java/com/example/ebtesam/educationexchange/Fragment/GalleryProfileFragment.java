@@ -1,7 +1,6 @@
 package com.example.ebtesam.educationexchange.Fragment;
 
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,12 +15,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FilePaths;
 import com.example.ebtesam.educationexchange.Utils.FileSearch;
-import com.example.ebtesam.educationexchange.profile.EditProfile;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -37,6 +34,7 @@ public class GalleryProfileFragment extends Fragment {
 
     //constants
     private static final int NUM_GRID_COLUMNS = 3;
+    public static String image = null;
     public String mSelectedImage;
     //widgets
     private GridView gridView;
@@ -59,31 +57,31 @@ public class GalleryProfileFragment extends Fragment {
         mProgressBar = view.findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.GONE);
 
-
-        ImageView shareClose = view.findViewById(R.id.ivCloseShare);
-        shareClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: closing the gallery fragment.");
-                getActivity().finish();
-            }
-        });
-
-
-        TextView nextScreen = view.findViewById(R.id.tvNext);
-        nextScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: navigating to the final share screen.");
-
-
-                    Intent intent = new Intent(getActivity(), EditProfile.class);
-                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-                    startActivity(intent);
-
-
-            }
-        });
+//
+//        ImageView shareClose = view.findViewById(R.id.ivCloseShare);
+//        shareClose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "onClick: closing the gallery fragment.");
+//                getActivity().finish();
+//            }
+//        });
+//
+//
+//        TextView nextScreen = view.findViewById(R.id.tvNext);
+//        nextScreen.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "onClick: navigating to the final share screen.");
+//
+//
+//                    Intent intent = new Intent(getActivity(), EditProfile.class);
+//                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+//                    startActivity(intent);
+//
+//
+//            }
+//        });
         init();
 
         return view;
@@ -147,6 +145,7 @@ public class GalleryProfileFragment extends Fragment {
         //set the first image to be displayed when the activity fragment view is inflated
         setImage(imgURLs.get(0), galleryImage, mAppend);
         mSelectedImage = imgURLs.get(0);
+        image=mSelectedImage;
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -155,6 +154,7 @@ public class GalleryProfileFragment extends Fragment {
 
                 setImage(imgURLs.get(position), galleryImage, mAppend);
                 mSelectedImage = imgURLs.get(position);
+                image=mSelectedImage;
             }
         });
 

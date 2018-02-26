@@ -9,9 +9,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo______"
+        android:icon="@drawable/bestlogo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo______"
+        android:roundIcon="@drawable/bestlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -65,13 +65,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".addBook.AddTextBook" />
-        </activity>
-        <activity
-            android:name=".addBook.NextActivity"
-            android:parentActivityName=".addBook.TakePhotoActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".addBook.TakePhotoActivity" />
         </activity>
         <activity
             android:name=".profile.TakeProfilePhotoActivity"

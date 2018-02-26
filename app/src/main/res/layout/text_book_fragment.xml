@@ -6,18 +6,17 @@
         android:id="@+id/relLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         >
 
         <GridView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:horizontalSpacing="1dp"
+            android:horizontalSpacing="5dp"
             android:numColumns="2"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="1dp">
+            android:verticalSpacing="5dp">
 
 
         </GridView>

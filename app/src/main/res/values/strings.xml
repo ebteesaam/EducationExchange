@@ -55,6 +55,9 @@
     <string name="cancel">CANCEL</string>
     <string name="selected_bitmap">selected_bitmap</string>
 
+    <!--register page-->
+    <string name="confirm_password">Confirm Password</string>
+
 
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>

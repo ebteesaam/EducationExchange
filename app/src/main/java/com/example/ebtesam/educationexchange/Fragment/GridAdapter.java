@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.SqaureImageView;
+import com.example.ebtesam.educationexchange.models.Book;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -50,13 +52,14 @@ public class GridAdapter extends ArrayAdapter<String> {
             holder =new ViewHolder();
             holder.mProgressBar=(ProgressBar)convertView.findViewById(R.id.profileProgressBar);
             holder.image=(SqaureImageView) convertView.findViewById(R.id.relative1);
-           // holder.nameTextView = (TextView) view.findViewById(R.id.nameBook);
+            holder.nameTextView = (TextView) convertView.findViewById(R.id.nameBook);
 //        TextView summaryTextView = (TextView) view.findViewById(R.id.courseIdBook);
 //   TextView bookname=(TextView)convertView.findViewById(R.id.nameBook);
 //            UserSettings userSettings=new UserSettings();
-//            Book book =userSettings.getBook();
+            Book book =new Book();
 //
 //            bookname.setText(book.getBook_name());
+            holder.nameTextView.setText(book.getBook_name());
             convertView.setTag(holder);
         }
         else {
@@ -106,6 +109,7 @@ public class GridAdapter extends ArrayAdapter<String> {
     private static class ViewHolder{
         SqaureImageView image;
         ProgressBar mProgressBar;
+        TextView nameTextView;
 
     }
 }

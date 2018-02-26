@@ -30,7 +30,7 @@
                         android:layout_marginLeft="14dp"
                         android:layout_marginTop="14dp"
                         android:text="@string/about_us"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darkgrey"
                         android:textSize="18dp" />
 
                     <!--TEXT-->
@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
                         android:text="@string/information_about_app"
-                        android:textColor="#008000"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="16dp" />
 
                     <!--Steps-->
@@ -49,7 +49,7 @@
                         android:layout_marginLeft="14dp"
                         android:layout_marginTop="14dp"
                         android:text="@string/announcement"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darkgrey"
                         android:textSize="18dp" />
 
                 </LinearLayout>

@@ -19,6 +19,7 @@
             android:layout_gravity="bottom"
             app:tabGravity="fill"
             app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/red"
             >
 
         </android.support.design.widget.TabLayout>
