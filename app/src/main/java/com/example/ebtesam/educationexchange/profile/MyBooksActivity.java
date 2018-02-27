@@ -73,7 +73,7 @@ public class MyBooksActivity extends AppCompatActivity {
         final ArrayList<Book> books = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference
-                .child(getString(R.string.dbname_user_books))
+                .child(getString(R.string.dbname_material))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

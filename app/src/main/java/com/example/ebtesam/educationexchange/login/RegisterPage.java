@@ -75,7 +75,7 @@ public class RegisterPage extends AppCompatActivity {
             return false;
         }
         String p=password.toString();
-        if (p.length()<=6) {
+        if (p.length()<6) {
             Toast.makeText(mContext, "The password must be at least 6 digits.", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -144,7 +144,7 @@ public class RegisterPage extends AppCompatActivity {
                 mUsername = username + append;
 
                 //add new user to the database
-                firebaseMethods.addNewUser(email, mUsername, "", "", "");
+                firebaseMethods.addNewUser(email, mUsername, " ", "Student", "");
 
                 Toast.makeText(mContext, "Signup successful. Sending verification email.", Toast.LENGTH_SHORT).show();
 

@@ -15,7 +15,7 @@ import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.SignOutActivity;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
-import com.example.ebtesam.educationexchange.models.UserAccountSettings;
+import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -110,24 +110,24 @@ public class ProfilePage extends AppCompatActivity {
 
     private void setProfileWidgets(UserSettings userSettings){
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
-        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
+        //Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
 
 
 
-        //User user = userSettings.getUser();
-        UserAccountSettings settings = userSettings.getSettings();
+        User user = userSettings.getUser();
+       // UserAccountSettings settings = userSettings.getSettings();
 
 //        StorageReference storageRef = firebaseStorage.getReference();
 //        StorageReference imagesRef = storageRef.child("profile_photo");
 //        mStorageRef=FirebaseStorage.getInstance().getReference();
-        UnvirsalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto,progressBar, "");
+        UnvirsalImageLoader.setImage(user.getProfile_photo(), mProfilePhoto,progressBar, "");
 //        Glide.with(this /* context */)
 //                .using(new FirebaseImageLoader())
 //                .load(mStorageRef)
 //                .into(mProfilePhoto);
 
-        user_name.setText(settings.getUsername());
-        email.setText(settings.getEmail());
+        user_name.setText(user.getUsername());
+        email.setText(user.getEmail());
 //        mWebsite.setText(settings.getWebsite());
 //        mDescription.setText(settings.getDescription());
 //        mPosts.setText(String.valueOf(settings.getPosts()));

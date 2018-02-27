@@ -21,7 +21,6 @@ import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
 import com.example.ebtesam.educationexchange.models.User;
-import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -124,40 +123,40 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
                 });
     }
 
-    public void onConfirmchangePassword(final String password) {
-        Log.d(TAG, "onConfirmPassword: got the password: " + password);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
-        // Get auth credentials from the user for re-authentication. The example below shows
-        // email and password credentials but there are multiple possible providers,
-        // such as GoogleAuthProvider or FacebookAuthProvider.
-        AuthCredential credential = EmailAuthProvider
-                .getCredential(mAuth.getCurrentUser().getEmail(), password);
-
-        // Prompt the user to re-provide their sign-in credentials
-        user.reauthenticate(credential)
-                .
-
-                        addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d(TAG, "Password updated");
-                                            } else {
-                                                Log.d(TAG, "Error password not updated");
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    Log.d(TAG, "Error auth failed");
-                                }
-                            }
-                        });
-    }
+//    public void onConfirmchangePassword(final String password) {
+//        Log.d(TAG, "onConfirmPassword: got the password: " + password);
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        // Get auth credentials from the user for re-authentication. The example below shows
+//        // email and password credentials but there are multiple possible providers,
+//        // such as GoogleAuthProvider or FacebookAuthProvider.
+//        AuthCredential credential = EmailAuthProvider
+//                .getCredential(mAuth.getCurrentUser().getEmail(), password);
+//
+//        // Prompt the user to re-provide their sign-in credentials
+//        user.reauthenticate(credential)
+//                .
+//
+//                        addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<Void> task) {
+//                                            if (task.isSuccessful()) {
+//                                                Log.d(TAG, "Password updated");
+//                                            } else {
+//                                                Log.d(TAG, "Error password not updated");
+//                                            }
+//                                        }
+//                                    });
+//                                } else {
+//                                    Log.d(TAG, "Error auth failed");
+//                                }
+//                            }
+//                        });
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,16 +301,16 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
 
     private void setProfileWidgets(UserSettings userSettings) {
         Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.toString());
-        Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
+       // Log.d(TAG, "setProfileWidgets: setting widgets with data retrieving from firebase database: " + userSettings.getSettings().getUsername());
         mUserSettings = userSettings;
 
-        //User user = userSettings.getUser();
-        UserAccountSettings settings = userSettings.getSettings();
+        User user = userSettings.getUser();
+        //UserAccountSettings settings = userSettings.getSettings();
 
-        UnvirsalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, progressBar, "");
+        UnvirsalImageLoader.setImage(user.getProfile_photo(), mProfilePhoto, progressBar, "");
 
-        user_name.setText(settings.getUsername());
-        email.setText(settings.getEmail());
+        user_name.setText(user.getUsername());
+        email.setText(user.getEmail());
         //        mWebsite.setText(settings.getWebsite());
         //        mDescription.setText(settings.getDescription());
         //        mPosts.setText(String.valueOf(settings.getPosts()));

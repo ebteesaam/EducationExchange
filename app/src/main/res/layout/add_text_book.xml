@@ -308,21 +308,21 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <!--button -->
-            <RelativeLayout>
+            <!--&lt;!&ndash;button &ndash;&gt;-->
+            <!--<RelativeLayout>-->
 
 
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/add_book"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:background="@drawable/white_rounded_buttom"
-                    android:text="@string/add_book_activity"
+                <!--<android.support.v7.widget.AppCompatButton-->
+                    <!--android:id="@+id/add_book"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="15dp"-->
+                    <!--android:background="@drawable/white_rounded_buttom"-->
+                    <!--android:text="@string/add_book_activity"-->
 
-                    />
+                    <!--/>-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
 
         </TableLayout>

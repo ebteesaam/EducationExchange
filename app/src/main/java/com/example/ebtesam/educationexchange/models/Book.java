@@ -8,7 +8,7 @@ public class Book {
     private String book_name;
     private String date_created;
     private String image_path;
-    private String photo_id;
+
     private String user_id;
     private String price;
     private String availability;
@@ -18,11 +18,10 @@ public class Book {
     public Book() {
     }
 
-    public Book(String book_name, String date_created, String image_path, String photo_id, String user_id, String price, String availability, String status, String course_id) {
+    public Book(String book_name, String date_created, String image_path,  String user_id, String price, String availability, String status, String course_id) {
         this.book_name = book_name;
         this.date_created = date_created;
         this.image_path = image_path;
-        this.photo_id = photo_id;
         this.user_id = user_id;
         this.price = price;
         this.availability = availability;
@@ -54,13 +53,7 @@ public class Book {
         this.image_path = image_path;
     }
 
-    public String getPhoto_id() {
-        return photo_id;
-    }
 
-    public void setPhoto_id(String photo_id) {
-        this.photo_id = photo_id;
-    }
 
     public String getUser_id() {
         return user_id;

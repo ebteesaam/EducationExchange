@@ -69,18 +69,18 @@ public class PhotoFragment extends Fragment {
             //navigate to the final share screen to publish photo
             //navigate to the final share screen to publish photo
             Bitmap bitmap;
-            bitmap = (Bitmap) data.getExtras().get("data");
+                bitmap = (Bitmap) data.getExtras().get("data");
 
-            try{
-                Log.d(TAG, "onActivityResult: received new bitmap from camera: " + bitmap);
-                Intent intent = new Intent(getActivity(), AddTextBook.class);
-                intent.putExtra(getString(R.string.selected_bitmap), bitmap);
-                //intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
-                startActivity(intent);
-                getActivity().finish();
-            }catch (NullPointerException e){
-                Log.d(TAG, "onActivityResult: NullPointerException: " + e.getMessage());
-            }
+                try {
+                    Log.d(TAG, "onActivityResult: received new bitmap from camera: " + bitmap);
+                    Intent intent = new Intent(getActivity(), AddTextBook.class);
+                    intent.putExtra(getString(R.string.selected_bitmap), bitmap);
+                    //intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
+                    startActivity(intent);
+                    getActivity().finish();
+                } catch (NullPointerException e) {
+                    Log.d(TAG, "onActivityResult: NullPointerException: " + e.getMessage());
+                }
 
         }
     }

@@ -33,27 +33,25 @@ import com.google.firebase.database.ValueEventListener;
 public class AddTextBook extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
-
+    public int imageCount = 0;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-    private FirebaseMethod mFirebaseMethods;
 
     //widgets
     //private EditText mCaption;
-
+    private FirebaseMethod mFirebaseMethods;
     //vars
     private String mAppend = "file:/";
-    private int imageCount = 0;
     private String imgUrl;
 
 
     private Context mContext = AddTextBook.this;
     private ImageView takePhoto, bookPhoto;
     private ViewPager mViewPager;
-    private EditText editName,editPrice,numOfCourse;
+    private EditText editName, editPrice, numOfCourse;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -62,9 +60,10 @@ public class AddTextBook extends AppCompatActivity {
         setTitle(getString(R.string.add_book_activity));
 
         mFirebaseMethods = new FirebaseMethod(mContext);
-        bookPhoto=findViewById(R.id.book_photo);
-        editName=findViewById(R.id.edit_name);
-        editPrice=findViewById(R.id.numberOfCourse);
+        bookPhoto = findViewById(R.id.book_photo);
+        editName = findViewById(R.id.edit_name);
+        editPrice = findViewById(R.id.edit_price);
+        numOfCourse = findViewById(R.id.numberOfCourse);
         //mCaption = (EditText) findViewById(R.id.caption) ;
 
         setupFirebaseAuth();
@@ -83,9 +82,14 @@ public class AddTextBook extends AppCompatActivity {
 
             }
         });
+        setBookData();
         setImage();
 
     }
+
+    private void setBookData() {
+    }
+
     /**
      * gets the image url from the incoming intent and displays the chosen image
      */
@@ -94,7 +98,6 @@ public class AddTextBook extends AppCompatActivity {
 //        ImageView image = (ImageView) findViewById(R.id.imageShare);
 //        UnvirsalImageLoader.setImage(intent.getStringExtra(getString(R.string.selected_image)), image, null, mAppend);
 //    }
-
     public void verifyPermissions(String[] permissions) {
         Log.d(TAG, "verifyPermissions: verifying permissions.");
 
@@ -146,24 +149,23 @@ public class AddTextBook extends AppCompatActivity {
     /**
      * gets the image url from the incoming intent and displays the chosen image
      */
-    private void setImage(){
+    private void setImage() {
         Bitmap bitmap;
         Intent intent = getIntent();
-        if(intent.hasExtra(getString(R.string.selected_image))){
+        if (intent.hasExtra(getString(R.string.selected_image))) {
             imgUrl = intent.getStringExtra(getString(R.string.selected_image));
             Log.d(TAG, "setImage: got new image url: " + imgUrl);
             UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
-            }
-         else if(intent.hasExtra(getString(R.string.selected_bitmap))){
+        } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
             bitmap = (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
             Log.d(TAG, "setImage: got new bitmap");
             bookPhoto.setImageBitmap(bitmap);
 
-            }
+        }
 //        imgUrl = intent.getStringExtra(getString(R.string.selected_image));
 //        UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
 
-        }
+    }
 
 
      /*
@@ -173,7 +175,7 @@ public class AddTextBook extends AppCompatActivity {
     /**
      * Setup the firebase auth object
      */
-    private void setupFirebaseAuth(){
+    private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -228,6 +230,7 @@ public class AddTextBook extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -235,45 +238,57 @@ public class AddTextBook extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
                 Log.d(TAG, "onClick: navigating to the final share screen.");
-                Toast.makeText(AddTextBook.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
-                Intent intent=getIntent();
+                //Toast.makeText(AddTextBook.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
+                Intent intent = getIntent();
                 //String caption = "nothing".toString();
-               // String bookNmae=editName.getText().toString();
-//                if (bookNmae == null ) {
-//                    Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
-//                    throw new IllegalArgumentException("Book requires Namer");
-//                }
-               // String courseId=numOfCourse.getText().toString();
-//                if (courseId == null ) {
-//                    Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
-//                    throw new IllegalArgumentException("Book requires courseId");
-//                }
-//                String price=editPrice.getText().toString();
-//                int PriceBook=Integer.getInteger(price);
-                //if(courseId!=null&& bookNmae!=null){
+                String courseId = "";
+                String bookNmae = "";
+                String price = "";
+
+
+                try {
+                    bookNmae = editName.getText().toString();
+                    if (bookNmae.equals("")) {
+                        Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
+                        return false;
+                        //                        throw new IllegalArgumentException("Book requires Name");
+                    }
+                    courseId = numOfCourse.getText().toString();
+                    if (courseId.equals("")) {
+                        Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                    price = editPrice.getText().toString();
+
+                } catch (NullPointerException e) {
+
+                }
+
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, imageCount, imgUrl, null);
 
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
-
-
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+                } else {
+                    Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
+                    return false;
                 }
-                //mFirebaseMethods.uploadNewBook(getString(R.string.new_book), " ", " ", 0, imageCount, imgUrl, null);
-                 //finish();
-                Intent intent1=new Intent(AddTextBook.this, MainActivity.class);
+
+
+                Intent intent1 = new Intent(AddTextBook.this, MainActivity.class);
                 startActivity(intent1);
                 AddTextBook.this.finish();
 
+
                 return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

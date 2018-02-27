@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.example.ebtesam.educationexchange.models.User;
-import com.example.ebtesam.educationexchange.models.UserAccountSettings;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,7 +63,7 @@ public class FirebaseMethod {
     }
 
 
-    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final int price,final int count, final String imgUrl, Bitmap bm){
+    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final String price,final int count, final String imgUrl, Bitmap bm){
         Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
 
         FilePaths filePaths = new FilePaths();
@@ -90,10 +89,10 @@ public class FirebaseMethod {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri firebaseUrl = taskSnapshot.getDownloadUrl();
 
-                    Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Book upload success", Toast.LENGTH_SHORT).show();
 
                     //add the new photo to 'photos' node and 'user_photos' node
-                    addPhotoToDatabase(bookNmae, courseId , price, firebaseUrl.toString());
+                    addBookToDatabase(bookNmae, courseId , price, firebaseUrl.toString(),count);
 
                     //navigate to the main feed so the user can see their photo
 //                    Intent intent = new Intent(mContext, HomeActivity.class);
@@ -185,7 +184,7 @@ public class FirebaseMethod {
     private void setProfilePhoto(String url){
         Log.d(TAG, "setProfilePhoto: setting new profile image: " + url);
 
-        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+        myRef.child(mContext.getString(R.string.dbname_users))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(mContext.getString(R.string.profile_photo))
                 .setValue(url);
@@ -197,29 +196,29 @@ public class FirebaseMethod {
         return sdf.format(new Date());
     }
 
-    private void addPhotoToDatabase(String bookNmae, String courseId , int price, String url){
+    private void addBookToDatabase(String bookNmae, String courseId ,String price, String url,int count){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
         //String tags = StringManipulation.getTags(caption);
-        String newPhotoKey = myRef.child(mContext.getString(R.string.dbname_photos)).push().getKey();
+        //String newPhotoKey = myRef.child(mContext.getString(R.string.dbname_user_books)).push().getKey();
         Book book = new Book();
         book.setBook_name(bookNmae);
         book.setCourse_id(courseId);
         book.setAvailability(" ");
         book.setStatus(" ");
-        book.setPrice(Integer.toString(price));
+        book.setPrice(price);
 
         book.setDate_created(getTimestamp());
         book.setImage_path(url);
         //photo.setTags(tags);
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        book.setPhoto_id(newPhotoKey);
+//        book.setPhoto_id(newPhotoKey);
 
         //insert into database
-        myRef.child(mContext.getString(R.string.dbname_user_books))
+        myRef.child(mContext.getString(R.string.dbname_material))
                 .child(FirebaseAuth.getInstance().getCurrentUser()
-                        .getUid()).child(newPhotoKey).setValue(book);
-        myRef.child(mContext.getString(R.string.dbname_photos)).child(newPhotoKey).setValue(book);
+                .getUid()).child("book"+ (count+1)).setValue(book);
+       // myRef.child(mContext.getString(R.string.dbname_photos)).setValue(book);
 
     }
 
@@ -246,9 +245,10 @@ public class FirebaseMethod {
 //        return false;
 //    }
     public int getBooksCount(DataSnapshot dataSnapshot){
-        int count = 0;
+        int  count = 0;
+        //BookCount=count;
         for(DataSnapshot ds: dataSnapshot
-                .child(mContext.getString(R.string.dbname_user_books))
+                .child(mContext.getString(R.string.dbname_material))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .getChildren()){
             count++;
@@ -303,26 +303,26 @@ public class FirebaseMethod {
 
 
 
-    public void addNewUser(String email, String username, String my_book, String my_lecture_note, String profile_photo){
+    public void addNewUser(String email, String username,  String profile_photo, String status, String report){
 
-        User user = new User( StringManipulation.condenseUsername(username),  userID,  email  );
+        User user = new User( StringManipulation.condenseUsername(username),  userID,  email , profile_photo, status, report );
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
                 .setValue(user);
 
-        UserAccountSettings settings = new UserAccountSettings(
-                profile_photo,
-                StringManipulation.condenseUsername(username),
-                email,
-                0,
-                my_lecture_note
+//        UserAccountSettings settings = new UserAccountSettings(
+//                profile_photo,
+//                StringManipulation.condenseUsername(username),
+//                email,
+//                0,
+//
+//
+//        );
 
-        );
-
-        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-                .child(userID)
-                .setValue(settings);
+//        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//                .child(userID)
+//                .setValue(settings);
 
     }
 
@@ -336,48 +336,48 @@ public class FirebaseMethod {
         Log.d(TAG, "getUserAccountSettings: retrieving user account settings from firebase.");
 
 
-        UserAccountSettings settings  = new UserAccountSettings();
+        //UserAccountSettings settings  = new UserAccountSettings();
         User user = new User();
 
         for(DataSnapshot ds: dataSnapshot.getChildren()){
+//
+//            // user_account_settings node
+//            if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
+//                Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
+//
+//                try {
+//
+//                    settings
+//                            ds.child(userID)
+//                                    .getValue(UserAccountSettings.class)
+//                                    .getMy_book()
+//                    );
+//                    settings.setUsername(
+//                            ds.child(userID)
+//                                    .getValue(UserAccountSettings.class)
+//                                    .getUsername()
+//                    );
+//                    settings.setProfile_photo(
+//                            ds.child(userID)
+//                                    .getValue(UserAccountSettings.class)
+//                                    .getProfile_photo()
+//                    );
+//                    settings.setMy_lecture_note(
+//                            ds.child(userID)
+//                                    .getValue(UserAccountSettings.class)
+//                                    .getMy_lecture_note()
+//                    );
+//                    settings.setEmail(
+//                            ds.child(userID)
+//                                    .getValue(UserAccountSettings.class)
+//                                    .getEmail()
+//                    );
+//
+//                    Log.d(TAG, "getUserAccountSettings: retrieved user_account_settings information: " + settings.toString());
+//                } catch (NullPointerException e) {
+//                    Log.e(TAG, "getUserAccountSettings: NullPointerException: " + e.getMessage());
+//                }
 
-            // user_account_settings node
-            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_account_settings))) {
-                Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
-
-                try {
-
-                    settings.setMy_book(
-                            ds.child(userID)
-                                    .getValue(UserAccountSettings.class)
-                                    .getMy_book()
-                    );
-                    settings.setUsername(
-                            ds.child(userID)
-                                    .getValue(UserAccountSettings.class)
-                                    .getUsername()
-                    );
-                    settings.setProfile_photo(
-                            ds.child(userID)
-                                    .getValue(UserAccountSettings.class)
-                                    .getProfile_photo()
-                    );
-                    settings.setMy_lecture_note(
-                            ds.child(userID)
-                                    .getValue(UserAccountSettings.class)
-                                    .getMy_lecture_note()
-                    );
-                    settings.setEmail(
-                            ds.child(userID)
-                                    .getValue(UserAccountSettings.class)
-                                    .getEmail()
-                    );
-
-                    Log.d(TAG, "getUserAccountSettings: retrieved user_account_settings information: " + settings.toString());
-                } catch (NullPointerException e) {
-                    Log.e(TAG, "getUserAccountSettings: NullPointerException: " + e.getMessage());
-                }
-            }
 
                 // users node
                 if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
@@ -398,13 +398,29 @@ public class FirebaseMethod {
                                     .getValue(User.class)
                                     .getUser_id()
                     );
+                    user.setProfile_photo(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getProfile_photo()
+                    );
+                    user.setReport(
+                            ds.child(userID)
+                            .getValue(User.class)
+                            .getReport()
+                    );
+                    user.setStatus(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                  .getStatus()
+                    );
+
 
 
                     Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
                 }
 
         }
-        return new UserSettings(user, settings);
+        return new UserSettings(user);
 
     }
 
@@ -421,10 +437,10 @@ public class FirebaseMethod {
                 .child(mContext.getString(R.string.field_username))
                 .setValue(username);
 
-        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-                .child(userID)
-                .child(mContext.getString(R.string.field_username))
-                .setValue(username);
+//        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//                .child(userID)
+//                .child(mContext.getString(R.string.field_username))
+//                .setValue(username);
     }
 
     /**

@@ -8,12 +8,12 @@ public class UserSettings  {
 
 
         private User user;
-        private UserAccountSettings settings;
+
         private Book book;
 
-    public UserSettings(User user, UserAccountSettings settings) {
+    public UserSettings(User user) {
             this.user = user;
-            this.settings = settings;
+
         }
 
         public UserSettings() {
@@ -36,19 +36,12 @@ public class UserSettings  {
             this.user = user;
         }
 
-        public UserAccountSettings getSettings() {
-            return settings;
-        }
 
-        public void setSettings(UserAccountSettings settings) {
-            this.settings = settings;
-        }
 
         @Override
         public String toString() {
             return "UserSettings{" +
                     "user=" + user +
-                    ", settings=" + settings +
                     '}';
         }
     }

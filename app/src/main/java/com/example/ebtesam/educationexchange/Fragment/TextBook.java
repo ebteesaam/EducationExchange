@@ -151,10 +151,9 @@ public class TextBook extends Fragment {
         final ArrayList<Book> books = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_user_books));
-        rootRef.child(getString(R.string.dbname_user_books));
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
-                .child(getString(R.string.dbname_user_books))
+                .child(getString(R.string.dbname_material))
                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -171,6 +170,7 @@ public class TextBook extends Fragment {
                 ArrayList<String> imgUrls = new ArrayList<String>();
                 for(int i = 0; i < books.size(); i++){
                     imgUrls.add(books.get(i).getImage_path());
+
                 }
                 GridImageAdapter adapter = new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,
                         "", imgUrls);
