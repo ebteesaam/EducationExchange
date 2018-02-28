@@ -22,14 +22,14 @@
     <string name="profile_photo">profile_photo</string>
 
     <!--adding book page-->
-    <string name="name_of_book">Name of book</string>
+    <string name="name_of_book">Book name:</string>
     <string name="nameBook">Enter the name</string>
     <string name="type">Type of material</string>
-    <string name="number_of_course">Number of course</string>
+    <string name="number_of_course">Course Id:</string>
     <string name="state">State</string>
     <string name="ava">Availability</string>
     <string name="enter_price">Enter the price</string>
-    <string name="price">Price</string>
+    <string name="price">Price:</string>
 
     <!-- fragment photo -->
     <string name="gallery">GALLERY</string>

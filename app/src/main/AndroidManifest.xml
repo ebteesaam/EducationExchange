@@ -74,6 +74,8 @@
                 android:value=".profile.EditProfile" />
         </activity>
         <activity android:name=".profile.MyBooksActivity"></activity>
+        <activity android:name=".Fragment.CustomListActivity"></activity>
+
     </application>
 
 </manifest>

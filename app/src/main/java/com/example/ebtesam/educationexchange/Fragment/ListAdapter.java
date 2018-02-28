@@ -27,48 +27,41 @@ public class ListAdapter extends ArrayAdapter<Book> {
         super(context, resource);
     }
 
+
     public ListAdapter(Context context, int resource, List<Book> items) {
         super(context, resource, items);
     }
 
+//    public ListAdapter(ValueEventListener context, List<Book> items) {
+//
+//        super(context, 0,items);
+//    }
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = convertView;
-
-        if (v == null) {
-            LayoutInflater vi;
-            vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.list, null);
+        // Check if an existing view is being reused, otherwise inflate the view
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list, parent, false);
         }
 
-        Book p = getItem(position);
+        // Get the data item for this position
+        Book book = getItem(position);
 
-
-        if (p != null) {
-            ImageView image=convertView.findViewById(R.id.relative1);
+        // Lookup view for data population
+         ImageView image=convertView.findViewById(R.id.relative1);
             TextView nameTextView = (TextView) convertView.findViewById(R.id.nameBook);
          TextView summaryTextView = (TextView) convertView.findViewById(R.id.courseIdBook);
           TextView bookname=(TextView)convertView.findViewById(R.id.nameBook);
-
-
-
-                nameTextView.setText(p.getBook_name());
-
-
-            if (summaryTextView != null) {
-                summaryTextView.setText(p.getCourse_id());
-            }
-
-//            if (tt3 != null) {
-//                tt3.setText(p.getDescription());
-//            }
 //
-        ImageLoader imageLoader=ImageLoader.getInstance();
+        // Populate the data into the template view using the data object
+        nameTextView.setText(book.getBook_name());
+        summaryTextView.setText(book.getCourse_id());
 
-        imageLoader.displayImage( p.getImage_path(),image,new ImageLoadingListener() {
+        ImageLoader imageLoader=ImageLoader.getInstance();
+//
+        imageLoader.displayImage( book.getImage_path(),image,new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
 //                if(holder.mProgressBar !=null){
@@ -101,10 +94,84 @@ public class ListAdapter extends ArrayAdapter<Book> {
             }
 
         });
-
-
-
+        // Return the completed view to render on screen
+        return convertView;
     }
-        return v;
-}}
+}
+
+
+//    @Override
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//
+//        View v = convertView;
+//
+//        if (v == null) {
+//            LayoutInflater vi;
+//            vi = LayoutInflater.from(getContext());
+//            v = vi.inflate(R.layout.list, null);
+//        }
+//
+//        Book p = getItem(position);
+//
+//
+//        if (p != null) {
+//            ImageView image=convertView.findViewById(R.id.relative1);
+//            TextView nameTextView = (TextView) convertView.findViewById(R.id.nameBook);
+//         TextView summaryTextView = (TextView) convertView.findViewById(R.id.courseIdBook);
+//          TextView bookname=(TextView)convertView.findViewById(R.id.nameBook);
+//
+//
+//
+//                nameTextView.setText(p.getBook_name());
+//
+//
+//            if (summaryTextView != null) {
+//                summaryTextView.setText(p.getCourse_id());
+//            }
+//
+////            if (tt3 != null) {
+////                tt3.setText(p.getDescription());
+////            }
+////
+//        ImageLoader imageLoader=ImageLoader.getInstance();
+//
+//        imageLoader.displayImage( p.getImage_path(),image,new ImageLoadingListener() {
+//            @Override
+//            public void onLoadingStarted(String imageUri, View view) {
+////                if(holder.mProgressBar !=null){
+////                    holder.mProgressBar.setVisibility(View.VISIBLE);
+////                }
+//            }
+//
+//            @Override
+//            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+////                if(holder.mProgressBar !=null){
+////                    holder.mProgressBar.setVisibility(View.INVISIBLE);
+////                }
+//
+//            }
+//
+//            @Override
+//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+////                if(holder.mProgressBar !=null){
+////                    holder.mProgressBar.setVisibility(View.INVISIBLE);
+////                }
+//
+//            }
+//
+//            @Override
+//            public void onLoadingCancelled(String imageUri, View view) {
+////                if(holder.mProgressBar !=null){
+////                    holder.mProgressBar.setVisibility(View.INVISIBLE);
+////                }
+//
+//            }
+//
+//        });
+//
+//
+//
+//    }
+//        return v;
+//}}
 

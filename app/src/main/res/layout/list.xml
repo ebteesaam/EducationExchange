@@ -1,96 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="240dp"
+    android:background="@drawable/grey_border_bottom"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
-    <!--ImageBooks-->
-    <ImageView
-        android:id="@+id/relative1"
-        android:layout_width="110dp"
-        android:layout_height="120dp"
-        android:layout_margin="14dp"
-        android:background="@color/edit">
+        <!--ImageBooks-->
+        <ImageView
+            android:id="@+id/relative1"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:layout_margin="14dp"
+            android:background="@color/yellowlight">
 
-    </ImageView>
+        </ImageView>
 
-    <!--textBook information-->
-    <RelativeLayout
-        android:id="@+id/relative2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_toRightOf="@id/relative1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!--textBook information-->
+        <RelativeLayout
+            android:id="@+id/relative2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_of_book"
-                />
+            android:layout_below="@id/relative1">
 
-    <TextView
-        android:id="@+id/courseIdBook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="@string/un_known_name"
-        android:textColor="@color/blue" />
-</LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_of_course"
-                />
-            <TextView
-                android:id="@+id/nameBook"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="@string/un_known_name"
-                android:textColor="@color/blue" />
-        </LinearLayout>
+                android:layout_margin="1dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/state"
-                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ava"
-                />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_of_book" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/price"
-                />
+                    <TextView
+                        android:id="@+id/courseIdBook"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/number_of_course" />
+
+                    <TextView
+                        android:id="@+id/nameBook"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        </LinearLayout>
-    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/price" />
+
+                    <TextView
+                        android:id="@+id/bookPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
