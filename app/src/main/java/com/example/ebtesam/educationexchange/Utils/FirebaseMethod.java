@@ -63,7 +63,7 @@ public class FirebaseMethod {
     }
 
 
-    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final String price,final int count, final String imgUrl, Bitmap bm){
+    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final String price,final String  type,final String available,final String state,final int count, final String imgUrl, Bitmap bm){
         Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
 
         FilePaths filePaths = new FilePaths();
@@ -92,7 +92,7 @@ public class FirebaseMethod {
                     Toast.makeText(mContext, "Book upload success", Toast.LENGTH_SHORT).show();
 
                     //add the new photo to 'photos' node and 'user_photos' node
-                    addBookToDatabase(bookNmae, courseId , price, firebaseUrl.toString(),count);
+                    addBookToDatabase(bookNmae, courseId , price,type,available,state, firebaseUrl.toString(),count);
 
                     //navigate to the main feed so the user can see their photo
 //                    Intent intent = new Intent(mContext, HomeActivity.class);
@@ -196,7 +196,7 @@ public class FirebaseMethod {
         return sdf.format(new Date());
     }
 
-    private void addBookToDatabase(String bookNmae, String courseId ,String price, String url,int count){
+    private void addBookToDatabase(String bookNmae, String courseId ,String price, String  type,String available,String state, String url,int count){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
         //String tags = StringManipulation.getTags(caption);
@@ -204,9 +204,10 @@ public class FirebaseMethod {
         Book book = new Book();
         book.setBook_name(bookNmae);
         book.setCourse_id(courseId);
-        book.setAvailability(" ");
-        book.setStatus(" ");
+        book.setAvailability(available);
+        book.setStatus(state);
         book.setPrice(price);
+        //book.set
 
         book.setDate_created(getTimestamp());
         book.setImage_path(url);

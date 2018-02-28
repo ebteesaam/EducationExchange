@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.MainActivity;
@@ -52,6 +53,7 @@ public class AddTextBook extends AppCompatActivity {
     private ImageView takePhoto, bookPhoto;
     private ViewPager mViewPager;
     private EditText editName, editPrice, numOfCourse;
+    private Spinner spinner, spinner2,spinner3;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -64,6 +66,9 @@ public class AddTextBook extends AppCompatActivity {
         editName = findViewById(R.id.edit_name);
         editPrice = findViewById(R.id.edit_price);
         numOfCourse = findViewById(R.id.numberOfCourse);
+        spinner=findViewById(R.id.spinner1);
+        spinner2=findViewById(R.id.spinner2);
+        spinner3=findViewById(R.id.spinner3);
         //mCaption = (EditText) findViewById(R.id.caption) ;
 
         setupFirebaseAuth();
@@ -244,6 +249,9 @@ public class AddTextBook extends AppCompatActivity {
                 String courseId = "";
                 String bookNmae = "";
                 String price = "";
+                String type;
+                String available;
+                String state;
 
 
                 try {
@@ -263,16 +271,19 @@ public class AddTextBook extends AppCompatActivity {
                 } catch (NullPointerException e) {
 
                 }
+                type=spinner.getSelectedItem().toString();
+                available=spinner3.getSelectedItem().toString();
+                state=spinner2.getSelectedItem().toString();
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, imageCount, imgUrl, null);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price,type,available,state, imageCount, imgUrl, null);
 
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price,type,available,state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
                 } else {
                     Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
                     return false;
