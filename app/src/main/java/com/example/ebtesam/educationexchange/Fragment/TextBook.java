@@ -86,66 +86,6 @@ public class TextBook extends Fragment {
         Log.d(TAG, "setupGridView: Setting up image grid.");
         // get data from the table by the ListAdapter
 
-//        final ArrayList<Book> books = new ArrayList<>();
-//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_user_books));
-//        rootRef.child(getString(R.string.dbname_user_books)).addValueEventListener(new ValueEventListener() {
-//                                                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                                                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-//                                                            for (DataSnapshot messageSnapshot: snapshot.child("mensagem").getChildren()) {
-//                                                                books.add(messageSnapshot.child("textoMensagem").getValue().toString());
-//                                                            }
-//                                                        }
-//                                                     //setup our image grid
-//            int gridWidth = getResources().getDisplayMetrics().widthPixels;
-//            int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-//                gridView.setColumnWidth(imageWidth);
-//
-//            ArrayList<String> imgUrls = new ArrayList<String>();
-//                for(int i = 0; i < books.size(); i++){
-//                imgUrls.add(books.get(i).getImage_path());
-//            }
-//            GridImageAdapter adapter = new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,
-//                    "", imgUrls);
-//                gridView.setAdapter(adapter);
-//        }
-//
-//        @Override
-//        public void onCancelled(DatabaseError databaseError) {
-//            Log.d(TAG, "onCancelled: query cancelled.");
-//        }
-//    });}
-
-
-//        ValueEventListener eventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-//                   // String name = ds.child("name").getValue(String.class);
-//                    books.add(ds.getValue(Book.class));
-//
-//                //setup our image grid
-//                int gridWidth = getResources().getDisplayMetrics().widthPixels;
-//                int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-//                gridView.setColumnWidth(imageWidth);
-//
-//                ArrayList<String> imgUrls = new ArrayList<String>();
-//                for(int i = 0; i < books.size(); i++){
-//                    imgUrls.add(books.get(i).getImage_path());
-//                }
-//                GridImageAdapter adapter = new GridImageAdapter(getActivity(),R.layout.list,
-//                        "", imgUrls);
-//                gridView.setAdapter(adapter);
-//            }
-//
-//                }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {}
-//            };
-//
-//
-//        usersdRef.addListenerForSingleValueEvent(eventListener);
-//        };
 
 
         final ArrayList<Book> books = new ArrayList<>();
@@ -163,22 +103,9 @@ public class TextBook extends Fragment {
                     //Book book=singleSnapshot.getValue(Book.class);
                     books.add(singleSnapshot.getValue(Book.class));
                 }
-                //setup our image grid
-//                int gridWidth = getResources().getDisplayMetrics().widthPixels;
-//                int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-//                gridView.setColumnWidth(imageWidth);
-//
-//                ArrayList<String> imgUrls = new ArrayList<String>();
-//                for(int i = 0; i < books.size(); i++){
-//                    imgUrls.add(books.get(i).getImage_path());
-//
-//                }
-//                GridImageAdapter adapter = new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,
-//                        "", imgUrls);
-//                gridView.setAdapter(adapter);
+
                 ListAdapter adapter = new ListAdapter(getActivity(),R.layout.text_book_fragment, books);
                 // Attach the adapter to a ListView
-                //ListView listView = (ListView) findViewById(R.id.list);
                 gridView.setAdapter(adapter);
             }
 
