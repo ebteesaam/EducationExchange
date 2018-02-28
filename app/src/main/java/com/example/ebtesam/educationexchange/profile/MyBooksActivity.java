@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.ebtesam.educationexchange.Fragment.GridImageAdapter;
+import com.example.ebtesam.educationexchange.Fragment.ListAdapter;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.models.Book;
@@ -70,8 +70,12 @@ public class MyBooksActivity extends AppCompatActivity {
     private void setupGridView(){
         Log.d(TAG, "setupGridView: Setting up image grid.");
 
+
         final ArrayList<Book> books = new ArrayList<>();
+        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
                 .child(getString(R.string.dbname_material))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -79,19 +83,12 @@ public class MyBooksActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
+                    //Book book=singleSnapshot.getValue(Book.class);
                     books.add(singleSnapshot.getValue(Book.class));
                 }
-                //setup our image grid
-                int gridWidth = getResources().getDisplayMetrics().widthPixels;
-                int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-                gridView.setColumnWidth(imageWidth);
 
-                ArrayList<String> imgUrls = new ArrayList<String>();
-                for(int i = 0; i < books.size(); i++){
-                    imgUrls.add(books.get(i).getImage_path());
-                }
-                GridImageAdapter adapter = new GridImageAdapter(MyBooksActivity.this,R.layout.layout_grid_imageview,
-                        "", imgUrls);
+                ListAdapter adapter = new ListAdapter(MyBooksActivity.this,R.layout.text_book_fragment, books);
+                // Attach the adapter to a ListView
                 gridView.setAdapter(adapter);
             }
 
@@ -99,8 +96,8 @@ public class MyBooksActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
-        });
-    }
+        });}
+
      /*
     ------------------------------------ Firebase ---------------------------------------------
      */
@@ -164,6 +161,11 @@ public class MyBooksActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        return;
     }
 
 }

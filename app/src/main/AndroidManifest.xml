@@ -75,6 +75,7 @@
         </activity>
         <activity android:name=".profile.MyBooksActivity"></activity>
         <activity android:name=".Fragment.CustomListActivity"></activity>
+        <activity android:name=".addBook.ViewBook"></activity>
 
     </application>
 

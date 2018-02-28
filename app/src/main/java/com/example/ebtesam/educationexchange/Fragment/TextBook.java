@@ -1,6 +1,7 @@
 package com.example.ebtesam.educationexchange.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.addBook.ViewBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -72,11 +75,14 @@ public class TextBook extends Fragment {
         gridView.setEmptyView(emptyView);
         setupFirebaseAuth();
         setupGridView();
-//        ListView yourListView = (ListView) view.findViewById(R.id.list);
-//
-//        ListAdapter customAdapter = new ListAdapter(getActivity() , R.layout.text_book_fragment);
-//
-//        yourListView .setAdapter(customAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), ViewBook.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
 
 
