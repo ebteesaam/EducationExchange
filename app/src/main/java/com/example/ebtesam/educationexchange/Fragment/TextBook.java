@@ -119,6 +119,7 @@ public class TextBook extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
+            
         });}
 
      /*
