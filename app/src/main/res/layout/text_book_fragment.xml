@@ -3,58 +3,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="18dp"
+        android:text="Please Select a Faculty:"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"/>
+
     <RelativeLayout
-        android:id="@+id/relLayout3"
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <GridView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:horizontalSpacing="5dp"
-            android:numColumns="2"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="5dp">
-
-        </GridView>
-    </RelativeLayout>
-    <!-- Empty view for the list -->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:id="@+id/empty_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_grey_book" />
-
-
-        <TextView
-            android:id="@+id/empty_subtitle_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/empty_image"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif"
-            android:paddingTop="8dp"
-            android:text="@string/empty_view_subtitle_text"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#A2AAB0" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/comput"
+            android:layout_width="500dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/white_rounded_buttom"
+            android:text="@string/faculty_of_computing_and_information_technology"
+            android:textAllCaps="false" />
     </RelativeLayout>
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/fab"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_margin="@dimen/fab_margin"-->
-    <!--android:src="@drawable/ic_action_add"/>-->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/general_course"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/relativeLayout"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/white_rounded_buttom"
+        android:text="@string/general_course"
+        android:textAllCaps="false" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/medicine"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/general_course"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/white_rounded_buttom"
+        android:text="@string/faculty_of_medicine_in_rabigh"
+        android:textAllCaps="false" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/business"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/medicine"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/white_rounded_buttom"
+        android:text="@string/college_of_business_cob"
+        android:textAllCaps="false" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/scin"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/business"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/white_rounded_buttom"
+        android:text="@string/college_of_sciences"
+        android:textAllCaps="false" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/english"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/scin"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/white_rounded_buttom"
+        android:text="@string/college_of_english"
+        android:textAllCaps="false" />
+
+
 </RelativeLayout>
-

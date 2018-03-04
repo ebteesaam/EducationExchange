@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -35,25 +38,24 @@ public class AddTextBook extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     public int imageCount = 0;
+    ArrayAdapter<CharSequence> adapter3 ;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-
     //widgets
     //private EditText mCaption;
     private FirebaseMethod mFirebaseMethods;
     //vars
     private String mAppend = "file:/";
     private String imgUrl;
-
-
     private Context mContext = AddTextBook.this;
-    private ImageView takePhoto, bookPhoto;
+    private ImageButton takePhoto;
+    private ImageView bookPhoto;
     private ViewPager mViewPager;
     private EditText editName, editPrice, numOfCourse;
-    private Spinner spinner, spinner2,spinner3;
+    private Spinner spinner1, spinner2,spinner3,spinner4;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -66,10 +68,40 @@ public class AddTextBook extends AppCompatActivity {
         editName = findViewById(R.id.edit_name);
         editPrice = findViewById(R.id.edit_price);
         numOfCourse = findViewById(R.id.numberOfCourse);
-        spinner=findViewById(R.id.spinner1);
+        spinner1=findViewById(R.id.spinner1);
         spinner2=findViewById(R.id.spinner2);
         spinner3=findViewById(R.id.spinner3);
+        spinner4=findViewById(R.id.spinnermajorcourse);
         //mCaption = (EditText) findViewById(R.id.caption) ;
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.major, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adapter1);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (spinner1.getSelectedItem().equals("Faculty of Computing and Information Technology")){
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    adapter3.notifyDataSetChanged();;
+
+                    spinner4.setAdapter(adapter3);
+                }else if(spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")){
+
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter3.notifyDataSetChanged();;
+                    spinner4.setAdapter(adapter3);}
+
+                }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
         setupFirebaseAuth();
 
@@ -87,10 +119,11 @@ public class AddTextBook extends AppCompatActivity {
 
             }
         });
-        setBookData();
         setImage();
 
     }
+
+
 
     private void setBookData() {
     }
@@ -271,9 +304,10 @@ public class AddTextBook extends AppCompatActivity {
                 } catch (NullPointerException e) {
 
                 }
-                type=spinner.getSelectedItem().toString();
+                type=spinner1.getSelectedItem().toString();
                 available=spinner3.getSelectedItem().toString();
                 state=spinner2.getSelectedItem().toString();
+                courseId=spinner4.getSelectedItem().toString();
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture

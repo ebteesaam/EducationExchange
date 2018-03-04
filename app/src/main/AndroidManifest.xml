@@ -76,7 +76,7 @@
         <activity android:name=".profile.MyBooksActivity"></activity>
         <activity android:name=".Fragment.CustomListActivity"></activity>
         <activity android:name=".addBook.ViewBook"></activity>
-
+        <activity android:name=".Material"></activity>
     </application>
 
 </manifest>

@@ -110,10 +110,32 @@
         <item>Pied</item>
     </string-array>
 
+    <string-array name="major">
+        <item>Faculty of Computing and Information Technology</item>
+        <item>Faculty Of Medicine In Rabigh</item>
+        <item>College of Business(COB)</item>
+        <item>College of Sciences</item>
+        <item>General Books</item>
+        <item>Faculty of English</item>
+    </string-array>
+
     <string-array name="type">
         <item>TextBooks</item>
         <item>Lecture Notes</item>
         <item>General Books</item>
+    </string-array>
+    <string-array name="major_course_faculty_of_computing_and_information_technology">
+        <item>cosa123</item>
+        <item>cosa111113</item>
+
+
+    </string-array>
+
+    <string-array name="major_course_faculty_of_medicine_in_rabigh">
+        <item>cosmedicine</item>
+        <item>medicine111113</item>
+
+
     </string-array>
 
     <string-array name="state">
@@ -121,5 +143,15 @@
         <item>Used</item>
     </string-array>
     <!--end array for adding pag-->
+
+    <string name="faculty_of_computing_and_information_technology">Faculty of Computing and Information Technology</string>
+    <string name="faculty_of_medicine_in_rabigh">Faculty Of Medicine In Rabigh</string>
+    <string name="college_of_business_cob">College of Business(COB)</string>
+    <string name="college_of_sciences">College of Sciences</string>
+    <string name="general_course">General Books</string>
+    <string name="college_of_english">Faculty of English</string>
+
+
+
 
 </resources>

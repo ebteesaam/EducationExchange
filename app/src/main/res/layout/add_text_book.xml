@@ -36,17 +36,18 @@
                 android:background="@color/edit"
                 android:src="@drawable/ic_grey_book"/>
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="14dp"
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
-                    android:src="@drawable/ic_action_photo" />
+                    android:background="@drawable/white_rounded_buttom"
+                    android:src="@drawable/ic_action_photo"/>
 
             </RelativeLayout>
 
@@ -127,9 +128,50 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:background="@android:drawable/btn_dropdown"
-                        android:entries="@array/type"
+                        android:entries="@array/major"
                         android:spinnerMode="dropdown">
                     </Spinner>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative3"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Label -->
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="@string/number_of_course" />
+
+                    <!-- Input fields -->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp">
+
+
+
+
+                        <Spinner
+                            android:id="@+id/spinnermajorcourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:background="@android:drawable/btn_dropdown"
+                            android:entries="@array/state"
+                            android:spinnerMode="dropdown">
+                        </Spinner>
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -139,7 +181,7 @@
                 android:id="@+id/relative4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relative3"
+                android:layout_below="@id/relative9"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 

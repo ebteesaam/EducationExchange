@@ -200,7 +200,7 @@ public class FirebaseMethod {
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
         //String tags = StringManipulation.getTags(caption);
-       // String newBookKey = myRef.push().getKey();
+        String newBookKey = myRef.push().getKey();
         Book book = new Book();
         book.setBook_name(bookNmae);
         book.setCourse_id(courseId);
@@ -213,12 +213,11 @@ public class FirebaseMethod {
         book.setImage_path(url);
         //photo.setTags(tags);
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
-       // book.setId_book(newBookKey);
+        book.setId_book(newBookKey);
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_material))
-                .child(FirebaseAuth.getInstance().getCurrentUser()
-                .getUid()).child("book"+ (count+1)).setValue(book);
+                .child("book"+ (count+1)).setValue(book);
        // myRef.child(mContext.getString(R.string.dbname_photos)).setValue(book);
 
     }

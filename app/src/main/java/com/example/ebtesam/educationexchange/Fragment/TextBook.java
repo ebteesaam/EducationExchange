@@ -10,18 +10,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ebtesam.educationexchange.Material;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
-import com.example.ebtesam.educationexchange.addBook.ViewBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +51,7 @@ public class TextBook extends Fragment {
     private ImageView profileMenu;
 
     private Context mContext;
+    private Button comput;
 
     public TextBook(){
 
@@ -61,27 +61,35 @@ public class TextBook extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.text_book_fragment, container,false);
-     //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
-        mbookname = (TextView) view.findViewById(R.id.nameBook);
-        courseIdBook = (TextView) view.findViewById(R.id.courseIdBook);
-      //  mDescription = (TextView) view.findViewById(R.id.description);
-//        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-//        mPosts = (TextView) view.findViewById(R.id.tvPosts);
-//        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
-//        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
-        mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
-        gridView =  view.findViewById(R.id.list);
-        View emptyView = view.findViewById(R.id.empty_view);
-        gridView.setEmptyView(emptyView);
-        setupFirebaseAuth();
-        setupGridView();
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        comput=view.findViewById(R.id.comput);
+        comput.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), ViewBook.class);
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
                 startActivity(intent);
             }
         });
+     //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
+//        mbookname = (TextView) view.findViewById(R.id.nameBook);
+//        courseIdBook = (TextView) view.findViewById(R.id.courseIdBook);
+//      //  mDescription = (TextView) view.findViewById(R.id.description);
+////        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
+////        mPosts = (TextView) view.findViewById(R.id.tvPosts);
+////        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
+////        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
+//        mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
+//        gridView =  view.findViewById(R.id.list);
+//        View emptyView = view.findViewById(R.id.empty_view);
+//        gridView.setEmptyView(emptyView);
+//        setupFirebaseAuth();
+//        setupGridView();
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(getActivity(), ViewBook.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return view;
 
@@ -97,20 +105,20 @@ public class TextBook extends Fragment {
         final ArrayList<Book> books = new ArrayList<>();
         final ArrayList<Book> arrayOfUsers = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
-                .child(getString(R.string.dbname_material))
-             .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child(getString(R.string.dbname_material));
+             //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-                    //Book book=singleSnapshot.getValue(Book.class);
+                    Book book=singleSnapshot.getValue(Book.class);
                     books.add(singleSnapshot.getValue(Book.class));
                 }
 
-                ListAdapter adapter = new ListAdapter(getActivity(),R.layout.text_book_fragment, books);
+                ListAdapter adapter = new ListAdapter(getActivity(),R.layout.list_material_activity, books);
                 // Attach the adapter to a ListView
                 gridView.setAdapter(adapter);
             }
@@ -119,72 +127,10 @@ public class TextBook extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
-            
+
         });}
 
-     /*
-    ------------------------------------ Firebase ---------------------------------------------
-     */
-
-    /**
-     * Setup the firebase auth object
-     */
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
-
-        mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //retrieve user information from the database
-                //setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
-
-                //retrieve images for the user in question
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
 
 }

@@ -1,19 +1,22 @@
-package com.example.ebtesam.educationexchange.profile;
+package com.example.ebtesam.educationexchange;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.Fragment.ListAdapter;
-import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.addBook.ViewBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,10 +29,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyBooksActivity extends AppCompatActivity {
+/**
+ * Created by ebtesam on 04/03/2018 AD.
+ */
+
+public class Material extends AppCompatActivity{
 
     private static final String TAG = "MyBooks";
-    private static final int NUM_GRID_COLUMNS = 3;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -44,25 +50,41 @@ public class MyBooksActivity extends AppCompatActivity {
     private ImageView profileMenu;
 
     private Context mContext;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+
+
+    @Nullable
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.list_material_activity);
-        setTitle(getString(R.string.my_books));
-        mbookname = (TextView) findViewById(R.id.nameBook);
-        courseIdBook = (TextView) findViewById(R.id.courseIdBook);
+       // setTitle(getString(R.string.add_book_activity));
+        //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
+        mbookname =  findViewById(R.id.nameBook);
+        courseIdBook = (TextView)findViewById(R.id.courseIdBook);
         //  mDescription = (TextView) view.findViewById(R.id.description);
-        //     mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-        //        mPosts = (TextView) view.findViewById(R.id.tvPosts);
-        //        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
-        //        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
-        mProgressBar = (ProgressBar) findViewById(R.id.profileProgressBar);
+//        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
+//        mPosts = (TextView) view.findViewById(R.id.tvPosts);
+//        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
+//        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
+        mProgressBar = (ProgressBar)findViewById(R.id.profileProgressBar);
         gridView =  findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_view);
         gridView.setEmptyView(emptyView);
         setupFirebaseAuth();
         setupGridView();
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(Material.this, ViewBook.class);
+                Bundle bundle=new Bundle();
+                Book book=new Book();
+                String id=book.getId_book();
+                bundle.putString("id_book", id);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -73,24 +95,22 @@ public class MyBooksActivity extends AppCompatActivity {
 
 
         final ArrayList<Book> books = new ArrayList<>();
-
         final ArrayList<Book> arrayOfUsers = new ArrayList<>();
-        final FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
-                .child(getString(R.string.dbname_material));//.equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());;
+                .child(getString(R.string.dbname_material));
+                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-                    Book book=singleSnapshot.getValue(Book.class);
-                if(book.getUser_id().equals(user.getUid())){
+                    //Book book=singleSnapshot.getValue(Book.class);
                     books.add(singleSnapshot.getValue(Book.class));
-                }}
+                }
 
-                ListAdapter adapter = new ListAdapter(MyBooksActivity.this,R.layout.list_material_activity, books);
+                ListAdapter adapter = new ListAdapter(Material.this,R.layout.list_material_activity, books);
                 // Attach the adapter to a ListView
                 gridView.setAdapter(adapter);
             }
@@ -100,7 +120,6 @@ public class MyBooksActivity extends AppCompatActivity {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
         });}
-
      /*
     ------------------------------------ Firebase ---------------------------------------------
      */
@@ -165,10 +184,6 @@ public class MyBooksActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        return;
-    }
 
 }
+
