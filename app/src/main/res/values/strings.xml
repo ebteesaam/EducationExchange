@@ -123,7 +123,7 @@
         <item>Faculty Of Medicine In Rabigh</item>
         <item>College of Business(COB)</item>
         <item>College of Sciences</item>
-        <item>General Books</item>
+        <item>General Course Books</item>
         <item>Faculty of English</item>
     </string-array>
 
@@ -133,17 +133,34 @@
     </string-array>
 
     <string-array name="major_course_faculty_of_computing_and_information_technology">
-        <item>cosa123</item>
+        <item>computer</item>
         <item>cosa111113</item>
-
-
     </string-array>
 
     <string-array name="major_course_faculty_of_medicine_in_rabigh">
         <item>cosmedicine</item>
         <item>medicine111113</item>
+    </string-array>
 
+    <string-array name="major_course_college_of_business_cob">
+        <item>business</item>
+        <item>medicine111113</item>
 
+    </string-array>
+
+    <string-array name="major_course_college_of_sciences">
+        <item>physics</item>
+        <item>medicine111113</item>
+    </string-array>
+
+    <string-array name="major_course_general_course">
+        <item>math</item>
+        <item>medicine111113</item>
+    </string-array>
+
+    <string-array name="major_course_college_of_english">
+        <item>english</item>
+        <item>medicine111113</item>
     </string-array>
 
     <string-array name="state">
@@ -156,7 +173,7 @@
     <string name="faculty_of_medicine_in_rabigh">Faculty Of Medicine In Rabigh</string>
     <string name="college_of_business_cob">College of Business(COB)</string>
     <string name="college_of_sciences">College of Sciences</string>
-    <string name="general_course">General Books</string>
+    <string name="general_course">General Course Books</string>
     <string name="college_of_english">Faculty of English</string>
 
 

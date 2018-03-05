@@ -53,7 +53,7 @@ public class TextBook extends Fragment {
     private ImageView profileMenu;
 
     private Context mContext;
-    private Button comput;
+    private Button comput, medicine,general_course, business, science, english;
 
     public TextBook(){
 
@@ -75,6 +75,67 @@ public class TextBook extends Fragment {
                 startActivity(intent);
             }
         });
+        medicine=view.findViewById(R.id.medicine);
+        medicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "medicine");
+                bundle.putString("Type", "TextBooks");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        general_course=view.findViewById(R.id.general_course);
+        general_course.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "general_course");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        business=view.findViewById(R.id.business);
+        business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "business");
+                bundle.putString("Type", "TextBooks");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        science=view.findViewById(R.id.science);
+        science.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "science");
+                bundle.putString("Type", "TextBooks");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        english=view.findViewById(R.id.english);
+        english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "english");
+                bundle.putString("Type", "TextBooks");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

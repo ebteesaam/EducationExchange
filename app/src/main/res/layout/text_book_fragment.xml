@@ -30,23 +30,13 @@
             android:textAllCaps="false" />
     </RelativeLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/general_course"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/relativeLayout"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/white_rounded_buttom"
-        android:text="@string/general_course"
-        android:textAllCaps="false" />
+
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/medicine"
         android:layout_width="500dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/general_course"
+        android:layout_below="@id/relativeLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="12dp"
@@ -68,10 +58,10 @@
         android:textAllCaps="false" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/scin"
+        android:id="@+id/science"
         android:layout_width="500dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/business"
+        android:layout_below="@id/business"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
@@ -83,13 +73,26 @@
         android:id="@+id/english"
         android:layout_width="500dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/scin"
+        android:layout_below="@id/science"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:background="@drawable/white_rounded_buttom"
         android:text="@string/college_of_english"
         android:textAllCaps="false" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/general_course"
+        android:layout_width="500dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/english"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/white_rounded_buttom"
+        android:text="@string/general_course"
+        android:textAllCaps="false" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

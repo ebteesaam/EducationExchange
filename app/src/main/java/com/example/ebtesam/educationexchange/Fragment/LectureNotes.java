@@ -21,7 +21,7 @@ import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 
 public class LectureNotes extends Fragment {
 
-    private Button comput;
+    private Button comput, medicine,general_course, business, science, english;
     public LectureNotes(){
 
     }
@@ -42,6 +42,61 @@ public class LectureNotes extends Fragment {
                 startActivity(intent);
             }
         });
+        medicine=rootView.findViewById(R.id.medicine);
+        medicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "medicine");
+                bundle.putString("Type", "LectureNotes");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        general_course=rootView.findViewById(R.id.general_course);
+        general_course.setVisibility(View.INVISIBLE);
+
+        business=rootView.findViewById(R.id.business);
+        business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "business");
+                bundle.putString("Type", "LectureNotes");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        science=rootView.findViewById(R.id.science);
+        science.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "science");
+                bundle.putString("Type", "LectureNotes");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        english=rootView.findViewById(R.id.english);
+        english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "english");
+                bundle.putString("Type", "LectureNotes");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
 
         FloatingActionButton fab = rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -97,7 +97,33 @@ relativeLayout3=findViewById(R.id.relative3);
                     adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adapter3.notifyDataSetChanged();;
-                    spinner4.setAdapter(adapter3);}
+                    spinner4.setAdapter(adapter3);
+                }else if(spinner1.getSelectedItem().equals("College of Business(COB)")){
+
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter3.notifyDataSetChanged();;
+                    spinner4.setAdapter(adapter3);
+                }else if(spinner1.getSelectedItem().equals("College of Sciences")){
+
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter3.notifyDataSetChanged();;
+                    spinner4.setAdapter(adapter3);
+                }else if(spinner1.getSelectedItem().equals("General Course Books")){
+
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_general_course, android.R.layout.simple_spinner_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter3.notifyDataSetChanged();;
+                    spinner4.setAdapter(adapter3);
+
+                }else if(spinner1.getSelectedItem().equals("Faculty of English")){
+
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
+                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    adapter3.notifyDataSetChanged();;
+                    spinner4.setAdapter(adapter3);
+                }
 
                 }
 
