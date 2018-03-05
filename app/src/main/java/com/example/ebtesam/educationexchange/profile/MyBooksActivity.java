@@ -87,6 +87,7 @@ public class MyBooksActivity extends AppCompatActivity {
                 for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
                     Book book=singleSnapshot.getValue(Book.class);
                 if(book.getUser_id().equals(user.getUid())){
+                   // Book book1=singleSnapshot.getValue(Book.class);
                     books.add(singleSnapshot.getValue(Book.class));
                 }}
 

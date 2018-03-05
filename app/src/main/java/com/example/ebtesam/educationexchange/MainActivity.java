@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.Fragment.CustomListActivity;
@@ -22,7 +20,6 @@ import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
 import com.example.ebtesam.educationexchange.Fragment.TextBook;
 import com.example.ebtesam.educationexchange.Fragment.ViewPagerAdapter;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
-import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.login.LoginPage;
 import com.example.ebtesam.educationexchange.profile.ProfilePage;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,14 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initImageLoader();
         setupFirebaseAuth();
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddTextBook.class);
-                startActivity(intent);
-            }
-        });
+
         ViewPager viewPager=findViewById(R.id.view_pager);
         createViewPager(viewPager);
 

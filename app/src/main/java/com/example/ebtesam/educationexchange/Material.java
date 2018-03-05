@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,9 @@ import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.Fragment.ListAdapter;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.addBook.ViewBook;
+import com.example.ebtesam.educationexchange.addBook.ViewGeneralBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +36,7 @@ import java.util.ArrayList;
  * Created by ebtesam on 04/03/2018 AD.
  */
 
-public class Material extends AppCompatActivity{
+public class Material extends AppCompatActivity {
 
     private static final String TAG = "MyBooks";
     //firebase
@@ -53,44 +56,72 @@ public class Material extends AppCompatActivity{
 
 
 
+
     @Nullable
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_material_activity);
-       // setTitle(getString(R.string.add_book_activity));
+
+        setTitle(getString(R.string.matrial));
         //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
-        mbookname =  findViewById(R.id.nameBook);
-        courseIdBook = (TextView)findViewById(R.id.courseIdBook);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Material.this, AddTextBook.class);
+
+                startActivity(intent);
+            }
+        });
+        mbookname = findViewById(R.id.nameBook);
+        courseIdBook = (TextView) findViewById(R.id.courseIdBook);
         //  mDescription = (TextView) view.findViewById(R.id.description);
 //        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
 //        mPosts = (TextView) view.findViewById(R.id.tvPosts);
 //        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
 //        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
-        mProgressBar = (ProgressBar)findViewById(R.id.profileProgressBar);
-        gridView =  findViewById(R.id.list);
+        mProgressBar = (ProgressBar) findViewById(R.id.profileProgressBar);
+        gridView = findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_view);
         gridView.setEmptyView(emptyView);
         setupFirebaseAuth();
-        setupGridView();
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(Material.this, ViewBook.class);
-                Bundle bundle=new Bundle();
-                Book book=new Book();
-                String id=book.getId_book();
-                bundle.putString("id_book", id);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+//setupGridView();
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(Material.this, ViewBook.class);
+//                Bundle bundle = new Bundle();
+//                Book book = new Book();
+//                String id = book.getId_book();
+//                bundle.putString("", id);
+//                intent.putExtra("id_book", id);
+//                startActivity(intent);
+//            }
+//        });
+        String intentExtra = getIntent().getStringExtra("Faculty");
+        String intentExtra2 = getIntent().getStringExtra("Type");
 
+        if(getIntent().getExtras()!=null){
+        if (intentExtra.equals("Computer")&& intentExtra2.equals("TextBooks")) {
+            setupGridViewComputerBook();
+            fab.setVisibility(View.INVISIBLE);
+        }else if(intentExtra.equals("Computer")&& intentExtra2.equals("LectureNotes")){
+            setupGridViewComputerLN();
+            fab.setVisibility(View.INVISIBLE);}
+//        }else if(intentExtra2.equals("General Book")){
+//            setupGridView();
+//        }
+        }
+//        }else if(intentExtra.equals("LectureNotes")){
+//            setupGridView2();
+//            fab.setVisibility(View.INVISIBLE);
+//        }
 
 
     }
 
-    private void setupGridView(){
+    private void setupGridViewComputerLN() {
         Log.d(TAG, "setupGridView: Setting up image grid.");
 
 
@@ -101,25 +132,161 @@ public class Material extends AppCompatActivity{
         DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
                 .child(getString(R.string.dbname_material));
-                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-                    //Book book=singleSnapshot.getValue(Book.class);
-                    books.add(singleSnapshot.getValue(Book.class));
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Book book = singleSnapshot.getValue(Book.class);
+
+                    if (book.getType().equals("Lecture Notes") && book.getFaculty().toString().equals(getString(R.string.faculty_of_computing_and_information_technology))) {
+                        books.add(singleSnapshot.getValue(Book.class));
+                    }
                 }
 
-                ListAdapter adapter = new ListAdapter(Material.this,R.layout.list_material_activity, books);
+                ListAdapter adapter = new ListAdapter(Material.this, R.layout.list_material_activity, books);
                 // Attach the adapter to a ListView
                 gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(Material.this, ViewBook.class);
+                        String item =  books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+//                        books.get(i);
+                        startActivity(intent);
+                    }
+                });
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
-        });}
+        });
+    }
+    private void setupGridViewComputerBook() {
+        Log.d(TAG, "setupGridView: Setting up image grid.");
+
+
+        final ArrayList<Book> books = new ArrayList<>();
+        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+        Query query = reference
+                .child(getString(R.string.dbname_material));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Book book = singleSnapshot.getValue(Book.class);
+
+                    if (book.getType().equals("TextBooks") && book.getFaculty().toString().equals(getString(R.string.faculty_of_computing_and_information_technology))) {
+                        books.add(singleSnapshot.getValue(Book.class));
+                    }
+                }
+
+                ListAdapter adapter = new ListAdapter(Material.this, R.layout.list_material_activity, books);
+                // Attach the adapter to a ListView
+                gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(Material.this, ViewBook.class);
+                        String item =  books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: query cancelled.");
+            }
+        });
+    }
+
+//    private void setupGridView() {
+//        Log.d(TAG, "setupGridView: Setting up image grid.");
+//
+//
+//        final ArrayList<Book> books = new ArrayList<>();
+//        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+//        Query query = reference
+//                .child(getString(R.string.dbname_material));
+//        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+//                    //Book book=singleSnapshot.getValue(Book.class);
+//                    books.add(singleSnapshot.getValue(Book.class));
+//                }
+//
+//                ListAdapter adapter = new ListAdapter(Material.this, R.layout.list_material_activity, books);
+//                // Attach the adapter to a ListView
+//                gridView.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.d(TAG, "onCancelled: query cancelled.");
+//            }
+//        });
+//    }
+
+    private void setupGridView() {
+        Log.d(TAG, "setupGridView: Setting up image grid.");
+
+
+        final ArrayList<Book> books = new ArrayList<>();
+        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+        Query query = reference
+                .child(getString(R.string.dbname_material));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    //Book book=singleSnapshot.getValue(Book.class);
+                   // Book book = singleSnapshot.getValue(Book.class);
+
+                        books.add(singleSnapshot.getValue(Book.class));
+
+                }
+
+                ListAdapter adapter = new ListAdapter(Material.this, R.layout.list_material_activity, books);
+                // Attach the adapter to a ListView
+                gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(Material.this, ViewGeneralBook.class);
+                        String item =  books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: query cancelled.");
+            }
+        });
+    }
      /*
     ------------------------------------ Firebase ---------------------------------------------
      */
@@ -127,7 +294,7 @@ public class Material extends AppCompatActivity{
     /**
      * Setup the firebase auth object
      */
-    private void setupFirebaseAuth(){
+    private void setupFirebaseAuth() {
         Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
 
         mAuth = FirebaseAuth.getInstance();
@@ -184,6 +351,13 @@ public class Material extends AppCompatActivity{
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        return;
+    }
+
 
 }
 

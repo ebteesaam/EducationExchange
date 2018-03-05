@@ -50,53 +50,14 @@
                     android:src="@drawable/ic_action_photo"/>
 
             </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/relative10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relative1"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Label -->
-                    <TextView
-                        style="@style/TextStyle"
-                        android:text="@string/type" />
-
-                    <!-- Input fields -->
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:paddingLeft="4dp">
-
-
-
-
-                        <Spinner
-                            android:id="@+id/type"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:background="@android:drawable/btn_dropdown"
-                            android:entries="@array/type"
-                            android:spinnerMode="dropdown">
-                        </Spinner>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
 
             <!--name of book-->
             <RelativeLayout
                 android:id="@+id/relative2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relative10"
+                android:layout_below="@id/relative1"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
                 <!--this is left space-->
@@ -133,95 +94,15 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <!--type of book-->
+
+
+
+            <!-- price category -->
             <RelativeLayout
                 android:id="@+id/relative3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/relative2"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Label -->
-                    <TextView
-                        style="@style/TextStyle"
-                        android:text="@string/faculty" />
-
-                    <!-- Input fields -->
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:paddingLeft="4dp">
-
-
-
-
-                    <Spinner
-                        android:id="@+id/spinner1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="4dp"
-                        android:background="@android:drawable/btn_dropdown"
-                        android:entries="@array/major"
-                        android:spinnerMode="dropdown">
-                    </Spinner>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relative9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relative3"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Label -->
-                    <TextView
-                        style="@style/TextStyle"
-                        android:text="@string/number_of_course" />
-
-                    <!-- Input fields -->
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:paddingLeft="4dp">
-
-
-
-
-                        <Spinner
-                            android:id="@+id/spinnermajorcourse"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:background="@android:drawable/btn_dropdown"
-                            android:entries="@array/major_course_faculty_of_computing_and_information_technology"
-                            android:spinnerMode="dropdown">
-                        </Spinner>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <!-- price category -->
-            <RelativeLayout
-                android:id="@+id/relative4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relative9"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 
@@ -269,10 +150,10 @@
 
             <!--state-->
             <RelativeLayout
-                android:id="@+id/relative6"
+                android:id="@+id/relative4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relative4"
+                android:layout_below="@id/relative3"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 
@@ -297,7 +178,7 @@
 
 
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/spinner1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
@@ -314,10 +195,10 @@
 
             <!--availability-->
             <RelativeLayout
-                android:id="@+id/relative7"
+                android:id="@+id/relative5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relative6"
+                android:layout_below="@id/relative4"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
 
@@ -340,7 +221,7 @@
 
 
                     <Spinner
-                        android:id="@+id/spinner3"
+                        android:id="@+id/spinner2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"

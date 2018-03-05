@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Education Exchange</string>
     <string name="add_book_activity">Add Book</string>
+    <string name="add_general_activity">Add General Book</string>
     <string name="general_book">General Book</string>
     <string name="text_book">Text Book</string>
     <string name="lecture_notes">Lecture Notes</string>
@@ -30,6 +31,7 @@
     <string name="ava">Availability</string>
     <string name="enter_price">Enter the price</string>
     <string name="price">Price:</string>
+    <string name="faculty">Faculty</string>
 
     <!-- fragment photo -->
     <string name="gallery">GALLERY</string>
@@ -87,6 +89,7 @@
     <!--veiw textBook-->
     <string name="comment">comment:</string>
     <string name="request">Request This material</string>
+    <string name="dollars">$</string>
 
     <!---login page-->
     <string name="sign_out">Sign Out</string>
@@ -101,6 +104,11 @@
 
     <!---put Extra-->
     <string name="return_to_fragment">return_to_fragment</string>
+
+    <!--matrial activity-->
+    <string name="matrial">Material</string>
+    <!---Viewbook-->
+    <string name="book_details">Book Details</string>
 
 
     <!--array for add material pag-->
@@ -122,8 +130,8 @@
     <string-array name="type">
         <item>TextBooks</item>
         <item>Lecture Notes</item>
-        <item>General Books</item>
     </string-array>
+
     <string-array name="major_course_faculty_of_computing_and_information_technology">
         <item>cosa123</item>
         <item>cosa111113</item>

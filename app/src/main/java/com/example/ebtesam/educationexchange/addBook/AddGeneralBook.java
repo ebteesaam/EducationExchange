@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -35,7 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AddTextBook extends AppCompatActivity {
+public class AddGeneralBook extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     public int imageCount = 0;
@@ -52,7 +51,7 @@ public class AddTextBook extends AppCompatActivity {
     private String mAppend = "file:/";
     private String imgUrl;
     private String type;
-    private Context mContext = AddTextBook.this;
+    private Context mContext = AddGeneralBook.this;
     private ImageButton takePhoto;
     private ImageView bookPhoto;
     private ViewPager mViewPager;
@@ -63,49 +62,17 @@ public class AddTextBook extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_text_book);
-        setTitle(getString(R.string.add_book_activity));
-relativeLayout3=findViewById(R.id.relative3);
-        relativeLayout9=findViewById(R.id.relative9);
+        setContentView(R.layout.add_general_book);
+        setTitle(getString(R.string.add_general_activity));
+
 
         mFirebaseMethods = new FirebaseMethod(mContext);
         bookPhoto = findViewById(R.id.book_photo);
         editName = findViewById(R.id.edit_name);
         editPrice = findViewById(R.id.edit_price);
-        //numOfCourse = findViewById(R.id.numberOfCourse);
         spinner1=findViewById(R.id.spinner1);
         spinner2=findViewById(R.id.spinner2);
-        spinner3=findViewById(R.id.spinner3);
-        spinner4=findViewById(R.id.spinnermajorcourse);
-        spinner5=findViewById(R.id.type);
-        //mCaption = (EditText) findViewById(R.id.caption) ;
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.major, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter1);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (spinner1.getSelectedItem().equals("Faculty of Computing and Information Technology")){
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
-                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                    adapter3.notifyDataSetChanged();;
-
-                    spinner4.setAdapter(adapter3);
-                }else if(spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")){
-
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
-                    adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
-                    spinner4.setAdapter(adapter3);}
-
-                }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
 
 
@@ -117,7 +84,7 @@ relativeLayout3=findViewById(R.id.relative3);
             @Override
             public void onClick(View view) {
                 if (checkPermissionsArray(Permissions.PERMISSIONS)) {
-                    Intent intent = new Intent(mContext, TakePhotoActivity.class);
+                    Intent intent = new Intent(mContext, TakePhotoGeneralActivity.class);
                     startActivity(intent);
                 } else {
                     verifyPermissions(Permissions.PERMISSIONS);
@@ -131,10 +98,6 @@ relativeLayout3=findViewById(R.id.relative3);
     }
 
 
-
-    private void setBookData() {
-    }
-
     /**
      * gets the image url from the incoming intent and displays the chosen image
      */
@@ -147,7 +110,7 @@ relativeLayout3=findViewById(R.id.relative3);
         Log.d(TAG, "verifyPermissions: verifying permissions.");
 
         ActivityCompat.requestPermissions(
-                AddTextBook.this,
+                AddGeneralBook.this,
                 permissions,
                 VERIFY_PERMISSIONS_REQUEST
         );
@@ -180,7 +143,7 @@ relativeLayout3=findViewById(R.id.relative3);
     public boolean checkPermissions(String permission) {
         Log.d(TAG, "checkPermissions: checking permission: " + permission);
 
-        int permissionRequest = ActivityCompat.checkSelfPermission(AddTextBook.this, permission);
+        int permissionRequest = ActivityCompat.checkSelfPermission(AddGeneralBook.this, permission);
 
         if (permissionRequest != PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "checkPermissions: \n Permission was not granted for: " + permission);
@@ -297,12 +260,10 @@ relativeLayout3=findViewById(R.id.relative3);
                 Log.d(TAG, "onClick: navigating to the final share screen.");
                 //Toast.makeText(AddTextBook.this, "Attempting to upload new photo", Toast.LENGTH_SHORT).show();
                 Intent intent = getIntent();
-                //String caption = "nothing".toString();
-                String courseId = "";
+
                 String bookNmae = "";
                 String price = "";
-                String type;
-                String faculty;
+                String type="General Books";
                 String available;
                 String state;
 
@@ -328,30 +289,27 @@ relativeLayout3=findViewById(R.id.relative3);
                 } catch (NullPointerException e) {
 
                 }
-                faculty=spinner1.getSelectedItem().toString();
-                available=spinner3.getSelectedItem().toString();
-                state=spinner2.getSelectedItem().toString();
-                courseId=spinner4.getSelectedItem().toString();
-                type=spinner5.getSelectedItem().toString();
+                state=spinner1.getSelectedItem().toString();
+                available=spinner2.getSelectedItem().toString();
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture
-                    FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price,faculty,type, available,state, imageCount, imgUrl, null);
+                    FirebaseMethod firebaseMethod = new FirebaseMethod(AddGeneralBook.this);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae,  price,type, available,state, imageCount, imgUrl, null);
 
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     //set the new profile picture
-                    FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price,faculty,type, available,state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+                    FirebaseMethod firebaseMethod = new FirebaseMethod(AddGeneralBook.this);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, price,type, available,state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
                 } else {
                     Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
                     return false;
                 }
 
 
-                Intent intent1 = new Intent(AddTextBook.this, MainActivity.class);
+                Intent intent1 = new Intent(AddGeneralBook.this, MainActivity.class);
                 startActivity(intent1);
-                AddTextBook.this.finish();
+                AddGeneralBook.this.finish();
 
 
                 return true;

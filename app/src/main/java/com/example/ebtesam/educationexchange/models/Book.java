@@ -4,21 +4,23 @@ package com.example.ebtesam.educationexchange.models;
  * Created by ebtesam on 18/02/2018 AD.
  */
 
-public class Book {
+public class Book  {
     private String book_name;
     private String date_created;
     private String image_path;
-private String id_book;
+    private String id_book;
     private String user_id;
     private String price;
     private String availability;
     private String status;
     private String course_id;
+    private String type;
+    private String faculty;
 
     public Book() {
     }
 
-    public Book(String book_name, String date_created, String image_path, String id_book, String user_id, String price, String availability, String status, String course_id) {
+    public Book(String book_name, String date_created, String image_path, String id_book, String user_id, String price, String availability, String status, String course_id, String type, String faculty) {
         this.book_name = book_name;
         this.date_created = date_created;
         this.image_path = image_path;
@@ -28,6 +30,24 @@ private String id_book;
         this.availability = availability;
         this.status = status;
         this.course_id = course_id;
+        this.type = type;
+        this.faculty = faculty;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 
     public String getId_book() {
@@ -103,4 +123,6 @@ private String id_book;
     public void setCourse_id(String course_id) {
         this.course_id = course_id;
     }
+
+
 }
