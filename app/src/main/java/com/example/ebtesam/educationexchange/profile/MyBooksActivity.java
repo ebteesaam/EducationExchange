@@ -107,7 +107,7 @@ private String view, view2 ,ViewBook, ViewGeneralBook;
                 gridView.setAdapter(adapter);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {
+                    public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {//
                         if(books.get(i).getType().equals("TextBooks")||books.get(i).getType()=="Lecture Notes"||!books.get(i).getType().equals("General Books")){
                             Log.d(TAG, "ViewBook");
                             view = "ViewBook";
