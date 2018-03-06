@@ -123,40 +123,6 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
                 });
     }
 
-//    public void onConfirmchangePassword(final String password) {
-//        Log.d(TAG, "onConfirmPassword: got the password: " + password);
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        // Get auth credentials from the user for re-authentication. The example below shows
-//        // email and password credentials but there are multiple possible providers,
-//        // such as GoogleAuthProvider or FacebookAuthProvider.
-//        AuthCredential credential = EmailAuthProvider
-//                .getCredential(mAuth.getCurrentUser().getEmail(), password);
-//
-//        // Prompt the user to re-provide their sign-in credentials
-//        user.reauthenticate(credential)
-//                .
-//
-//                        addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    user.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//                                            if (task.isSuccessful()) {
-//                                                Log.d(TAG, "Password updated");
-//                                            } else {
-//                                                Log.d(TAG, "Error password not updated");
-//                                            }
-//                                        }
-//                                    });
-//                                } else {
-//                                    Log.d(TAG, "Error auth failed");
-//                                }
-//                            }
-//                        });
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -377,25 +343,7 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
             // step3) change the email
             //          -submit the new email to the database and authentication
         }
-//        /**
-//         * change the rest of the settings that do not require uniqueness
-//         */
-//        if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
-//            //update displayname
-//            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, 0);
-//        }
-//        if(!mUserSettings.getSettings().getWebsite().equals(website)){
-//            //update website
-//            mFirebaseMethods.updateUserAccountSettings(null, website, null, 0);
-//        }
-//        if(!mUserSettings.getSettings().getDescription().equals(description)){
-//            //update description
-//            mFirebaseMethods.updateUserAccountSettings(null, null, description, 0);
-//        }
-//        if(!mUserSettings.getSettings().getProfile_photo().equals(phoneNumber)){
-//            //update phoneNumber
-//            mFirebaseMethods.updateUserAccountSettings(null, null, null, phoneNumber);
-//        }
+
 
 
     }

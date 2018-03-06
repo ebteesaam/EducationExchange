@@ -1,4 +1,4 @@
-package com.example.ebtesam.educationexchange.addBook;
+package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -30,12 +32,12 @@ import java.util.ArrayList;
  * Created by ebtesam on 28/02/2018 AD.
  */
 
-public class ViewBook extends AppCompatActivity {
+public class ViewBookProfile extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     TabLayout tabLayout;
     String bookId, myBook;
     ImageLoader imageLoader;
-    private Context mContext = ViewBook.this;
+    private Context mContext = ViewBookProfile.this;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private TextView availability, price, state, number_of_course, name_of_book, faculty, type, facultyname, number_of_coursename;
@@ -235,6 +237,29 @@ public class ViewBook extends AppCompatActivity {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
         });}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // This adds menu items to the app bar.cd ..
+        getMenuInflater().inflate(R.menu.delete_book, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.delete:
+
+                ViewBookProfile.this.finish();
+                return true;
+
+//            case R.id.search:
+//                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;
+//                startActivity(i);
+//                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {

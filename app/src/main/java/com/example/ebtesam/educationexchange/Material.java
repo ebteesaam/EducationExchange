@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.Fragment.ListAdapter;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
-import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.addBook.ViewBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,14 +64,14 @@ public class Material extends AppCompatActivity {
         setTitle(getString(R.string.matrial));
         //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Material.this, AddTextBook.class);
-
-                startActivity(intent);
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Material.this, AddTextBook.class);
+//
+//                startActivity(intent);
+//            }
+//        });
         mbookname = findViewById(R.id.nameBook);
         courseIdBook = (TextView) findViewById(R.id.courseIdBook);
         //  mDescription = (TextView) view.findViewById(R.id.description);

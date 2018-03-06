@@ -1,16 +1,20 @@
-package com.example.ebtesam.educationexchange.addBook;
+package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,18 +33,19 @@ import java.util.ArrayList;
  * Created by ebtesam on 28/02/2018 AD.
  */
 
-public class ViewGeneralBook extends AppCompatActivity {
+public class ViewGeneralBookProfile extends AppCompatActivity {
 
     TabLayout tabLayout;
     String bookId;
     ImageLoader imageLoader;
-    private Context mContext = ViewGeneralBook.this;
+    String bookAvailability;
+    private Context mContext = ViewGeneralBookProfile.this;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private TextView availability, price, state, type, name_of_book;
     private ImageView photo;
     private ProgressBar progressBar;
-  //  private  Boolean vis;
+    private FirebaseMethod firebaseMethod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +80,8 @@ public class ViewGeneralBook extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
-
+//                    bookAvailability= String.valueOf(book);
+                    bookAvailability=  singleSnapshot.getKey().toString();
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
 
@@ -141,5 +147,57 @@ public class ViewGeneralBook extends AppCompatActivity {
         return;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // This adds menu items to the app bar.cd ..
+        getMenuInflater().inflate(R.menu.delete_book, menu);
+        return true;
 
-}
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.delete:
+                Log.d(mContext.toString(), "bookAvailability."+ bookAvailability);
+
+//update();
+
+//    firebaseMethod.updateAvailabilty(getString(R.string.blocked), bookAvailability);
+
+                ViewGeneralBookProfile.this.finish();
+                return true;
+//            case R.id.search:
+//                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;
+//                startActivity(i);
+//                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+//    private void update(){
+//        final ArrayList<Book> books = new ArrayList<>();
+////                final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+//        Query query = reference
+//                .child(getString(R.string.dbname_material));
+//        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+//                    Book book = singleSnapshot.getValue(Book.class);
+//                    bookAvailability=  singleSnapshot.getKey().toString();
+//                    if (book.getId_book().equals(bookId)) {
+//                        firebaseMethod.updateAvailabilty(getString(R.string.blocked), bookAvailability);
+//
+//                    }}}
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
+//    }
+    }
+

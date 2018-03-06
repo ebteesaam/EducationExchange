@@ -311,26 +311,6 @@ public class FirebaseMethod {
 
 
 
-
-    //
-//    public boolean checkIfUsernameExists(String username, DataSnapshot datasnapshot){
-//        Log.d(TAG, "checkIfUsernameExists: checking if " + username + " already exists.");
-//
-//        User user = new User();
-//
-//        for (DataSnapshot ds: datasnapshot.child(userID).getChildren()){
-//            Log.d(TAG, "checkIfUsernameExists: datasnapshot: " + ds);
-//
-//            user.setUsername(ds.getValue(User.class).getUsername());
-//            Log.d(TAG, "checkIfUsernameExists: username: " + user.getUsername());
-//
-//            if(StringManipulation.expandUsername(user.getUsername()).equals(username)){
-//                Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + user.getUsername());
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
     public int getBooksCount(DataSnapshot dataSnapshot){
         int  count = 0;
         //BookCount=count;
@@ -398,18 +378,6 @@ public class FirebaseMethod {
                 .child(userID)
                 .setValue(user);
 
-//        UserAccountSettings settings = new UserAccountSettings(
-//                profile_photo,
-//                StringManipulation.condenseUsername(username),
-//                email,
-//                0,
-//
-//
-//        );
-
-//        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-//                .child(userID)
-//                .setValue(settings);
 
     }
 
@@ -427,43 +395,6 @@ public class FirebaseMethod {
         User user = new User();
 
         for(DataSnapshot ds: dataSnapshot.getChildren()){
-//
-//            // user_account_settings node
-//            if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
-//                Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
-//
-//                try {
-//
-//                    settings
-//                            ds.child(userID)
-//                                    .getValue(UserAccountSettings.class)
-//                                    .getMy_book()
-//                    );
-//                    settings.setUsername(
-//                            ds.child(userID)
-//                                    .getValue(UserAccountSettings.class)
-//                                    .getUsername()
-//                    );
-//                    settings.setProfile_photo(
-//                            ds.child(userID)
-//                                    .getValue(UserAccountSettings.class)
-//                                    .getProfile_photo()
-//                    );
-//                    settings.setMy_lecture_note(
-//                            ds.child(userID)
-//                                    .getValue(UserAccountSettings.class)
-//                                    .getMy_lecture_note()
-//                    );
-//                    settings.setEmail(
-//                            ds.child(userID)
-//                                    .getValue(UserAccountSettings.class)
-//                                    .getEmail()
-//                    );
-//
-//                    Log.d(TAG, "getUserAccountSettings: retrieved user_account_settings information: " + settings.toString());
-//                } catch (NullPointerException e) {
-//                    Log.e(TAG, "getUserAccountSettings: NullPointerException: " + e.getMessage());
-//                }
 
 
                 // users node
@@ -545,6 +476,19 @@ public class FirebaseMethod {
 
 
     }
+
+    public void updateAvailabilty(String email, String book) {
+
+        Log.d(TAG, "updateUsername: upadting username to: " + email);
+
+        myRef.child(mContext.getString(R.string.dbname_material))
+                .child(book)
+                .child(mContext.getString(R.string.availability))
+                .setValue(email);
+
+
+    }
+
 
     public void updateUserAccountSettings(String displayName, String website, String description, long phoneNumber){
 

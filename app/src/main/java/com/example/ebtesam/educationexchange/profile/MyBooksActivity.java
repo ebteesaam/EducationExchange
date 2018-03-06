@@ -1,11 +1,14 @@
 package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -40,6 +43,7 @@ public class MyBooksActivity extends AppCompatActivity {
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mbookname, courseIdBook, mDescription;
     private ProgressBar mProgressBar;
     private GridView gridView;
+private String view, view2 ,ViewBook, ViewGeneralBook;
 
     private ImageView profileMenu;
 
@@ -49,7 +53,11 @@ public class MyBooksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.list_material_activity);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
         setTitle(getString(R.string.my_books));
+        ViewBook="ViewBook";
+        ViewGeneralBook="ViewGeneralBook";
         mbookname = (TextView) findViewById(R.id.nameBook);
         courseIdBook = (TextView) findViewById(R.id.courseIdBook);
         //  mDescription = (TextView) view.findViewById(R.id.description);
@@ -74,6 +82,7 @@ public class MyBooksActivity extends AppCompatActivity {
 
         final ArrayList<Book> books = new ArrayList<>();
 
+
         final ArrayList<Book> arrayOfUsers = new ArrayList<>();
         final FirebaseUser user = mAuth.getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -89,11 +98,39 @@ public class MyBooksActivity extends AppCompatActivity {
                 if(book.getUser_id().equals(user.getUid())){
                    // Book book1=singleSnapshot.getValue(Book.class);
                     books.add(singleSnapshot.getValue(Book.class));
-                }}
+
+
+                   }}
 
                 ListAdapter adapter = new ListAdapter(MyBooksActivity.this,R.layout.list_material_activity, books);
                 // Attach the adapter to a ListView
                 gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {
+                        if(books.get(i).getType().equals("TextBooks")||books.get(i).getType()=="Lecture Notes"||!books.get(i).getType().equals("General Books")){
+                            Log.d(TAG, "ViewBook");
+                            view = "ViewBook";
+
+                        }else {
+                            Log.d(TAG, "ViewGeneralBook");
+
+                            view = "ViewGeneralBook";
+                        }
+                        if(view.equals(ViewBook)){
+                        Intent intent = new Intent(MyBooksActivity.this, ViewBookProfile.class);
+                        String item =  books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+                        startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(MyBooksActivity.this, ViewGeneralBookProfile.class);
+                            String item =  books.get(i).getId_book();
+                            intent.putExtra("id_book", item);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
             }
 
             @Override

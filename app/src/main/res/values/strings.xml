@@ -69,6 +69,8 @@
 
 
     <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+
 
 
     <string name="register">REGISTER A NEW ACCOUNT</string>
@@ -109,6 +111,12 @@
     <string name="matrial">Material</string>
     <!---Viewbook-->
     <string name="book_details">Book Details</string>
+
+    <string name="confirm">CONFIRM</string>
+
+    <string name="blocked">Blocked</string>
+    <string name="availability">availability</string>
+
 
 
     <!--array for add material pag-->
