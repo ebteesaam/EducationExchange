@@ -14,4 +14,9 @@
             android:icon="@drawable/search"
             android:title="@string/action_search"
             app:showAsAction="always" />
+
+        <item
+            android:id="@+id/message"
+            android:title="@string/message"
+            app:showAsAction="never" />
 </menu>

@@ -54,10 +54,16 @@ public class ListAdapter extends ArrayAdapter<Book> {
             TextView name = (TextView) convertView.findViewById(R.id.nameBook);
          TextView courseID = (TextView) convertView.findViewById(R.id.courseIdBook);
           TextView bookprice=(TextView)convertView.findViewById(R.id.bookPrice);
+          TextView courseName=(TextView) convertView.findViewById(R.id.courseIdBookName);
 //
         // Populate the data into the template view using the data object
         name.setText(book.getBook_name());
+        if(book.getCourse_id()!=null){
         courseID.setText(book.getCourse_id());
+        }else {
+            courseID.setVisibility(View.GONE);
+            courseName.setVisibility(View.GONE);
+        }
         bookprice.setText(book.getPrice());
 
         ImageLoader imageLoader=ImageLoader.getInstance();

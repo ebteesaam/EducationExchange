@@ -116,6 +116,7 @@
 
     <string name="blocked">Blocked</string>
     <string name="availability">availability</string>
+    <string name="message">Message</string>
 
 
 
@@ -142,7 +143,7 @@
 
     <string-array name="major_course_faculty_of_computing_and_information_technology">
         <item>computer</item>
-        <item>cosa111113</item>
+        <item>cosa111?113</item>
     </string-array>
 
     <string-array name="major_course_faculty_of_medicine_in_rabigh">
