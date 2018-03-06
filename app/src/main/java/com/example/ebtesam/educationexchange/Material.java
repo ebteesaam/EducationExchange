@@ -477,7 +477,8 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if (book.getType().equals("LectureNotes") && book.getFaculty().toString().equals(getString(R.string.faculty_of_medicine_in_rabigh))) {
+                    if (book.getType().equals("LectureNotes") && (book.getFaculty().toString().equals("Faculty Of Medicine In Rabigh")
+                            ||book.getFaculty().toString().equals("كلية الطب في رابغ"))) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }
@@ -522,7 +523,8 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if (book.getType().equals("TextBooks") && book.getFaculty().toString().equals(getString(R.string.faculty_of_medicine_in_rabigh))) {
+                    if (book.getType().equals("TextBooks") && (book.getFaculty().toString().equals("Faculty Of Medicine In Rabigh")
+                            ||book.getFaculty().toString().equals("كلية الطب في رابغ"))) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }
@@ -569,7 +571,8 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if (book.getType().equals("Lecture Notes") && book.getFaculty().toString().equals(getString(R.string.faculty_of_computing_and_information_technology))) {
+                    if (book.getType().equals("Lecture Notes") && (book.getFaculty().toString().equals("Faculty of Computing and Information Technology")
+                            ||book.getFaculty().toString().equals("كلية الحاسبات وتقنية المعلومات"))) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }
@@ -614,7 +617,8 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if (book.getType().equals("TextBooks") && book.getFaculty().toString().equals(getString(R.string.faculty_of_computing_and_information_technology))) {
+                    if (book.getType().equals("TextBooks") && (book.getFaculty().toString().equals("Faculty of Computing and Information Technology")
+                            ||book.getFaculty().toString().equals("كلية الحاسبات وتقنية المعلومات"))) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }

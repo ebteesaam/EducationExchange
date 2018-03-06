@@ -71,6 +71,8 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
 
+    <string name="please_select_a_faculty">Please Select a Faculty:</string>
+
 
 
     <string name="register">REGISTER A NEW ACCOUNT</string>
@@ -89,9 +91,9 @@
     <string name="announcement_request">Please fill the following detail to publish the announcement.</string>
 
     <!--veiw textBook-->
-    <string name="comment">comment:</string>
+    <string name="comment">Comment:</string>
     <string name="request">Request This material</string>
-    <string name="dollars">$</string>
+    <string name="dollars">ٍRS</string>
 
     <!---login page-->
     <string name="sign_out">Sign Out</string>
@@ -128,12 +130,12 @@
     </string-array>
 
     <string-array name="major">
-        <item>Faculty of Computing and Information Technology</item>
-        <item>Faculty Of Medicine In Rabigh</item>
-        <item>College of Business(COB)</item>
-        <item>College of Sciences</item>
-        <item>General Course Books</item>
-        <item>Faculty of English</item>
+        <item>@string/faculty_of_computing_and_information_technology</item>
+        <item>@string/faculty_of_medicine_in_rabigh</item>
+        <item>@string/college_of_business_cob</item>
+        <item>@string/college_of_sciences</item>
+        <item>@string/general_course</item>
+        <item>@string/college_of_english</item>
     </string-array>
 
     <string-array name="type">
@@ -151,11 +153,7 @@
         <item>medicine111113</item>
     </string-array>
 
-    <string-array name="major_course_college_of_business_cob">
-        <item>business</item>
-        <item>medicine111113</item>
 
-    </string-array>
 
     <string-array name="major_course_college_of_sciences">
         <item>physics</item>
@@ -163,8 +161,60 @@
     </string-array>
 
     <string-array name="major_course_general_course">
-        <item>math</item>
-        <item>medicine111113</item>
+        <item>@string/computer_skills_100</item>
+        <item>@string/english_language_І_101</item>
+        <item>@string/english_language_ІІ_102</item>
+        <item>@string/english_language_ІІI_103</item>
+        <item>@string/english_language_ІIII_104</item>
+
+        <item>@string/islamic_culture_І_101</item>
+        <item>@string/islamic_culture_ІI_201</item>
+        <item>@string/islamic_culture_ІII_301</item>
+        <item>@string/islamic_culture_ІV_401</item>
+
+        <item>@string/communication_skills_101</item>
+        <item>@string/linguistic_skills_101</item>
+        <item>@string/arabic_writing_201</item>
+        <item>@string/mathematics_111</item>
+        <item>@string/statistics_111</item>
+        <item>@string/thinking_skills_100</item>
+        <item>@string/general_physics_110</item>
+        <item>@string/general_mathematics_110</item>
+        <item>@string/general_chemistry_I_110</item>
+        <item>@string/general_statistics_110</item>
+        <item>@string/general_biology_110</item>
+
+    </string-array>
+
+    <string-array name="major_course_college_of_business_cob">
+        <item>@string/introduction_to_business_151</item>
+        <item>@string/principles_of_marketing_152</item>
+        <item>@string/fundamentals_of_financial_accounting_251</item>
+        <item>@string/management_information_system_251</item>
+        <item>@string/introduction_to_human_resource_management_251</item>
+        <item>@string/business_law_251</item>
+        <item>@string/operations_management_253</item>
+        <item>@string/fundamentals_of_microeconomics_251</item>
+        <item>@string/basics_of_financial_management_252</item>
+        <item>@string/fundamentals_of_managerial_accounting_252</item>
+        <item>@string/introduction_to_globa_business_354</item>
+        <item>@string/fundamentals_of_macroeconomics_353</item>
+        <item>@string/project_management_455</item>
+        <item>@string/strategic_management_456</item>
+        <item>@string/Cost_Accounting_1_ACC301</item>
+        <item>@string/Cost_Accounting_1_ACC304</item>
+        <item>@string/Financial_Accounting_II_ACC302</item>
+        <item>@string/Financial_Statements_Analysis_ACC303</item>
+        <item>@string/Intermediate_Accounting_І_ACC305</item>
+        <item>@string/Computerized_Accounting_ACC306</item>
+        <item>@string/Intermediate_Accounting_І_ACC411</item>
+        <item>@string/Auditing_I_ACC412</item>
+        <item>@string/Accounting_Information_SystemACC413</item>
+        <item>@string/Advance_Financial_AccountingACC414</item>
+        <item>@string/Accounting_TheoryACC415</item>
+
+
+
     </string-array>
 
     <string-array name="major_course_college_of_english">
@@ -184,6 +234,65 @@
     <string name="college_of_sciences">College of Sciences</string>
     <string name="general_course">General Course Books</string>
     <string name="college_of_english">Faculty of English</string>
+    <string name="request_g_b">Request the Book</string>
+
+
+
+
+    <!--general course-->
+    <string name="computer_skills_100">Computer Skills CPIT 100</string>
+    <string name="english_language_І_101">English Language І ELI 101</string>
+    <string name="english_language_ІІ_102">English Language ІІ ELI 102</string>
+    <string name="english_language_ІІI_103">English Language III ELI 103</string>
+    <string name="english_language_ІIII_104">English Language IV ELI 104</string>
+    <string name="islamic_culture_І_101">Islamic Culture І ISLS 101</string>
+    <string name="islamic_culture_ІI_201">Islamic Culture ІI ISLS 201</string>
+    <string name="islamic_culture_ІII_301">Islamic Culture ІII ISLS 301</string>
+    <string name="islamic_culture_ІV_401">Islamic Culture_ІV ISLS 401</string>
+    <string name="communication_skills_101">Communication Skills COMM 101</string>
+    <string name="linguistic_skills_101">Linguistic Skills ARAB 101</string>
+    <string name="arabic_writing_201">Arabic Writing ARAB 201</string>
+    <string name="mathematics_111">Mathematics MATH 111</string>
+    <string name="statistics_111">Statistics STAT 111</string>
+    <string name="thinking_skills_100">Thinking Skills IS100</string>
+    <string name="general_physics_110">General Physics PHYS 110</string>
+    <string name="general_mathematics_110">General Mathematics Math 110</string>
+    <string name="general_chemistry_I_110">General Chemistry I CHEM 110</string>
+    <string name="general_statistics_110">General Statistics STAT 110</string>
+    <string name="general_biology_110">General Biology BIO 110</string>
+    <!--end general course-->
+
+
+    <!--business course-->
+    <string name="introduction_to_business_151">Introduction to Business MRK 151</string>
+    <string name="principles_of_marketing_152">Principles of Marketing MRK 152</string>
+    <string name="fundamentals_of_financial_accounting_251">Fundamentals of Financial Accounting ACC 251</string>
+    <string name="management_information_system_251">Management Information System MISY 251</string>
+    <string name="introduction_to_human_resource_management_251">Introduction to Human Resource Management HR 251</string>
+    <string name="business_law_251">Business Law BLA 251</string>
+    <string name="operations_management_253">Operations Management MRK 253</string>
+    <string name="fundamentals_of_microeconomics_251">Fundamentals of Microeconomics FINA 251</string>
+    <string name="basics_of_financial_management_252">Basics  of Financial Management FINA 252</string>
+    <string name="fundamentals_of_managerial_accounting_252">Fundamentals of Managerial Accounting ACC 252</string>
+    <string name="introduction_to_globa_business_354">Introduction to Global Business MRK 354</string>
+    <string name="fundamentals_of_macroeconomics_353">Fundamentals of Macroeconomics FINA 353</string>
+    <string name="project_management_455">Project Management MRK 455</string>
+    <string name="strategic_management_456">Strategic Management MRK 456</string>
+    <string name="Cost_Accounting_1_ACC301">Cost Accounting 1 ACC 301</string>
+    <string name="Cost_Accounting_1_ACC304">Cost Accounting II ACC 304</string>
+    <string name="Financial_Accounting_II_ACC302">Financial Accounting II ACC 302</string>
+    <string name="Financial_Statements_Analysis_ACC303">Financial Statements Analysis ACC 303</string>
+    <string name="Intermediate_Accounting_І_ACC305">Intermediate Accounting І ACC 305</string>
+    <string name="Computerized_Accounting_ACC306">Computerized Accounting ACC 306</string>
+    <string name="Intermediate_Accounting_І_ACC411">Intermediate Accounting II ACC 411</string>
+    <string name="Auditing_I_ACC412">Auditing I ACC 412</string>
+    <string name="Accounting_Information_SystemACC413">Accounting Information System ACC 413</string>
+    <string name="Advance_Financial_AccountingACC414">Advance Financial Accounting ACC 414</string>
+    <string name="Accounting_TheoryACC415">Accounting Theory ACC 415</string>
+    <!--business course-->
+
+
+
 
 
 
