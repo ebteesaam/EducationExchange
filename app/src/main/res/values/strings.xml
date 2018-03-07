@@ -186,36 +186,7 @@
 
     </string-array>
 
-    <string-array name="major_course_college_of_business_cob">
-        <item>@string/introduction_to_business_151</item>
-        <item>@string/principles_of_marketing_152</item>
-        <item>@string/fundamentals_of_financial_accounting_251</item>
-        <item>@string/management_information_system_251</item>
-        <item>@string/introduction_to_human_resource_management_251</item>
-        <item>@string/business_law_251</item>
-        <item>@string/operations_management_253</item>
-        <item>@string/fundamentals_of_microeconomics_251</item>
-        <item>@string/basics_of_financial_management_252</item>
-        <item>@string/fundamentals_of_managerial_accounting_252</item>
-        <item>@string/introduction_to_globa_business_354</item>
-        <item>@string/fundamentals_of_macroeconomics_353</item>
-        <item>@string/project_management_455</item>
-        <item>@string/strategic_management_456</item>
-        <item>@string/Cost_Accounting_1_ACC301</item>
-        <item>@string/Cost_Accounting_1_ACC304</item>
-        <item>@string/Financial_Accounting_II_ACC302</item>
-        <item>@string/Financial_Statements_Analysis_ACC303</item>
-        <item>@string/Intermediate_Accounting_І_ACC305</item>
-        <item>@string/Computerized_Accounting_ACC306</item>
-        <item>@string/Intermediate_Accounting_І_ACC411</item>
-        <item>@string/Auditing_I_ACC412</item>
-        <item>@string/Accounting_Information_SystemACC413</item>
-        <item>@string/Advance_Financial_AccountingACC414</item>
-        <item>@string/Accounting_TheoryACC415</item>
 
-
-
-    </string-array>
 
     <string-array name="major_course_college_of_english">
         <item>english</item>
@@ -262,6 +233,94 @@
     <string name="general_biology_110">General Biology BIO 110</string>
     <!--end general course-->
 
+    <string-array name="major_course_college_of_business_cob">
+        <item>@string/introduction_to_business_151</item>
+        <item>@string/principles_of_marketing_152</item>
+        <item>@string/fundamentals_of_financial_accounting_251</item>
+        <item>@string/management_information_system_251</item>
+        <item>@string/introduction_to_human_resource_management_251</item>
+        <item>@string/business_law_251</item>
+        <item>@string/operations_management_253</item>
+        <item>@string/fundamentals_of_microeconomics_251</item>
+        <item>@string/basics_of_financial_management_252</item>
+        <item>@string/fundamentals_of_managerial_accounting_252</item>
+        <item>@string/introduction_to_globa_business_354</item>
+        <item>@string/fundamentals_of_macroeconomics_353</item>
+        <item>@string/project_management_455</item>
+        <item>@string/strategic_management_456</item>
+        <item>@string/Cost_Accounting_1_ACC301</item>
+        <item>@string/Cost_Accounting_1_ACC304</item>
+        <item>@string/Financial_Accounting_II_ACC302</item>
+        <item>@string/Financial_Statements_Analysis_ACC303</item>
+        <item>@string/Intermediate_Accounting_І_ACC305</item>
+        <item>@string/Computerized_Accounting_ACC306</item>
+        <item>@string/Intermediate_Accounting_І_ACC411</item>
+        <item>@string/Auditing_I_ACC412</item>
+        <item>@string/Accounting_Information_SystemACC413</item>
+        <item>@string/Advance_Financial_AccountingACC414</item>
+        <item>@string/Accounting_TheoryACC415</item>
+        <item>@string/Market_Research_MRK301</item>
+        <item>@string/Marketing_Communication_MRK302</item>
+        <item>@string/Consumer_Behavior_MRK303</item>
+        <item>@string/BusinesstoBusinessMarketingMRK304</item>
+        <item>@string/ServicesMarketingMRK305</item>
+        <item>@string/Selling_and_Sales_Management_MRK306</item>
+        <item>@string/Product_ManagementMRK411</item>
+        <item>@string/Pricing_Strategy_MRK412</item>
+        <item>@string/Advertising_and_PromotionMRK413</item>
+        <item>@string/Channels_of_Distribution_MRK414</item>
+        <item>@string/E_Marketing_MRK415</item>
+        <item>@string/Sources_of_Obligations_BLA301</item>
+        <item>@string/Civil_Procedures_BLA302</item>
+        <item>@string/Constitutional_Law_BLA303</item>
+        <item>@string/Public_International_Law_BLA304</item>
+        <item>@string/Administrative_Law_BLA305</item>
+        <item>@string/Public_Criminal_Law_BLA306</item>
+        <item>@string/Private_Criminal_Law_BLA411</item>
+        <item>@string/Legal_Effects_of_Obligations_BLA412</item>
+        <item>@string/Administrative_Contracts_BLA413</item>
+        <item>@string/Real_Rights_BLA414</item>
+        <item>@string/Administrative_Judiciary_BLA415</item>
+        <item>@string/Corporate_Finance_FINA301</item>
+        <item>@string/Financial_Time_Series_Analysis_FINA302</item>
+        <item>@string/Money_and_Capital_Market_FINA303</item>
+        <item>@string/Portfolio_FINA304</item>
+        <item>@string/Intermediate_Financial_Management_FINA305</item>
+        <item>@string/Bank_Management_FINA306</item>
+        <item>@string/Islamic_Finance_FINA411</item>
+        <item>@string/Derivatives_Securities_Markets_FINA412</item>
+        <item>@string/International_Finance_FINA413</item>
+        <item>@string/Portfolio_II_FINA414</item>
+        <item>@string/Financial_Modeling_Risk_Analysis_FINA415</item>
+        <item>@string/Software_development_and_design_MISY301</item>
+        <item>@string/Advanced_Management_Information_System_MISY302</item>
+        <item>@string/ManagementofInformationSystemsProjectsMISY303</item>
+        <item>@string/Systems_analysis_and_design_MISY304</item>
+        <item>@string/E_Commerce_MISY305</item>
+        <item>@string/Manage_and_apply_databases_MISY306</item>
+        <item>@string/Telecommunication_system_and_network_MISY411</item>
+        <item>@string/Systemsofbusinessintelligence_MISY412</item>
+        <item>@string/Decision_support_systems_MISY413</item>
+        <item>@string/AnalysisanddesignofadvancedsystemsMISY414</item>
+        <item>@string/CooperativeTrainingAndresearch_MISY491</item>
+        <item>@string/Human_Resource_I_SystemsMISY321</item>
+        <item>@string/Develop_manage_design_web_MISY322</item>
+        <item>@string/TopicsinRecentITInterests_MISY423</item>
+        <item>@string/IntroductiontoHealthcare_HHSM_301</item>
+        <item>@string/HealthServicesAdministration_HHSM_302</item>
+        <item>@string/HealthHRAdministrationHHSM_303</item>
+        <item>@string/HospitalAdministration_HHSM_304</item>
+        <item>@string/HealthEthicsandLawHHSM_306</item>
+        <item>@string/HealthInsuranceAdministrationHHSM_305</item>
+        <item>@string/MedicalTerminology_HHSM_307</item>
+        <item>@string/HospitalManagementInformationSystem_HHSM_411</item>
+        <item>@string/MarketingofHealthcareServices_HHSM412</item>
+        <item>@string/HealthServiceResearches_HHSM413</item>
+        <item>@string/ManagementQualityAssuranceHealth_HHSM414</item>
+        <item></item>
+
+    </string-array>
+
 
     <!--business course-->
     <string name="introduction_to_business_151">Introduction to Business MRK 151</string>
@@ -289,7 +348,75 @@
     <string name="Accounting_Information_SystemACC413">Accounting Information System ACC 413</string>
     <string name="Advance_Financial_AccountingACC414">Advance Financial Accounting ACC 414</string>
     <string name="Accounting_TheoryACC415">Accounting Theory ACC 415</string>
+    <string name="Market_Research_MRK301">Market Research MRK 301</string>
+    <string name="Marketing_Communication_MRK302">Marketing Communication MRK 302</string>
+    <string name="Consumer_Behavior_MRK303">Consumer Behavior MRK 303</string>
+    <string name="BusinesstoBusinessMarketingMRK304">Business to Business Marketing MRK 304</string>
+    <string name="ServicesMarketingMRK305">Services Marketing MRK 305</string>
+    <string name="Selling_and_Sales_Management_MRK306">Selling and Sales Management MRK 306</string>
+    <string name="Product_ManagementMRK411">Product Management MRK 411</string>
+    <string name="Pricing_Strategy_MRK412">Pricing Strategy MRK 412</string>
+    <string name="Advertising_and_PromotionMRK413">Advertising and Promotion MRK 413</string>
+    <string name="Channels_of_Distribution_MRK414">Channels of Distribution MRK 414</string>
+    <string name="E_Marketing_MRK415">E-Marketing MRK 415</string>
+    <string name="Sources_of_Obligations_BLA301">Sources of Obligations BLA 301</string>
+    <string name="Civil_Procedures_BLA302">Civil Procedures BLA 302</string>
+    <string name="Constitutional_Law_BLA303">Constitutional Law BLA 303</string>
+    <string name="Public_International_Law_BLA304">Public International Law BLA 304</string>
+    <string name="Administrative_Law_BLA305">Administrative Law BLA 305</string>
+    <string name="Public_Criminal_Law_BLA306">Public Criminal Law BLA 306</string>
+    <string name="Private_Criminal_Law_BLA411">Private Criminal Law BLA 411</string>
+    <string name="Legal_Effects_of_Obligations_BLA412">Legal Effects of Obligations BLA 412</string>
+    <string name="Administrative_Contracts_BLA413">Administrative Contracts BLA 413</string>
+    <string name="Real_Rights_BLA414">Real Rights BLA 414</string>
+    <string name="Administrative_Judiciary_BLA415">Administrative Judiciary BLA 415</string>
+    <string name="Corporate_Finance_FINA301">Corporate Finance FINA 301</string>
+    <string name="Financial_Time_Series_Analysis_FINA302">Financial Time Series Analysis FINA 302</string>
+    <string name="Money_and_Capital_Market_FINA303">Money and Capital Market FINA 303</string>
+    <string name="Portfolio_FINA304">Portfolio Management and Investment Analysis I FINA 304</string>
+    <string name="Intermediate_Financial_Management_FINA305">Intermediate Financial Management FINA 305</string>
+    <string name="Bank_Management_FINA306">Bank Management FINA 306</string>
+    <string name="Islamic_Finance_FINA411">Islamic Finance FINA 411</string>
+    <string name="Derivatives_Securities_Markets_FINA412">Derivatives Securities and Markets FINA 412</string>
+    <string name="International_Finance_FINA413">International Finance FINA 413</string>
+    <string name="Portfolio_II_FINA414">Portfolio Management and Investment Analysis II FINA 414</string>
+    <string name="Financial_Modeling_Risk_Analysis_FINA415">Financial Modeling and Risk Analysis FINA 415</string>
+    <string name="Software_development_and_design_MISY301">Software development and design MISY 301</string>
+    <string name="Advanced_Management_Information_System_MISY302">Advanced Management Information System MISY 302</string>
+    <string name="ManagementofInformationSystemsProjectsMISY303">Management of Information Systems Projects MISY 303</string>
+    <string name="Systems_analysis_and_design_MISY304">Systems analysis and design MISY 304</string>
+    <string name="E_Commerce_MISY305">E-Commerce MISY 305</string>
+    <string name="Manage_and_apply_databases_MISY306">Manage and apply databases MISY 306</string>
+    <string name="Telecommunication_system_and_network_MISY411">Telecommunication system and network MISY 411</string>
+    <string name="Systemsofbusinessintelligence_MISY412">Systems of business intelligence MISY 412</string>
+    <string name="Decision_support_systems_MISY413">Decision support systems MISY 413</string>
+    <string name="AnalysisanddesignofadvancedsystemsMISY414">Analysis and design of advanced systems MISY 414</string>
+    <string name="CooperativeTrainingAndresearch_MISY491">Cooperative Training. And research MISY 491</string>
+    <string name="Human_Resource_I_SystemsMISY321">Human Resource Management Information Systems MISY 321</string>
+    <string name="Develop_manage_design_web_MISY322">Develop, manage and design web pages MISY 322</string>
+    <string name="TopicsinRecentITInterests_MISY423">Topics in Recent IT Interests MISY 423</string>
+
+    <string name="IntroductiontoHealthcare_HHSM_301">Introduction to Healthcare  HHSM-301</string>
+    <string name="HealthServicesAdministration_HHSM_302">Health Services Administration HHSM-302</string>
+    <string name="HealthHRAdministrationHHSM_303">Health Human Resources Administration HHSM-303</string>
+    <string name="HospitalAdministration_HHSM_304">Hospital Administration HHSM-304</string>
+    <string name="HealthInsuranceAdministrationHHSM_305">Health Insurance Administration HHSM-305</string>
+    <string name="HealthEthicsandLawHHSM_306">Health Ethics and Law HHSM-306</string>
+    <string name="MedicalTerminology_HHSM_307">Medical Terminology HHSM-307</string>
+    <string name="HospitalManagementInformationSystem_HHSM_411">Hospital Management Information System (HMIS)  HHSM 411</string>
+    <string name="MarketingofHealthcareServices_HHSM412">Marketing of Healthcare Services HHSM 412</string>
+    <string name="HealthServiceResearches_HHSM413">Health Service Researches HHSM 413</string>
+    <string name="ManagementQualityAssuranceHealth_HHSM414">Management and Quality Assurance of Health HHSM 414</string>
     <!--business course-->
+
+
+
+
+
+
+
+
+
 
 
 
