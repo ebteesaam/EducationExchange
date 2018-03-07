@@ -60,14 +60,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/relative1"
+                android:background="@drawable/grey_border"
                 android:padding="18dp">
+                >
 
                 <ListView
                     android:id="@+id/list_announcement"
                     android:layout_width="match_parent"
                     android:layout_height="245dp"
                     android:drawSelectorOnTop="true"
-                    android:orientation="vertical"></ListView>
+                    android:orientation="vertical"
+                    ></ListView>
+
+                <!-- Empty view for the list -->
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/empty_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/empty_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_grey_book" />
+
+
+                    <TextView
+                        android:id="@+id/empty_subtitle_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/empty_image"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="8dp"
+                        android:text="@string/empty_anno_subtitle_text"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="#A2AAB0" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -85,7 +116,8 @@
                     android:layout_marginLeft="@dimen/fab_margin"
                     android:background="@drawable/white_rounded_buttom"
                     android:padding="10dp"
-                    android:text="@string/add_announcement" />
+                    android:text="@string/add_announcement"
+                    android:textAllCaps="false"/>
 
             </RelativeLayout>
 

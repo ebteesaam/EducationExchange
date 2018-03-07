@@ -3,104 +3,125 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="18dp"
-        android:text="@string/please_select_a_faculty"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20dp"/>
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/comput"
-            android:layout_width="500dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="25dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/white_rounded_buttom"
-            android:text="@string/faculty_of_computing_and_information_technology"
-            android:textAllCaps="false" />
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
 
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/medicine"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/white_rounded_buttom"
-        android:text="@string/faculty_of_medicine_in_rabigh"
-        android:textAllCaps="false" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/business"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/medicine"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/white_rounded_buttom"
-        android:text="@string/college_of_business_cob"
-        android:textAllCaps="false" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/science"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/business"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/white_rounded_buttom"
-        android:text="@string/college_of_sciences"
-        android:textAllCaps="false" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/english"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/science"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/white_rounded_buttom"
-        android:text="@string/college_of_english"
-        android:textAllCaps="false" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/general_course"
-        android:layout_width="500dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/english"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/white_rounded_buttom"
-        android:text="@string/general_course"
-        android:textAllCaps="false" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_action_add"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/please_select_a_faculty"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20dp" />
 
 
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/comput"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+
+                        android:background="@drawable/white_rounded_buttom"
+                        android:text="@string/faculty_of_computing_and_information_technology"
+                        android:textAllCaps="false" />
+
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/medicine"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/white_rounded_buttom"
+                        android:text="@string/faculty_of_medicine_in_rabigh"
+                        android:textAllCaps="false" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/business"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/white_rounded_buttom"
+                        android:text="@string/college_of_business_cob"
+                        android:textAllCaps="false" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/science"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/white_rounded_buttom"
+                        android:text="@string/college_of_sciences"
+                        android:textAllCaps="false" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/english"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/white_rounded_buttom"
+                        android:text="@string/college_of_english"
+                        android:textAllCaps="false" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/general_course"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/white_rounded_buttom"
+                        android:text="@string/general_course"
+                        android:textAllCaps="false" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/ic_action_add"/>
+
+            <!--<android.support.design.widget.FloatingActionButton-->
+                <!--android:id="@+id/fab"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_margin="@dimen/fab_margin"-->
+                <!--android:paddingBottom="25dp"-->
+                <!--android:paddingRight="25dp"-->
+                <!--android:src="@drawable/ic_action_add" />-->
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

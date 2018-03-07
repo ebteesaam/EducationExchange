@@ -6,7 +6,6 @@ package com.example.ebtesam.educationexchange.models;
 
 public class Book  {
     private String book_name;
-    private String date_created;
     private String image_path;
     private String id_book;
     private String user_id;
@@ -20,9 +19,8 @@ public class Book  {
     public Book() {
     }
 
-    public Book(String book_name, String date_created, String image_path, String id_book, String user_id, String price, String availability, String status, String course_id, String type, String faculty) {
+    public Book(String book_name,  String image_path, String id_book, String user_id, String price, String availability, String status, String course_id, String type, String faculty) {
         this.book_name = book_name;
-        this.date_created = date_created;
         this.image_path = image_path;
         this.id_book = id_book;
         this.user_id = user_id;
@@ -66,13 +64,6 @@ public class Book  {
         this.book_name = book_name;
     }
 
-    public String getDate_created() {
-        return date_created;
-    }
-
-    public void setDate_created(String date_created) {
-        this.date_created = date_created;
-    }
 
     public String getImage_path() {
         return image_path;

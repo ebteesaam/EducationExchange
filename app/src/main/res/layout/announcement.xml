@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relative1"
-        android:paddingLeft="15dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
         <!-- Overview category -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,13 +52,14 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!--material type-->
+
     <RelativeLayout
         android:id="@+id/relative3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relative2"
-        android:paddingLeft="15dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,25 +80,112 @@
 
 
 
-            <Spinner
-                android:id="@+id/spinner3"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:entries="@array/type"
-                android:spinnerMode="dropdown">
-            </Spinner>
+
+                <Spinner
+                    android:id="@+id/type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:entries="@array/type"
+                    android:spinnerMode="dropdown">
+                </Spinner>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 
-    <!--entring the text for annoncement -->
+
+
+
+    <!--type of book-->
     <RelativeLayout
         android:id="@+id/relative4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/relative3"
-        android:paddingLeft="15dp">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/TextStyle"
+                android:text="@string/faculty" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingLeft="4dp">
+
+
+
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:entries="@array/major"
+                    android:spinnerMode="dropdown">
+                </Spinner>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative4"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/TextStyle"
+                android:text="@string/number_of_course" />
+
+            <!-- Input fields -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingLeft="4dp">
+
+
+
+
+                <Spinner
+                    android:id="@+id/spinnermajorcourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:entries="@array/major_course_faculty_of_computing_and_information_technology"
+                    android:spinnerMode="dropdown">
+                </Spinner>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relative6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative5"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
         <!-- Overview category -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,6 +216,48 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+
+    <!--&lt;!&ndash;material type&ndash;&gt;-->
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/relative3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/relative2"-->
+        <!--android:paddingLeft="15dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--&lt;!&ndash; Label &ndash;&gt;-->
+            <!--<TextView-->
+                <!--style="@style/TextStyle"-->
+                <!--android:text="@string/type" />-->
+
+            <!--&lt;!&ndash; Input fields &ndash;&gt;-->
+            <!--<RelativeLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="2"-->
+                <!--android:paddingLeft="4dp">-->
+
+
+
+            <!--<Spinner-->
+                <!--android:id="@+id/spinner3"-->
+                <!--android:layout_width="220dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@android:drawable/btn_dropdown"-->
+                <!--android:entries="@array/type"-->
+                <!--android:spinnerMode="dropdown">-->
+            <!--</Spinner>-->
+            <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+    <!--</RelativeLayout>-->
+
+    <!--entring the text for annoncement -->
+
 
     <!--button -->
 

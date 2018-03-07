@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.models.Announcement;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserSettings;
@@ -252,10 +253,60 @@ public class FirebaseMethod {
         }
 
     private String getTimestamp(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T  'HH:mm:ss'Z'", Locale.getDefault());
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Riyadh"));
         return sdf.format(new Date());
     }
+
+
+    public void addAnnouncementToDatabase(String bookNmae, String courseId , String faculty ,String type ,String text1, String state,int count){
+
+        String newAnnouncementKey = myRef.push().getKey();
+        Announcement book = new Announcement();
+        book.setTitle(bookNmae);
+        book.setCourse_id(courseId);
+        book.setStatus(state);
+        book.setType(type);
+        book.setText(text1);
+        book.setDate_created(getTimestamp());
+        book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        book.setId_announcement(newAnnouncementKey);
+        book.setFaculty(faculty);
+
+        //insert into database
+        myRef.child(mContext.getString(R.string.dbname_announcement))
+                .child("announcement"+ (count+1)).setValue(book);
+
+    }
+    private void addAnnouncementToDatabase(String bookNmae ,String type ,String state,int count){
+
+        String newAnnouncementKey = myRef.push().getKey();
+        Announcement book = new Announcement();
+        book.setTitle(bookNmae);
+        book.setStatus(state);
+        book.setType(type);
+        book.setDate_created(getTimestamp());
+        book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        book.setId_announcement(newAnnouncementKey);
+
+        //insert into database
+        myRef.child(mContext.getString(R.string.dbname_announcement))
+                .child("announcement"+ (count+1)).setValue(book);
+
+    }
+
+    public int getAnnouncementCount(DataSnapshot dataSnapshot){
+        int  count = 0;
+        //BookCount=count;
+        for(DataSnapshot ds: dataSnapshot
+                .child(mContext.getString(R.string.dbname_announcement))
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .getChildren()){
+            count++;
+        }
+        return count;
+    }
+
 
     private void addBookToDatabase(String bookNmae, String courseId ,String price, String  faculty,String type ,String available,String state, String url,int count){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
@@ -271,7 +322,7 @@ public class FirebaseMethod {
         book.setType(type);
         book.setFaculty(faculty);
 
-        book.setDate_created(getTimestamp());
+        //book.setDate_created(getTimestamp());
         book.setImage_path(url);
         //photo.setTags(tags);
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -296,7 +347,7 @@ public class FirebaseMethod {
         book.setPrice(price);
         book.setType(type);
 
-        book.setDate_created(getTimestamp());
+        //book.setDate_created(getTimestamp());
         book.setImage_path(url);
         //photo.setTags(tags);
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());

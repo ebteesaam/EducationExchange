@@ -14,6 +14,7 @@
     <string name="dbname_users">users</string>
     <string name="dbname_material">material</string>
     <string name="dbname_photos">photos</string>
+    <string name="dbname_announcement">announcement</string>
     <!--<string name="dbname_user_account_settings">user_account_settings</string>-->
     <string name="field_username">username</string>
     <string name="field_email">email</string>
@@ -40,6 +41,8 @@
     <string name="choose_photo">Take Photo</string>
     <string name="string_next">Next</string>
     <string name="empty_view_subtitle_text">Get started by adding a TextBook</string>
+    <string name="empty_anno_subtitle_text">There is no announcement yet</string>
+
 
     <!--profiel page-->
     <string name="my_books">My Books</string>
@@ -395,7 +398,6 @@
     <string name="Human_Resource_I_SystemsMISY321">Human Resource Management Information Systems MISY 321</string>
     <string name="Develop_manage_design_web_MISY322">Develop, manage and design web pages MISY 322</string>
     <string name="TopicsinRecentITInterests_MISY423">Topics in Recent IT Interests MISY 423</string>
-
     <string name="IntroductiontoHealthcare_HHSM_301">Introduction to Healthcare  HHSM-301</string>
     <string name="HealthServicesAdministration_HHSM_302">Health Services Administration HHSM-302</string>
     <string name="HealthHRAdministrationHHSM_303">Health Human Resources Administration HHSM-303</string>
@@ -407,6 +409,8 @@
     <string name="MarketingofHealthcareServices_HHSM412">Marketing of Healthcare Services HHSM 412</string>
     <string name="HealthServiceResearches_HHSM413">Health Service Researches HHSM 413</string>
     <string name="ManagementQualityAssuranceHealth_HHSM414">Management and Quality Assurance of Health HHSM 414</string>
+
+
     <!--business course-->
 
 

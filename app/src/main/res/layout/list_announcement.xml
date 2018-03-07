@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="170dp"
-    android:layout_height="250dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/grey_border_bottom"
     android:orientation="vertical"
-    android:padding="10dp"
-    >
+    android:paddingBottom="5dp"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:paddingTop="18dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <!--ImageBooks-->
-        <ImageView
-            android:id="@+id/relative1"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
-            android:layout_margin="14dp"
-            android:background="@color/yellowlight">
 
-        </ImageView>
 
         <!--textBook information-->
         <RelativeLayout
@@ -33,6 +28,25 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/type" />
+
+                    <TextView
+                        android:id="@+id/booktype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -42,16 +56,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/name_of_book" />
+                        android:text="@string/title" />
 
                     <TextView
-                        android:id="@+id/nameBook"
+                        android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
 
                         android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/facultyname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/faculty"
+                        />
+
+                    <TextView
+                        android:id="@+id/faculty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:textColor="@color/black" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -86,10 +122,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/price" />
+                        android:text="@string/text" />
 
                     <TextView
-                        android:id="@+id/bookPrice"
+                        android:id="@+id/bookText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
@@ -98,6 +134,23 @@
                         android:textColor="@color/black" />
 
                 </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="70dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/gray"
+                    />
+            </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
