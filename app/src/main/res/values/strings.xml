@@ -44,9 +44,11 @@
     <string name="empty_anno_subtitle_text">There is no announcement yet</string>
 
 
+
+
     <!--profiel page-->
     <string name="my_books">My Books</string>
-    <string name="view_my_announcement">View My announcement</string>
+    <string name="view_my_announcement">My announcement</string>
     <string name="edit">Edit Profile</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -59,6 +61,7 @@
     <string name="password">password</string>
     <string name="cancel">CANCEL</string>
     <string name="selected_bitmap">selected_bitmap</string>
+    <string name="action_setting">Setting</string>
 
     <!--register page-->
     <string name="confirm_password">Confirm Password</string>
@@ -91,7 +94,9 @@
     <string name="enter_the_text">Enter the text</string>
     <string name="text">Text</string>
     <string name="send_the_announcement">Send The Announcement</string>
-    <string name="announcement_request">Please fill the following detail to publish the announcement.</string>
+    <string name="announcement_request">Please fill the following detail to publish the announcement:</string>
+    <string name="announcement_request_general">Please fill the following detail to publish the announcement for the general book:</string>
+
 
     <!--veiw textBook-->
     <string name="comment">Comment:</string>

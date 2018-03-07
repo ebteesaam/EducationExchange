@@ -62,102 +62,13 @@ public class ViewBook extends AppCompatActivity {
         facultyname=findViewById(R.id.facultyname);
         number_of_coursename=findViewById(R.id.number_of_coursename);
 
-//        myBook=getIntent().getStringExtra("myBook");
 
+        
 
-
-//        if (getIntent().getExtras() != null) {
-//        if(myBook.equals("myBook")){
-//            number_of_coursename.setVisibility(View.GONE);
-//            facultyname.setVisibility(View.GONE);
-//            faculty.setVisibility(View.GONE);
-//            number_of_course.setVisibility(View.GONE);
-//            setupGridViewMyBook();
-//        }else {
-//
-//        }}
-//        }catch (NullPointerException e){
-//
-//        }
 
         setupGridView();
 
         }
-
-    private void setupGridViewMyBook(){
-        Log.d(TAG, "setupGridView: Setting up image grid.");
-
-        final ArrayList<Book> books = new ArrayList<>();
-        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
-        Query query = reference
-                .child(getString(R.string.dbname_material));
-        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()) {
-                    Book book = singleSnapshot.getValue(Book.class);
-
-                    if (book.getId_book().equals(bookId)) {
-                        books.add(singleSnapshot.getValue(Book.class));
-
-                        availability.setText(book.getAvailability().toString());
-                        name_of_book.setText(book.getBook_name().toString());
-
-                        type.setText(book.getType().toString());
-                        price.setText(book.getPrice().toString());
-                        state.setText(book.getStatus().toString());
-                        imageLoader= ImageLoader.getInstance();
-//
-                        imageLoader.displayImage( book.getImage_path(),photo,new ImageLoadingListener() {
-                            @Override
-                            public void onLoadingStarted(String imageUri, View view) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.VISIBLE);
-                                }
-                            }
-
-                            @Override
-                            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
-
-                            @Override
-                            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
-
-                            @Override
-                            public void onLoadingCancelled(String imageUri, View view) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
-
-                        });
-
-                    }
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: query cancelled.");
-            }
-        });}
 
 
     private void setupGridView(){

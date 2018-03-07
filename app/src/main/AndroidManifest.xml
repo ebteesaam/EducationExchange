@@ -100,7 +100,7 @@
         <activity android:name=".addBook.ViewGeneralBook"></activity>
         <activity android:name=".profile.ViewBookProfile"></activity>
         <activity android:name=".profile.ViewGeneralBookProfile"></activity>
-
+<activity android:name=".announcement.AnnouncementGeneralActivity"></activity>
     </application>
 
 </manifest>

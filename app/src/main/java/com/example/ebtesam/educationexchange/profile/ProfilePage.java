@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -41,8 +43,10 @@ public class ProfilePage extends AppCompatActivity {
     private FirebaseMethod firebaseMethod;
     private FirebaseStorage firebaseStorage;
     private TextView user_name,email;
-    private ImageView mProfilePhoto;
+    private ImageView mProfilePhoto, setting;
     private ProgressBar progressBar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +61,7 @@ public class ProfilePage extends AppCompatActivity {
         firebaseMethod=new FirebaseMethod(ProfilePage.this);
 
 
-        editProfile=findViewById(R.id.edit_user);
-        editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(ProfilePage.this,EditProfile.class);
-                startActivity(intent);
-            }
-        });
+
         signOut=findViewById(R.id.sign_out);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,5 +190,25 @@ public class ProfilePage extends AppCompatActivity {
         }
     }
     //............................end Firebase.................................//
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu options from the res/menu/menu_editor.xml file.
+        // This adds menu items to the app bar.
+        getMenuInflater().inflate(R.menu.setting, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.action_setting:
+                Intent intent=new Intent(ProfilePage.this,EditProfile.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -278,13 +278,14 @@ public class FirebaseMethod {
                 .child("announcement"+ (count+1)).setValue(book);
 
     }
-    private void addAnnouncementToDatabase(String bookNmae ,String type ,String state,int count){
+    public void addAnnouncementToDatabase(String bookNmae, String type ,String text1, String state,int count){
 
         String newAnnouncementKey = myRef.push().getKey();
         Announcement book = new Announcement();
         book.setTitle(bookNmae);
         book.setStatus(state);
         book.setType(type);
+        book.setText(text1);
         book.setDate_created(getTimestamp());
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
         book.setId_announcement(newAnnouncementKey);
