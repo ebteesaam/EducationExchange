@@ -116,15 +116,7 @@ public class HomeActivity extends Fragment {
         });
 
 
-        addAnnouncement = rootView.findViewById(R.id.add_announcement);
-        addAnnouncement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AnnouncementActivity.class);
-                startActivity(intent);
 
-            }
-        });
         setupAnnouncementView();
         return rootView;
 
