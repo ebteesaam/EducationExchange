@@ -39,7 +39,7 @@ public class AddTextBook extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     public int imageCount = 0;
-    ArrayAdapter<CharSequence> adapter3 ;
+    ArrayAdapter<CharSequence> adapter3;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -57,27 +57,47 @@ public class AddTextBook extends AppCompatActivity {
     private ImageView bookPhoto;
     private ViewPager mViewPager;
     private EditText editName, editPrice, numOfCourse;
-    private Spinner spinner1, spinner2,spinner3,spinner4,spinner5;
+    private Spinner spinner1, spinner2, spinner3, spinner4;
     private RelativeLayout relativeLayout3, relativeLayout9;
+    private String itemtype = "";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_text_book);
-        setTitle(getString(R.string.add_book_activity));
-relativeLayout3=findViewById(R.id.relative3);
-        relativeLayout9=findViewById(R.id.relative9);
+        relativeLayout3 = findViewById(R.id.relative3);
+        relativeLayout9 = findViewById(R.id.relative9);
 
         mFirebaseMethods = new FirebaseMethod(mContext);
         bookPhoto = findViewById(R.id.book_photo);
         editName = findViewById(R.id.edit_name);
         editPrice = findViewById(R.id.edit_price);
         //numOfCourse = findViewById(R.id.numberOfCourse);
-        spinner1=findViewById(R.id.spinner1);
-        spinner2=findViewById(R.id.spinner2);
-        spinner3=findViewById(R.id.spinner3);
-        spinner4=findViewById(R.id.spinnermajorcourse);
-        spinner5=findViewById(R.id.type);
+
+        spinner1 = findViewById(R.id.spinner1);
+        spinner2 = findViewById(R.id.spinner2);
+        spinner3 = findViewById(R.id.spinner3);
+        spinner4 = findViewById(R.id.spinnermajorcourse);
+
+        String intentExtra = getIntent().getStringExtra("type");
+        if (getIntent().getExtras() != null) {
+            if (intentExtra.equals("Lecture Notes")) {
+
+                setTitle(getString(R.string.add_lecture_note));
+                itemtype = "Lecture Notes";
+
+            }
+            if (intentExtra.equals("TextBooks")) {
+
+                setTitle(getString(R.string.add_book_activity));
+                itemtype = "TextBooks";
+
+
+            }
+
+        }
+
+
         //mCaption = (EditText) findViewById(R.id.caption) ;
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.major, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -85,54 +105,59 @@ relativeLayout3=findViewById(R.id.relative3);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (spinner1.getSelectedItem().equals("Faculty of Computing and Information Technology")){
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
+                if (spinner1.getSelectedItem().equals("Faculty of Computing and Information Technology")) {
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
+                    ;
 
                     spinner4.setAdapter(adapter3);
-                }else if(spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")){
+                } else if (spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")) {
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
+                    ;
                     spinner4.setAdapter(adapter3);
-                }else if(spinner1.getSelectedItem().equals("College of Business(COB)")){
+                } else if (spinner1.getSelectedItem().equals("College of Business(COB)")) {
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
+                    ;
                     spinner4.setAdapter(adapter3);
-                }else if(spinner1.getSelectedItem().equals("College of Sciences")){
+                } else if (spinner1.getSelectedItem().equals("College of Sciences")) {
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
+                    ;
                     spinner4.setAdapter(adapter3);
-                }else if(spinner1.getSelectedItem().equals("General Course Books")){
+                } else if (spinner1.getSelectedItem().equals("General Course Books")) {
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_general_course, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_general_course, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
+                    ;
                     spinner4.setAdapter(adapter3);
 
-                }else if(spinner1.getSelectedItem().equals("Faculty of English")){
+                } else if (spinner1.getSelectedItem().equals("Faculty of English")) {
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
+                    ;
                     spinner4.setAdapter(adapter3);
                 }
 
-                }
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
 
 
         setupFirebaseAuth();
@@ -155,7 +180,6 @@ relativeLayout3=findViewById(R.id.relative3);
         setImage();
 
     }
-
 
 
     private void setBookData() {
@@ -234,19 +258,6 @@ relativeLayout3=findViewById(R.id.relative3);
 
         }
 
-       // String intentExtra=getIntent().getStringExtra("Button");
-//        else if(intent.hasExtra("TBButton")){
-//            spinner5.setSelection(0);
-//            type=0;
-//        }else if(intent.hasExtra("LNButton")){
-//            spinner5.setSelection(1);
-//            type=1;
-//        }else {
-//            spinner5.setSelection(2);
-//            type=2;
-//        }
-//        imgUrl = intent.getStringExtra(getString(R.string.selected_image));
-//        UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
 
     }
 
@@ -354,21 +365,21 @@ relativeLayout3=findViewById(R.id.relative3);
                 } catch (NullPointerException e) {
 
                 }
-                faculty=spinner1.getSelectedItem().toString();
-                available=spinner3.getSelectedItem().toString();
-                state=spinner2.getSelectedItem().toString();
-                courseId=spinner4.getSelectedItem().toString();
-                type=spinner5.getSelectedItem().toString();
+                faculty = spinner1.getSelectedItem().toString();
+                available = spinner3.getSelectedItem().toString();
+                state = spinner2.getSelectedItem().toString();
+                courseId = spinner4.getSelectedItem().toString();
+//                        spinner5.getSelectedItem().toString();
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price,faculty,type, available,state, imageCount, imgUrl, null);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, faculty, itemtype, available, state, imageCount, imgUrl, null);
 
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddTextBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price,faculty,type, available,state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, faculty, itemtype, available, state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
                 } else {
                     Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
                     return false;

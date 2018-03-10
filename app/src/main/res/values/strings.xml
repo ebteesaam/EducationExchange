@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Education Exchange</string>
-    <string name="add_book_activity">Add Book</string>
+    <string name="add_book_activity">Add TextBook</string>
+
+    <string name="add_lecture_note">Add Lecture Note</string>
+
     <string name="add_general_activity">Add General Book</string>
     <string name="general_book">General Book</string>
     <string name="text_book">Text Book</string>
@@ -62,6 +65,7 @@
     <string name="cancel">CANCEL</string>
     <string name="selected_bitmap">selected_bitmap</string>
     <string name="action_setting">Setting</string>
+    <string name="all">All</string>
 
     <!--register page-->
     <string name="confirm_password">Confirm Password</string>

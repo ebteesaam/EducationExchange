@@ -134,8 +134,106 @@ public class Material extends AppCompatActivity {
             } else if (intentExtra.equals("english") && intentExtra2.equals("LectureNotes")) {
                 setupGridViewenglishLN();
                 fab.setVisibility(View.INVISIBLE);
+            } if (intentExtra.equals("all") && intentExtra2.equals("TextBooks")) {
+                setupGridViewAll();
+                fab.setVisibility(View.INVISIBLE);
+            } else if (intentExtra.equals("all") && intentExtra2.equals("LectureNotes")) {
+                setupGridViewAllLN();
+                fab.setVisibility(View.INVISIBLE);
             }
         }
+    }
+
+    private void setupGridViewAllLN() {
+        Log.d(TAG, "setupGridView: Setting up image grid.");
+
+
+        final ArrayList<Book> books = new ArrayList<>();
+        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+        Query query = reference
+                .child(getString(R.string.dbname_material));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Book book = singleSnapshot.getValue(Book.class);
+
+                    if ( book.getType().equals("Lecture Notes")) {
+                        books.add(singleSnapshot.getValue(Book.class));
+                    }
+                }
+
+                ListAdapter adapter = new ListAdapter(Material.this, R.layout.list_material_activity, books);
+                // Attach the adapter to a ListView
+                gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(Material.this, ViewBook.class);
+                        String item =  books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+//                        books.get(i);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: query cancelled.");
+            }
+        });
+    }
+
+    private void setupGridViewAll() {
+        Log.d(TAG, "setupGridView: Setting up image grid.");
+
+
+        final ArrayList<Book> books = new ArrayList<>();
+        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+        Query query = reference
+                .child(getString(R.string.dbname_material));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Book book = singleSnapshot.getValue(Book.class);
+
+                    if ( book.getType().equals("TextBooks")) {
+                        books.add(singleSnapshot.getValue(Book.class));
+                    }
+                }
+
+                ListAdapter adapter = new ListAdapter(Material.this, R.layout.list_material_activity, books);
+                // Attach the adapter to a ListView
+                gridView.setAdapter(adapter);
+                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(Material.this, ViewBook.class);
+                        String item =  books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+//                        books.get(i);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: query cancelled.");
+            }
+        });
     }
 
     private void setupGridViewenglishLN() {
@@ -340,7 +438,7 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if ( book.getType().equals("Lecture Notes") && book.getFaculty().toString().equals(getString(R.string.college_of_business_cob))) {
+                    if ( book.getType().equals("Lecture Notes") && (book.getFaculty().toString().equals(getString(R.string.college_of_business_cob))||book.getFaculty().toString().equals("كلية إدارة الأعمال"))) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }
@@ -386,7 +484,7 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if ( book.getType().equals("TextBooks") && book.getFaculty().toString().equals(getString(R.string.college_of_business_cob))) {
+                    if ( book.getType().equals("TextBooks") && (book.getFaculty().toString().equals(getString(R.string.college_of_business_cob))||book.getFaculty().toString().equals("كلية إدارة الأعمال"))) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }
@@ -432,7 +530,7 @@ public class Material extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
-                    if ( book.getFaculty().toString().equals(getString(R.string.general_course))) {
+                    if ( book.getFaculty().toString().equals(getString(R.string.general_course))||book.getFaculty().toString().equals("الكتب الدراسية العامة")) {
                         books.add(singleSnapshot.getValue(Book.class));
                     }
                 }

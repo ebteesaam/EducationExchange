@@ -50,53 +50,14 @@
                     android:src="@drawable/ic_action_photo"/>
 
             </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/relative10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relative1"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Label -->
-                    <TextView
-                        style="@style/TextStyle"
-                        android:text="@string/type" />
-
-                    <!-- Input fields -->
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:paddingLeft="4dp">
-
-
-
-
-                        <Spinner
-                            android:id="@+id/type"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:background="@android:drawable/btn_dropdown"
-                            android:entries="@array/type"
-                            android:spinnerMode="dropdown">
-                        </Spinner>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
 
             <!--name of book-->
             <RelativeLayout
                 android:id="@+id/relative2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relative10"
+                android:layout_below="@id/relative1"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp">
                 <!--this is left space-->

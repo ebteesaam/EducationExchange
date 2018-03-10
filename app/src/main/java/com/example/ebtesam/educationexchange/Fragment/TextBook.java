@@ -53,7 +53,7 @@ public class TextBook extends Fragment {
     private ImageView profileMenu;
 
     private Context mContext;
-    private Button comput, medicine,general_course, business, science, english;
+    private Button comput, medicine,general_course, business, science, english, all;
 
     public TextBook(){
 
@@ -130,6 +130,19 @@ public class TextBook extends Fragment {
                 Intent intent=new Intent(getActivity(),Material.class);
                 Bundle bundle=new Bundle();
                 bundle.putString("Faculty", "english");
+                bundle.putString("Type", "TextBooks");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        all=view.findViewById(R.id.all);
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "all");
                 bundle.putString("Type", "TextBooks");
                 intent.putExtras(bundle);
                 startActivity(intent);
