@@ -8,15 +8,16 @@ public class User {
 
     private String username;
     private String user_id;
+    private String password;
     private String email;
     private String profile_photo;
     private String status;
     private String report;
 
-
-    public User(String username, String user_id, String email, String profile_photo, String status, String report) {
+    public User(String username, String user_id,  String email,String password, String profile_photo, String status, String report) {
         this.username = username;
         this.user_id = user_id;
+        this.password = password;
         this.email = email;
         this.profile_photo = profile_photo;
         this.status = status;
@@ -24,6 +25,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getProfile_photo() {

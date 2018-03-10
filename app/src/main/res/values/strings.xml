@@ -418,15 +418,89 @@
     <string name="MarketingofHealthcareServices_HHSM412">Marketing of Healthcare Services HHSM 412</string>
     <string name="HealthServiceResearches_HHSM413">Health Service Researches HHSM 413</string>
     <string name="ManagementQualityAssuranceHealth_HHSM414">Management and Quality Assurance of Health HHSM 414</string>
-
-
     <!--business course-->
 
 
+    <!--english course-->
+    <string name="essay_writing_205">Essay writing ENGL 205</string>
+    <string name="advanced_reading_206">Advanced reading ENGL 206</string>
+    <string name="vocabulary_building_207">Vocabulary building ENGL 207</string>
+    <string name="english_grammar_1_208">English grammar 1 ENGL 208</string>
+    <string name="conversation_skills_210">Conversation Skills ENGL 210</string>
+    <string name="english_grammar_2_212">English grammar 2 ENGL 212</string>
+    <string name="introduction_to_translation_and_interpretation_240">Introduction to translation and interpretation ENGL 240</string>
+    <string name="introduction_to_linguistic_280">Introduction to linguistics ENGL 280</string>
+    <string name="academic_writing_312">Academic Writing\t ENGL 312</string>
+    <string name="translation_techniques_341">Translation Techniques ENGL 341</string>
+    <string name="principles_and_theories_of_transl_342">Principles and Theories of Transl. ENGL 342</string>
+    <string name="translating_short_texts_343">Translating short texts ENGL 343</string>
+    <string name="introduction_to_literature_320">Introduction to Literature ENGL 320</string>
+    <string name="translating_journalistic_texts_345">Translating Journalistic Texts ENGL 345</string>
+    <string name="translating_economic_texts_346">Translating Economic Texts ENGL 346</string>
+    <string name="simultaneous_interpreting_347">Simultaneous Interpreting ENGL 347</string>
+    <string name="consecutive_translation_349">Consecutive Translation ENGL 349</string>
+    <string name="bilateral_translation_440">Bilateral Translation ENGL 440</string>
+    <string name="translated_islamic_texts_441">Translated Islamic Texts ENGL 441</string>
+    <string name="translating_technical_texts_443">Translating Technical Texts  ENGL 443</string>
+    <string name="contemporary_issues_in_translation_444">Contemporary Issues in Translation ENGL 444</string>
+    <string name="translating_documents_and_official_texts_446">Translating Documents and Official Texts ENGL 446</string>
+    <string name="arabicization_448">Arabicization ENGL 448</string>
+    <string name="translating_political_texts_449">Translating Political Texts ENGL\t449</string>
+    <string name="translating_literary_texts_450">Translating Literary Texts ENGL 450</string>
+    <string name="translating_video_and_audio_texts_451">Translating Video and Audio Texts ENGL 451</string>
+    <string name="summary_translation_452">Summary Translation ENGL 452</string>
+    <string name="practicum_training_in_translation_498">Practicum Training in Translation ENGL 498</string>
+    <string name="study_skills_211">Study Skills ENGL 211</string>
+    <string name="translation_and_computer_344">Translation and computer ENGL 344</string>
+    <string name="morphology_386">Morphology ENGL 386</string>
+    <string name="semantics_389">Semantics ENGL 389</string>
+    <string name="phonetics_382">Phonetics ENGL 382</string>
+    <string name="syntax_384">Syntax ENGL 384</string>
+    <string name="phonology_385">Phonology ENGL 385</string>
+    <string name="pragmatics_387">Pragmatics ENGL 387</string>
+    <string name="historical_linguistics_388">Historical linguistics ENGL 388</string>
+    <string name="teaching_english_as_foreign_language_461">Teaching English as foreign language ENGL 461</string>
+    <string name="research_design_in_linguistics_490">Research design in linguistics ENGL 490</string>
+    <string name="discourse_analysis_491">Discourse analysis ENGL 491</string>
+    <string name="psycholinguistics_492">Psycholinguistics ENGL 492</string>
+    <string name="language_acquisition_493">Language acquisition ENGL 493</string>
+    <string name="specific_topic_in_linguistics_466">Specific topic in linguistics ENGL 466</string>
+    <string name="measurement_and_evaluation_468">Measurement and Evaluation ENGL 468</string>
+    <string name="practicum_in_linguistics_499">Practicum in linguistics ENGL 499</string>
+    <string name="applied_linguistics_360">Applied linguistics ENGL 360</string>
+    <string name="stylistics_381">Stylistics ENGL 381</string>
+    <string name="sociolinguistics_494">Sociolinguistics ENGL 494</string>
+    <string name="advanced_writing_in_arabic_311">Advanced writing in Arabic ENGL 311</string>
+
+    <!--end-->
+
+<!--computer-->
+    <string name="programming_I_202">Programming I COCS 202</string>
+    <string name="probability_theory_210">Probability Theory STAT 210</string>
+    <string name="fundamentals_of_computing_260">Fundamentals of Computing COIT 260</string>
+    <string name="programming_II_203">Programming II COCS 203</string>
+    <string name="technical_writing_231">Technical Writing COIS 231</string>
+    <string name="discrete_structures_222">Discrete Structures COCS 222</string>
+    <string name="data_structures_304">Data Structures COCS 304</string>
+    <string name="programming_III_307">Programming III COCS 307</string>
+    <string name="human_computer_interaction_283">Human Computer Interaction COIT 283</string>
+    <string name="mathematics_for_computing_223">Mathematics for Computing COCS 223</string>
+    <string name="operating_systems_361">Operating Systems COCS 361</string>
+    <string name="algorithms_and_complexity_325">Algorithms and Complexity COCS 325</string>
+    <string name="computer_architecture_311">Computer Architecture COCS 311</string>
+    <string name="advanced_mathematics_for_computing_324">Advanced Mathematics for Computing COCS 324</string>
+    <string name="databases_342">Databases COIS 342</string>
+    <string name="object_oriented_analysis_and_design_415">Object-Oriented Analysis and Design COIT 415</string>
+    <string name="computer_networks_374">Computer Networks COIT 374</string>
+    <string name="computer_organization_312">Computer Organization COCS 312</string>
+    <string name="programming_languages_305">Programming Languages COCS 305</string>
+    <string name="professional_computing_issues_463">Professional Computing Issues COIS 463</string>
+    <string name="artificial_intelligence_431">Artificial Intelligence COCS 431</string>
+    <string name="software_engineering_451">Software Engineering COCS 451</string>
+    <string name="computer_graphics_481">Computer Graphics COCS 481</string>
 
 
-
-
+    <!--end-->
 
 
 

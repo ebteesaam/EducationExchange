@@ -68,9 +68,10 @@
     <string name="about_us">حول البرنامج:</string>
     <string name="information_about_app">تبادل التعليم هو تصميم تطبيق لمساعدة الطلاب في جامعة الملك عبدالعزيز في رابغ لتبادل الكتب المدرسية، ومذكرات المحاضرات والكتب العامة.</string>
     <string name="forgot">هل نسيت كلمة المرور!</string>
-    <string name="goToRigister">لا يوجد حساب بعد؟ اصنع واحدا</string>
+    <string name="goToRigister">لا يوجد حساب بعد؟ انشئ واحدا</string>
     <string name="sign_out">تسجيل خروج</string>
-
+    <string name="all">الكل</string>
+    <string name="add_lecture_note">اضافة محاضرة ورقية</string>
     <!--general course-->
 
     <string name="computer_skills_100">مهارات الحاسب CPIT 100</string>
@@ -181,6 +182,87 @@
     <string name="HealthServiceResearches_HHSM413">أبحاث الخدمات الصحية HHSM 413</string>
     <string name="ManagementQualityAssuranceHealth_HHSM414">إدارة وضمان جودة الصحة HHSM 414</string>
     <!--business course-->
+
+
+    <!--english course-->
+    <string name="essay_writing_205">كتابة الفقرة ENGL 205</string>
+    <string name="advanced_reading_206">قراءة متقدمة ENGL 206</string>
+    <string name="vocabulary_building_207">تنمية المفردات ENGL 207</string>
+    <string name="english_grammar_1_208">قواعد اللغة الانجليزية 1 ENGL 208</string>
+    <string name="conversation_skills_210">المحادثة ENGL 210</string>
+    <string name="english_grammar_2_212">قواعد اللغة الانجليزية 2 ENGL 212</string>
+    <string name="introduction_to_translation_and_interpretation_240">مدخل إلى الترجمة ENGL 240</string>
+    <string name="introduction_to_linguistic_280">مدخل إلى اللغويات ENGL 280</string>
+    <string name="academic_writing_312">كتابة اكاديمية ENGL 312</string>
+    <string name="translation_techniques_341">تقنيات الترجمة ENGL 341</string>
+    <string name="principles_and_theories_of_transl_342">مبادئ ونظريات الترجمة ENGL 342</string>
+    <string name="translating_short_texts_343">ترجمة النصوص القصيرة ENGL 343</string>
+    <string name="introduction_to_literature_320">مدخل إلى الادب ENGL 320</string>
+    <string name="translating_journalistic_texts_345">ترجمة النصوص الصحفية ENGL 345</string>
+    <string name="translating_economic_texts_346">ترجمة النصوص الاقتصادية ENGL 346</string>
+    <string name="simultaneous_interpreting_347">الترجمة الفورية ENGL 347</string>
+    <string name="consecutive_translation_349">الترجمة التتابعية ENGL 349</string>
+    <string name="bilateral_translation_440">ترجمة ثنائية ENGL 440</string>
+    <string name="translated_islamic_texts_441">نصوص اسلامية مترجمة ENGL 441</string>
+    <string name="translating_technical_texts_443">ترجمة النصوص الفنية ENGL 443</string>
+    <string name="contemporary_issues_in_translation_444">قضايا معاصرة في الترجمة ENGL 444</string>
+    <string name="translating_documents_and_official_texts_446">ترجمة الوثائق والمستندات ENGL 446</string>
+    <string name="arabicization_448">التعريب ENGL 448</string>
+    <string name="translating_political_texts_449">ترجمة النصوص السياسية ENGL 449</string>
+    <string name="translating_literary_texts_450">ترجمة النصوص الادبية ENGL 450</string>
+    <string name="translating_video_and_audio_texts_451">ترجمة النصوص المرئية والمسموعة ENGL 451</string>
+    <string name="summary_translation_452">ترجمة تلخيصية ENGL 452</string>
+    <string name="practicum_training_in_translation_498">" التدريب العملي في الترجمة ENGL 498"</string>
+    <string name="study_skills_211">مهارات الدراسة ENGL 211</string>
+    <string name="translation_and_computer_344">الترجمة والحاسوب ENGL 344</string>
+    <string name="morphology_386">الصرف ENGL 386</string>
+    <string name="semantics_389">علم الدلالة ENGL 389</string>
+    <string name="phonetics_382">صوتيات ENGL 382</string>
+    <string name="syntax_384">النحو ENGL 384</string>
+    <string name="phonology_385">علم الاصوات ENGL 385</string>
+    <string name="pragmatics_387">تداوليات ENGL 387</string>
+    <string name="historical_linguistics_388">اللغويات التاريخية ENGL 388</string>
+    <string name="teaching_english_as_foreign_language_461">تعلم اللغة الانجليزية كلغة اجنبية ENGL 461</string>
+    <string name="research_design_in_linguistics_490">تصميم البحث في اللغويات ENGL 490</string>
+    <string name="discourse_analysis_491">تحليل الخطاب ENGL 491</string>
+    <string name="psycholinguistics_492">اللغويات النفسية ENGL 492</string>
+    <string name="language_acquisition_493">اكتساب اللغة ENGL 493</string>
+    <string name="specific_topic_in_linguistics_466">موضوع خاص في اللغويات ENGL 466</string>
+    <string name="measurement_and_evaluation_468">القياس والتقويم ENGL 468</string>
+    <string name="practicum_in_linguistics_499">التدريب العملي في اللغويات ENGL 499</string>
+    <string name="applied_linguistics_360">اللغويات التطبيقية ENGL 360</string>
+    <string name="stylistics_381">الاسلوبية ENGL 381</string>
+    <string name="sociolinguistics_494">اللغويات الاجتماعية ENGL 494</string>
+    <string name="advanced_writing_in_arabic_311">كتابة متقدمة في اللغة العربية ENGL 311</string>
+
+    <!--end-->
+
+    <!--computer-->
+    <string name="programming_I_202">COCS 202\tبرمجة 1</string>
+    <string name="probability_theory_210">نظرية الاحتمالات STAT 210</string>
+    <string name="fundamentals_of_computing_260">COIT 260  أساسيات الحوسبة</string>
+    <string name="programming_II_203">COCS 203\tبرمجة 2</string>
+    <string name="technical_writing_231">COIS 231\tاساليب الكتابة العلمية</string>
+    <string name="discrete_structures_222">COCS 222\tتراكيب متقطعة</string>
+    <string name="data_structures_304">COCS 304\tتراكيب بيانات</string>
+    <string name="programming_III_307">COCS 307\tبرمجة 3</string>
+    <string name="human_computer_interaction_283">COIT 283  تفاعل الإنسان والحاسب</string>
+    <string name="mathematics_for_computing_223">COCS 223\tالحوسبة الرياضية</string>
+    <string name="operating_systems_361">COCS 361\tنظم التشغيل</string>
+    <string name="algorithms_and_complexity_325">COCS 325\tالخوارزميات والتعقيد</string>
+    <string name="computer_architecture_311">COCS 311\tمعمارية الحاسب</string>
+    <string name="advanced_mathematics_for_computing_324">COCS 324\tرياضيات الحوسبة المتقدمة</string>
+    <string name="databases_342">COIS 342\tقواعد البيانات</string>
+    <string name="object_oriented_analysis_and_design_415">COIT 415\tالتحليل والتصميم الكينوني</string>
+    <string name="computer_networks_374">COIT 374  شبكات الحاسب</string>
+    <string name="computer_organization_312">COCS 312\tتنظيم الحاسب</string>
+    <string name="programming_languages_305">COCS305\tلغات البرمجة</string>
+    <string name="professional_computing_issues_463">COIS 463\tمواضيع وقضايا معلوماتية</string>
+    <string name="artificial_intelligence_431">COCS 431\tالذكاء الإصطناعي</string>
+    <string name="software_engineering_451">COCS 451\tهندسة البرمجيات</string>
+    <string name="computer_graphics_481">COCS 481\tرسومات الحاسب</string>
+
+    <!--end-->
 
 
 </resources>

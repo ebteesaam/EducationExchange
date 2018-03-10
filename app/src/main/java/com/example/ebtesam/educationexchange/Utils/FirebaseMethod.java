@@ -422,9 +422,9 @@ public class FirebaseMethod {
 
 
 
-    public void addNewUser(String email, String username,  String profile_photo, String status, String report){
+    public void addNewUser(String email, String username, String password, String profile_photo, String status, String report){
 
-        User user = new User( StringManipulation.condenseUsername(username),  userID,  email , profile_photo, status, report );
+        User user = new User( StringManipulation.condenseUsername(username),  userID,  email ,password, profile_photo, status, report );
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
