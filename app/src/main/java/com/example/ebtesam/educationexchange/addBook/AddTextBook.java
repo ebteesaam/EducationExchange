@@ -88,49 +88,43 @@ public class AddTextBook extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (spinner1.getSelectedItem().equals("Faculty of Computing and Information Technology")) {
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
+                if (spinner1.getSelectedItem().equals("Faculty of Computing and Information Technology")||spinner1.getSelectedItem().equals("كلية الحاسبات وتقنية المعلومات")){
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                    adapter3.notifyDataSetChanged();
-                    ;
+                    adapter3.notifyDataSetChanged();;
 
                     spinner4.setAdapter(adapter3);
-                } else if (spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")) {
+                }else if(spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")||spinner1.getSelectedItem().equals("كلية الطب في رابغ")){
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();
-                    ;
+                    adapter3.notifyDataSetChanged();;
                     spinner4.setAdapter(adapter3);
-                } else if (spinner1.getSelectedItem().equals("College of Business(COB)")) {
+                }else if(spinner1.getSelectedItem().equals("College of Business(COB)")||spinner1.getSelectedItem().equals("كلية إدارة الأعمال")){
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();
-                    ;
+                    adapter3.notifyDataSetChanged();;
                     spinner4.setAdapter(adapter3);
-                } else if (spinner1.getSelectedItem().equals("College of Sciences")) {
+                }else if(spinner1.getSelectedItem().equals("College of Sciences")||spinner1.getSelectedItem().equals("كلية العلوم والآداب")){
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();
-                    ;
+                    adapter3.notifyDataSetChanged();;
                     spinner4.setAdapter(adapter3);
-                } else if (spinner1.getSelectedItem().equals("General Course Books")) {
+                }else if(spinner1.getSelectedItem().equals("General Course Books")||spinner1.getSelectedItem().equals("الكتب الدراسية العامة")){
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_general_course, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_general_course, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();
-                    ;
+                    adapter3.notifyDataSetChanged();;
                     spinner4.setAdapter(adapter3);
 
-                } else if (spinner1.getSelectedItem().equals("Faculty of English")) {
+                }else if(spinner1.getSelectedItem().equals("Faculty of English")||spinner1.getSelectedItem().equals("كلية اللغة الانجليزية")){
 
-                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
+                    adapter3 = ArrayAdapter.createFromResource(AddTextBook.this,R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();
-                    ;
+                    adapter3.notifyDataSetChanged();;
                     spinner4.setAdapter(adapter3);
                 }
 

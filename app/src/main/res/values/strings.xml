@@ -154,8 +154,127 @@
 
 
     <string-array name="major_course_college_of_sciences">
-        <item>physics</item>
-        <item>medicine111113</item>
+        <item>@string/BIO200</item>
+        <item>@string/BIO202</item>
+        <item>@string/BIO221</item>
+        <item>@string/BIO222</item>
+        <item>@string/BIO231</item>
+        <item>@string/BIO241</item>
+        <item>@string/BIO251</item>
+        <item>@string/BIO271</item>
+        <item>@string/BIO281</item>
+        <item>@string/BIO325</item>
+        <item>@string/BIO330</item>
+        <item>@string/BIO331</item>
+        <item>@string/BIO332</item>
+        <item>@string/BIO333</item>
+        <item>@string/BIO334</item>
+        <item>@string/BIO335</item>
+        <item>@string/BIO336</item>
+        <item>@string/BIO392</item>
+        <item>@string/BIO391</item>
+        <item>@string/BIO430</item>
+        <item>@string/BIO431</item>
+        <item>@string/BIO432</item>
+        <item>@string/BIO433</item>
+        <item>@string/BIO434</item>
+        <item>@string/BIO435</item>
+        <item>@string/BIO436</item>
+        <item>@string/BIO437</item>
+        <item>@string/BIO438</item>
+        <item>@string/BIO451</item>
+        <item>@string/BIO471</item>
+        <item>@string/BIOC371</item>
+        <item>@string/CHEM211</item>
+        <item>@string/CHEM221</item>
+        <item>@string/CHEM230</item>
+        <item>@string/CHEM231</item>
+        <item>@string/CHEM232</item>
+        <item>@string/CHEM242</item>
+        <item>@string/CHEM281</item>
+        <item>@string/CHEM313</item>
+        <item>@string/CHEM312</item>
+        <item>@string/CHEM322</item>
+        <item>@string/CHEM323</item>
+        <item>@string/CHEM333</item>
+        <item>@string/CHEM334</item>
+        <item>@string/CHEM343</item>
+        <item>@string/CHEM344</item>
+        <item>@string/CHEM345</item>
+        <item>@string/CHEM360</item>
+        <item>@string/CHEM414</item>
+        <item>@string/CHEM415</item>
+        <item>@string/CHEM425</item>
+        <item>@string/CHEM426</item>
+        <item>@string/CHEM427</item>
+        <item>@string/CHEM435</item>
+        <item>@string/CHEM436</item>
+        <item>@string/CHEM437</item>
+        <item>@string/CHEM438</item>
+        <item>@string/CHEM441</item>
+        <item>@string/CHEM442</item>
+        <item>@string/CHEM443</item>
+        <item>@string/CHEM444</item>
+        <item>@string/CHEM445</item>
+        <item>@string/CHEM446</item>
+        <item>@string/STAT211</item>
+        <item>@string/MATH202</item>
+        <item>@string/MATH203</item>
+        <item>@string/MATH204</item>
+        <item>@string/MATH205</item>
+        <item>@string/MATH241</item>
+        <item>@string/MATH251</item>
+        <item>@string/MATH261</item>
+        <item>@string/MATH305</item>
+        <item>@string/MATH311</item>
+        <item>@string/MATH312</item>
+        <item>@string/MATH331</item>
+        <item>@string/MATH332</item>
+        <item>@string/MATH333</item>
+        <item>@string/MATH343</item>
+        <item>@string/MATH406</item>
+        <item>@string/MATH413</item>
+        <item>@string/MATH414</item>
+        <item>@string/MATH421</item>
+        <item>@string/MATH423</item>
+        <item>@string/MATH444</item>
+        <item>@string/MATH445</item>
+        <item>@string/MATH462</item>
+        <item>@string/MATH463</item>
+        <item>@string/MATH464</item>
+        <item>@string/MATH471</item>
+        <item>@string/MATH481</item>
+        <item>@string/PHYS202</item>
+        <item>@string/PHYS203</item>
+        <item>@string/PHYS221</item>
+        <item>@string/PHYS241</item>
+        <item>@string/PHYS251</item>
+        <item>@string/PHYS252</item>
+        <item>@string/PHYS281</item>
+        <item>@string/PHYS311</item>
+        <item>@string/PHYS312</item>
+        <item>@string/PHYS328</item>
+        <item>@string/PHYS331</item>
+        <item>@string/PHYS332</item>
+        <item>@string/PHYS342</item>
+        <item>@string/PHYS343</item>
+        <item>@string/PHYS352</item>
+        <item>@string/PHYS354</item>
+        <item>@string/PHYS383</item>
+        <item>@string/PHYS392</item>
+        <item>@string/PHYS393</item>
+        <item>@string/PHYS413</item>
+        <item>@string/PHYS414</item>
+        <item>@string/PHYS455</item>
+        <item>@string/PHYS456</item>
+        <item>@string/PHYS461</item>
+        <item>@string/PHYS462</item>
+        <item>@string/PHYS463</item>
+        <item>@string/PHYS471</item>
+        <item>@string/PHYS472</item>
+        <item>@string/PHYS484</item>
+        <item>@string/PHYS485</item>
+        <item>@string/PHYS493</item>
     </string-array>
 
     <string-array name="major_course_general_course">
@@ -588,6 +707,8 @@
         <item>@string/numerical_data_computation_461</item>
         <item>@string/IT_and_business_process_re_engineering_453</item>
     </string-array>
+
+
     <!--computer-->
     <string name="programming_I_202">Programming I COCS 202</string>
     <string name="probability_theory_210">Probability Theory STAT 210</string>
@@ -759,6 +880,141 @@
     <string name="anesthesia">anesthesia</string>
     <string name="Medicine_and_subspecialties">Medicine and subspecialties</string>
     <string name="accident_and_emergency">accident and emergency</string>
+    <!--end-->
+
+    <!--science-->
+    <string name="BIO110">"General Biology-1 "</string>
+    <string name="CHEM110">General Chemistry-1</string>
+    <string name="ELCS110">English</string>
+    <string name="messages">Messages</string>
+    <string name="ELI103">English-3</string>
+    <string name="ELI104">English-4</string>
+    <string name="STAT110">General Statistics-1</string>
+    <string name="ARAB101">Arabic Language</string>
+    <string name="BIO200">Safety and safety laboratories</string>
+    <string name="BIO202">General Biology-2</string>
+    <string name="BIO281">General Biology lab</string>
+    <string name="CHEM230">CH.Organic for non chemical students</string>
+    <string name="CHEM281">General Chemical Lap</string>
+    <string name="ISLS101">Islamic culture-1</string>
+    <string name="BIO221">General Genetics</string>
+    <string name="BIO222">Cell biology</string>
+    <string name="BIOC371">Biochemistry</string>
+    <string name="BIO231">General Microbiology</string>
+    <string name="BIO241">General plant</string>
+    <string name="BIO251">General Animals</string>
+    <string name="BIO271">Basics of Ecology</string>
+    <string name="BIO325">Molecular biology</string>
+    <string name="BIO330">Viruses</string>
+    <string name="BIO331">Bacteria</string>
+    <string name="BIO332">Fungus</string>
+    <string name="BIO333">Algae</string>
+    <string name="BIO335">Microbial environment</string>
+    <string name="BIO336">physiological Microbiology</string>
+    <string name="BIO430">Immunology and Serology</string>
+    <string name="BIO432">Plant Diseases</string>
+    <string name="BIO471">Environmental pollution</string>
+    <string name="BIO434">Pathological microbiology</string>
+    <string name="BIO436">Food Microbiology</string>
+    <string name="BIO334">Basic Division of Microbiology</string>
+    <string name="BIO391">" terminology in biology"</string>
+    <string name="BIO392">Computer applications in Biology</string>
+    <string name="BIO431">Soil and water microbiology</string>
+    <string name="BIO433">Genetics of microorganisms</string>
+    <string name="BIO435">Industrial microbiology</string>
+    <string name="BIO437">Microbial environment pollution</string>
+    <string name="BIO438">Environment Algae</string>
+    <string name="BIO451">Parasitology</string>
+    <string name="CHEM231">Basic Organic Chemistry</string>
+    <string name="MATH202">Calculus and Integration-2</string>
+    <string name="PHYS281">General Physics Lab</string>
+    <string name="CHEM211">Chemistry of volumetric and weight analysis</string>
+    <string name="CHEM232">Basic Organic Chemistry</string>
+    <string name="BIO201">Physics for chemists</string>
+    <string name="CHEM221">Inorganic Chemistry</string>
+    <string name="CHEM242">Quantum chemistry and thermodynamics</string>
+    <string name="CHEM312">Methods of mechanical analysis</string>
+    <string name="CHEM333">Filters Organic compounds</string>
+    <string name="CHEM313">Chromatographic Separation Methods</string>
+    <string name="CHEM322">Norganic Chemistry-2</string>
+    <string name="CHEM334">Physical organic chemistry</string>
+    <string name="CHEM343">Experimental Physical Chemistry</string>
+    <string name="CHEM323">Inorganic Chemistry Experimental</string>
+    <string name="CHEM344">Thermochemistry</string>
+    <string name="CHEM345">Solid state chemistry and surfaces</string>
+    <string name="CHEM360">Organic Biochemistry</string>
+    <string name="CHEM414">Methods of electrolysis</string>
+    <string name="CHEM415">Analysis of industrial products</string>
+    <string name="CHEM425">Organic metals chemistry</string>
+    <string name="CHEM426">Inorganic Biochemistry</string>
+    <string name="CHEM427">Environmental Inorganic Chemistry</string>
+    <string name="CHEM435">Chemistry of heterogeneous rings</string>
+    <string name="CHEM436">Applied Organic Chemistry</string>
+    <string name="CHEM437">Chemistry of natural products</string>
+    <string name="CHEM438">Chemistry of industrial polymers</string>
+    <string name="CHEM441">Chemistry of polymers</string>
+    <string name="CHEM442">Basic partial spectrum</string>
+    <string name="CHEM443">Nuclear and radiological chemistry</string>
+    <string name="CHEM444">photochemistry</string>
+    <string name="CHEM445">Stimulate</string>
+    <string name="CHEM446">Electrical chemistry</string>
+    <string name="PHYS202">General physics-2</string>
+    <string name="PHYS203">General physics-3</string>
+    <string name="PHYS221">Thermodynamics</string>
+    <string name="PHYS241">Modern Physics-1</string>
+    <string name="PHYS251">Theoretical Methods of Physics-1</string>
+    <string name="PHYS252">Traditional Mechanics-1</string>
+    <string name="MATH204">Calculus Equations-1</string>
+    <string name="PHYS331">Electric and magnetic</string>
+    <string name="PHYS342">Modern Physics-2</string>
+    <string name="PHYS352">Theoretical Methods of Physics-2</string>
+    <string name="PHYS311">Light</string>
+    <string name="PHYS312">Electronic circuits-1</string>
+    <string name="PHYS332">Electromagnetism-2</string>
+    <string name="PHYS354">Quantum Mechanics-1</string>
+    <string name="PHYS328">Electronic circuit lab</string>
+    <string name="PHYS383">Light Lab</string>
+    <string name="PHYS461">Nuclear physics</string>
+    <string name="PHYS471">Solid State Physics</string>
+    <string name="PHYS484">Nuclear physics lab</string>
+    <string name="PHYS485">Solid Physics Laboratory</string>
+    <string name="PHYS456">Statistical Mechanics</string>
+    <string name="PHYS343">Special Relativity</string>
+    <string name="PHYS392">Special Topics in Physics</string>
+    <string name="PHYS393">Computer Applications in Physics</string>
+    <string name="PHYS">Laser physics</string>
+    <string name="PHYS413">Electrical circuits-2</string>
+    <string name="PHYS414">Precise waves</string>
+    <string name="PHYS455">Quantum Mechanics-2</string>
+    <string name="PHYS462">Ray physics and nuclear reagents</string>
+    <string name="PHYS463">Nuclear models</string>
+    <string name="PHYS472">Semiconductors</string>
+    <string name="PHYS493">Physical Education Training</string>
+    <string name="MATH203">Calculus And Integration-3</string>
+    <string name="MATH251">Basic Mathematics</string>
+    <string name="MATH205">equence and vector analysis</string>
+    <string name="MATH241">Linear algebra</string>
+    <string name="STAT211">Probability Theory-1</string>
+    <string name="MATH305">Calculus Equations-2</string>
+    <string name="MATH311">Real analysis</string>
+    <string name="MATH331">Mathmatical programs and programming</string>
+    <string name="MATH343">Abstract algebra-1</string>
+    <string name="MATH312">Real analysis-2</string>
+    <string name="MATH413">Composite analysis</string>
+    <string name="MATH421">Numerical Analysis</string>
+    <string name="MATH463">Differential geometry</string>
+    <string name="MATH464">General topology</string>
+    <string name="MATH261">Analytical Engineering</string>
+    <string name="MATH332">Applied mathematics</string>
+    <string name="MATH333">financial mathematics</string>
+    <string name="MATH406">Topics in differential equations</string>
+    <string name="MATH414">Topics in analysis</string>
+    <string name="MATH423">Topics in numerical analysis</string>
+    <string name="MATH444">Theory of numbers</string>
+    <string name="MATH445">Topics in algebra</string>
+    <string name="MATH462">Engineering Euclidean and non Euclidean</string>
+    <string name="MATH471">Intermittent mathematics</string>
+    <string name="MATH481">History of Mathematics</string>
 
     <!--end-->
 
