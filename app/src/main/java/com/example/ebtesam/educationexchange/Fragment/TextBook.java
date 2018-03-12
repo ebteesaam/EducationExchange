@@ -154,9 +154,7 @@ public class TextBook extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AddTextBook.class);
-//                Bundle bundle=new Bundle();
-//                bundle.putString("Button", "TBButton");
-//                intent.putExtras(bundle);
+
                 startActivity(intent);
             }
         });

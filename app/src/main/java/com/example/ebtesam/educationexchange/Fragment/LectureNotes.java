@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import com.example.ebtesam.educationexchange.Material;
 import com.example.ebtesam.educationexchange.R;
-import com.example.ebtesam.educationexchange.addBook.AddTextBook;
+import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
 
 /**
  * Created by ebtesam on 29/01/2018 AD.
@@ -115,10 +115,8 @@ public class LectureNotes extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddTextBook.class);
-                Bundle bundle=new Bundle();
-                bundle.putString("type", "Lecture Notes");
-                intent.putExtras(bundle);
+                Intent intent = new Intent(getActivity(), AddLectureNotes.class);
+
                 startActivity(intent);
             }
         });

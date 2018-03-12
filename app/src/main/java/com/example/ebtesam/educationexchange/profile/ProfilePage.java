@@ -33,7 +33,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public class ProfilePage extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
     Button signOut;
-    Button editProfile;
+    Button announcement;
     Button myBook;
     StorageReference mStorageRef;
     private FirebaseAuth mAuth;
@@ -78,6 +78,16 @@ public class ProfilePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        announcement=findViewById(R.id.announcement);
+        announcement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfilePage.this,MyAnnouncementsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         //initImageLoader();
        // setProfileImage();

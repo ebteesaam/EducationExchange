@@ -21,6 +21,7 @@
     <!--<string name="dbname_user_account_settings">user_account_settings</string>-->
     <string name="field_username">username</string>
     <string name="field_email">email</string>
+    <string name="dbname_status">status</string>
 
     <!-- photo types -->
     <string name="new_book">new_book</string>
@@ -45,8 +46,6 @@
     <string name="string_next">Next</string>
     <string name="empty_view_subtitle_text">Get started by adding a TextBook</string>
     <string name="empty_anno_subtitle_text">There is no announcement yet</string>
-
-
 
 
     <!--profiel page-->
@@ -82,7 +81,6 @@
     <string name="action_delete">Delete</string>
 
     <string name="please_select_a_faculty">Please Select a Faculty:</string>
-
 
 
     <string name="register">REGISTER A NEW ACCOUNT</string>
@@ -133,7 +131,6 @@
     <string name="message">Message</string>
 
 
-
     <!--array for add material pag-->
     <string-array name="availability">
         <item>Available</item>
@@ -155,17 +152,6 @@
         <item>Lecture Notes</item>
     </string-array>
 
-    <string-array name="major_course_faculty_of_computing_and_information_technology">
-        <item>computer</item>
-        <item>cosa111?113</item>
-    </string-array>
-
-    <string-array name="major_course_faculty_of_medicine_in_rabigh">
-        <item>cosmedicine</item>
-        <item>medicine111113</item>
-    </string-array>
-
-
 
     <string-array name="major_course_college_of_sciences">
         <item>physics</item>
@@ -178,12 +164,10 @@
         <item>@string/english_language_ІІ_102</item>
         <item>@string/english_language_ІІI_103</item>
         <item>@string/english_language_ІIII_104</item>
-
         <item>@string/islamic_culture_І_101</item>
         <item>@string/islamic_culture_ІI_201</item>
         <item>@string/islamic_culture_ІII_301</item>
         <item>@string/islamic_culture_ІV_401</item>
-
         <item>@string/communication_skills_101</item>
         <item>@string/linguistic_skills_101</item>
         <item>@string/arabic_writing_201</item>
@@ -199,12 +183,6 @@
     </string-array>
 
 
-
-    <string-array name="major_course_college_of_english">
-        <item>english</item>
-        <item>medicine111113</item>
-    </string-array>
-
     <string-array name="state">
         <item>New</item>
         <item>Used</item>
@@ -218,8 +196,6 @@
     <string name="general_course">General Course Books</string>
     <string name="college_of_english">Faculty of English</string>
     <string name="request_g_b">Request the Book</string>
-
-
 
 
     <!--general course-->
@@ -329,7 +305,6 @@
         <item>@string/MarketingofHealthcareServices_HHSM412</item>
         <item>@string/HealthServiceResearches_HHSM413</item>
         <item>@string/ManagementQualityAssuranceHealth_HHSM414</item>
-        <item></item>
 
     </string-array>
 
@@ -420,6 +395,57 @@
     <string name="ManagementQualityAssuranceHealth_HHSM414">Management and Quality Assurance of Health HHSM 414</string>
     <!--business course-->
 
+    <string-array name="major_course_college_of_english">
+        <item>@string/essay_writing_205</item>
+        <item>@string/advanced_reading_206</item>
+        <item>@string/vocabulary_building_207</item>
+        <item>@string/conversation_skills_210</item>
+        <item>@string/english_grammar_1_208</item>
+        <item>@string/english_grammar_2_212</item>
+        <item>@string/introduction_to_translation_and_interpretation_240</item>
+        <item>@string/introduction_to_linguistic_280</item>
+        <item>@string/academic_writing_312</item>
+        <item>@string/translation_techniques_341</item>
+        <item>@string/introduction_to_literature_320</item>
+        <item>@string/principles_and_theories_of_transl_342</item>
+        <item>@string/translating_short_texts_343</item>
+        <item>@string/translating_journalistic_texts_345</item>
+        <item>@string/translating_economic_texts_346</item>
+        <item>@string/simultaneous_interpreting_347</item>
+        <item>@string/consecutive_translation_349</item>
+        <item>@string/bilateral_translation_440</item>
+        <item>@string/translated_islamic_texts_441</item>
+        <item>@string/translating_technical_texts_443</item>
+        <item>@string/contemporary_issues_in_translation_444</item>
+        <item>@string/translating_documents_and_official_texts_446</item>
+        <item>@string/arabicization_448</item>
+        <item>@string/translating_political_texts_449</item>
+        <item>@string/translating_literary_texts_450</item>
+        <item>@string/translating_video_and_audio_texts_451</item>
+        <item>@string/summary_translation_452</item>
+        <item>@string/practicum_training_in_translation_498</item>
+        <item>@string/study_skills_211</item>
+        <item>@string/translation_and_computer_344</item>
+        <item>@string/morphology_386</item>
+        <item>@string/semantics_389</item>
+        <item>@string/phonetics_382</item>
+        <item>@string/syntax_384</item>
+        <item>@string/phonology_385</item>
+        <item>@string/pragmatics_387</item>
+        <item>@string/historical_linguistics_388</item>
+        <item>@string/teaching_english_as_foreign_language_461</item>
+        <item>@string/research_design_in_linguistics_490</item>
+        <item>@string/discourse_analysis_491</item>
+        <item>@string/psycholinguistics_492</item>
+        <item>@string/language_acquisition_493</item>
+        <item>@string/specific_topic_in_linguistics_466</item>
+        <item>@string/measurement_and_evaluation_468</item>
+        <item>@string/practicum_in_linguistics_499</item>
+        <item>@string/applied_linguistics_360</item>
+        <item>@string/stylistics_381</item>
+        <item>@string/sociolinguistics_494</item>
+        <item>@string/advanced_writing_in_arabic_311</item>
+    </string-array>
 
     <!--english course-->
     <string name="essay_writing_205">Essay writing ENGL 205</string>
@@ -474,7 +500,95 @@
 
     <!--end-->
 
-<!--computer-->
+    <string-array name="major_course_faculty_of_computing_and_information_technology">
+        <item>@string/programming_I_202</item>
+        <item>@string/probability_theory_210</item>
+        <item>@string/fundamentals_of_computing_260</item>
+        <item>@string/programming_II_203</item>
+        <item>@string/technical_writing_231</item>
+        <item>@string/data_structures_304</item>
+        <item>@string/discourse_analysis_491</item>
+        <item>@string/programming_III_307</item>
+        <item>@string/human_computer_interaction_283</item>
+        <item>@string/mathematics_for_computing_223</item>
+        <item>@string/operating_systems_361</item>
+        <item>@string/algorithms_and_complexity_325</item>
+        <item>@string/computer_architecture_311</item>
+        <item>@string/advanced_mathematics_for_computing_324</item>
+        <item>@string/databases_342</item>
+        <item>@string/object_oriented_analysis_and_design_415</item>
+        <item>@string/computer_networks_374</item>
+        <item>@string/computer_organization_312</item>
+        <item>@string/programming_languages_305</item>
+        <item>@string/professional_computing_issues_463</item>
+        <item>@string/artificial_intelligence_431</item>
+        <item>@string/software_engineering_451</item>
+        <item>@string/computer_graphics_481</item>
+        <item>@string/foundation_of_321</item>
+        <item>@string/issues_in_computer_technology_411</item>
+        <item>@string/management_information_systems_426</item>
+        <item>@string/IS_project_management_431</item>
+        <item>@string/enterprise_architecture_412</item>
+        <item>@string/IS_strategy_management_and_acquisition_427</item>
+        <item>@string/system_analysis_and_design_451</item>
+        <item>@string/introduction_to_EC_481</item>
+        <item>@string/web_design_and_development_492</item>
+        <item>@string/E_Business_technology_483</item>
+        <item>@string/E_marketing_strategies_485</item>
+        <item>@string/E_security_484</item>
+        <item>@string/numerical_computation_432</item>
+        <item>@string/software_project_management_452</item>
+        <item>@string/geometric_modeloing_483</item>
+        <item>@string/introduction_to_bioinformatics_433</item>
+        <item>@string/formal_methods_453</item>
+        <item>@string/rendering_techniques_484</item>
+        <item>@string/advanced_computer_graphics_482</item>
+        <item>@string/software_risk_assessment_454</item>
+        <item>@string/visualization_485</item>
+        <item>@string/principle_of_cell_biology_and_genetics_435</item>
+        <item>@string/software_reliability_robustness_and_security_455</item>
+        <item>@string/computer_vision_486</item>
+        <item>@string/molecular_biology_and_genetics_436</item>
+        <item>@string/software_quality_and_testing_456</item>
+        <item>@string/game_engine_programming_487</item>
+        <item>@string/selected_topics_in_bioinformatics_437</item>
+        <item>@string/selected_topics_in_software_engineering_457</item>
+        <item>@string/selected_topics_in_computer_graphics_488</item>
+        <item>@string/IT_fundamentals_321</item>
+        <item>@string/web_systems_and_technologies_463</item>
+        <item>@string/multimedia_technologies_466</item>
+        <item>@string/integrative_programming_and_technologies_403</item>
+        <item>@string/system_administration_and_maintenance_411</item>
+        <item>@string/system_integration_and_architecture_412</item>
+        <item>@string/information_security_324</item>
+        <item>@string/database_administrations_342</item>
+        <item>@string/web_mining_433</item>
+        <item>@string/compute_security_461</item>
+        <item>@string/mobile_programming_and_software_techniques_409</item>
+        <item>@string/web_architecture_468</item>
+        <item>@string/mutimedia_networks_technology_475</item>
+        <item>@string/cloud_computing_465</item>
+        <item>@string/web_based_applications_and_solutions_496</item>
+        <item>@string/network_security_477</item>
+        <item>@string/wireless_and_mobile_communications_technology_472</item>
+        <item>@string/software_architecture_for_web_services_419</item>
+        <item>@string/network_administration_and_management_471</item>
+        <item>@string/wireless_data_privacy_464</item>
+        <item>@string/web_enabled_database_design_and_deployment_469</item>
+        <item>@string/network_analysis_and_design_simulation_473</item>
+        <item>@string/mobile_web_content_and_web_services_467</item>
+        <item>@string/special_topics_in_web_technologies_493</item>
+        <item>@string/specia_topics_in_mobile_computing_495</item>
+        <item>@string/advance_database_management_system_441</item>
+        <item>@string/modeling_and_simulation_432</item>
+        <item>@string/data_mining_and_business_intelligence_448</item>
+        <item>@string/foundations_on_IR_442</item>
+        <item>@string/information_search_and_retrieval_and_visualization_443</item>
+        <item>@string/enterprise_system_482</item>
+        <item>@string/numerical_data_computation_461</item>
+        <item>@string/IT_and_business_process_re_engineering_453</item>
+    </string-array>
+    <!--computer-->
     <string name="programming_I_202">Programming I COCS 202</string>
     <string name="probability_theory_210">Probability Theory STAT 210</string>
     <string name="fundamentals_of_computing_260">Fundamentals of Computing COIT 260</string>
@@ -498,17 +612,155 @@
     <string name="artificial_intelligence_431">Artificial Intelligence COCS 431</string>
     <string name="software_engineering_451">Software Engineering COCS 451</string>
     <string name="computer_graphics_481">Computer Graphics COCS 481</string>
-
-
+    <string name="foundation_of_321">Foundation of IS COIS 321</string>
+    <string name="issues_in_computer_technology_411">Issues in Computer Technology COIS 411</string>
+    <string name="management_information_systems_426">Management Information Systems COIS 426</string>
+    <string name="IS_project_management_431">IS Project Management COIS 431</string>
+    <string name="enterprise_architecture_412">Enterprise Architecture COIS 412</string>
+    <string name="IS_strategy_management_and_acquisition_427">IS Strategy, Management and Acquisition COIS 427</string>
+    <string name="system_analysis_and_design_451">System Analysis and Design COIS 451</string>
+    <string name="introduction_to_EC_481">Introduction to EC COIS 481</string>
+    <string name="web_design_and_development_492">Web Design and Development COIS 492</string>
+    <string name="E_Business_technology_483">E-Business Technology COIS 483</string>
+    <string name="E_marketing_strategies_485">E-Marketing Strategies COIS 485</string>
+    <string name="E_security_484">E-Security COIS 484</string>
+    <string name="numerical_computation_432">Numerical Computation COCS 432</string>
+    <string name="software_project_management_452">Software Project Management COCS 452</string>
+    <string name="geometric_modeloing_483">Geometric Modeloing COCS 483</string>
+    <string name="introduction_to_bioinformatics_433">Introduction to Bioinformatics COCS 433</string>
+    <string name="formal_methods_453">Formal Methods COCS 453</string>
+    <string name="rendering_techniques_484">Rendering Techniques COCS 484</string>
+    <string name="advanced_computer_graphics_482">Advanced Computer Graphics COCS 482</string>
+    <string name="software_risk_assessment_454">Software Risk Assessment COCS 454</string>
+    <string name="visualization_485">Visualization COCS 485</string>
+    <string name="principle_of_cell_biology_and_genetics_435">Principle of cell biology and Genetics COCS 435</string>
+    <string name="software_reliability_robustness_and_security_455">Software Reliability Robustness and Security COCS 455</string>
+    <string name="computer_vision_486">Computer Vision COCS 486</string>
+    <string name="molecular_biology_and_genetics_436">Molecular biology and Genetics COCS 436</string>
+    <string name="software_quality_and_testing_456">Software Quality and Testing COCS 456</string>
+    <string name="game_engine_programming_487">Game Engine Programming COCS 487</string>
+    <string name="selected_topics_in_bioinformatics_437">Selected Topics in Bioinformatics COCS 437</string>
+    <string name="selected_topics_in_software_engineering_457">Selected Topics in Software Engineering COCS 457</string>
+    <string name="selected_topics_in_computer_graphics_488">Selected Topics in Computer Graphics COCS 488</string>
+    <string name="IT_fundamentals_321">IT Fundamentals COIT 321</string>
+    <string name="web_systems_and_technologies_463">Web Systems and Technologies  COIT 463</string>
+    <string name="multimedia_technologies_466">Multimedia Technologies COIT 466</string>
+    <string name="integrative_programming_and_technologies_403">Integrative Programming and Technologies COIT 403</string>
+    <string name="system_administration_and_maintenance_411">System Administration and Maintenance COIT 411</string>
+    <string name="system_integration_and_architecture_412">System Integration and Architecture COIT 412</string>
+    <string name="information_security_324">Information Security COIT 324</string>
+    <string name="database_administrations_342">Database Administrations COIT 342</string>
+    <string name="web_mining_433">Web Mining COIT 433</string>
+    <string name="compute_security_461">Computer Security COIT 461</string>
+    <string name="mobile_programming_and_software_techniques_409">Mobile Programming and Software Techniques COIT 409</string>
+    <string name="web_architecture_468">Web Architecture COIT 468</string>
+    <string name="mutimedia_networks_technology_475">Mutimedia Networks Technology COIT 475</string>
+    <string name="cloud_computing_465">Cloud Computing COIT 465</string>
+    <string name="web_based_applications_and_solutions_496">Web-Based Applications and Solutions COIT 496</string>
+    <string name="network_security_477">Network Security COIT 477</string>
+    <string name="wireless_and_mobile_communications_technology_472">Wireless and Mobile Communications Technology COIT 472</string>
+    <string name="software_architecture_for_web_services_419">Software Architecture for Web Services COIT 419</string>
+    <string name="network_administration_and_management_471">Network Administration and Management COIT 471</string>
+    <string name="wireless_data_privacy_464">Wireless Data Privacy COIT 464</string>
+    <string name="web_enabled_database_design_and_deployment_469">Web Enabled Database Design and Deployment COIT 469</string>
+    <string name="network_analysis_and_design_simulation_473">Network Analysis and Design Simulation COIT 473</string>
+    <string name="mobile_web_content_and_web_services_467">Mobile Web Content and Web Services COIT 467</string>
+    <string name="special_topics_in_web_technologies_493">Special Topics in Web Technologies COIT 493</string>
+    <string name="special_topics_in_network_administration_and_security_494">Special Topics in Network Administration and Security COIT 494</string>
+    <string name="specia_topics_in_mobile_computing_495">Special Topics in Mobile Computing COIT 495</string>
+    <string name="advance_database_management_system_441">Advance Database Management System COIS 441</string>
+    <string name="modeling_and_simulation_432">Modeling and Simulation COIS 432</string>
+    <string name="data_mining_and_business_intelligence_448">Data Mining and Business Intelligence COIS 448</string>
+    <string name="foundations_on_IR_442">Foundations on IR COIS 442</string>
+    <string name="information_search_and_retrieval_and_visualization_443">Information Search and Retrieval and Visualization  COIS 443</string>
+    <string name="enterprise_system_482">Enterprise System COIS 482</string>
+    <string name="numerical_data_computation_461">Numerical Data Computation  COIS 461</string>
+    <string name="IT_and_business_process_re_engineering_453">IT and Business Process Re engineering COIS 453</string>
     <!--end-->
 
 
 
 
+    <string-array name="major_course_faculty_of_medicine_in_rabigh">
+        <item>@string/foundation</item>
+        <item>@string/general_anatomy</item>
+        <item>@string/cells_and_tissues</item>
+        <item>@string/embryology</item>
+        <item>@string/clinical_biochemistry</item>
+        <item>@string/Basic_emergency_care</item>
+        <item>@string/Medical_microbiology</item>
+        <item>@string/pathology</item>
+        <item>@string/Pharmacology</item>
+        <item>@string/Nutrition_and_metabolism</item>
+        <item>@string/musculoskeletal_system</item>
+        <item>@string/Immunity_blood_and_lymphatic</item>
+        <item>@string/cardiovascular_system</item>
+        <item>@string/respiratory_system</item>
+        <item>@string/gastrointestinal_system</item>
+        <item>@string/endocrine_system</item>
+        <item>@string/urinary_system</item>
+        <item>@string/nervous_system_and_special_senses</item>
+        <item>@string/Medical_genetic</item>
+        <item>@string/Ethics_and_professionalism</item>
+        <item>@string/laboratory_system</item>
+        <item>@string/clinical_skill_module</item>
+        <item>@string/Community_medicine</item>
+        <item>@string/basic_imaging</item>
+        <item>@string/ophthalmology</item>
+        <item>@string/otorhinolaryngology</item>
+        <item>@string/forensic_medicine</item>
+        <item>@string/Family_medicine</item>
+        <item>@string/pediatric</item>
+        <item>@string/Surgery_and_subspecialties</item>
+        <item>@string/obstetric</item>
+        <item>@string/psychiatry</item>
+        <item>@string/anesthesia</item>
+        <item>@string/Medicine_and_subspecialties</item>
+        <item>@string/accident_and_emergency</item>
 
 
+    </string-array>
 
 
+    <!--medicine -->
+    <string name="foundation">Foundation</string>
+    <string name="general_anatomy">General Anatomy</string>
+    <string name="cells_and_tissues">Cells and Tissues</string>
+    <string name="embryology">Embryology</string>
+    <string name="clinical_biochemistry">Clinical biochemistry</string>
+    <string name="Basic_emergency_care">Basic emergency care</string>
+    <string name="Medical_microbiology">Medical microbiology</string>
+    <string name="pathology">pathology</string>
+    <string name="Pharmacology">Pharmacology</string>
+    <string name="Nutrition_and_metabolism">Nutrition and metabolism</string>
+    <string name="musculoskeletal_system">musculoskeletal system</string>
+    <string name="Immunity_blood_and_lymphatic">Immunity, blood and lymphatic</string>
+    <string name="cardiovascular_system">cardiovascular system</string>
+    <string name="respiratory_system">respiratory system</string>
+    <string name="gastrointestinal_system">gastrointestinal system</string>
+    <string name="endocrine_system">endocrine system</string>
+    <string name="urinary_system">urinary system</string>
+    <string name="nervous_system_and_special_senses">nervous system and special senses</string>
+    <string name="Reproductive_system">Reproductive system</string>
+    <string name="Medical_genetic">Medical genetic</string>
+    <string name="Ethics_and_professionalism">Ethics and professionalism</string>
+    <string name="laboratory_system">laboratory system</string>
+    <string name="clinical_skill_module">clinical skill module</string>
+    <string name="Community_medicine">Community medicine</string>
+    <string name="basic_imaging">basic imaging</string>
+    <string name="ophthalmology">ophthalmology</string>
+    <string name="otorhinolaryngology">otorhinolaryngology</string>
+    <string name="forensic_medicine">forensic medicine</string>
+    <string name="Family_medicine">Family medicine</string>
+    <string name="pediatric">pediatric</string>
+    <string name="Surgery_and_subspecialties">Surgery and subspecialties</string>
+    <string name="obstetric">obstetric and gynecology</string>
+    <string name="psychiatry">psychiatry</string>
+    <string name="anesthesia">anesthesia</string>
+    <string name="Medicine_and_subspecialties">Medicine and subspecialties</string>
+    <string name="accident_and_emergency">accident and emergency</string>
+
+    <!--end-->
 
 
 </resources>

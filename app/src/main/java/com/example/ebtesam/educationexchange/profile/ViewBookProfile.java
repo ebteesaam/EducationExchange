@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,12 +44,15 @@ public class ViewBookProfile extends AppCompatActivity {
     private TextView availability, price, state, number_of_course, name_of_book, faculty, type, facultyname, number_of_coursename;
     private ImageView photo;
     private ProgressBar progressBar;
+    private FirebaseMethod firebaseMethod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_book_page);
         setTitle(getString(R.string.book_details));
+        firebaseMethod = new FirebaseMethod(ViewBookProfile.this);
+
         bookId=getIntent().getStringExtra("id_book");
 
         availability=findViewById(R.id.availability);
@@ -181,7 +185,8 @@ public class ViewBookProfile extends AppCompatActivity {
 
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
-
+                        myBook=singleSnapshot.getKey().toString();
+                 Log.d(TAG, myBook);
                     availability.setText(book.getAvailability().toString());
                     name_of_book.setText(book.getBook_name().toString());
                     number_of_course.setText(book.getCourse_id().toString());
@@ -248,7 +253,12 @@ public class ViewBookProfile extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
+                try {
+                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
 
+                    firebaseMethod.updateAvailabilty("blocked",myBook);
+
+                }catch (Exception e){}
                 ViewBookProfile.this.finish();
                 return true;
 

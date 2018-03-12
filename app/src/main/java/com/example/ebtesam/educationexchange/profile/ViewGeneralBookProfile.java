@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +35,7 @@ import java.util.ArrayList;
 public class ViewGeneralBookProfile extends AppCompatActivity {
 
     TabLayout tabLayout;
-    String bookId;
+    String bookId, myBook;
     ImageLoader imageLoader;
     String bookAvailability;
     private Context mContext = ViewGeneralBookProfile.this;
@@ -53,6 +52,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
         setContentView(R.layout.view_general_book_page);
         setTitle(getString(R.string.book_details));
         bookId = getIntent().getStringExtra("id_book");
+        firebaseMethod = new FirebaseMethod(ViewGeneralBookProfile.this);
 
         availability = findViewById(R.id.availability);
         price = findViewById(R.id.price);
@@ -84,6 +84,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                     bookAvailability=  singleSnapshot.getKey().toString();
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
+                        myBook=singleSnapshot.getKey().toString();
 
                         availability.setText(book.getAvailability().toString());
                         name_of_book.setText(book.getBook_name().toString());
@@ -141,39 +142,37 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        return;
-    }
 
-    @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // This adds menu items to the app bar.cd ..
         getMenuInflater().inflate(R.menu.delete_book, menu);
         return true;
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-                Log.d(mContext.toString(), "bookAvailability."+ bookAvailability);
+                try {
+                  //  Log.d(TAG, "onCancelled: query cancelled."+myBook);
 
-//update();
+                    firebaseMethod.updateAvailabilty("blocked",myBook);
 
-//    firebaseMethod.updateAvailabilty(getString(R.string.blocked), bookAvailability);
-
+                }catch (Exception e){}
                 ViewGeneralBookProfile.this.finish();
                 return true;
-//            case R.id.search:
-//                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;
-//                startActivity(i);
-//                return true;
+
+
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        return;
     }
 
 //    private void update(){

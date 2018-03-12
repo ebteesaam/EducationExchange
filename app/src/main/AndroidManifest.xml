@@ -28,6 +28,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".addBook.AddLectureNotes"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".login.LoginPage" />
         <activity android:name=".login.RegisterPage" />
         <activity
@@ -66,6 +73,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".addBook.AddTextBook" />
         </activity>
+        <activity android:name=".addBook.TakePhotoActivityLN"
+        android:parentActivityName=".addBook.AddLectureNotes">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".addBook.AddLectureNotes" />
+    </activity>
         <activity
             android:name=".profile.TakeProfilePhotoActivity"
             android:parentActivityName=".profile.EditProfile">
@@ -74,6 +87,8 @@
                 android:value=".profile.EditProfile" />
         </activity>
         <activity android:name=".profile.MyBooksActivity"></activity>
+        <activity android:name=".profile.MyAnnouncementsActivity"></activity>
+
         <activity android:name=".Fragment.CustomListActivity"></activity>
 
         <activity android:name=".Material"
@@ -101,6 +116,8 @@
         <activity android:name=".profile.ViewBookProfile"></activity>
         <activity android:name=".profile.ViewGeneralBookProfile"></activity>
 <activity android:name=".announcement.AnnouncementGeneralActivity"></activity>
+
+        <activity android:name=".profile.ViewMyAnnouncement"></activity>
     </application>
 
 </manifest>

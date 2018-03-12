@@ -289,6 +289,7 @@ public class FirebaseMethod {
         book.setDate_created(getTimestamp());
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
         book.setId_announcement(newAnnouncementKey);
+        book.setAvailability("Availability");
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_announcement))
@@ -532,24 +533,36 @@ public class FirebaseMethod {
     public void updateAvailabilty(String email, String book) {
 
         Log.d(TAG, "updateUsername: upadting username to: " + email);
-
+        if(email != null){
         myRef.child(mContext.getString(R.string.dbname_material))
                 .child(book)
                 .child(mContext.getString(R.string.availability))
-                .setValue(email);
+                .setValue(email);}
 
 
     }
 
+    public void removeAnnouncement(String email, String book) {
 
-    public void updateUserAccountSettings(String displayName, String website, String description, long phoneNumber){
+        Log.d(TAG, "updateUsername: upadting username to: " + email);
+        if(email != null){
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(book)
+                    .child(mContext.getString(R.string.availability))
+                    .setValue(email);
+        }
+
+
+    }
+
+    public void updateMyBook(String bookNmae, String price, String type ,String available,String state, String url){
 
         Log.d(TAG, "updateUserAccountSettings: updating user account settings.");
 
-//        if(displayName != null){
-//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
+//        if(bookNmae != null){
+//            myRef.child(mContext.getString(R.string.dbname_material))
 //                    .child(userID)
-//                    .child(mContext.getString(R.string.field_display_name))
+//                    .child(mContext.getString(R.string.))
 //                    .setValue(displayName);
 //        }
 //

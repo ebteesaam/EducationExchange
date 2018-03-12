@@ -11,6 +11,7 @@ public class Announcement {
     private String user_id;
     private String status;
     private String course_id;
+    private String availability;
     private String type;
     private String text;
     private String faculty;
@@ -19,16 +20,27 @@ public class Announcement {
     public Announcement() {
     }
 
-    public Announcement(String title, String date_created, String id_announcement, String user_id, String status, String course_id, String type, String text, String faculty) {
+
+
+    public Announcement(String title, String date_created, String id_announcement, String user_id, String status, String course_id, String availability, String type, String text, String faculty) {
         this.title = title;
         this.date_created = date_created;
         this.id_announcement = id_announcement;
         this.user_id = user_id;
         this.status = status;
         this.course_id = course_id;
+        this.availability = availability;
         this.type = type;
         this.text = text;
         this.faculty = faculty;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     public String getTitle() {

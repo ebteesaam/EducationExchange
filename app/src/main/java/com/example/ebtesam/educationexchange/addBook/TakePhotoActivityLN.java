@@ -16,7 +16,7 @@ import com.example.ebtesam.educationexchange.Fragment.PhotoFragment;
 import com.example.ebtesam.educationexchange.Fragment.SectionsPagerAdapter;
 import com.example.ebtesam.educationexchange.R;
 
-public class TakePhotoActivity extends AppCompatActivity {
+public class TakePhotoActivityLN extends AppCompatActivity {
     private static final String TAG = "TakePhotoActivity";
     AddTextBook addTextBook;
     private ViewPager mViewPager;
@@ -63,7 +63,7 @@ public class TakePhotoActivity extends AppCompatActivity {
     public boolean checkPermissions(String permission){
         Log.d(TAG, "checkPermissions: checking permission");
 
-        int permissionRequest= ActivityCompat.checkSelfPermission(TakePhotoActivity.this, permission);
+        int permissionRequest= ActivityCompat.checkSelfPermission(TakePhotoActivityLN.this, permission);
 
         if(permissionRequest != PackageManager.PERMISSION_GRANTED){
             Log.d(TAG, "checkPermissions: \n permissin was not granted for: "+permission);
@@ -86,10 +86,10 @@ public class TakePhotoActivity extends AppCompatActivity {
             case R.id.action_next:
                 Log.d(TAG, "onClick: navigating to the next share screen.");
 
-                Intent intent = new Intent(TakePhotoActivity.this, AddTextBook.class);
+                Intent intent = new Intent(TakePhotoActivityLN.this, AddLectureNotes.class);
                 intent.putExtra(getString(R.string.selected_image), GalleryFragment.image);
                 startActivity(intent);
-                TakePhotoActivity.this.finish();
+                TakePhotoActivityLN.this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
