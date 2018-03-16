@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/grey_border_bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+
+        android:layout_marginTop="18dp"
+        android:text="@string/why_report"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/unEthical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+
+        android:background="@drawable/white_buttom"
+        android:text="@string/unEthical"
+        android:textAllCaps="false" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="@string/other"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        />
+    <EditText
+        android:id="@+id/other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        />
+
+
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/cancel"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+
+        android:background="@drawable/white_buttom"
+        android:text="@string/cancel"
+        android:textAllCaps="false" />
+
+
+
+
+</LinearLayout>

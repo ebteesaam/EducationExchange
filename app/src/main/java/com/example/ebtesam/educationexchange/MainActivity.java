@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.ebtesam.educationexchange.Fragment.CustomListActivity;
 import com.example.ebtesam.educationexchange.Fragment.GeneralBook;
 import com.example.ebtesam.educationexchange.Fragment.HomeActivity;
 import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
@@ -22,6 +21,7 @@ import com.example.ebtesam.educationexchange.Fragment.ViewPagerAdapter;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
 import com.example.ebtesam.educationexchange.login.LoginPage;
 import com.example.ebtesam.educationexchange.profile.ProfilePage;
+import com.example.ebtesam.educationexchange.search.SearchBook;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
                 return true;
             case R.id.search:
-                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;
+                Intent i=new Intent(MainActivity.this, SearchBook.class) ;
                 startActivity(i);
                 return true;
 

@@ -534,15 +534,13 @@ public class FirebaseMethod {
 
 
 
-    public void removeAnnouncement(String email, String book) {
+    public void removeAnnouncement( String book) {
 
-        Log.d(TAG, "updateUsername: upadting username to: " + email);
-        if (email != null) {
+
             myRef.child(mContext.getString(R.string.dbname_announcement))
                     .child(book).removeValue();
             Toast.makeText(mContext, mContext.getString(R.string.deleteAnnouncement), Toast.LENGTH_SHORT).show();
 
-        }
 
 
     }
@@ -581,5 +579,41 @@ public class FirebaseMethod {
     }
 
 
+    public void updateAnnouncement(String bookNmae, String courseId, String faculty, String type, String text1, String active, String myBook) {
+
+        if (bookNmae != null) {
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(myBook).child("book_name").setValue(bookNmae);
+        }
+
+        if (courseId != null) {
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(myBook).child("course_id").setValue(courseId);
+        }
+
+        if (active != null) {
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(myBook).child("status").setValue(active);
+        }
+        if (faculty != null) {
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(myBook).child("faculty").setValue(faculty);
+        }
+
+        if (type != null) {
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(myBook).child("type").setValue(type);
+        }
+
+        if (text1 != null) {
+            myRef.child(mContext.getString(R.string.dbname_announcement))
+                    .child(myBook).child("text").setValue(text1);
+        }
+        Toast.makeText(mContext, mContext.getString(R.string.success_update), Toast.LENGTH_SHORT).show();
+    }
+
+    public void reportMaterial(String s) {
+
+    }
 }
 

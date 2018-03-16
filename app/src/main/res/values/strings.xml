@@ -130,7 +130,11 @@
     <string name="availability">availability</string>
     <string name="status">status</string>
     <string name="message">Message</string>
-
+<string name="report">report the material</string>
+    <string name="why_report">Why are you reporting this material?</string>
+    <string name="unEthical">Un Ethical </string>
+    <string name="other">other:</string>
+    <string name="no_result">There is no result</string>
 
     <!--array for add material pag-->
     <string-array name="availability">

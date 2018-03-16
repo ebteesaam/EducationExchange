@@ -1,6 +1,7 @@
 package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
+import com.example.ebtesam.educationexchange.announcement.AnnouncementGeneralActivity;
 import com.example.ebtesam.educationexchange.models.Announcement;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +36,7 @@ import java.util.ArrayList;
 public class ViewMyAnnouncement extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     TabLayout tabLayout;
-    String bookId, myBook;
+    String bookId, myBook, typeMaterial;
     ImageLoader imageLoader;
     private Context mContext = ViewMyAnnouncement.this;
     private FirebaseAuth mAuth;
@@ -87,6 +90,8 @@ setupGridView();
                         name_of_book.setText(book.getTitle().toString());
 
                         type.setText(book.getType().toString());
+                        typeMaterial=book.getType().toString();
+
                         bookText.setText(book.getText().toString());
                        // state.setText(book.getStatus().toString());
                         if(book.getCourse_id()!=null||book.getFaculty()!=null){
@@ -127,11 +132,26 @@ setupGridView();
                 try {
                     Log.d(TAG, "onCancelled: query cancelled."+myBook);
 
-                    firebaseMethod.removeAnnouncement("inactive",myBook);
+                    firebaseMethod.removeAnnouncement(myBook);
 
                 }catch (Exception e){}
                 ViewMyAnnouncement.this.finish();
                 return true;
+
+            case R.id.action_setting:
+
+                    if(typeMaterial.equals("General Books")){
+                    Intent intent=new Intent(ViewMyAnnouncement.this,AnnouncementGeneralActivity.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+                }else {
+                        Intent intent = new Intent(ViewMyAnnouncement.this, AnnouncementActivity.class);
+                        intent.putExtra("id_book", bookId);
+                        startActivity(intent);
+                        return true;
+
+                    }
 
 
 

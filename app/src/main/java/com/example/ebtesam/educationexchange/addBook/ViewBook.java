@@ -2,16 +2,22 @@ package com.example.ebtesam.educationexchange.addBook;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogClass;
+import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,12 +38,14 @@ import java.util.ArrayList;
 
 public class ViewBook extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    public static String id_material;
     TabLayout tabLayout;
     String bookId, myBook;
     ImageLoader imageLoader;
     private Context mContext = ViewBook.this;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseMethod mFirebaseMethods;
     private TextView availability, price, state, number_of_course, name_of_book, faculty, type, facultyname, number_of_coursename;
     private ImageView photo;
     private ProgressBar progressBar;
@@ -48,6 +56,7 @@ public class ViewBook extends AppCompatActivity {
         setContentView(R.layout.view_book_page);
         setTitle(getString(R.string.book_details));
         bookId=getIntent().getStringExtra("id_book");
+        mFirebaseMethods = new FirebaseMethod(mContext);
 
         availability=findViewById(R.id.availability);
         price=findViewById(R.id.price);
@@ -90,7 +99,7 @@ public class ViewBook extends AppCompatActivity {
 
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
-
+id_material=book.getId_book();
                     availability.setText(book.getAvailability().toString());
                     name_of_book.setText(book.getBook_name().toString());
                     number_of_course.setText(book.getCourse_id().toString());
@@ -152,4 +161,28 @@ public class ViewBook extends AppCompatActivity {
         super.onBackPressed();
         return;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.action_report:
+                CustomDialogClass cdd = new CustomDialogClass(ViewBook.this);
+                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();
+
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu options from the res/menu/menu_editor.xml file.
+        // This adds menu items to the app bar.
+        getMenuInflater().inflate(R.menu.report, menu);
+        return true;
+    }
+
+}

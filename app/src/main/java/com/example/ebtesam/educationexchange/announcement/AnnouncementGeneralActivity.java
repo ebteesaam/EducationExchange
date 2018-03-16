@@ -16,13 +16,18 @@ import android.widget.Toast;
 import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.models.Announcement;
+import com.example.ebtesam.educationexchange.profile.MyAnnouncementsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class AnnouncementGeneralActivity extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class AnnouncementGeneralActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private FirebaseMethod mFirebaseMethods;
     private int imageCount;
+    private String bookId, myBook,typeMaterial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +58,49 @@ public class AnnouncementGeneralActivity extends AppCompatActivity {
 
 
 
+        if (getIntent().getExtras() != null) {
+            bookId = getIntent().getStringExtra("id_book");
+            setupGridView();
 
+        }
 
 
 setupFirebaseAuth();
 
+    }
+
+    private void setupGridView() {
+
+        final ArrayList<Announcement> books = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        Query query = reference
+                .child(getString(R.string.dbname_announcement));
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Announcement book = singleSnapshot.getValue(Announcement.class);
+                    if (book.getId_announcement().equals(bookId)) {
+                        books.add(singleSnapshot.getValue(Announcement.class));
+                        title.setText(book.getTitle().toString());
+                        text.setText(book.getText().toString());
+                        myBook = singleSnapshot.getKey().toString();
+                        typeMaterial = book.getType().toString();
+
+                    }
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
 
@@ -158,8 +202,19 @@ setupFirebaseAuth();
                 } catch (NullPointerException e) {
 
                 }
+                if(intent.hasExtra("id_book")){
+                    try {
 
-                type=getString(R.string.general_book).toString();
+                        mFirebaseMethods.updateAnnouncement(bookNmae, courseId, null,null, text1,"active",myBook);
+
+                    }catch (Exception e){}
+                    AnnouncementGeneralActivity.this.finish();
+                    Intent intent1 = new Intent(AnnouncementGeneralActivity.this, MyAnnouncementsActivity.class);
+                    startActivity(intent1);
+                    return true;
+                }
+
+                type="General Books";
 
 
                     //set the new profile picture
