@@ -28,6 +28,7 @@ import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
 import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.profile.MyBooksActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -241,7 +242,8 @@ public class AddTextBook extends AppCompatActivity {
                         editPrice.setText(book.getPrice().toString());
                         spinner1.setSelection(getIndex(spinner1,book.getFaculty()));
                         spinner2.setSelection(getIndex(spinner2,book.getStatus()));
-
+                        spinner3.setSelection(getIndex(spinner3, book.getAvailability()));
+                        spinner4.setSelection(getIndex(spinner4, book.getCourse_id()));
                       //  spinner1.setSelection(Integer.parseInt(book.getFaculty()));
 //                        spinner1.(book.getFaculty().toString());
 //                        spinner2 = findViewById(R.id.spinner2);
@@ -487,12 +489,7 @@ public class AddTextBook extends AppCompatActivity {
                 available = spinner3.getSelectedItem().toString();
                 state = spinner2.getSelectedItem().toString();
                 courseId = spinner4.getSelectedItem().toString();
-//                        spinner5.getSelectedItem().toString();
 
-//                facultyIndex = String.valueOf(spinner1.getSelectedItemPosition());
-//                availableIndex = String.valueOf(spinner2.getSelectedItemPosition());
-//                stateIndex = String.valueOf(spinner3.getSelectedItemPosition());
-//                courseIdIndex = String.valueOf(spinner4.getSelectedItemPosition());
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture
@@ -511,6 +508,8 @@ public class AddTextBook extends AppCompatActivity {
 
                     }catch (Exception e){}
                     AddTextBook.this.finish();
+                    Intent intent1 = new Intent(AddTextBook.this, MyBooksActivity.class);
+                    startActivity(intent1);
                     return true;
                 } else {
                     Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();

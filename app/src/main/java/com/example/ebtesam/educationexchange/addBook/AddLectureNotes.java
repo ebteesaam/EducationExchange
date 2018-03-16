@@ -27,19 +27,28 @@ import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.Utils.Permissions;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
+import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.profile.MyBooksActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+import java.util.ArrayList;
 
 public class AddLectureNotes extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     public int imageCount = 0;
     ArrayAdapter<CharSequence> adapter3;
+    ImageLoader imageLoader;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -51,7 +60,7 @@ public class AddLectureNotes extends AppCompatActivity {
     //vars
     private String mAppend = "file:/";
     private String imgUrl;
-    private String type;
+    private String type, bookId;
     private Context mContext = AddLectureNotes.this;
     private ImageButton takePhoto;
     private ImageView bookPhoto;
@@ -59,7 +68,7 @@ public class AddLectureNotes extends AppCompatActivity {
     private EditText editName, editPrice, numOfCourse;
     private Spinner spinner1, spinner2, spinner3, spinner4;
     private RelativeLayout relativeLayout3, relativeLayout9;
-    private String itemtype = "";
+    private String itemtype = "", myBook;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -141,6 +150,11 @@ public class AddLectureNotes extends AppCompatActivity {
 
 
         takePhoto = findViewById(R.id.photo);
+        if (getIntent().getExtras() != null) {
+            bookId = getIntent().getStringExtra("id_book");
+            setupGridView();
+            takePhoto.setVisibility(View.GONE);
+        }
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,7 +193,97 @@ public class AddLectureNotes extends AppCompatActivity {
     }
 
 
-    private void setBookData() {
+    private int getIndex(Spinner spinner, String v){
+        int index=0;
+        for(int i=0;i<spinner.getCount();i++){
+            if(spinner.getItemAtPosition(i).toString().equalsIgnoreCase(v)){
+                index=i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    private void setupGridView() {
+        Log.d(TAG, "setupGridView: Setting up image grid.");
+
+        final ArrayList<Book> books = new ArrayList<>();
+        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+        Query query = reference
+                .child(getString(R.string.dbname_material));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Book book = singleSnapshot.getValue(Book.class);
+
+                    if (book.getId_book().equals(bookId)) {
+                        books.add(singleSnapshot.getValue(Book.class));
+                        myBook=singleSnapshot.getKey().toString();
+                        Log.d(TAG, myBook);
+                        editName.setText(book.getBook_name().toString());
+                        editPrice.setText(book.getPrice().toString());
+                        spinner1.setSelection(getIndex(spinner1,book.getFaculty()));
+                        spinner2.setSelection(getIndex(spinner2,book.getStatus()));
+                        spinner3.setSelection(getIndex(spinner3, book.getAvailability()));
+                        spinner4.setSelection(getIndex(spinner4, book.getCourse_id()));
+
+                        //  spinner1.setSelection(Integer.parseInt(book.getFaculty()));
+//                        spinner1.(book.getFaculty().toString());
+//                        spinner2 = findViewById(R.id.spinner2);
+//                        spinner3 = findViewById(R.id.spinner3);
+//                        spinner4 = findViewById(R.id.spinnermajorcourse);
+//                        availability.setText(book.getAvailability().toString());
+//                        name_of_book.setText(book.getBook_name().toString());
+//                        number_of_course.setText(book.getCourse_id().toString());
+//                        type.setText(book.getType().toString());
+//                        price.setText(book.getPrice().toString());
+//                        state.setText(book.getStatus().toString());
+//                        faculty.setText(book.getFaculty().toString());
+                        imageLoader = ImageLoader.getInstance();
+//
+                        imageLoader.displayImage(book.getImage_path(), bookPhoto, new ImageLoadingListener() {
+                            @Override
+                            public void onLoadingStarted(String imageUri, View view) {
+
+                            }
+
+                            @Override
+                            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+
+
+                            }
+
+                            @Override
+                            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+
+
+                            }
+
+                            @Override
+                            public void onLoadingCancelled(String imageUri, View view) {
+
+
+                            }
+
+                        });
+
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: query cancelled.");
+            }
+        });
     }
 
     /**
@@ -378,7 +482,18 @@ public class AddLectureNotes extends AppCompatActivity {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddLectureNotes.this);
                     firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, courseId, price, faculty, itemtype, available, state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
-                } else {
+                } else if(intent.hasExtra("id_book")){
+                    try {
+                        Log.d(TAG, "onCancelled: query cancelled."+myBook);
+
+                        mFirebaseMethods.updateBook(bookNmae, courseId, price, faculty, available, state,myBook);
+
+                    }catch (Exception e){}
+                    AddLectureNotes.this.finish();
+                    Intent intent1 = new Intent(AddLectureNotes.this, MyBooksActivity.class);
+                    startActivity(intent1);
+                    return true;
+                }else {
                     Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
                     return false;
                 }

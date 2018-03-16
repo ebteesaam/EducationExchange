@@ -1,6 +1,7 @@
 package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
+import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
+import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +41,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
     TabLayout tabLayout;
     String bookId, myBook;
     ImageLoader imageLoader;
-    String bookAvailability;
+    String bookAvailability, typeMaterial;
     private Context mContext = ViewGeneralBookProfile.this;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -85,6 +89,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
                         myBook=singleSnapshot.getKey().toString();
+                        typeMaterial=book.getType().toString();
 
                         availability.setText(book.getAvailability().toString());
                         name_of_book.setText(book.getBook_name().toString());
@@ -163,6 +168,24 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                 ViewGeneralBookProfile.this.finish();
                 return true;
 
+            case R.id.action_setting:
+                if(typeMaterial.equals("TextBooks")){
+                    Intent intent=new Intent(ViewGeneralBookProfile.this,AddTextBook.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+                }else if(typeMaterial.equals("Lecture Notes")){
+                    Intent intent=new Intent(ViewGeneralBookProfile.this,AddLectureNotes.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+
+                }else if(typeMaterial.equals("General Books")){
+                    Intent intent=new Intent(ViewGeneralBookProfile.this,AddGeneralBook.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+                }
 
 
         }
