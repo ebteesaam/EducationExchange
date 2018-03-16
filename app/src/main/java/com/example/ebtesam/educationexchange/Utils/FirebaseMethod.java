@@ -42,7 +42,7 @@ public class FirebaseMethod {
 
     private static final String TAG = "FirebaseMethod";
 
-    private Context mContext ;
+    private Context mContext;
 
     private String userID;
     private FirebaseDatabase mFirebaseDatabase;
@@ -52,24 +52,24 @@ public class FirebaseMethod {
     private StorageReference mStorageReference;
     private double mPhotoUploadProgress = 0;
 
-    public FirebaseMethod(Context context){
-        mAuth= FirebaseAuth.getInstance();
-        mContext=context;
-        mFirebaseDatabase=FirebaseDatabase.getInstance();
-        myRef=mFirebaseDatabase.getReference();
+    public FirebaseMethod(Context context) {
+        mAuth = FirebaseAuth.getInstance();
+        mContext = context;
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
         mStorageReference = FirebaseStorage.getInstance().getReference();
-        if(mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser() != null) {
             userID = mAuth.getCurrentUser().getUid();
         }
     }
 
 
-    public void uploadNewBook( String photoType,final String bookNmae,final String courseId ,final String price,final String  faculty,final String type,final String available,final String state,final int count, final String imgUrl, Bitmap bm){
+    public void uploadNewBook(String photoType, final String bookNmae, final String courseId, final String price, final String faculty, final String type, final String available, final String state, final int count, final String imgUrl, Bitmap bm) {
         Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
 
         FilePaths filePaths = new FilePaths();
         //case1) new photo
-        if(photoType.equals(mContext.getString(R.string.new_book))){
+        if (photoType.equals(mContext.getString(R.string.new_book))) {
             Log.d(TAG, "uploadNewPhoto: uploading NEW book photo.");
 
             String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -77,7 +77,7 @@ public class FirebaseMethod {
                     .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/book" + (count + 1));
 
             //convert image url to bitmap
-            if(bm == null){
+            if (bm == null) {
                 bm = ImageManager.getBitmap(imgUrl);
             }
             byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
@@ -93,14 +93,13 @@ public class FirebaseMethod {
                     Toast.makeText(mContext, "Book upload success", Toast.LENGTH_SHORT).show();
 
                     //add the new photo to 'photos' node and 'user_photos' node
-                    addBookToDatabase(bookNmae, courseId , price,faculty,type,available,state, firebaseUrl.toString(),count);
+                    addBookToDatabase(bookNmae, courseId, price, faculty, type, available, state, firebaseUrl.toString(), count);
 
                     //navigate to the main feed so the user can see their photo
 //                    Intent intent = new Intent(mContext, HomeActivity.class);
 //                    mContext.startActivity(intent);
 
 
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -113,7 +112,7 @@ public class FirebaseMethod {
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                     double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
-                    if(progress - 15 > mPhotoUploadProgress){
+                    if (progress - 15 > mPhotoUploadProgress) {
                         Toast.makeText(mContext, " upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
                         mPhotoUploadProgress = progress;
                     }
@@ -123,143 +122,142 @@ public class FirebaseMethod {
             });
 
 
-        }}
-
-    public void uploadNewBook( String photoType,final String bookNmae,final String price, final String type,final String available,final String state,final int count, final String imgUrl, Bitmap bm){
-        Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
-
-        FilePaths filePaths = new FilePaths();
-        //case1) new photo
-        if(photoType.equals(mContext.getString(R.string.new_book))){
-            Log.d(TAG, "uploadNewPhoto: uploading NEW book photo.");
-
-            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            StorageReference storageReference = mStorageReference
-                    .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/book" + (count + 1));
-
-            //convert image url to bitmap
-            if(bm == null){
-                bm = ImageManager.getBitmap(imgUrl);
-            }
-            byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
-
-            UploadTask uploadTask = null;
-            uploadTask = storageReference.putBytes(bytes);
-
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri firebaseUrl = taskSnapshot.getDownloadUrl();
-
-                    Toast.makeText(mContext, "Book upload success", Toast.LENGTH_SHORT).show();
-
-                    //add the new photo to 'photos' node and 'user_photos' node
-                    addBookToDatabase(bookNmae,  price,type,available,state, firebaseUrl.toString(),count);
-
-                    //navigate to the main feed so the user can see their photo
-//                    Intent intent = new Intent(mContext, HomeActivity.class);
-//                    mContext.startActivity(intent);
-
-
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d(TAG, "onFailure:  upload failed.");
-                    Toast.makeText(mContext, " upload failed ", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-
-                    if(progress - 15 > mPhotoUploadProgress){
-                        Toast.makeText(mContext, " upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
-                        mPhotoUploadProgress = progress;
-                    }
-
-                    Log.d(TAG, "onProgress: upload progress: " + progress + "% done");
-                }
-            });
-
-
-        }}
-        //case new profile photo
-        public void uploadNewProfilePhoto( String photoType, final String caption,final int count, final String imgUrl, Bitmap bm){
-
-            Log.d(TAG, "uploadNewPhoto: uploading new PROFILE photo");
-            FilePaths filePaths = new FilePaths();
-
-            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            StorageReference storageReference = mStorageReference
-                    .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/profile_photo");
-
-            //convert image url to bitmap
-            if(bm == null){
-                                bm = ImageManager.getBitmap(imgUrl);
-                  }
-//            bm = com.example.ebtesam.educationexchange.Utils.ImageManager.getBitmap(imgUrl);
-            byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
-
-            UploadTask uploadTask = null;
-            uploadTask = storageReference.putBytes(bytes);
-
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri firebaseUrl = taskSnapshot.getDownloadUrl();
-
-                    Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
-
-                    //insert into 'user_account_settings' node
-                    setProfilePhoto(firebaseUrl.toString());
-
-
-
-
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d(TAG, "onFailure:  upload failed.");
-                    Toast.makeText(mContext, " upload failed ", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-
-                    if(progress - 15 > mPhotoUploadProgress){
-                        Toast.makeText(mContext, " upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
-                        mPhotoUploadProgress = progress;
-                    }
-
-                    Log.d(TAG, "onProgress: upload progress: " + progress + "% done");
-                }
-            });
         }
+    }
+
+    public void uploadNewBook(String photoType, final String bookNmae, final String price,
+                              final String type, final String available, final String state, final int count, final String imgUrl, Bitmap bm) {
+        Log.d(TAG, "uploadNewPhoto: attempting to uplaod new photo.");
+
+        FilePaths filePaths = new FilePaths();
+        //case1) new photo
+        if (photoType.equals(mContext.getString(R.string.new_book))) {
+            Log.d(TAG, "uploadNewPhoto: uploading NEW book photo.");
+
+            String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            StorageReference storageReference = mStorageReference
+                    .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/book" + (count + 1));
+
+            //convert image url to bitmap
+            if (bm == null) {
+                bm = ImageManager.getBitmap(imgUrl);
+            }
+            byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
+
+            UploadTask uploadTask = null;
+            uploadTask = storageReference.putBytes(bytes);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri firebaseUrl = taskSnapshot.getDownloadUrl();
+
+                    Toast.makeText(mContext, "Book upload success", Toast.LENGTH_SHORT).show();
+
+                    //add the new photo to 'photos' node and 'user_photos' node
+                    addBookToDatabase(bookNmae, price, type, available, state, firebaseUrl.toString(), count);
+
+                    //navigate to the main feed so the user can see their photo
+//                    Intent intent = new Intent(mContext, HomeActivity.class);
+//                    mContext.startActivity(intent);
 
 
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, "onFailure:  upload failed.");
+                    Toast.makeText(mContext, " upload failed ", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
-    private void setProfilePhoto(String url){
+                    if (progress - 15 > mPhotoUploadProgress) {
+                        Toast.makeText(mContext, " upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
+                        mPhotoUploadProgress = progress;
+                    }
+
+                    Log.d(TAG, "onProgress: upload progress: " + progress + "% done");
+                }
+            });
+
+
+        }
+    }
+
+    //case new profile photo
+    public void uploadNewProfilePhoto(String photoType, final String caption, final int count, final String imgUrl, Bitmap bm) {
+
+        Log.d(TAG, "uploadNewPhoto: uploading new PROFILE photo");
+        FilePaths filePaths = new FilePaths();
+
+        String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        StorageReference storageReference = mStorageReference
+                .child(filePaths.FIREBASE_IMAGE_STORAGE + "/" + user_id + "/profile_photo");
+
+        //convert image url to bitmap
+        if (bm == null) {
+            bm = ImageManager.getBitmap(imgUrl);
+        }
+//            bm = com.example.ebtesam.educationexchange.Utils.ImageManager.getBitmap(imgUrl);
+        byte[] bytes = com.example.ebtesam.educationexchange.Utils.ImageManager.getBytesFromBitmap(bm, 100);
+
+        UploadTask uploadTask = null;
+        uploadTask = storageReference.putBytes(bytes);
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Uri firebaseUrl = taskSnapshot.getDownloadUrl();
+
+                Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
+
+                //insert into 'user_account_settings' node
+                setProfilePhoto(firebaseUrl.toString());
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "onFailure:  upload failed.");
+                Toast.makeText(mContext, " upload failed ", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                if (progress - 15 > mPhotoUploadProgress) {
+                    Toast.makeText(mContext, " upload progress: " + String.format("%.0f", progress) + "%", Toast.LENGTH_SHORT).show();
+                    mPhotoUploadProgress = progress;
+                }
+
+                Log.d(TAG, "onProgress: upload progress: " + progress + "% done");
+            }
+        });
+    }
+
+
+    private void setProfilePhoto(String url) {
         Log.d(TAG, "setProfilePhoto: setting new profile image: " + url);
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(mContext.getString(R.string.profile_photo))
                 .setValue(url);
-        }
+    }
 
-    private String getTimestamp(){
+    private String getTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T  'HH:mm:ss'Z'", Locale.getDefault());
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Riyadh"));
         return sdf.format(new Date());
     }
 
 
-    public void addAnnouncementToDatabase(String bookNmae, String courseId , String faculty ,String type ,String text1, String state,int count){
+    public void addAnnouncementToDatabase(String bookNmae, String courseId, String faculty, String type, String text1, String state, int count) {
 
         String newAnnouncementKey = myRef.push().getKey();
         Announcement book = new Announcement();
@@ -275,10 +273,11 @@ public class FirebaseMethod {
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_announcement))
-                .child("announcement"+ (count+1)).setValue(book);
+                .child("announcement" + (count + 1)).setValue(book);
 
     }
-    public void addAnnouncementToDatabase(String bookNmae, String type ,String text1, String state,int count){
+
+    public void addAnnouncementToDatabase(String bookNmae, String type, String text1, String state, int count) {
 
         String newAnnouncementKey = myRef.push().getKey();
         Announcement book = new Announcement();
@@ -289,28 +288,27 @@ public class FirebaseMethod {
         book.setDate_created(getTimestamp());
         book.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
         book.setId_announcement(newAnnouncementKey);
-        book.setAvailability("Availability");
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_announcement))
-                .child("announcement"+ (count+1)).setValue(book);
+                .child("announcement" + (count + 1)).setValue(book);
 
     }
 
-    public int getAnnouncementCount(DataSnapshot dataSnapshot){
-        int  count = 0;
+    public int getAnnouncementCount(DataSnapshot dataSnapshot) {
+        int count = 0;
         //BookCount=count;
-        for(DataSnapshot ds: dataSnapshot
+        for (DataSnapshot ds : dataSnapshot
                 .child(mContext.getString(R.string.dbname_announcement))
 //                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .getChildren()){
+                .getChildren()) {
             count++;
         }
         return count;
     }
 
 
-    private void addBookToDatabase(String bookNmae, String courseId ,String price, String  faculty,String type ,String available,String state, String url,int count){
+    private void addBookToDatabase(String bookNmae, String courseId, String price, String faculty, String type, String available, String state, String url, int count) {
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
         //String tags = StringManipulation.getTags(caption);
@@ -332,12 +330,12 @@ public class FirebaseMethod {
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_material))
-                .child("book"+ (count+1)).setValue(book);
-       // myRef.child(mContext.getString(R.string.dbname_photos)).setValue(book);
+                .child("book" + (count + 1)).setValue(book);
+        // myRef.child(mContext.getString(R.string.dbname_photos)).setValue(book);
 
     }
 
-    private void addBookToDatabase(String bookNmae, String price, String type ,String available,String state, String url,int count){
+    private void addBookToDatabase(String bookNmae, String price, String type, String available, String state, String url, int count) {
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
         //String tags = StringManipulation.getTags(caption);
@@ -357,24 +355,24 @@ public class FirebaseMethod {
 
         //insert into database
         myRef.child(mContext.getString(R.string.dbname_material))
-                .child("book"+ (count+1)).setValue(book);
+                .child("book" + (count + 1)).setValue(book);
         // myRef.child(mContext.getString(R.string.dbname_photos)).setValue(book);
 
     }
 
 
-
-    public int getBooksCount(DataSnapshot dataSnapshot){
-        int  count = 0;
+    public int getBooksCount(DataSnapshot dataSnapshot) {
+        int count = 0;
         //BookCount=count;
-        for(DataSnapshot ds: dataSnapshot
+        for (DataSnapshot ds : dataSnapshot
                 .child(mContext.getString(R.string.dbname_material))
 //                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .getChildren()){
+                .getChildren()) {
             count++;
         }
         return count;
     }
+
     public void registerNewEmail(final String email, String password, final String username) {
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -390,8 +388,7 @@ public class FirebaseMethod {
                             Toast.makeText(mContext, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
 
-                        }
-                        else if(task.isSuccessful()){
+                        } else if (task.isSuccessful()) {
 
                             //send verificaton email
                             sendVerificationEmail();
@@ -403,17 +400,17 @@ public class FirebaseMethod {
                 });
     }
 
-    public void sendVerificationEmail(){
+    public void sendVerificationEmail() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user != null){
+        if (user != null) {
             user.sendEmailVerification()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
-                            }else{
+                            } else {
                                 Toast.makeText(mContext, "couldn't send verification email.", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -422,10 +419,9 @@ public class FirebaseMethod {
     }
 
 
+    public void addNewUser(String email, String username, String password, String profile_photo, String status, String report) {
 
-    public void addNewUser(String email, String username, String password, String profile_photo, String status, String report){
-
-        User user = new User( StringManipulation.condenseUsername(username),  userID,  email ,password, profile_photo, status, report );
+        User user = new User(StringManipulation.condenseUsername(username), userID, email, password, profile_photo, status, report);
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
@@ -437,58 +433,58 @@ public class FirebaseMethod {
     /**
      * Retrieves the account settings for teh user currently logged in
      * Database: user_acount_Settings node
+     *
      * @param dataSnapshot
      * @return
      */
-    public UserSettings getUserSettings(DataSnapshot dataSnapshot){
+    public UserSettings getUserSettings(DataSnapshot dataSnapshot) {
         Log.d(TAG, "getUserAccountSettings: retrieving user account settings from firebase.");
 
 
         //UserAccountSettings settings  = new UserAccountSettings();
         User user = new User();
 
-        for(DataSnapshot ds: dataSnapshot.getChildren()){
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
 
-                // users node
-                if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
-                    Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
+            // users node
+            if (ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
+                Log.d(TAG, "getUserAccountSettings: datasnapshot: " + ds);
 
-                    user.setUsername(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                    .getUsername()
-                    );
-                    user.setEmail(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                    .getEmail()
-                    );
-                    user.setUser_id(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                    .getUser_id()
-                    );
-                    user.setProfile_photo(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                    .getProfile_photo()
-                    );
-                    user.setReport(
-                            ds.child(userID)
-                            .getValue(User.class)
-                            .getReport()
-                    );
-                    user.setStatus(
-                            ds.child(userID)
-                                    .getValue(User.class)
-                                  .getStatus()
-                    );
+                user.setUsername(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getUsername()
+                );
+                user.setEmail(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getEmail()
+                );
+                user.setUser_id(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getUser_id()
+                );
+                user.setProfile_photo(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getProfile_photo()
+                );
+                user.setReport(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getReport()
+                );
+                user.setStatus(
+                        ds.child(userID)
+                                .getValue(User.class)
+                                .getStatus()
+                );
 
 
-
-                    Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
-                }
+                Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
+            }
 
         }
         return new UserSettings(user);
@@ -497,10 +493,11 @@ public class FirebaseMethod {
 
     /**
      * update username in the 'users' node and 'user_account_settings' node
+     *
      * @param username
      */
 
-    public void updateUsername(String username){
+    public void updateUsername(String username) {
         Log.d(TAG, "updateUsername: upadting username to: " + username);
 
         myRef.child(mContext.getString(R.string.dbname_users))
@@ -508,14 +505,11 @@ public class FirebaseMethod {
                 .child(mContext.getString(R.string.field_username))
                 .setValue(username);
 
-//        myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-//                .child(userID)
-//                .child(mContext.getString(R.string.field_username))
-//                .setValue(username);
     }
 
     /**
      * update the email in the 'user's' node
+     *
      * @param email
      */
     public void updateEmail(String email) {
@@ -530,62 +524,62 @@ public class FirebaseMethod {
 
     }
 
-    public void updateAvailabilty(String email, String book) {
+    public void deleteBook(String book) {
 
-        Log.d(TAG, "updateUsername: upadting username to: " + email);
-        if(email != null){
+
         myRef.child(mContext.getString(R.string.dbname_material))
-                .child(book)
-                .child(mContext.getString(R.string.availability))
-                .setValue(email);}
-
-
+                .child(book).removeValue();
+        Toast.makeText(mContext, mContext.getString(R.string.deleteBook), Toast.LENGTH_SHORT).show();
     }
+
+
 
     public void removeAnnouncement(String email, String book) {
 
         Log.d(TAG, "updateUsername: upadting username to: " + email);
-        if(email != null){
+        if (email != null) {
             myRef.child(mContext.getString(R.string.dbname_announcement))
-                    .child(book)
-                    .child(mContext.getString(R.string.availability))
-                    .setValue(email);
+                    .child(book).removeValue();
+            Toast.makeText(mContext, mContext.getString(R.string.deleteAnnouncement), Toast.LENGTH_SHORT).show();
+
         }
 
 
     }
 
-    public void updateMyBook(String bookNmae, String price, String type ,String available,String state, String url){
 
-        Log.d(TAG, "updateUserAccountSettings: updating user account settings.");
+    public void updateBook(String bookNmae, String courseId, String price, String faculty, String available, String state, String myBook) {
+        if (bookNmae != null) {
+            myRef.child(mContext.getString(R.string.dbname_material))
+                    .child(myBook).child("book_name").setValue(bookNmae);
+        }
 
-//        if(bookNmae != null){
-//            myRef.child(mContext.getString(R.string.dbname_material))
-//                    .child(userID)
-//                    .child(mContext.getString(R.string.))
-//                    .setValue(displayName);
-//        }
-//
-//
-//        if(website != null) {
-//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-//                    .child(userID)
-//                    .child(mContext.getString(R.string.field_website))
-//                    .setValue(website);
-//        }
-//
-//        if(description != null) {
-//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-//                    .child(userID)
-//                    .child(mContext.getString(R.string.field_description))
-//                    .setValue(description);
-//        }
-//
-//        if(phoneNumber != 0) {
-//            myRef.child(mContext.getString(R.string.dbname_user_account_settings))
-//                    .child(userID)
-//                    .child(mContext.getString(R.string.field_phone_number))
-//                    .setValue(phoneNumber);
-//        }
+        if (courseId != null) {
+            myRef.child(mContext.getString(R.string.dbname_material))
+                    .child(myBook).child("course_id").setValue(courseId);
+        }
+
+        if (price != null) {
+            myRef.child(mContext.getString(R.string.dbname_material))
+                    .child(myBook).child("price").setValue(price);
+        }
+        if (faculty != null) {
+            myRef.child(mContext.getString(R.string.dbname_material))
+                    .child(myBook).child("faculty").setValue(faculty);
+        }
+
+        if (available != null) {
+            myRef.child(mContext.getString(R.string.dbname_material))
+                    .child(myBook).child("availability").setValue(available);
+        }
+
+        if (state != null) {
+            myRef.child(mContext.getString(R.string.dbname_material))
+                    .child(myBook).child("status").setValue(state);
+        }
+        Toast.makeText(mContext, mContext.getString(R.string.success_update), Toast.LENGTH_SHORT).show();
     }
+
+
 }
+

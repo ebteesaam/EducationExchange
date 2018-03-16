@@ -1,6 +1,7 @@
 package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
+import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
+import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +40,7 @@ import java.util.ArrayList;
 public class ViewBookProfile extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     TabLayout tabLayout;
-    String bookId, myBook;
+    String bookId, myBook, typeMaterial;
     ImageLoader imageLoader;
     private Context mContext = ViewBookProfile.this;
     private FirebaseAuth mAuth;
@@ -71,20 +75,6 @@ public class ViewBookProfile extends AppCompatActivity {
 //        myBook=getIntent().getStringExtra("myBook");
 
 
-
-//        if (getIntent().getExtras() != null) {
-//        if(myBook.equals("myBook")){
-//            number_of_coursename.setVisibility(View.GONE);
-//            facultyname.setVisibility(View.GONE);
-//            faculty.setVisibility(View.GONE);
-//            number_of_course.setVisibility(View.GONE);
-//            setupGridViewMyBook();
-//        }else {
-//
-//        }}
-//        }catch (NullPointerException e){
-//
-//        }
 
         setupGridView();
 
@@ -191,6 +181,7 @@ public class ViewBookProfile extends AppCompatActivity {
                     name_of_book.setText(book.getBook_name().toString());
                     number_of_course.setText(book.getCourse_id().toString());
                     type.setText(book.getType().toString());
+                    typeMaterial=book.getType().toString();
                     price.setText(book.getPrice().toString());
                     state.setText(book.getStatus().toString());
                     faculty.setText(book.getFaculty().toString());
@@ -256,11 +247,30 @@ public class ViewBookProfile extends AppCompatActivity {
                 try {
                     Log.d(TAG, "onCancelled: query cancelled."+myBook);
 
-                    firebaseMethod.updateAvailabilty("blocked",myBook);
+                    firebaseMethod.deleteBook(myBook);
 
                 }catch (Exception e){}
                 ViewBookProfile.this.finish();
                 return true;
+
+            case R.id.action_setting:
+                if(typeMaterial.equals("TextBooks")){
+                Intent intent=new Intent(ViewBookProfile.this,AddTextBook.class);
+                intent.putExtra("id_book", bookId);
+                startActivity(intent);
+                return true;
+                }else if(typeMaterial.equals("Lecture Notes")){
+                    Intent intent=new Intent(ViewBookProfile.this,AddLectureNotes.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+
+                }else if(typeMaterial.equals("General Books")){
+                    Intent intent=new Intent(ViewBookProfile.this,AddGeneralBook.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+                }
 
 //            case R.id.search:
 //                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;

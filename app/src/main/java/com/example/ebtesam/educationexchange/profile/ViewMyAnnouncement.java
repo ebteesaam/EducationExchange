@@ -127,7 +127,7 @@ setupGridView();
                 try {
                     Log.d(TAG, "onCancelled: query cancelled."+myBook);
 
-                    firebaseMethod.removeAnnouncement("blocked",myBook);
+                    firebaseMethod.removeAnnouncement("inactive",myBook);
 
                 }catch (Exception e){}
                 ViewMyAnnouncement.this.finish();

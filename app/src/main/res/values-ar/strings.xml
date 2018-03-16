@@ -12,7 +12,7 @@
     <string name="name_of_book">اسم الكتاب:</string>
     <string name="nameBook">أدخل اسم الكتاب</string>
     <string name="type">نوع المادة</string>
-    <string name="number_of_course">رمز الكتاب:</string>
+    <string name="number_of_course">رمز المادة:</string>
     <string name="state">الحالة:</string>
     <string name="ava">التوفر</string>
     <string name="enter_price">ادخل السعر:</string>
@@ -56,7 +56,6 @@
     <string name="faculty_of_computing_and_information_technology">كلية الحاسبات وتقنية المعلومات</string>
     <string name="faculty_of_medicine_in_rabigh">كلية الطب في رابغ</string>
     <string name="college_of_business_cob">كلية إدارة الأعمال</string>
-    <string name="major_course_college_of_sciences">كلية العلوم والآداب</string>
     <string name="general_course">الكتب الدراسية العامة</string>
     <string name="college_of_english">كلية اللغة الانجليزية</string>
     <string name="message">رسالة</string>
@@ -74,6 +73,8 @@
     <string name="sign_out">تسجيل خروج</string>
     <string name="all">الكل</string>
     <string name="add_lecture_note">اضافة محاضرة ورقية</string>
+    <string name="success_update">" تم بنجاح تعديل البيانات"</string>
+    <string name="college_of_sciences">كلية العلوم والآداب</string>
     <!--general course-->
 
     <string name="computer_skills_100">مهارات الحاسب CPIT 100</string>
@@ -503,6 +504,7 @@
     <string name="PHYS493">تدريب تعليم الفيزياء</string>
     <string name="STAT110">احصاء عام</string>
     <string name="STAT211">نظرية الاحتمالات</string>
+
 
 
     <!--end-->

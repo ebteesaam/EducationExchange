@@ -128,6 +128,7 @@
 
     <string name="blocked">Blocked</string>
     <string name="availability">availability</string>
+    <string name="status">status</string>
     <string name="message">Message</string>
 
 
@@ -1015,6 +1016,9 @@
     <string name="MATH462">Engineering Euclidean and non Euclidean</string>
     <string name="MATH471">Intermittent mathematics</string>
     <string name="MATH481">History of Mathematics</string>
+    <string name="deleteBook">The book was deleted</string>
+    <string name="deleteAnnouncement">the announcement was deleted</string>
+    <string name="success_update">Successfuly updated</string>
 
     <!--end-->
 

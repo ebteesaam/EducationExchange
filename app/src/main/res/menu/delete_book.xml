@@ -11,4 +11,9 @@
         app:showAsAction="always"
 
         />
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@drawable/ic_settingwhite"
+        android:title="@string/action_setting"
+        app:showAsAction="always" />
 </menu>

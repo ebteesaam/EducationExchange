@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
@@ -67,14 +67,14 @@ public class HomeActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 if (b == true) {
-                    final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
+                    final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab1.getLayoutParams();
                     layoutParams.rightMargin += (int) (fab1.getWidth() * 1.6);
                     layoutParams.bottomMargin += (int) (fab1.getWidth() * 0.25);
                     fab1.setLayoutParams(layoutParams);
                     fab1.startAnimation(show_fab_1);
                     fab1.setClickable(true);
 
-                    final FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
+                    final RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fab2.getLayoutParams();
                     layoutParams2.rightMargin += (int) (fab2.getWidth() * 0.25);
                     layoutParams2.bottomMargin += (int) (fab2.getWidth() * 1.6);
                     fab2.setLayoutParams(layoutParams2);
@@ -82,13 +82,13 @@ public class HomeActivity extends Fragment {
                     fab2.setClickable(true);
                     b = false;
                 } else if (b == false) {
-                    final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
+                    final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab1.getLayoutParams();
                     layoutParams.rightMargin += (int) (fab1.getWidth() * -1.6);
                     layoutParams.bottomMargin += (int) (fab1.getWidth() * -0.25);
                     fab1.setLayoutParams(layoutParams);
                     fab1.startAnimation(hide_fab_1);
 
-                    final FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
+                    final RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fab2.getLayoutParams();
                     layoutParams2.rightMargin += (int) (fab2.getWidth() * -0.25);
                     layoutParams2.bottomMargin += (int) (fab2.getWidth() * -1.6);
                     fab2.setLayoutParams(layoutParams2);

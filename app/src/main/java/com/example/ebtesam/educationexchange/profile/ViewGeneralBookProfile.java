@@ -157,7 +157,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                 try {
                   //  Log.d(TAG, "onCancelled: query cancelled."+myBook);
 
-                    firebaseMethod.updateAvailabilty("blocked",myBook);
+                    firebaseMethod.deleteBook(myBook);
 
                 }catch (Exception e){}
                 ViewGeneralBookProfile.this.finish();

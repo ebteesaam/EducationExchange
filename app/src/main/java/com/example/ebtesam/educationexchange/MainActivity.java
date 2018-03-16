@@ -60,28 +60,33 @@ public class MainActivity extends AppCompatActivity {
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_home, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText(getString(R.string.general_book));
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabTwo);
+        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabFour.setText(getString(R.string.text_book));
+        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabFour);
 
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabThree.setText(getString(R.string.lecture_notes));
         tabThree.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         tabLayout.getTabAt(2).setCustomView(tabThree);
 
-        TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabFour.setText(getString(R.string.text_book));
-        tabFour.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-        tabLayout.getTabAt(3).setCustomView(tabFour);
+        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        tabTwo.setText(getString(R.string.general_book));
+        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        tabLayout.getTabAt(3).setCustomView(tabTwo);
+
+
+
+
     }
 
     private void createViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new HomeActivity(), "Tab 1");
-        adapter.addFrag(new GeneralBook(), "Tab 2");
+        adapter.addFrag(new TextBook(), "Tab 2");
         adapter.addFrag(new LectureNotes(), "Tab 3");
-        adapter.addFrag(new TextBook(), "Tab 4");
+        adapter.addFrag(new GeneralBook(), "Tab 4");
+
         viewPager.setAdapter(adapter);
     }
     //............................Firebase.................................//
