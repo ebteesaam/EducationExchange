@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.models.Announcement;
 import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.models.Report;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -533,14 +534,12 @@ public class FirebaseMethod {
     }
 
 
+    public void removeAnnouncement(String book) {
 
-    public void removeAnnouncement( String book) {
 
-
-            myRef.child(mContext.getString(R.string.dbname_announcement))
-                    .child(book).removeValue();
-            Toast.makeText(mContext, mContext.getString(R.string.deleteAnnouncement), Toast.LENGTH_SHORT).show();
-
+        myRef.child(mContext.getString(R.string.dbname_announcement))
+                .child(book).removeValue();
+        Toast.makeText(mContext, mContext.getString(R.string.deleteAnnouncement), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -612,8 +611,26 @@ public class FirebaseMethod {
         Toast.makeText(mContext, mContext.getString(R.string.success_update), Toast.LENGTH_SHORT).show();
     }
 
-    public void reportMaterial(String s) {
+    public int getReportsCount(DataSnapshot dataSnapshot) {
+        int count = 0;
+        //BookCount=count;
+        for (DataSnapshot ds : dataSnapshot
+                .child(mContext.getString(R.string.dbname_report))
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .getChildren()) {
+            count++;
+        }
+        return count;
+    }
 
+    public void reportMaterial(String s, String w) {
+        String report_id = myRef.push().getKey();
+        Report report = new Report(s, report_id, "new", w);
+        myRef.child(mContext.getString(R.string.dbname_report))
+                .child(s)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(report);
+        Toast.makeText(mContext,mContext.getString(R.string.send_report) , Toast.LENGTH_SHORT).show();
     }
 }
 

@@ -15,6 +15,7 @@
 
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
+    <string name="dbname_report">report</string>
     <string name="dbname_material">material</string>
     <string name="dbname_photos">photos</string>
     <string name="dbname_announcement">announcement</string>
@@ -22,6 +23,7 @@
     <string name="field_username">username</string>
     <string name="field_email">email</string>
     <string name="dbname_status">status</string>
+    <string name="send_report">successfully send your report</string>
 
     <!-- photo types -->
     <string name="new_book">new_book</string>
@@ -132,8 +134,11 @@
     <string name="message">Message</string>
 <string name="report">report the material</string>
     <string name="why_report">Why are you reporting this material?</string>
-    <string name="unEthical">Un Ethical </string>
+    <string name="unEthical">Un Ethical Material</string>
+    <string name="unRelated">Un Related Material</string>
     <string name="other">other:</string>
+    <string name="send">Send</string>
+    <string name="fill_other">fill the other space  please or click cancel</string>
     <string name="no_result">There is no result</string>
 
     <!--array for add material pag-->

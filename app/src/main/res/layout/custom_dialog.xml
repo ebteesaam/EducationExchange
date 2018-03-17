@@ -28,6 +28,18 @@
         android:background="@drawable/white_buttom"
         android:text="@string/unEthical"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/unrelated"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+
+        android:background="@drawable/white_buttom"
+        android:text="@string/unRelated"
+        android:textAllCaps="false" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +49,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         />
+
     <EditText
         android:id="@+id/other"
         android:layout_width="match_parent"
@@ -45,6 +58,18 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         />
+    <Button
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/cancel"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+
+        android:background="@drawable/white_buttom"
+        android:text="@string/send"
+        android:textAllCaps="false" />
 
 
 
