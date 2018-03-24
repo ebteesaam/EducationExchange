@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogClass;
@@ -40,7 +41,8 @@ public class ViewBook extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     public static String id_material;
     TabLayout tabLayout;
-    String bookId, myBook;
+    String bookId, myBook, id_user;
+
     ImageLoader imageLoader;
     private Context mContext = ViewBook.this;
     private FirebaseAuth mAuth;
@@ -55,6 +57,8 @@ public class ViewBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_book_page);
         setTitle(getString(R.string.book_details));
+        mAuth = FirebaseAuth.getInstance();
+
         bookId=getIntent().getStringExtra("id_book");
         mFirebaseMethods = new FirebaseMethod(mContext);
 
@@ -99,7 +103,9 @@ public class ViewBook extends AppCompatActivity {
 
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
-id_material=book.getId_book();
+                    id_material=book.getId_book();
+                    id_user=book.getUser_id();
+
                     availability.setText(book.getAvailability().toString());
                     name_of_book.setText(book.getBook_name().toString());
                     number_of_course.setText(book.getCourse_id().toString());
@@ -167,9 +173,12 @@ id_material=book.getId_book();
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.action_report:
+                if(id_user.equals(mAuth.getCurrentUser().getUid())){
+                    Toast.makeText(mContext, getString(R.string.you_report), Toast.LENGTH_SHORT).show();
+                }else {
                 CustomDialogClass cdd = new CustomDialogClass(ViewBook.this);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                cdd.show();
+                cdd.show();}
 
                 return true;
 

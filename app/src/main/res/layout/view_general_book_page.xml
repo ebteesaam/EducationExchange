@@ -8,31 +8,34 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
 
 
 
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+           >
 
             <ImageView
                 android:id="@+id/relative1"
-                android:layout_width="110dp"
-                android:layout_height="120dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_margin="14dp"
-                android:background="@color/edit">
+                android:background="@color/edit"
+                >
 
             </ImageView>
+
             <ProgressBar
                 android:id="@+id/ProgressBar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="45dp"
-
-                />
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="90dp"/>
         </RelativeLayout>
         <!--textBook information-->
         <LinearLayout
@@ -172,45 +175,7 @@
 
         </LinearLayout>
     </LinearLayout>
-    <!--comment-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-
-        <RelativeLayout
-            android:id="@+id/relative3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/relative2"
-            android:padding="14dp"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="30dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/comment"
-                    android:textSize="20dp"/>
-
-                <EditText
-                    style="@style/EditorFieldStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp">
-                    <requestFocus />
-
-                </EditText>
-
-            </LinearLayout>
-
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -242,7 +207,7 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
+
 
 
 

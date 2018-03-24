@@ -21,6 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivityAdmin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".addBook.AddTextBook"
             android:parentActivityName=".MainActivity">
@@ -46,11 +53,11 @@
         </activity>
         <activity
             android:name=".profile.EditProfile"
-        android:parentActivityName=".profile.ProfilePage">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".profile.ProfilePage" />
-    </activity>
+            android:parentActivityName=".profile.ProfilePage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".profile.ProfilePage" />
+        </activity>
         <activity
             android:name=".search.SearchBook"
             android:parentActivityName=".MainActivity">
@@ -73,12 +80,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".addBook.AddTextBook" />
         </activity>
-        <activity android:name=".addBook.TakePhotoActivityLN"
-        android:parentActivityName=".addBook.AddLectureNotes">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".addBook.AddLectureNotes" />
-    </activity>
+        <activity
+            android:name=".addBook.TakePhotoActivityLN"
+            android:parentActivityName=".addBook.AddLectureNotes">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".addBook.AddLectureNotes" />
+        </activity>
         <activity
             android:name=".profile.TakeProfilePhotoActivity"
             android:parentActivityName=".profile.EditProfile">
@@ -86,38 +94,47 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".profile.EditProfile" />
         </activity>
-        <activity android:name=".profile.MyBooksActivity"></activity>
-        <activity android:name=".profile.MyAnnouncementsActivity"></activity>
-
-        <activity android:name=".Fragment.CustomListActivity"></activity>
-
-        <activity android:name=".Material"
+        <activity android:name=".profile.MyBooksActivity" />
+        <activity android:name=".profile.MyAnnouncementsActivity" />
+        <activity android:name=".Fragment.CustomListActivity" />
+        <activity
+            android:name=".Material"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".addBook.AddGeneralBook"
+        <activity
+            android:name=".addBook.AddGeneralBook"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".addBook.TakePhotoGeneralActivity"
+        <activity
+            android:name=".addBook.TakePhotoGeneralActivity"
             android:parentActivityName=".addBook.AddGeneralBook">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".addBook.AddGeneralBook" />
         </activity>
-        <activity android:name=".addBook.ViewBook">
-
+        <activity android:name=".addBook.ViewBook" />
+        <activity android:name=".addBook.ViewGeneralBook" />
+        <activity android:name=".profile.ViewBookProfile" />
+        <activity android:name=".profile.ViewGeneralBookProfile" />
+        <activity android:name=".announcement.AnnouncementGeneralActivity" />
+        <activity android:name=".profile.ViewMyAnnouncement" />
+        <activity android:name=".admin.UserList" />
+        <activity
+            android:name=".admin.EditUserProfile"
+            android:parentActivityName=".admin.UserList">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".admin.UserList" />
         </activity>
-        <activity android:name=".addBook.ViewGeneralBook"></activity>
-        <activity android:name=".profile.ViewBookProfile"></activity>
-        <activity android:name=".profile.ViewGeneralBookProfile"></activity>
-<activity android:name=".announcement.AnnouncementGeneralActivity"></activity>
-
-        <activity android:name=".profile.ViewMyAnnouncement"></activity>
+        <activity android:name=".admin.ReportsActivity"></activity>
+        <activity android:name=".admin.ViewBookReport"></activity>
     </application>
+
 
 </manifest>

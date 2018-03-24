@@ -421,13 +421,11 @@ public class FirebaseMethod {
 
 
     public void addNewUser(String email, String username, String password, String profile_photo, String status, String report) {
-
-        User user = new User(StringManipulation.condenseUsername(username), userID, email, password, profile_photo, status, report);
+        User user = new User(StringManipulation.condenseUsername(username), userID,  password,email, profile_photo, "active", report,"Student");
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
                 .setValue(user);
-
 
     }
 
@@ -530,6 +528,7 @@ public class FirebaseMethod {
 
         myRef.child(mContext.getString(R.string.dbname_material))
                 .child(book).removeValue();
+
         Toast.makeText(mContext, mContext.getString(R.string.deleteBook), Toast.LENGTH_SHORT).show();
     }
 
@@ -582,7 +581,7 @@ public class FirebaseMethod {
 
         if (bookNmae != null) {
             myRef.child(mContext.getString(R.string.dbname_announcement))
-                    .child(myBook).child("book_name").setValue(bookNmae);
+                    .child(myBook).child("title").setValue(bookNmae);
         }
 
         if (courseId != null) {
@@ -631,6 +630,17 @@ public class FirebaseMethod {
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(report);
         Toast.makeText(mContext,mContext.getString(R.string.send_report) , Toast.LENGTH_SHORT).show();
+    }
+
+    public void updateUser(String type, String status, String id) {
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(id)
+                .child("type").setValue(type);
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(id)
+                .child("status").setValue(status);
     }
 }
 

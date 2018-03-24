@@ -19,4 +19,14 @@
             android:id="@+id/message"
             android:title="@string/message"
             app:showAsAction="never" />
+
+        <item android:id="@+id/user"
+            android:title="user"
+            app:showAsAction="never"/>
+
+        <item android:id="@+id/report"
+            android:title="reports"
+            app:showAsAction="never"/>
+
+
 </menu>

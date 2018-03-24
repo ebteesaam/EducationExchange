@@ -475,10 +475,9 @@ public class AddTextBook extends AppCompatActivity {
 //                        return false;
 //                    }
                     price = editPrice.getText().toString();
-//                    if (price.equals("")) {
-//                        Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
-//                        return false;
-//                    }
+                    if (price.equals("")) {
+                        price="Free";
+                    }
 
                 } catch (NullPointerException e) {
 

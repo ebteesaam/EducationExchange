@@ -48,7 +48,6 @@ public class ListAdapter extends ArrayAdapter<Book> {
 
         // Get the data item for this position
         Book book = getItem(position);
-
         // Lookup view for data population
          ImageView image=convertView.findViewById(R.id.relative1);
             TextView name = (TextView) convertView.findViewById(R.id.nameBook);
@@ -105,80 +104,4 @@ public class ListAdapter extends ArrayAdapter<Book> {
         return convertView;
     }
 }
-
-
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//
-//        View v = convertView;
-//
-//        if (v == null) {
-//            LayoutInflater vi;
-//            vi = LayoutInflater.from(getContext());
-//            v = vi.inflate(R.layout.list, null);
-//        }
-//
-//        Book p = getItem(position);
-//
-//
-//        if (p != null) {
-//            ImageView image=convertView.findViewById(R.id.relative1);
-//            TextView nameTextView = (TextView) convertView.findViewById(R.id.nameBook);
-//         TextView summaryTextView = (TextView) convertView.findViewById(R.id.courseIdBook);
-//          TextView bookname=(TextView)convertView.findViewById(R.id.nameBook);
-//
-//
-//
-//                nameTextView.setText(p.getBook_name());
-//
-//
-//            if (summaryTextView != null) {
-//                summaryTextView.setText(p.getCourse_id());
-//            }
-//
-////            if (tt3 != null) {
-////                tt3.setText(p.getDescription());
-////            }
-////
-//        ImageLoader imageLoader=ImageLoader.getInstance();
-//
-//        imageLoader.displayImage( p.getImage_path(),image,new ImageLoadingListener() {
-//            @Override
-//            public void onLoadingStarted(String imageUri, View view) {
-////                if(holder.mProgressBar !=null){
-////                    holder.mProgressBar.setVisibility(View.VISIBLE);
-////                }
-//            }
-//
-//            @Override
-//            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-////                if(holder.mProgressBar !=null){
-////                    holder.mProgressBar.setVisibility(View.INVISIBLE);
-////                }
-//
-//            }
-//
-//            @Override
-//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-////                if(holder.mProgressBar !=null){
-////                    holder.mProgressBar.setVisibility(View.INVISIBLE);
-////                }
-//
-//            }
-//
-//            @Override
-//            public void onLoadingCancelled(String imageUri, View view) {
-////                if(holder.mProgressBar !=null){
-////                    holder.mProgressBar.setVisibility(View.INVISIBLE);
-////                }
-//
-//            }
-//
-//        });
-//
-//
-//
-//    }
-//        return v;
-//}}
 

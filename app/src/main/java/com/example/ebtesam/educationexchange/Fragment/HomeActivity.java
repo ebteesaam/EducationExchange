@@ -138,7 +138,6 @@ public class HomeActivity extends Fragment {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Announcement book = singleSnapshot.getValue(Announcement.class);
 
-                    // if (book.getType().equals("Lecture Notes") && book.getFaculty().toString().equals(getString(R.string.college_of_english))) {
                     books.add(singleSnapshot.getValue(Announcement.class));
 
                 }
@@ -146,16 +145,7 @@ public class HomeActivity extends Fragment {
                 ListAdapterAnnouncement adapter = new ListAdapterAnnouncement(getActivity(), R.layout.home_activity, books);
                 // Attach the adapter to a ListView
                 listView.setAdapter(adapter);
-//                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Intent intent = new Intent(Material.this, ViewBook.class);
-//                        String item = books.get(i).getId_book();
-//                        intent.putExtra("id_announcement", item);
-////                        books.get(i);
-//                        startActivity(intent);
-//                    }
-//                });
+
 
             }
 

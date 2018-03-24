@@ -8,19 +8,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
 
             <ImageView
                 android:id="@+id/relative1"
-                android:layout_width="110dp"
-                android:layout_height="120dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_margin="14dp"
-                android:background="@color/edit">
+                android:background="@color/edit"
+                >
 
             </ImageView>
 
@@ -28,9 +31,8 @@
                 android:id="@+id/ProgressBar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="45dp"
-
-                />
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="90dp"/>
         </RelativeLayout>
         <!--textBook information-->
         <LinearLayout

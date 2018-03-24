@@ -3,6 +3,8 @@ package com.example.ebtesam.educationexchange.profile;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteGeneralClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
 import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
@@ -38,8 +41,9 @@ import java.util.ArrayList;
 
 public class ViewGeneralBookProfile extends AppCompatActivity {
 
+    public static String myBook;
     TabLayout tabLayout;
-    String bookId, myBook;
+    String bookId, id_user;
     ImageLoader imageLoader;
     String bookAvailability, typeMaterial;
     private Context mContext = ViewGeneralBookProfile.this;
@@ -90,6 +94,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                         books.add(singleSnapshot.getValue(Book.class));
                         myBook=singleSnapshot.getKey().toString();
                         typeMaterial=book.getType().toString();
+                        id_user=book.getUser_id();
 
                         availability.setText(book.getAvailability().toString());
                         name_of_book.setText(book.getBook_name().toString());
@@ -159,15 +164,19 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-                try {
-                  //  Log.d(TAG, "onCancelled: query cancelled."+myBook);
+//                try {
+//                  //  Log.d(TAG, "onCancelled: query cancelled."+myBook);
+//
+//                    firebaseMethod.deleteBook(myBook);
+//
+//                }catch (Exception e){}
+//                ViewGeneralBookProfile.this.finish();
+//                return true;
 
-                    firebaseMethod.deleteBook(myBook);
-
-                }catch (Exception e){}
-                ViewGeneralBookProfile.this.finish();
+                CustomDialogDeleteGeneralClass cdd = new CustomDialogDeleteGeneralClass(ViewGeneralBookProfile.this);
+                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();
                 return true;
-
             case R.id.action_setting:
                 if(typeMaterial.equals("TextBooks")){
                     Intent intent=new Intent(ViewGeneralBookProfile.this,AddTextBook.class);

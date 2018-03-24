@@ -149,18 +149,6 @@ public class AddGeneralBook extends AppCompatActivity {
                         spinner1.setSelection(getIndex(spinner1,book.getStatus()));
                         spinner2.setSelection(getIndex(spinner2,book.getAvailability()));
 
-                        //  spinner1.setSelection(Integer.parseInt(book.getFaculty()));
-//                        spinner1.(book.getFaculty().toString());
-//                        spinner2 = findViewById(R.id.spinner2);
-//                        spinner3 = findViewById(R.id.spinner3);
-//                        spinner4 = findViewById(R.id.spinnermajorcourse);
-//                        availability.setText(book.getAvailability().toString());
-//                        name_of_book.setText(book.getBook_name().toString());
-//                        number_of_course.setText(book.getCourse_id().toString());
-//                        type.setText(book.getType().toString());
-//                        price.setText(book.getPrice().toString());
-//                        state.setText(book.getStatus().toString());
-//                        faculty.setText(book.getFaculty().toString());
                         imageLoader = ImageLoader.getInstance();
 //
                         imageLoader.displayImage(book.getImage_path(), bookPhoto, new ImageLoadingListener() {
@@ -278,19 +266,6 @@ public class AddGeneralBook extends AppCompatActivity {
 
         }
 
-       // String intentExtra=getIntent().getStringExtra("Button");
-//        else if(intent.hasExtra("TBButton")){
-//            spinner5.setSelection(0);
-//            type=0;
-//        }else if(intent.hasExtra("LNButton")){
-//            spinner5.setSelection(1);
-//            type=1;
-//        }else {
-//            spinner5.setSelection(2);
-//            type=2;
-//        }
-//        imgUrl = intent.getStringExtra(getString(R.string.selected_image));
-//        UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
 
     }
 
@@ -388,10 +363,9 @@ public class AddGeneralBook extends AppCompatActivity {
 //                        return false;
 //                    }
                     price = editPrice.getText().toString();
-//                    if (price.equals("")) {
-//                        Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
-//                        return false;
-//                    }
+                    if (price.equals("")) {
+                        price="Free";
+                    }
 
                 } catch (NullPointerException e) {
 

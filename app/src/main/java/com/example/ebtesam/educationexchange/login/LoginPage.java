@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -138,10 +139,21 @@ public class LoginPage extends AppCompatActivity {
          /*
          If the user is logged in then navigate to HomeActivity and call 'finish()'
           */
-        if (mAuth.getCurrentUser() != null) {
+
+        User user=new User();
+        if (mAuth.getCurrentUser() != null&& user.getType().equals("Student")) {
+            Log.d(TAG, "onClick: Student");
+
             Intent intent = new Intent(LoginPage.this, MainActivity.class);
             startActivity(intent);
             finish();
+        }else  if (mAuth.getCurrentUser() != null&& user.getType().equals("Admin")) {
+
+            Log.d(TAG, "onClick: Admin");
+
+            //Intent intent = new Intent(LoginPage.this, MainActivityAdmin.class);
+            //startActivity(intent);
+            //finish();
         }
     }
 

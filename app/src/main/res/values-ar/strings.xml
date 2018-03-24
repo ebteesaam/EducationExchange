@@ -43,12 +43,12 @@
     <string name="register">تسجيل حساب جديد</string>
     <string name="profile">ملفي الشخصي</string>
     <string name="edit_profile">إعادة ضبط ملفي الشخصي</string>
-    <string name="title">موضوع</string>
-    <string name="enter_title">أدخل الموضوع</string>
+    <string name="title">اسم الكتاب</string>
+    <string name="enter_title">أدخل اسم الكتاب</string>
     <string name="enter_the_text">"أدخل النص "</string>
     <string name="text">النص</string>
     <string name="send_the_announcement">"إرسال الإعلان "</string>
-    <string name="announcement_request">يرجى ملء التفاصيل التالية لنشر الإعلان.</string>
+    <string name="announcement_request">يرجى ملء التفاصيل التالية لنشر الإعلان:</string>
     <string name="comment">تعليق:</string>
     <string name="request">طلب هذه المادة</string>
     <string name="dollars">ريال</string>
@@ -504,7 +504,23 @@
     <string name="PHYS493">تدريب تعليم الفيزياء</string>
     <string name="STAT110">احصاء عام</string>
     <string name="STAT211">نظرية الاحتمالات</string>
-
+    <string name="empty_anno_subtitle_text">ليس هناك أي إعلان حتى الآن</string>
+    <string name="action_setting">الإعدادات</string>
+    <string name="announcement_request_general">يرجى ملء التفاصيل التالية لنشر الإعلان عن الكتاب :</string>
+    <string name="report">تبليغ عن المادة</string>
+    <string name="why_report">لماذا تريد التبليغ عن هذه المادة؟</string>
+    <string name="unEthical">مادة غير أخلاقية</string>
+    <string name="other">سبب آخر:</string>
+    <string name="send">إرسال</string>
+    <string name="fill_other">الرجاء ادخال السبب لإتمام العملية او اضغط إلغاء</string>
+    <string name="messages">الرسائل</string>
+    <string name="no_result">ليس هناك نتيجة</string>
+    <string name="deleteBook">تم حذف الكتاب</string>
+    <string name="deleteAnnouncement">تم حذف الإعلان</string>
+    <string name="delete_dialog">هل أنت متأكد من أنك تريد اكمال عملية الحذف ؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="you_report">لاتستطيع عمل تبليغ لمادتك</string>
 
 
     <!--end-->

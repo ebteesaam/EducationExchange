@@ -45,7 +45,7 @@ public class GeneralBook extends Fragment {
     private DatabaseReference myRef;
     private FirebaseMethod mFirebaseMethods;
     //widgets
-    private TextView mPosts, mFollowers, mFollowing, mDisplayName, mbookname, courseIdBook, mDescription;
+    private TextView  mbookname;
     private ProgressBar mProgressBar;
     private GridView gridView;
 
@@ -63,12 +63,6 @@ public class GeneralBook extends Fragment {
 
 
         mbookname = rootView.findViewById(R.id.nameBook);
-        //courseIdBook = (TextView)rootView.findViewById(R.id.courseIdBook);
-        //  mDescription = (TextView) view.findViewById(R.id.description);
-//        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-//        mPosts = (TextView) view.findViewById(R.id.tvPosts);
-//        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
-//        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
         mProgressBar = rootView.findViewById(R.id.profileProgressBar);
         gridView =  rootView.findViewById(R.id.list);
         View emptyView = rootView.findViewById(R.id.empty_view);
@@ -81,10 +75,6 @@ public class GeneralBook extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AddGeneralBook.class);
-//                Bundle bundle=new Bundle();
-//                bundle.putString("Button", "GBButton");
-//                intent.putExtras(bundle);
-
                 startActivity(intent);
             }
         });
@@ -109,7 +99,7 @@ public class GeneralBook extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
                     Book book=singleSnapshot.getValue(Book.class);
-                    if(book.getType().equals("General Books")){
+                    if(book.getType().equals("General Books")&&!book.getAvailability().toString().equals("Blocked")&& !book.getAvailability().equals("Pied")){
                     books.add(singleSnapshot.getValue(Book.class));}
                 }
 

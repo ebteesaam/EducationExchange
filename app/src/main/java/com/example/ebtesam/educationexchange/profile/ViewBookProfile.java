@@ -3,6 +3,8 @@ package com.example.ebtesam.educationexchange.profile;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +12,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
 import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
@@ -39,8 +43,9 @@ import java.util.ArrayList;
 
 public class ViewBookProfile extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    public static String myBook;
     TabLayout tabLayout;
-    String bookId, myBook, typeMaterial;
+    String bookId, typeMaterial;
     ImageLoader imageLoader;
     private Context mContext = ViewBookProfile.this;
     private FirebaseAuth mAuth;
@@ -49,6 +54,7 @@ public class ViewBookProfile extends AppCompatActivity {
     private ImageView photo;
     private ProgressBar progressBar;
     private FirebaseMethod firebaseMethod;
+    private Button b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +77,8 @@ public class ViewBookProfile extends AppCompatActivity {
         photo=findViewById(R.id.relative1);
         facultyname=findViewById(R.id.facultyname);
         number_of_coursename=findViewById(R.id.number_of_coursename);
-
+b1=findViewById(R.id.my_book);
+b1.setVisibility(View.GONE);
 //        myBook=getIntent().getStringExtra("myBook");
 
 
@@ -244,13 +251,15 @@ public class ViewBookProfile extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-                try {
-                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
-
-                    firebaseMethod.deleteBook(myBook);
-
-                }catch (Exception e){}
-                ViewBookProfile.this.finish();
+//                try {
+//                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
+//
+//                    firebaseMethod.deleteBook(myBook);
+//
+//                }catch (Exception e){}
+                CustomDialogDeleteClass cdd = new CustomDialogDeleteClass(ViewBookProfile.this);
+                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();
                 return true;
 
             case R.id.action_setting:

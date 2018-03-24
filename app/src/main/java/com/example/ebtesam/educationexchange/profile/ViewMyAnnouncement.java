@@ -2,6 +2,8 @@ package com.example.ebtesam.educationexchange.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteAnnouncementClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementGeneralActivity;
@@ -35,8 +38,9 @@ import java.util.ArrayList;
 
 public class ViewMyAnnouncement extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    public static String myBook;
     TabLayout tabLayout;
-    String bookId, myBook, typeMaterial;
+    String bookId,  typeMaterial;
     ImageLoader imageLoader;
     private Context mContext = ViewMyAnnouncement.this;
     private FirebaseAuth mAuth;
@@ -129,13 +133,16 @@ setupGridView();
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-                try {
-                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
-
-                    firebaseMethod.removeAnnouncement(myBook);
-
-                }catch (Exception e){}
-                ViewMyAnnouncement.this.finish();
+//                try {
+//                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
+//
+//                    firebaseMethod.removeAnnouncement(myBook);
+//
+//                }catch (Exception e){}
+//                ViewMyAnnouncement.this.finish();
+                CustomDialogDeleteAnnouncementClass cdd = new CustomDialogDeleteAnnouncementClass(ViewMyAnnouncement.this);
+                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();
                 return true;
 
             case R.id.action_setting:

@@ -77,7 +77,6 @@ public class CustomDialogClass extends Dialog implements
                 dismiss();
                 break;
 
-                
             case R.id.send:
                 tx = other.getText().toString();
                 if (tx != null) {

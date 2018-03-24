@@ -13,8 +13,9 @@ public class User {
     private String profile_photo;
     private String status;
     private String report;
+    private String type;
 
-    public User(String username, String user_id,  String email,String password, String profile_photo, String status, String report) {
+    public User(String username, String user_id, String password, String email, String profile_photo, String status, String report, String type) {
         this.username = username;
         this.user_id = user_id;
         this.password = password;
@@ -22,9 +23,18 @@ public class User {
         this.profile_photo = profile_photo;
         this.status = status;
         this.report = report;
+        this.type = type;
     }
 
     public User() {
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPassword() {
