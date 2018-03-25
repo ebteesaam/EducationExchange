@@ -42,7 +42,6 @@ public class CustomDialogBlocktClass extends Dialog implements
 
     public CustomDialogBlocktClass(Activity a) {
         super(a);
-       
         this.c = a;
     }
 
