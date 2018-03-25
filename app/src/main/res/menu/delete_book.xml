@@ -12,8 +12,13 @@
 
         />
     <item
-        android:id="@+id/action_setting"
-        android:icon="@drawable/edit"
-        android:title="@string/action_setting"
-        app:showAsAction="always" />
+    android:id="@+id/action_setting"
+    android:icon="@drawable/edit"
+    android:title="@string/action_setting"
+    app:showAsAction="always" />
+
+    <item
+        android:id="@+id/block"
+        android:title="@string/block"
+        app:showAsAction="never" />
 </menu>

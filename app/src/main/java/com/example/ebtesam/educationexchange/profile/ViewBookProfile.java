@@ -24,6 +24,7 @@ import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
 import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,39 +56,40 @@ public class ViewBookProfile extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseMethod firebaseMethod;
     private Button b1;
+    private boolean type1 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_book_page);
         setTitle(getString(R.string.book_details));
+
         firebaseMethod = new FirebaseMethod(ViewBookProfile.this);
 
-        bookId=getIntent().getStringExtra("id_book");
+        bookId = getIntent().getStringExtra("id_book");
 
-        availability=findViewById(R.id.availability);
-        price=findViewById(R.id.price);
-        state=findViewById(R.id.state);
-        faculty=findViewById(R.id.faculty);
-        progressBar=findViewById(R.id.ProgressBar);
+        availability = findViewById(R.id.availability);
+        price = findViewById(R.id.price);
+        state = findViewById(R.id.state);
+        faculty = findViewById(R.id.faculty);
+        progressBar = findViewById(R.id.ProgressBar);
 
         type = findViewById(R.id.type_of_book);
-        number_of_course=findViewById(R.id.number_of_course);
-        name_of_book=findViewById(R.id.name_of_book);
-        photo=findViewById(R.id.relative1);
-        facultyname=findViewById(R.id.facultyname);
-        number_of_coursename=findViewById(R.id.number_of_coursename);
-b1=findViewById(R.id.my_book);
-b1.setVisibility(View.GONE);
+        number_of_course = findViewById(R.id.number_of_course);
+        name_of_book = findViewById(R.id.name_of_book);
+        photo = findViewById(R.id.relative1);
+        facultyname = findViewById(R.id.facultyname);
+        number_of_coursename = findViewById(R.id.number_of_coursename);
+        b1 = findViewById(R.id.my_book);
+        b1.setVisibility(View.GONE);
 //        myBook=getIntent().getStringExtra("myBook");
-
 
 
         setupGridView();
 
-        }
+    }
 
-    private void setupGridViewMyBook(){
+    private void setupGridViewMyBook() {
         Log.d(TAG, "setupGridView: Setting up image grid.");
 
         final ArrayList<Book> books = new ArrayList<>();
@@ -101,7 +103,7 @@ b1.setVisibility(View.GONE);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
                     if (book.getId_book().equals(bookId)) {
@@ -113,19 +115,19 @@ b1.setVisibility(View.GONE);
                         type.setText(book.getType().toString());
                         price.setText(book.getPrice().toString());
                         state.setText(book.getStatus().toString());
-                        imageLoader= ImageLoader.getInstance();
+                        imageLoader = ImageLoader.getInstance();
 //
-                        imageLoader.displayImage( book.getImage_path(),photo,new ImageLoadingListener() {
+                        imageLoader.displayImage(book.getImage_path(), photo, new ImageLoadingListener() {
                             @Override
                             public void onLoadingStarted(String imageUri, View view) {
-                                if(progressBar !=null){
+                                if (progressBar != null) {
                                     progressBar.setVisibility(View.VISIBLE);
                                 }
                             }
 
                             @Override
                             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                                if(progressBar !=null){
+                                if (progressBar != null) {
                                     progressBar.setVisibility(View.INVISIBLE);
                                 }
 
@@ -133,7 +135,7 @@ b1.setVisibility(View.GONE);
 
                             @Override
                             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                                if(progressBar !=null){
+                                if (progressBar != null) {
                                     progressBar.setVisibility(View.INVISIBLE);
                                 }
 
@@ -141,7 +143,7 @@ b1.setVisibility(View.GONE);
 
                             @Override
                             public void onLoadingCancelled(String imageUri, View view) {
-                                if(progressBar !=null){
+                                if (progressBar != null) {
                                     progressBar.setVisibility(View.INVISIBLE);
                                 }
 
@@ -160,10 +162,11 @@ b1.setVisibility(View.GONE);
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
-        });}
+        });
+    }
 
 
-    private void setupGridView(){
+    private void setupGridView() {
         Log.d(TAG, "setupGridView: Setting up image grid.");
 
         final ArrayList<Book> books = new ArrayList<>();
@@ -173,56 +176,56 @@ b1.setVisibility(View.GONE);
         DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
                 .child(getString(R.string.dbname_material));
-                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
-                        myBook=singleSnapshot.getKey().toString();
-                 Log.d(TAG, myBook);
-                    availability.setText(book.getAvailability().toString());
-                    name_of_book.setText(book.getBook_name().toString());
-                    number_of_course.setText(book.getCourse_id().toString());
-                    type.setText(book.getType().toString());
-                    typeMaterial=book.getType().toString();
-                    price.setText(book.getPrice().toString());
-                    state.setText(book.getStatus().toString());
-                    faculty.setText(book.getFaculty().toString());
-                            imageLoader= ImageLoader.getInstance();
+                        myBook = singleSnapshot.getKey().toString();
+                        Log.d(TAG, myBook);
+                        availability.setText(book.getAvailability().toString());
+                        name_of_book.setText(book.getBook_name().toString());
+                        number_of_course.setText(book.getCourse_id().toString());
+                        type.setText(book.getType().toString());
+                        typeMaterial = book.getType().toString();
+                        price.setText(book.getPrice().toString());
+                        state.setText(book.getStatus().toString());
+                        faculty.setText(book.getFaculty().toString());
+                        imageLoader = ImageLoader.getInstance();
 //
-                        imageLoader.displayImage( book.getImage_path(),photo,new ImageLoadingListener() {
+                        imageLoader.displayImage(book.getImage_path(), photo, new ImageLoadingListener() {
                             @Override
                             public void onLoadingStarted(String imageUri, View view) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.VISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.VISIBLE);
+                                }
                             }
 
                             @Override
                             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
 
                             }
 
                             @Override
                             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
 
                             }
 
                             @Override
                             public void onLoadingCancelled(String imageUri, View view) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
 
                             }
 
@@ -239,13 +242,28 @@ b1.setVisibility(View.GONE);
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
-        });}
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // This adds menu items to the app bar.cd ..
         getMenuInflater().inflate(R.menu.delete_book, menu);
         return true;
     }
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+//        final FirebaseUser user = mAuth.getCurrentUser();
+
+        MenuItem block = menu.findItem(R.id.block);
+
+
+        block.setVisible(false);
+
+
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
@@ -263,19 +281,19 @@ b1.setVisibility(View.GONE);
                 return true;
 
             case R.id.action_setting:
-                if(typeMaterial.equals("TextBooks")){
-                Intent intent=new Intent(ViewBookProfile.this,AddTextBook.class);
-                intent.putExtra("id_book", bookId);
-                startActivity(intent);
-                return true;
-                }else if(typeMaterial.equals("Lecture Notes")){
-                    Intent intent=new Intent(ViewBookProfile.this,AddLectureNotes.class);
+                if (typeMaterial.equals("TextBooks")) {
+                    Intent intent = new Intent(ViewBookProfile.this, AddTextBook.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+                } else if (typeMaterial.equals("Lecture Notes")) {
+                    Intent intent = new Intent(ViewBookProfile.this, AddLectureNotes.class);
                     intent.putExtra("id_book", bookId);
                     startActivity(intent);
                     return true;
 
-                }else if(typeMaterial.equals("General Books")){
-                    Intent intent=new Intent(ViewBookProfile.this,AddGeneralBook.class);
+                } else if (typeMaterial.equals("General Books")) {
+                    Intent intent = new Intent(ViewBookProfile.this, AddGeneralBook.class);
                     intent.putExtra("id_book", bookId);
                     startActivity(intent);
                     return true;
@@ -295,4 +313,41 @@ b1.setVisibility(View.GONE);
         super.onBackPressed();
         return;
     }
+
+    private void setupUserView() {
+        Log.d(TAG, "setupGridView: Setting up image grid.");
+
+
+        final ArrayList<User> users = new ArrayList<>();
+        final String user1 = mAuth.getCurrentUser().getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        Query query = reference
+                .child(getString(R.string.dbname_users));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    if (user.getUser_id().equals(user1)) {
+                        if (user.getType().equals("Student")) {
+                            type1 = true;
+                        } else {
+                            type1 = false;
+                        }
+                    }
+                    users.add(singleSnapshot.getValue(User.class));
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
+}

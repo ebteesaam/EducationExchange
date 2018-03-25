@@ -21,11 +21,14 @@
             app:showAsAction="never" />
 
         <item android:id="@+id/user"
-            android:title="user"
+            android:title="@string/user"
             app:showAsAction="never"/>
 
         <item android:id="@+id/report"
-            android:title="reports"
+            android:title="@string/reports"
+            app:showAsAction="never"/>
+        <item android:id="@+id/announcement"
+            android:title="@string/announcement"
             app:showAsAction="never"/>
 
 

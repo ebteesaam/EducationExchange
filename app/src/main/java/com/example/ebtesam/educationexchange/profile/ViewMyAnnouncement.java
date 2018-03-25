@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogBlockAnnoncementClass;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteAnnouncementClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
@@ -128,6 +130,20 @@ setupGridView();
         getMenuInflater().inflate(R.menu.delete_book, menu);
         return true;
     }
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+//        final FirebaseUser user = mAuth.getCurrentUser();
+
+        MenuItem block = menu.findItem(R.id.block);
+
+
+        if (MainActivity.type1 == true) {
+
+            block.setVisible(false);
+        }
+
+        return true;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
@@ -159,7 +175,11 @@ setupGridView();
                         return true;
 
                     }
-
+            case R.id.block:
+                CustomDialogBlockAnnoncementClass cd= new CustomDialogBlockAnnoncementClass(ViewMyAnnouncement.this);
+                cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cd.show();
+                return true;
 
 
         }

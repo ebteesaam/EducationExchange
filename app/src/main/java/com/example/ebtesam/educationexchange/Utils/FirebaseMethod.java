@@ -522,7 +522,15 @@ public class FirebaseMethod {
 
 
     }
+    public void updateAvailability( String book) {
 
+        myRef.child(mContext.getString(R.string.dbname_material))
+                .child(book)
+                .child("availability").setValue("Blocked");
+
+        Toast.makeText(mContext, mContext.getString(R.string.block_matreial), Toast.LENGTH_LONG).show();
+
+    }
     public void deleteBook(String book) {
 
 
@@ -641,6 +649,16 @@ public class FirebaseMethod {
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(id)
                 .child("status").setValue(status);
+    }
+
+    public void updateAvailabilityAnnuoncement(String myBook) {
+
+        myRef.child(mContext.getString(R.string.dbname_announcement))
+                .child(myBook)
+                .child("status").setValue("Blocked");
+
+        Toast.makeText(mContext, mContext.getString(R.string.block_announcement), Toast.LENGTH_LONG).show();
+
     }
 }
 

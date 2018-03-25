@@ -10,10 +10,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.Material;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
+import com.example.ebtesam.educationexchange.login.LoginPage;
+import com.example.ebtesam.educationexchange.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by ebtesam on 29/01/2018 AD.
@@ -22,6 +35,9 @@ import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
 public class LectureNotes extends Fragment {
 
     private Button comput, medicine,general_course, business, science, english, all;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+private boolean type=false;
     public LectureNotes(){
 
     }
@@ -109,19 +125,111 @@ public class LectureNotes extends Fragment {
                 startActivity(intent);
             }
         });
-
-
+setupFirebaseAuth();
+setupGridView();
         FloatingActionButton fab = rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddLectureNotes.class);
-
-                startActivity(intent);
+                if(type==true) {
+                    Intent intent = new Intent(getActivity(), AddLectureNotes.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), getString(R.string.you_blocked), Toast.LENGTH_LONG).show();
+                }
             }
         });
         return rootView;
 
 
     }
+    private void setupGridView() {
+
+
+        final ArrayList<User> users = new ArrayList<>();
+        final FirebaseUser user1 = mAuth.getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        Query query = reference
+                .child(getString(R.string.dbname_users));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    if(user.getUser_id().equals(user1.getUid())){
+                        if (user.getStatus().equals("active")) {
+                            type = true;
+
+                        } else {
+                            type = false;
+
+
+                        }}
+                    users.add(singleSnapshot.getValue(User.class));
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    //............................Firebase.................................//
+    private void checkCurrentUser(FirebaseUser user) {
+
+        if (user == null) {
+            Intent intent = new Intent(getActivity(), LoginPage.class);
+            startActivity(intent);
+        }
+    }
+
+    private void setupFirebaseAuth() {
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //check if the user is logged in
+                checkCurrentUser(user);
+
+                if (user != null) {
+                    // User is signed in
+                } else {
+                    // User is signed out
+
+                }
+                // ...
+            }
+        };
+
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        checkCurrentUser(mAuth.getCurrentUser());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    //............................end Firebase.................................//
+
 }

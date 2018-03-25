@@ -14,11 +14,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementGeneralActivity;
 import com.example.ebtesam.educationexchange.models.Announcement;
+import com.example.ebtesam.educationexchange.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +42,12 @@ public class HomeActivity extends Fragment {
 
     ListView listView;
     private boolean b = true;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    private boolean type=false;
+
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     public HomeActivity() {
 
@@ -63,6 +73,9 @@ public class HomeActivity extends Fragment {
         final Animation show_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_show);
         final Animation hide_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_hide);
 
+        setupAnnouncementView();
+        setupFirebaseAuth();
+        setupUserView();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,19 +115,26 @@ public class HomeActivity extends Fragment {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(type==true) {
                 Intent intent = new Intent(getActivity(), AnnouncementActivity.class);
                 startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), getString(R.string.you_blocked), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(type==true) {
                 Intent intent = new Intent(getActivity(), AnnouncementGeneralActivity.class);
                 startActivity(intent);
+            }else {
+                Toast.makeText(getActivity(), getString(R.string.you_blocked), Toast.LENGTH_LONG).show();
+            }
             }
         });
-
 
 
         setupAnnouncementView();
@@ -122,6 +142,102 @@ public class HomeActivity extends Fragment {
 
 
     }
+    /**
+     * Setup the firebase auth object
+     */
+    private void setupFirebaseAuth(){
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+                if (user != null) {
+                    // User is signed in
+                } else {
+                    // User is signed out
+                }
+                // ...
+            }
+        };
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //retrieve user information from the database
+                //setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
+
+                //retrieve images for the user in question
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    private void setupUserView() {
+
+
+        final ArrayList<User> users = new ArrayList<>();
+        final FirebaseUser user1 = mAuth.getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        Query query = reference
+                .child(getString(R.string.dbname_users));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    if(user.getUser_id().equals(user1.getUid())){
+                        if (user.getStatus().equals("active")) {
+                            type = true;
+
+                        } else {
+                            type = false;
+
+
+                        }}
+                    users.add(singleSnapshot.getValue(User.class));
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
 
     private void setupAnnouncementView() {
 
@@ -137,8 +253,9 @@ public class HomeActivity extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Announcement book = singleSnapshot.getValue(Announcement.class);
-
-                    books.add(singleSnapshot.getValue(Announcement.class));
+                    if (book.getStatus().equals("active")) {
+                        books.add(singleSnapshot.getValue(Announcement.class));
+                    }
 
                 }
 

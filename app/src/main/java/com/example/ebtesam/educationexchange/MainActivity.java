@@ -19,6 +19,7 @@ import com.example.ebtesam.educationexchange.Fragment.LectureNotes;
 import com.example.ebtesam.educationexchange.Fragment.TextBook;
 import com.example.ebtesam.educationexchange.Fragment.ViewPagerAdapter;
 import com.example.ebtesam.educationexchange.Utils.UnvirsalImageLoader;
+import com.example.ebtesam.educationexchange.admin.AnnouncementList;
 import com.example.ebtesam.educationexchange.admin.ReportsActivity;
 import com.example.ebtesam.educationexchange.admin.UserList;
 import com.example.ebtesam.educationexchange.login.LoginPage;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    public static boolean type1 ;
     TabLayout tabLayout;
     private Context mContext = MainActivity.this;
     private FirebaseAuth mAuth;
@@ -169,11 +171,14 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem users = menu.findItem(R.id.user);
         MenuItem report = menu.findItem(R.id.report);
+        MenuItem announcement = menu.findItem(R.id.announcement);
+
 
 
         if (type == true) {
             users.setVisible(false);
             report.setVisible(false);
+            announcement.setVisible(false);
         }
 
         return true;
@@ -202,6 +207,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(r);
                 return true;
 
+            case R.id.announcement:
+                Intent a = new Intent(MainActivity.this, AnnouncementList.class);
+                startActivity(a);
+                return true;
+
 
         }
         return super.onOptionsItemSelected(item);
@@ -227,8 +237,11 @@ public class MainActivity extends AppCompatActivity {
                     if(user.getUser_id().equals(user1.getUid())){
                     if (user.getType().equals("Student")) {
                         type = true;
+                        type1=type;
                     } else {
                         type = false;
+                        type1=type;
+
                     }}
                     users.add(singleSnapshot.getValue(User.class));
 

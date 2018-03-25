@@ -16,12 +16,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
 import com.example.ebtesam.educationexchange.addBook.ViewGeneralBook;
 import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,6 +50,7 @@ public class GeneralBook extends Fragment {
     private TextView  mbookname;
     private ProgressBar mProgressBar;
     private GridView gridView;
+    private boolean type=false;
 
     private ImageView profileMenu;
 
@@ -68,17 +71,23 @@ public class GeneralBook extends Fragment {
         View emptyView = rootView.findViewById(R.id.empty_view);
         gridView.setEmptyView(emptyView);
         setupFirebaseAuth();
+        setupUserView();
         setupGridView();
 
+        setupFirebaseAuth();
+        setupGridView();
         FloatingActionButton fab = rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddGeneralBook.class);
-                startActivity(intent);
+                if(type==true) {
+                    Intent intent = new Intent(getActivity(), AddGeneralBook.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), getString(R.string.you_blocked), Toast.LENGTH_LONG).show();
+                }
             }
         });
-
         return rootView;
 
     }
@@ -182,7 +191,44 @@ public class GeneralBook extends Fragment {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+    private void setupUserView() {
 
+
+        final ArrayList<User> users = new ArrayList<>();
+        final FirebaseUser user1 = mAuth.getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        Query query = reference
+                .child(getString(R.string.dbname_users));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    if(user.getUser_id().equals(user1.getUid())){
+                        if (user.getStatus().equals("active")) {
+                            type = true;
+
+                        } else {
+                            type = false;
+
+
+                        }}
+                    users.add(singleSnapshot.getValue(User.class));
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
 
 }

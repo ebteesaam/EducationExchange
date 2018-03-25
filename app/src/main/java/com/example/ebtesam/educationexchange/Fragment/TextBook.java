@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +15,16 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.Material;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
-import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.login.LoginPage;
+import com.example.ebtesam.educationexchange.models.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +47,8 @@ public class TextBook extends Fragment {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private FirebaseMethod mFirebaseMethods;
+
+    private boolean type=false;
     //widgets
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mbookname, courseIdBook, mDescription;
     private ProgressBar mProgressBar;
@@ -149,13 +153,18 @@ public class TextBook extends Fragment {
             }
         });
 
+        setupFirebaseAuth();
+        setupGridView();
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddTextBook.class);
-
-                startActivity(intent);
+                if(type==true) {
+                    Intent intent = new Intent(getActivity(), AddTextBook.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), getString(R.string.you_blocked), Toast.LENGTH_LONG).show();
+                }
             }
         });
      //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
@@ -185,40 +194,94 @@ public class TextBook extends Fragment {
 
     }
 
-    private void setupGridView(){
-        Log.d(TAG, "setupGridView: Setting up image grid.");
-        // get data from the table by the ListAdapter
+    private void setupGridView() {
 
 
+        final ArrayList<User> users = new ArrayList<>();
+        final FirebaseUser user1 = mAuth.getCurrentUser();
 
-        final ArrayList<Book> books = new ArrayList<>();
-        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
+
         Query query = reference
-                .child(getString(R.string.dbname_material));
-             //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child(getString(R.string.dbname_users));
+        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-                    Book book=singleSnapshot.getValue(Book.class);
-                    books.add(singleSnapshot.getValue(Book.class));
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    User user = singleSnapshot.getValue(User.class);
+                    if(user.getUser_id().equals(user1.getUid())){
+                        if (user.getStatus().equals("active")) {
+                            type = true;
+
+                        } else {
+                            type = false;
+
+
+                        }}
+                    users.add(singleSnapshot.getValue(User.class));
+
                 }
 
-                ListAdapter adapter = new ListAdapter(getActivity(),R.layout.list_material_activity, books);
-                // Attach the adapter to a ListView
-                gridView.setAdapter(adapter);
+
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: query cancelled.");
             }
+        });
+    }
 
-        });}
+    //............................Firebase.................................//
+    private void checkCurrentUser(FirebaseUser user) {
 
+        if (user == null) {
+            Intent intent = new Intent(getActivity(), LoginPage.class);
+            startActivity(intent);
+        }
+    }
+
+    private void setupFirebaseAuth() {
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                //check if the user is logged in
+                checkCurrentUser(user);
+
+                if (user != null) {
+                    // User is signed in
+                } else {
+                    // User is signed out
+
+                }
+                // ...
+            }
+        };
+
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        checkCurrentUser(mAuth.getCurrentUser());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    //............................end Firebase.................................//
 
 
 

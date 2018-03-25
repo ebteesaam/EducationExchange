@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,8 +19,6 @@ import android.widget.TextView;
 import com.example.ebtesam.educationexchange.Fragment.ListAdapterAnnouncement;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
-import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
-import com.example.ebtesam.educationexchange.announcement.AnnouncementGeneralActivity;
 import com.example.ebtesam.educationexchange.models.Announcement;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -70,9 +66,9 @@ public class MyAnnouncementsActivity extends AppCompatActivity {
         View emptyView = findViewById(R.id.empty_view);
         listView.setEmptyView(emptyView);
 
-        final FloatingActionButton fab = findViewById(R.id.fab);
-        final FloatingActionButton fab1 = findViewById(R.id.fab_1);
-        final FloatingActionButton fab2 = findViewById(R.id.fab_2);
+//        final FloatingActionButton fab = findViewById(R.id.fab);
+//        final FloatingActionButton fab1 = findViewById(R.id.fab_1);
+//        final FloatingActionButton fab2 = findViewById(R.id.fab_2);
 
         //Animations
         final Animation show_fab_1 = AnimationUtils.loadAnimation(MyAnnouncementsActivity.this, R.anim.fab1_show);
@@ -81,57 +77,57 @@ public class MyAnnouncementsActivity extends AppCompatActivity {
         final Animation show_fab_2 = AnimationUtils.loadAnimation(MyAnnouncementsActivity.this, R.anim.fab2_show);
         final Animation hide_fab_2 = AnimationUtils.loadAnimation(MyAnnouncementsActivity.this, R.anim.fab2_hide);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (b == true) {
-                    final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
-                    layoutParams.rightMargin += (int) (fab1.getWidth() * 1.6);
-                    layoutParams.bottomMargin += (int) (fab1.getWidth() * 0.25);
-                    fab1.setLayoutParams(layoutParams);
-                    fab1.startAnimation(show_fab_1);
-                    fab1.setClickable(true);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (b == true) {
+//                    final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
+//                    layoutParams.rightMargin += (int) (fab1.getWidth() * 1.6);
+//                    layoutParams.bottomMargin += (int) (fab1.getWidth() * 0.25);
+//                    fab1.setLayoutParams(layoutParams);
+//                    fab1.startAnimation(show_fab_1);
+//                    fab1.setClickable(true);
+//
+//                    final FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
+//                    layoutParams2.rightMargin += (int) (fab2.getWidth() * 0.25);
+//                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * 1.6);
+//                    fab2.setLayoutParams(layoutParams2);
+//                    fab2.startAnimation(show_fab_2);
+//                    fab2.setClickable(true);
+//                    b = false;
+//                } else if (b == false) {
+//                    final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
+//                    layoutParams.rightMargin += (int) (fab1.getWidth() * -1.6);
+//                    layoutParams.bottomMargin += (int) (fab1.getWidth() * -0.25);
+//                    fab1.setLayoutParams(layoutParams);
+//                    fab1.startAnimation(hide_fab_1);
+//
+//                    final FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
+//                    layoutParams2.rightMargin += (int) (fab2.getWidth() * -0.25);
+//                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * -1.6);
+//                    fab2.setLayoutParams(layoutParams2);
+//                    fab2.startAnimation(hide_fab_2);
+//                    fab2.setClickable(false);
+//                    b = true;
+//                }
+//            }
+//        });
 
-                    final FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
-                    layoutParams2.rightMargin += (int) (fab2.getWidth() * 0.25);
-                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * 1.6);
-                    fab2.setLayoutParams(layoutParams2);
-                    fab2.startAnimation(show_fab_2);
-                    fab2.setClickable(true);
-                    b = false;
-                } else if (b == false) {
-                    final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fab1.getLayoutParams();
-                    layoutParams.rightMargin += (int) (fab1.getWidth() * -1.6);
-                    layoutParams.bottomMargin += (int) (fab1.getWidth() * -0.25);
-                    fab1.setLayoutParams(layoutParams);
-                    fab1.startAnimation(hide_fab_1);
-
-                    final FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fab2.getLayoutParams();
-                    layoutParams2.rightMargin += (int) (fab2.getWidth() * -0.25);
-                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * -1.6);
-                    fab2.setLayoutParams(layoutParams2);
-                    fab2.startAnimation(hide_fab_2);
-                    fab2.setClickable(false);
-                    b = true;
-                }
-            }
-        });
-
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MyAnnouncementsActivity.this, AnnouncementActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MyAnnouncementsActivity.this, AnnouncementGeneralActivity.class);
-                startActivity(intent);
-            }
-        });
+//        fab1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MyAnnouncementsActivity.this, AnnouncementActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        fab2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MyAnnouncementsActivity.this, AnnouncementGeneralActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 

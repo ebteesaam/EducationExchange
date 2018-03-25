@@ -21,13 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityAdmin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".addBook.AddTextBook"
             android:parentActivityName=".MainActivity">
@@ -134,6 +127,8 @@
         </activity>
         <activity android:name=".admin.ReportsActivity"></activity>
         <activity android:name=".admin.ViewBookReport"></activity>
+        <activity android:name=".admin.AnnouncementList"></activity>
+
     </application>
 
 

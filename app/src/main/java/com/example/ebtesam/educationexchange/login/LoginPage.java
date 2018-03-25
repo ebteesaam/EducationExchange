@@ -151,7 +151,6 @@ public class LoginPage extends AppCompatActivity {
 
             Log.d(TAG, "onClick: Admin");
 
-            //Intent intent = new Intent(LoginPage.this, MainActivityAdmin.class);
             //startActivity(intent);
             //finish();
         }

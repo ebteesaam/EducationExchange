@@ -18,7 +18,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogBlocktClass;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
@@ -26,6 +28,7 @@ import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.example.ebtesam.educationexchange.models.Report;
+import com.example.ebtesam.educationexchange.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -97,25 +100,35 @@ public class ViewBookReport extends AppCompatActivity {
 
 
         final ArrayList<Report> books = new ArrayList<>();
+        final ArrayList<User> users = new ArrayList<>();
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
 
+        final String[] id = new String[1];
         Query query = reference
-                .child(getString(R.string.dbname_report));
+                .child(getString(R.string.dbname_report)).child(bookId);
         //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Report book = singleSnapshot.getValue(Report.class);
-                    Log.d(TAG, "id");
+                    User user = singleSnapshot.getValue(User.class);
+
+                   id[0] =singleSnapshot.getKey().toString();
+
+//                    Log.d(TAG, "id"+myBook);
 
 //if(singleSnapshot.child("id_book").getValue(String.class).equals(bookId)){
-//                    books.add(singleSnapshot.getValue(Report.class));}
+                   books.add(singleSnapshot.getValue(Report.class));
+//                    if(user.getUser_id().equals(myBook)){
+//
+//                        users.add(singleSnapshot.getValue(User.class));}
 //
 
                 }
-                ListAdapterReport adapter = new ListAdapterReport(ViewBookReport.this, R.layout.reports, books);
+                ListAdapterReport adapter = new ListAdapterReport(ViewBookReport.this, R.layout.reports, books, id[0]);
                 // Attach the adapter to a ListView
                 listView.setAdapter(adapter);
 
@@ -296,6 +309,20 @@ public class ViewBookReport extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.delete_book, menu);
         return true;
     }
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+//        final FirebaseUser user = mAuth.getCurrentUser();
+
+        MenuItem block = menu.findItem(R.id.block);
+
+
+        if (MainActivity.type1 == true) {
+
+            block.setVisible(false);
+        }
+
+        return true;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
@@ -331,10 +358,11 @@ public class ViewBookReport extends AppCompatActivity {
                     return true;
                 }
 
-//            case R.id.search:
-//                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;
-//                startActivity(i);
-//                return true;
+            case R.id.block:
+                CustomDialogBlocktClass cd= new CustomDialogBlocktClass(ViewBookReport.this);
+                cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cd.show();
+                return true;
 
         }
         return super.onOptionsItemSelected(item);

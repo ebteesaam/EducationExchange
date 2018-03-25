@@ -127,6 +127,7 @@
     <string name="book_details">Book Details</string>
 
     <string name="confirm">CONFIRM</string>
+    <string name="block">Block this material</string>
 
     <string name="blocked">Blocked</string>
     <string name="availability" translatable="false">availability</string>
@@ -1037,10 +1038,18 @@
     <string name="deleteAnnouncement">The announcement was deleted</string>
     <string name="success_update">Successfuly updated</string>
     <string name="delete_dialog">Are you sure you want to delete this?</string>
+    <string name="blocked_dialog">Are you sure you want to block this material?</string>
+
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="you_report">you can\'t report your materials</string>
     <string name="report_reason">Report:</string>
+    <string name="block_matreial">The material was blocked</string>
+    <string name="block_announcement">The announcement was blocked</string>
+
+    <string name="reports">Reports</string>
+    <string name="user">Users</string>
+    <string name="you_blocked">You can not add Materials,you have been blocked</string>
 
     <!--end-->
 
