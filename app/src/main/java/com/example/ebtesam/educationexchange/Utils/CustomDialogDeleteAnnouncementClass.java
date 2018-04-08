@@ -40,13 +40,13 @@ public class CustomDialogDeleteAnnouncementClass extends Dialog implements
 
     public CustomDialogDeleteAnnouncementClass(Activity a, String id) {
         super(a);
-        // TODO Auto-generated constructor stub
+
         this.c = a;
         Id=id;
     }
     public CustomDialogDeleteAnnouncementClass(Activity a) {
         super(a);
-        // TODO Auto-generated constructor stub
+
         this.c = a;
 
     }
