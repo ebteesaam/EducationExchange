@@ -1,6 +1,8 @@
 package com.example.ebtesam.educationexchange.Utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -11,6 +13,7 @@ import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.models.Announcement;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.example.ebtesam.educationexchange.models.Report;
+import com.example.ebtesam.educationexchange.models.Request;
 import com.example.ebtesam.educationexchange.models.User;
 import com.example.ebtesam.educationexchange.models.UserSettings;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -522,24 +525,42 @@ public class FirebaseMethod {
 
 
     }
-    public void updateAvailability( String book) {
+    public void updateAvailability( String book, String email) {
 
         myRef.child(mContext.getString(R.string.dbname_material))
                 .child(book)
                 .child("availability").setValue("Blocked");
-
+sendEmail("Book", email);
         Toast.makeText(mContext, mContext.getString(R.string.block_matreial), Toast.LENGTH_LONG).show();
 
+    }
+    public void deleteBook(String book,String email) {
+
+
+        myRef.child(mContext.getString(R.string.dbname_material))
+                .child(book).removeValue();
+        sendEmailD("Book",email);
+        Toast.makeText(mContext, mContext.getString(R.string.deleteBook), Toast.LENGTH_SHORT).show();
     }
     public void deleteBook(String book) {
 
 
         myRef.child(mContext.getString(R.string.dbname_material))
                 .child(book).removeValue();
-
         Toast.makeText(mContext, mContext.getString(R.string.deleteBook), Toast.LENGTH_SHORT).show();
     }
 
+
+    public void removeAnnouncement(String book, String email) {
+
+
+        myRef.child(mContext.getString(R.string.dbname_announcement))
+                .child(book).removeValue();
+        sendEmailD("Announcement",email);
+        Toast.makeText(mContext, mContext.getString(R.string.deleteAnnouncement), Toast.LENGTH_SHORT).show();
+
+
+    }
 
     public void removeAnnouncement(String book) {
 
@@ -550,7 +571,29 @@ public class FirebaseMethod {
 
 
     }
+    protected void sendEmailD(String announcement, String email) {
 
+        Log.i("Send email", "");
+        String[] TO = {email};
+//      String[] CC = {"1ebteesaam@gmailcom"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//       emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Deleted your "+announcement);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your "+announcement+" was deleted");
+
+
+        try {
+            mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void updateBook(String bookNmae, String courseId, String price, String faculty, String available, String state, String myBook) {
         if (bookNmae != null) {
@@ -630,15 +673,27 @@ public class FirebaseMethod {
         return count;
     }
 
-    public void reportMaterial(String s, String w) {
+    public void reportMaterial(String s, String w, String email) {
         String report_id = myRef.push().getKey();
-        Report report = new Report(s, report_id, "new", w);
+        Report report = new Report(s, report_id, "new", w,FirebaseAuth.getInstance().getCurrentUser().getUid() );
         myRef.child(mContext.getString(R.string.dbname_report))
                 .child(s)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(report);
+        sendEmailReport(w,email);
         Toast.makeText(mContext,mContext.getString(R.string.send_report) , Toast.LENGTH_SHORT).show();
     }
+    protected void sendEmailReport(String announcement, String email) {
+
+        Log.i("Send email", "");
+        String[] TO = {email};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Report your Material by Student ");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your material was repored in Education Exchange becuase "+announcement);}
 
     public void updateUser(String type, String status, String id) {
 
@@ -651,14 +706,113 @@ public class FirebaseMethod {
                 .child("status").setValue(status);
     }
 
-    public void updateAvailabilityAnnuoncement(String myBook) {
+    public void updateUser(String type, String status, String id, String blocked) {
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(id)
+                .child("type").setValue(type);
+
+        myRef.child(mContext.getString(R.string.dbname_users))
+                .child(id)
+                .child("status").setValue(status);
+        sendEmailUser("Account", blocked);
+    }
+    protected void sendEmailUser(String announcement, String email) {
+
+        Log.i("Send email", "");
+        String[] TO = {email};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blocked your "+announcement);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your "+announcement+" was block in Education Exchange");
+
+
+        try {
+            mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
+
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }}
+
+    public void updateAvailabilityAnnuoncement(String myBook, String email) {
 
         myRef.child(mContext.getString(R.string.dbname_announcement))
                 .child(myBook)
                 .child("status").setValue("Blocked");
-
+    sendEmail("Announcement", email);
         Toast.makeText(mContext, mContext.getString(R.string.block_announcement), Toast.LENGTH_LONG).show();
 
+
+
+    }
+    @SuppressLint("LongLogTag")
+    protected void sendEmail(String announcement, String email) {
+
+        Log.i("Send email", "");
+        String[] TO = {email};
+//      String[] CC = {"1ebteesaam@gmailcom"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//       emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blocked you "+announcement);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your "+announcement+" was block");
+
+
+        try {
+            mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
+            Log.i("Finished sending email...", "");
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public void RequestBook(String id_user, String bookName, String id_material, String email) {
+        String request_id = myRef.push().getKey();
+        Request request=new Request(id_material, request_id,"false",bookName, id_user);
+        myRef.child(mContext.getString(R.string.dbname_Request))
+                .child(id_material)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(request);
+        sendEmailRequest(bookName, email );
+
+
+
+    }
+    @SuppressLint("LongLogTag")
+    protected void sendEmailRequest(String bookName, String email) {
+
+        Log.i("Send email", "");
+        String[] TO = {email};
+//      String[] CC = {"1ebteesaam@gmailcom"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//       emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Request you "+bookName+" (Material)");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "I want to request your "+bookName+" (Material)");
+
+
+        try {
+            mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+
+            Log.i("Finished sending email...", "");
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

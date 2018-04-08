@@ -10,16 +10,25 @@ public class Report {
     private String report_id;
     private String status;
     private String type;
+    private String id_user;
 
-
-    public Report() {
-    }
-
-    public Report(String id_book, String report_id, String status, String type) {
+    public Report(String id_book, String report_id, String status, String type, String id_user) {
         this.id_book = id_book;
         this.report_id = report_id;
         this.status = status;
         this.type = type;
+        this.id_user = id_user;
+    }
+
+    public Report() {
+    }
+
+    public String getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
     }
 
     public String getId_book() {

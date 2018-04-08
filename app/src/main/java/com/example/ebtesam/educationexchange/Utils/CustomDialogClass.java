@@ -32,6 +32,7 @@ public class CustomDialogClass extends Dialog implements
     public Button unEthical, cancel, unRelated, send;
     FirebaseMethod mFirebaseMethods;
     String tx;
+    String Id;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -41,8 +42,12 @@ public class CustomDialogClass extends Dialog implements
 
     public CustomDialogClass(Activity a) {
         super(a);
-        // TODO Auto-generated constructor stub
         this.c = a;
+    }
+    public CustomDialogClass(Activity a, String id) {
+        super(a);
+        this.c = a;
+        Id=id;
     }
 
     @Override
@@ -52,11 +57,11 @@ public class CustomDialogClass extends Dialog implements
         setContentView(R.layout.custom_dialog);
         mFirebaseMethods = new FirebaseMethod(getContext());
 
-        unEthical = (Button) findViewById(R.id.unEthical);
-        unRelated = (Button) findViewById(R.id.unrelated);
+        unEthical = findViewById(R.id.unEthical);
+        unRelated = findViewById(R.id.unrelated);
         other = findViewById(R.id.other);
         send = findViewById(R.id.send);
-        cancel = (Button) findViewById(R.id.cancel);
+        cancel = findViewById(R.id.cancel);
 
         unEthical.setOnClickListener(this);
         unRelated.setOnClickListener(this);
@@ -70,7 +75,7 @@ public class CustomDialogClass extends Dialog implements
         switch (v.getId()) {
             case R.id.unEthical:
 
-                mFirebaseMethods.reportMaterial(ViewBook.id_material.toString(), getContext().getString(R.string.unEthical).toString());
+                mFirebaseMethods.reportMaterial(ViewBook.id_material.toString(), getContext().getString(R.string.unEthical).toString(),Id);
                 break;
 
             case R.id.cancel:
@@ -80,7 +85,7 @@ public class CustomDialogClass extends Dialog implements
             case R.id.send:
                 tx = other.getText().toString();
                 if (tx != null) {
-                    mFirebaseMethods.reportMaterial(ViewBook.id_material.toString(), tx);
+                    mFirebaseMethods.reportMaterial(ViewBook.id_material.toString(), tx,Id);
                     break;
                 } else {
                     Toast.makeText(c, getContext().getString(R.string.fill_other).toString(), Toast.LENGTH_LONG).show();
@@ -88,7 +93,7 @@ public class CustomDialogClass extends Dialog implements
                 break;
 
             case R.id.unrelated:
-                mFirebaseMethods.reportMaterial(ViewBook.id_material.toString(), getContext().getString(R.string.unRelated).toString());
+                mFirebaseMethods.reportMaterial(ViewBook.id_material.toString(), getContext().getString(R.string.unRelated).toString(), Id);
                 break;
 
             default:

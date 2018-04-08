@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.models.Book;
+import com.example.ebtesam.educationexchange.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,7 @@ public class ViewBook extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     public static String id_material;
     TabLayout tabLayout;
-    String bookId, myBook, id_user;
+    String bookId, myBook, id_user, email, bookName;
 
     ImageLoader imageLoader;
     private Context mContext = ViewBook.this;
@@ -51,6 +53,7 @@ public class ViewBook extends AppCompatActivity {
     private TextView availability, price, state, number_of_course, name_of_book, faculty, type, facultyname, number_of_coursename;
     private ImageView photo;
     private ProgressBar progressBar;
+    private Button requestBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +78,35 @@ public class ViewBook extends AppCompatActivity {
         facultyname=findViewById(R.id.facultyname);
         number_of_coursename=findViewById(R.id.number_of_coursename);
 
-
-        
-
-
+        requestBook=findViewById(R.id.request_book);
         setupGridView();
+        
+        requestBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(id_user.equals(mAuth.getInstance().getCurrentUser().getUid())){
+                    //Log.d(ViewBook.this.toString(), "View: not mine."+mAuth.getInstance().getCurrentUser().getUid());
+                    Toast.makeText(mContext, getString(R.string.request_your_book), Toast.LENGTH_SHORT).show();
+                }else {
+                    Log.d(ViewBook.this.toString(), "View: not mine."+mAuth.getInstance().getCurrentUser().getUid());
+
+                    mFirebaseMethods.RequestBook(id_user,bookName,id_material,email);
+                    Log.d(ViewBook.this.toString(), "View:  mine.");
+                }
+            }
+        });
+
+
 
         }
 
 
     private void setupGridView(){
         Log.d(TAG, "setupGridView: Setting up image grid.");
-
+        final String e[] = new String[1];
         final ArrayList<Book> books = new ArrayList<>();
         final ArrayList<Book> arrayOfUsers = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
@@ -104,7 +121,16 @@ public class ViewBook extends AppCompatActivity {
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
                     id_material=book.getId_book();
-                    id_user=book.getUser_id();
+id_user=book.getUser_id();
+                     e[0]=book.getUser_id();
+                    bookName=book.getBook_name();
+//                        User user = singleSnapshot.getValue(User.class);
+//                        if(user.getUser_id().equals(e[0])) {
+//                            email = user.getEmail();
+//
+//
+//
+//                        }
 
                     availability.setText(book.getAvailability().toString());
                     name_of_book.setText(book.getBook_name().toString());
@@ -113,6 +139,30 @@ public class ViewBook extends AppCompatActivity {
                     price.setText(book.getPrice().toString());
                     state.setText(book.getStatus().toString());
                     faculty.setText(book.getFaculty().toString());
+//                        final String[] email = new String[1];
+//                        Query query = reference
+//                                .child(getString(R.string.dbname_users));
+//                        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+//                                    User user = singleSnapshot.getValue(User.class);
+//                                    if(user.getUser_id().equals(bookId)) {
+//                                        Id = user.getEmail();
+//                                        email[0] =Id;
+//                                        Log.d(AnnouncementList.this.toString(), "id." + Id);
+//                                    }
+//                                }
+//                                intent.putExtra("id_email",Id);
+//                                Log.d(AnnouncementList.this.toString(), "id.2" + Id);
+//
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//                            }
+//                        });
                             imageLoader= ImageLoader.getInstance();
 //
                         imageLoader.displayImage( book.getImage_path(),photo,new ImageLoadingListener() {
@@ -153,8 +203,33 @@ public class ViewBook extends AppCompatActivity {
 
 
                 }
+                Query query1 = reference
+                        .child(getString(R.string.dbname_users));
+                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                            User user = singleSnapshot.getValue(User.class);
+                            if (user.getUser_id().equals(e[0])) {
+                                email = user.getEmail();
+
+
+                            }
+                        }
+                        Log.d(TAG, "View:."+email);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
 
             }
+
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -176,7 +251,7 @@ public class ViewBook extends AppCompatActivity {
                 if(id_user.equals(mAuth.getCurrentUser().getUid())){
                     Toast.makeText(mContext, getString(R.string.you_report), Toast.LENGTH_SHORT).show();
                 }else {
-                CustomDialogClass cdd = new CustomDialogClass(ViewBook.this);
+                CustomDialogClass cdd = new CustomDialogClass(ViewBook.this, email);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cdd.show();}
 

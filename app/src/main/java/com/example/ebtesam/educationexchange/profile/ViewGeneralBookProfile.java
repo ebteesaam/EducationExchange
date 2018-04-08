@@ -15,12 +15,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogBlockGClass;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteGeneralClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
 import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
 import com.example.ebtesam.educationexchange.addBook.AddTextBook;
+import com.example.ebtesam.educationexchange.admin.AnnouncementList;
 import com.example.ebtesam.educationexchange.models.Book;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -152,7 +155,22 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
     }
 
 
+    public boolean onPrepareOptionsMenu(Menu menu) {
+//        final FirebaseUser user = mAuth.getCurrentUser();
 
+        MenuItem block = menu.findItem(R.id.block);
+        MenuItem setting = menu.findItem(R.id.action_setting);
+
+
+        if (MainActivity.type1 == true) {
+
+            block.setVisible(false);
+        }else {
+            setting.setVisible(false);
+        }
+
+        return true;
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // This adds menu items to the app bar.cd ..
@@ -164,14 +182,6 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-//                try {
-//                  //  Log.d(TAG, "onCancelled: query cancelled."+myBook);
-//
-//                    firebaseMethod.deleteBook(myBook);
-//
-//                }catch (Exception e){}
-//                ViewGeneralBookProfile.this.finish();
-//                return true;
 
                 CustomDialogDeleteGeneralClass cdd = new CustomDialogDeleteGeneralClass(ViewGeneralBookProfile.this);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -195,6 +205,11 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 }
+            case R.id.block:
+                CustomDialogBlockGClass cd= new CustomDialogBlockGClass(ViewGeneralBookProfile.this, AnnouncementList.Id);
+                cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cd.show();
+                return true;
 
 
         }
@@ -207,28 +222,6 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
         return;
     }
 
-//    private void update(){
-//        final ArrayList<Book> books = new ArrayList<>();
-////                final ArrayList<Book> arrayOfUsers = new ArrayList<>();
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//        Query query = reference
-//                .child(getString(R.string.dbname_material));
-//        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-//                    Book book = singleSnapshot.getValue(Book.class);
-//                    bookAvailability=  singleSnapshot.getKey().toString();
-//                    if (book.getId_book().equals(bookId)) {
-//                        firebaseMethod.updateAvailabilty(getString(R.string.blocked), bookAvailability);
-//
-//                    }}}
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        });
-//    }
+
     }
 

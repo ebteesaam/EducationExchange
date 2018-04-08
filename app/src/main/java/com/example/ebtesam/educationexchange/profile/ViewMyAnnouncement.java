@@ -20,6 +20,7 @@ import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogBlockAnnoncementClass;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteAnnouncementClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
+import com.example.ebtesam.educationexchange.admin.AnnouncementList;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementGeneralActivity;
 import com.example.ebtesam.educationexchange.models.Announcement;
@@ -42,7 +43,7 @@ public class ViewMyAnnouncement extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     public static String myBook;
     TabLayout tabLayout;
-    String bookId,  typeMaterial;
+    String bookId,  typeMaterial, emailId;
     ImageLoader imageLoader;
     private Context mContext = ViewMyAnnouncement.this;
     private FirebaseAuth mAuth;
@@ -58,6 +59,8 @@ public class ViewMyAnnouncement extends AppCompatActivity {
         setContentView(R.layout.view_announcement);
         setTitle(getString(R.string.view_my_announcement));
         bookId = getIntent().getStringExtra("id_announcement");
+        emailId = getIntent().getStringExtra("id_email");
+
         firebaseMethod = new FirebaseMethod(ViewMyAnnouncement.this);
 
 //        availability = findViewById(R.id.availability);
@@ -74,6 +77,7 @@ public class ViewMyAnnouncement extends AppCompatActivity {
 setupGridView();
 
     }
+
     private void setupGridView(){
         Log.d(TAG, "setupGridView: Setting up image grid.");
 
@@ -99,7 +103,9 @@ setupGridView();
                         typeMaterial=book.getType().toString();
 
                         bookText.setText(book.getText().toString());
-                       // state.setText(book.getStatus().toString());
+                        Log.d(TAG, "email.id."+ AnnouncementList.Id);
+
+                        // state.setText(book.getStatus().toString());
                         if(book.getCourse_id()!=null||book.getFaculty()!=null){
                             number_of_course.setText(book.getCourse_id().toString());
                             faculty.setText(book.getFaculty().toString());
@@ -135,11 +141,14 @@ setupGridView();
 //        final FirebaseUser user = mAuth.getCurrentUser();
 
         MenuItem block = menu.findItem(R.id.block);
+        MenuItem setting = menu.findItem(R.id.action_setting);
 
 
         if (MainActivity.type1 == true) {
 
             block.setVisible(false);
+        }else {
+            setting.setVisible(false);
         }
 
         return true;
@@ -149,16 +158,15 @@ setupGridView();
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-//                try {
-//                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
-//
-//                    firebaseMethod.removeAnnouncement(myBook);
-//
-//                }catch (Exception e){}
-//                ViewMyAnnouncement.this.finish();
+
+                if (MainActivity.type1 == true){
                 CustomDialogDeleteAnnouncementClass cdd = new CustomDialogDeleteAnnouncementClass(ViewMyAnnouncement.this);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                cdd.show();
+                cdd.show();}else {
+                    CustomDialogDeleteAnnouncementClass cdd = new CustomDialogDeleteAnnouncementClass(ViewMyAnnouncement.this, AnnouncementList.Id);
+                    cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    cdd.show();
+                }
                 return true;
 
             case R.id.action_setting:
@@ -176,7 +184,7 @@ setupGridView();
 
                     }
             case R.id.block:
-                CustomDialogBlockAnnoncementClass cd= new CustomDialogBlockAnnoncementClass(ViewMyAnnouncement.this);
+                CustomDialogBlockAnnoncementClass cd= new CustomDialogBlockAnnoncementClass(ViewMyAnnouncement.this, AnnouncementList.Id);
                 cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.show();
                 return true;

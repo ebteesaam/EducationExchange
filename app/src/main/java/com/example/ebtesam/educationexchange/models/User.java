@@ -14,6 +14,20 @@ public class User {
     private String status;
     private String report;
     private String type;
+    private String firebasetoken;
+
+    public User(String username, String user_id, String password, String email, String profile_photo, String status, String report, String type, String firebasetoken) {
+
+        this.username = username;
+        this.user_id = user_id;
+        this.password = password;
+        this.email = email;
+        this.profile_photo = profile_photo;
+        this.status = status;
+        this.report = report;
+        this.type = type;
+        this.firebasetoken = firebasetoken;
+    }
 
     public User(String username, String user_id, String password, String email, String profile_photo, String status, String report, String type) {
         this.username = username;
@@ -27,6 +41,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public String getFirebasetoken() {
+        return firebasetoken;
+    }
+
+    public void setFirebasetoken(String firebasetoken) {
+        this.firebasetoken = firebasetoken;
     }
 
     public String getType() {

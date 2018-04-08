@@ -48,7 +48,7 @@ import java.util.ArrayList;
 
 public class ViewBookReport extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
-    public static String myBook;
+    public static String myBook, Idemail;
     TabLayout tabLayout;
     String bookId, typeMaterial;
     ImageLoader imageLoader;
@@ -69,32 +69,29 @@ public class ViewBookReport extends AppCompatActivity {
         setTitle(getString(R.string.book_details));
         firebaseMethod = new FirebaseMethod(ViewBookReport.this);
 
-        bookId=getIntent().getStringExtra("id_book");
+        bookId = getIntent().getStringExtra("id_book");
 
-        availability=findViewById(R.id.availability);
-        price=findViewById(R.id.price);
-        state=findViewById(R.id.state);
-        faculty=findViewById(R.id.faculty);
-        progressBar=findViewById(R.id.ProgressBar);
+        availability = findViewById(R.id.availability);
+        price = findViewById(R.id.price);
+        state = findViewById(R.id.state);
+        faculty = findViewById(R.id.faculty);
+        progressBar = findViewById(R.id.ProgressBar);
 
         type = findViewById(R.id.type_of_book);
-        number_of_course=findViewById(R.id.number_of_course);
-        name_of_book=findViewById(R.id.name_of_book);
-        photo=findViewById(R.id.relative1);
-        facultyname=findViewById(R.id.facultyname);
-        number_of_coursename=findViewById(R.id.number_of_coursename);
-
-        listView=findViewById(R.id.listReport);
+        number_of_course = findViewById(R.id.number_of_course);
+        name_of_book = findViewById(R.id.name_of_book);
+        photo = findViewById(R.id.relative1);
+        facultyname = findViewById(R.id.facultyname);
+        number_of_coursename = findViewById(R.id.number_of_coursename);
 
 
-//        myBook=getIntent().getStringExtra("myBook");
-
+        listView = findViewById(R.id.listReport);
 
 
         setupGridView();
         setupAnnouncementView();
 
-        }
+    }
 
     private void setupAnnouncementView() {
 
@@ -103,7 +100,7 @@ public class ViewBookReport extends AppCompatActivity {
         final ArrayList<User> users = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-
+        final String[] d = new String[1];
 
         final String[] id = new String[1];
         Query query = reference
@@ -116,22 +113,12 @@ public class ViewBookReport extends AppCompatActivity {
                     Report book = singleSnapshot.getValue(Report.class);
                     User user = singleSnapshot.getValue(User.class);
 
-                   id[0] =singleSnapshot.getKey().toString();
-
-//                    Log.d(TAG, "id"+myBook);
-
-//if(singleSnapshot.child("id_book").getValue(String.class).equals(bookId)){
-                   books.add(singleSnapshot.getValue(Report.class));
-//                    if(user.getUser_id().equals(myBook)){
-//
-//                        users.add(singleSnapshot.getValue(User.class));}
-//
+                    books.add(singleSnapshot.getValue(Report.class));
 
                 }
-                ListAdapterReport adapter = new ListAdapterReport(ViewBookReport.this, R.layout.reports, books, id[0]);
+                ListAdapterReport adapter = new ListAdapterReport(ViewBookReport.this, R.layout.reports, books);
                 // Attach the adapter to a ListView
                 listView.setAdapter(adapter);
-
 
             }
 
@@ -141,12 +128,14 @@ public class ViewBookReport extends AppCompatActivity {
         });
     }
 
-    private void setupGridViewMyBook(){
+
+    private void setupGridView() {
         Log.d(TAG, "setupGridView: Setting up image grid.");
+        final String[] e = new String[1];
 
         final ArrayList<Book> books = new ArrayList<>();
         final ArrayList<Book> arrayOfUsers = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
         Query query = reference
@@ -155,137 +144,62 @@ public class ViewBookReport extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
 
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
-
+                        myBook = singleSnapshot.getKey().toString();
+                        Log.d(TAG, myBook);
                         availability.setText(book.getAvailability().toString());
                         name_of_book.setText(book.getBook_name().toString());
-
-                        type.setText(book.getType().toString());
-                        price.setText(book.getPrice().toString());
-                        state.setText(book.getStatus().toString());
-                        imageLoader= ImageLoader.getInstance();
-//
-                        imageLoader.displayImage( book.getImage_path(),photo,new ImageLoadingListener() {
-                            @Override
-                            public void onLoadingStarted(String imageUri, View view) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.VISIBLE);
-                                }
-                            }
-
-                            @Override
-                            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
-
-                            @Override
-                            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
-
-                            @Override
-                            public void onLoadingCancelled(String imageUri, View view) {
-                                if(progressBar !=null){
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                }
-
-                            }
-
-                        });
-
-                    }
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: query cancelled.");
-            }
-        });}
-
-
-    private void setupGridView(){
-        Log.d(TAG, "setupGridView: Setting up image grid.");
-
-        final ArrayList<Book> books = new ArrayList<>();
-        final ArrayList<Book> arrayOfUsers = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
-        Query query = reference
-                .child(getString(R.string.dbname_material));
-                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()) {
-                    Book book = singleSnapshot.getValue(Book.class);
-
-                    if (book.getId_book().equals(bookId)) {
-                        books.add(singleSnapshot.getValue(Book.class));
-                        myBook=singleSnapshot.getKey().toString();
-                 Log.d(TAG, myBook);
-                    availability.setText(book.getAvailability().toString());
-                    name_of_book.setText(book.getBook_name().toString());
-                        if(book.getCourse_id()!=null){
+                        if (book.getCourse_id() != null) {
                             number_of_course.setText(book.getCourse_id().toString());
                             faculty.setText(book.getFaculty().toString());
 
-                        }else {
+                        } else {
                             number_of_course.setVisibility(View.GONE);
                             number_of_coursename.setVisibility(View.GONE);
                             faculty.setVisibility(View.GONE);
                             facultyname.setVisibility(View.GONE);
                         }
 
-                    type.setText(book.getType().toString());
-                    typeMaterial=book.getType().toString();
-                    price.setText(book.getPrice().toString());
-                    state.setText(book.getStatus().toString());
-                            imageLoader= ImageLoader.getInstance();
+                        e[0] = book.getUser_id();
+                        type.setText(book.getType().toString());
+                        typeMaterial = book.getType().toString();
+                        price.setText(book.getPrice().toString());
+                        state.setText(book.getStatus().toString());
+                        imageLoader = ImageLoader.getInstance();
 //
-                        imageLoader.displayImage( book.getImage_path(),photo,new ImageLoadingListener() {
+                        imageLoader.displayImage(book.getImage_path(), photo, new ImageLoadingListener() {
                             @Override
                             public void onLoadingStarted(String imageUri, View view) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.VISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.VISIBLE);
+                                }
                             }
 
                             @Override
                             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
 
                             }
 
                             @Override
                             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
 
                             }
 
                             @Override
                             public void onLoadingCancelled(String imageUri, View view) {
-                if(progressBar !=null){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
+                                if (progressBar != null) {
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                }
 
                             }
 
@@ -295,6 +209,29 @@ public class ViewBookReport extends AppCompatActivity {
 
 
                 }
+                Query query = reference
+                        .child(getString(R.string.dbname_users));
+                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                            User user = singleSnapshot.getValue(User.class);
+                            if (user.getUser_id().equals(e[0])) {
+                                Idemail = user.getEmail();
+
+
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
 
             }
 
@@ -302,7 +239,9 @@ public class ViewBookReport extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: query cancelled.");
             }
-        });}
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // This adds menu items to the app bar.cd ..
@@ -315,51 +254,51 @@ public class ViewBookReport extends AppCompatActivity {
 
         MenuItem block = menu.findItem(R.id.block);
 
+        MenuItem setting = menu.findItem(R.id.action_setting);
+
 
         if (MainActivity.type1 == true) {
 
             block.setVisible(false);
+        } else {
+            setting.setVisible(false);
         }
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-//                try {
-//                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
-//
-//                    firebaseMethod.deleteBook(myBook);
-//
-//                }catch (Exception e){}
-                CustomDialogDeleteClass cdd = new CustomDialogDeleteClass(ViewBookReport.this);
+
+                CustomDialogDeleteClass cdd = new CustomDialogDeleteClass(ViewBookReport.this, Idemail);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cdd.show();
                 return true;
 
             case R.id.action_setting:
-                if(typeMaterial.equals("TextBooks")){
-                Intent intent=new Intent(ViewBookReport.this,AddTextBook.class);
-                intent.putExtra("id_book", bookId);
-                startActivity(intent);
-                return true;
-                }else if(typeMaterial.equals("Lecture Notes")){
-                    Intent intent=new Intent(ViewBookReport.this,AddLectureNotes.class);
+                if (typeMaterial.equals("TextBooks")) {
+                    Intent intent = new Intent(ViewBookReport.this, AddTextBook.class);
+                    intent.putExtra("id_book", bookId);
+                    startActivity(intent);
+                    return true;
+                } else if (typeMaterial.equals("Lecture Notes")) {
+                    Intent intent = new Intent(ViewBookReport.this, AddLectureNotes.class);
                     intent.putExtra("id_book", bookId);
                     startActivity(intent);
                     return true;
 
-                }else if(typeMaterial.equals("General Books")){
-                    Intent intent=new Intent(ViewBookReport.this,AddGeneralBook.class);
+                } else if (typeMaterial.equals("General Books")) {
+                    Intent intent = new Intent(ViewBookReport.this, AddGeneralBook.class);
                     intent.putExtra("id_book", bookId);
                     startActivity(intent);
                     return true;
                 }
 
             case R.id.block:
-                CustomDialogBlocktClass cd= new CustomDialogBlocktClass(ViewBookReport.this);
+                CustomDialogBlocktClass cd = new CustomDialogBlocktClass(ViewBookReport.this, Idemail);
                 cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.show();
                 return true;
@@ -373,4 +312,4 @@ public class ViewBookReport extends AppCompatActivity {
         super.onBackPressed();
         return;
     }
-    }
+}

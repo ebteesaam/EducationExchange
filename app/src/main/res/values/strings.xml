@@ -19,6 +19,8 @@
     <string name="dbname_material" translatable="false">material</string>
     <string name="dbname_photos" translatable="false">photos</string>
     <string name="dbname_announcement" translatable="false">announcement</string>
+    <string name="dbname_Request" translatable="false">request</string>
+
     <!--<string name="dbname_user_account_settings">user_account_settings</string>-->
     <string name="field_username" translatable="false">username</string>
     <string name="field_email" translatable="false">email</string>
@@ -116,6 +118,8 @@
     <string name="information_about_app">Education Exchange is an application design to help students at King Abdulaziz University in Rabigh to exchange their textbooks and lecture notes.</string>
     <string name="about_us">About Us:</string>
     <string name="announcement">Announcement:</string>
+    <string name="announcements">Announcements</string>
+
     <string name="add_announcement">Add announcement</string>
 
     <!---put Extra-->
@@ -1050,6 +1054,7 @@
     <string name="reports">Reports</string>
     <string name="user">Users</string>
     <string name="you_blocked">You can not add Materials,you have been blocked</string>
+    <string name="request_your_book">You can\'t request your material</string>
 
     <!--end-->
 

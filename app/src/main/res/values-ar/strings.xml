@@ -521,6 +521,17 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="you_report">لاتستطيع عمل تبليغ لمادتك</string>
+    <string name="reports">الإبلاغات</string>
+    <string name="user">المستخدمين</string>
+    <string name="report_reason">الإبلاغ:</string>
+    <string name="blocked_dialog">هل أنت متأكد من حظر هذه المادة؟</string>
+    <string name="block_matreial">تم حظر المادة</string>
+    <string name="block_announcement">تم حظر الإعلان</string>
+    <string name="you_blocked">لاتستطيع إضافة أي مادة، تم حظرك..</string>
+    <string name="request_your_book">لاتستطيع طلب مادتك!!</string>
+    <string name="block">حظر هذه المادة</string>
+    <string name="announcements">الإعلانات</string>
+    <string name="unRelated">"مادة ليس لها علاقة "</string>
 
 
     <!--end-->

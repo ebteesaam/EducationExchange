@@ -171,6 +171,8 @@ public class ViewBookProfile extends AppCompatActivity {
 
         final ArrayList<Book> books = new ArrayList<>();
         final ArrayList<Book> arrayOfUsers = new ArrayList<>();
+        final String[] e = new String[1];
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
@@ -195,6 +197,8 @@ public class ViewBookProfile extends AppCompatActivity {
                         price.setText(book.getPrice().toString());
                         state.setText(book.getStatus().toString());
                         faculty.setText(book.getFaculty().toString());
+                        e[0]=book.getUser_id();
+
                         imageLoader = ImageLoader.getInstance();
 //
                         imageLoader.displayImage(book.getImage_path(), photo, new ImageLoadingListener() {
@@ -235,6 +239,29 @@ public class ViewBookProfile extends AppCompatActivity {
 
 
                 }
+//                Query query = reference
+//                        .child(getString(R.string.dbname_users));
+//                //.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                query.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+//                            User user = singleSnapshot.getValue(User.class);
+//                            if(user.getUser_id().equals(e[0])) {
+//                                Idemail = user.getEmail();
+//
+//
+//                            }
+//                        }
+//
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                    }
+//                });
 
             }
 
@@ -332,11 +359,7 @@ public class ViewBookProfile extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
                     if (user.getUser_id().equals(user1)) {
-                        if (user.getType().equals("Student")) {
-                            type1 = true;
-                        } else {
-                            type1 = false;
-                        }
+                        type1 = user.getType().equals("Student");
                     }
                     users.add(singleSnapshot.getValue(User.class));
 

@@ -2,7 +2,6 @@ package com.example.ebtesam.educationexchange.Utils;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.ebtesam.educationexchange.R;
-import com.example.ebtesam.educationexchange.profile.ProfilePage;
 import com.example.ebtesam.educationexchange.profile.ViewBookProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +29,7 @@ public class CustomDialogDeleteClass extends Dialog implements
     public Activity c;
     public Dialog d;
     public Button yes, no;
+    String Id;
     FirebaseMethod mFirebaseMethods;
     //firebase
     private FirebaseAuth mAuth;
@@ -39,10 +38,15 @@ public class CustomDialogDeleteClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
+    public CustomDialogDeleteClass(Activity a, String id) {
+        super(a);
+        this.c = a;
+        Id=id;
+    }
     public CustomDialogDeleteClass(Activity a) {
         super(a);
-        // TODO Auto-generated constructor stub
         this.c = a;
+
     }
 
     @Override
@@ -52,8 +56,8 @@ public class CustomDialogDeleteClass extends Dialog implements
         setContentView(R.layout.delete_dialog);
         mFirebaseMethods = new FirebaseMethod(getContext());
 
-        yes = (Button) findViewById(R.id.yes);
-        no = (Button) findViewById(R.id.no);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
 
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
@@ -69,12 +73,15 @@ public class CustomDialogDeleteClass extends Dialog implements
                 break;
             case R.id.yes:
                 try {
+if(Id.equals(null)){
+                    mFirebaseMethods.deleteBook(ViewBookProfile.myBook);}else {
+    mFirebaseMethods.deleteBook(ViewBookProfile.myBook,Id);
 
-                    mFirebaseMethods.deleteBook(ViewBookProfile.myBook);
+                    }
                 }catch (Exception e){}
                 c.finish();
-                Intent i =new Intent(getContext(), ProfilePage.class);
-                c.startActivity(i);
+//                Intent i =new Intent(getContext(), ProfilePage.class);
+//                c.startActivity(i);
 
 break;
             default:

@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by ebtesam on 16/03/2018 AD.
  */
 
-public class CustomDialogBlocktClass extends Dialog implements
+public class CustomDialogBlockGClass extends Dialog implements
         View.OnClickListener {
     public int count = 0;
     public Activity c;
@@ -39,16 +39,12 @@ public class CustomDialogBlocktClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogBlocktClass(Activity a,String id) {
+    public CustomDialogBlockGClass(Activity a, String id) {
         super(a);
         this.c = a;
         Id=id;
     }
-    public CustomDialogBlocktClass(Activity a) {
-        super(a);
-        this.c = a;
 
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

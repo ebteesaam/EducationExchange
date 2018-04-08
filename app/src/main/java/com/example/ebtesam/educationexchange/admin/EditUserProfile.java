@@ -52,9 +52,8 @@ public class EditUserProfile extends AppCompatActivity {
     //vars
     private String mAppend = "file:/";
     private int imageCount = 0;
-    private String imgUrl;
+    private String imgUrl, emailT;
     private TextView changePhoto;
-
 
 
     @Override
@@ -71,12 +70,10 @@ public class EditUserProfile extends AppCompatActivity {
         progressBar = findViewById(R.id.profileProgressBar);
 
 
-
         firebaseMethod = new FirebaseMethod(EditUserProfile.this);
 
 
         setupFirebaseAuth();
-
 
 
     }
@@ -96,7 +93,7 @@ public class EditUserProfile extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
                 saveProfileSettings();
-                Intent i =new Intent(EditUserProfile.this, UserList.class);
+                Intent i = new Intent(EditUserProfile.this, UserList.class);
                 startActivity(i);
                 return true;
         }
@@ -109,11 +106,11 @@ public class EditUserProfile extends AppCompatActivity {
         return;
     }
 
-    private int getIndex(Spinner spinner, String v){
-        int index=0;
-        for(int i=0;i<spinner.getCount();i++){
-            if(spinner.getItemAtPosition(i).toString().equalsIgnoreCase(v)){
-                index=i;
+    private int getIndex(Spinner spinner, String v) {
+        int index = 0;
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(v)) {
+                index = i;
                 break;
             }
         }
@@ -140,8 +137,9 @@ public class EditUserProfile extends AppCompatActivity {
 
                         user_name.setText(user.getUsername());
                         email.setText(user.getEmail());
-                        spinner1.setSelection(getIndex(spinner1,user.getStatus()));
-                        spinner2.setSelection(getIndex(spinner2,user.getType()));
+                        emailT = user.getEmail();
+                        spinner1.setSelection(getIndex(spinner1, user.getStatus()));
+                        spinner2.setSelection(getIndex(spinner2, user.getType()));
                         users.add(singleSnapshot.getValue(User.class));
 
                     }
@@ -158,7 +156,6 @@ public class EditUserProfile extends AppCompatActivity {
     }
 
 
-
     //............................Firebase.................................//
 
     /**
@@ -169,14 +166,15 @@ public class EditUserProfile extends AppCompatActivity {
         // final String displayName = mDisplayName.getText().toString();
         String type = spinner2.getSelectedItem().toString();
         String status = spinner1.getSelectedItem().toString();
-
-        FirebaseMethod firebaseMethod = new FirebaseMethod(EditUserProfile.this);
-        firebaseMethod.updateUser( type, status, id);
-
+        if (status.equals(status.equals("blocked"))) {
+            FirebaseMethod firebaseMethod = new FirebaseMethod(EditUserProfile.this);
+            firebaseMethod.updateUser(type, status, id, emailT);
+        } else {
+            FirebaseMethod firebaseMethod = new FirebaseMethod(EditUserProfile.this);
+            firebaseMethod.updateUser(type, status, id);
+        }
 
     }
-
-
 
 
     private void setupFirebaseAuth() {

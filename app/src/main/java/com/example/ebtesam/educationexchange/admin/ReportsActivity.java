@@ -28,8 +28,8 @@ import java.util.ArrayList;
 public class ReportsActivity extends AppCompatActivity {
 
     public static String reportid;
-  ArrayList<Report> users;
-  ArrayList<String> report;
+    ArrayList<Report> users;
+    ArrayList<String> report;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -45,7 +45,7 @@ public class ReportsActivity extends AppCompatActivity {
         gridView = findViewById(R.id.list);
         setupFirebaseAuth();
         users = new ArrayList<>();
-        report=new ArrayList<>();
+        report = new ArrayList<>();
         setupUserView();
 
 
@@ -53,9 +53,6 @@ public class ReportsActivity extends AppCompatActivity {
 
     private void setupUserView() {
 
-
-
-//        final ArrayList<Book> books = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -74,61 +71,6 @@ public class ReportsActivity extends AppCompatActivity {
 
                 }
                 setupGridView();
-//                ListAdapterReport adapter = new ListAdapterReport(ReportsActivity.this,R.layout.list_material_activity, users);
-//                // Attach the adapter to a ListView
-//                gridView.setAdapter(adapter);
-//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference usersdR = rootRef.child(getString(R.string.dbname_report));
-//
-//        final DatabaseReference usersdRef = rootRef.child(getString(R.string.dbname_material));
-//        usersdR.addListenerForSingleValueEvent(new ValueEventListener() { //Your case id is -KrHOUwrsBbXHvUaOTIu
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                final String idbook = dataSnapshot.getValue().toString();
-//                usersdRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-//                        Book book = singleSnapshot.getValue(Book.class);
-//                        if (book.getId_book().equals(idbook)) {
-//                            // Book book1=singleSnapshot.getValue(Book.class);
-//                            books.add(singleSnapshot.getValue(Book.class));
-//
-//
-//                        }
-//                    }}
-//
-//
-//
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-//                ListAdapter adapter = new ListAdapter(ReportsActivity.this, R.layout.list_material_activity, books);
-//                // Attach the adapter to a ListView
-//                gridView.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
-//                ListAdapterUser adapter = new ListAdapterUser(UserList.this, R.layout.users_list, users);
-//                // Attach the adapter to a ListView
-//                listView.setAdapter(adapter);
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Intent intent = new Intent(UserList.this, EditUserProfile.class);
-//                        String item =  users.get(i).getUser_id();
-//                        intent.putExtra("id_user", item);
-//                        startActivity(intent);
-//                    }
-//                });
 
             }
 
@@ -154,16 +96,17 @@ public class ReportsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Book book = singleSnapshot.getValue(Book.class);
-                    for(int i=0; i<report.size(); i++) {
-                      String id;
+                    for (int i = 0; i < report.size(); i++) {
+                        String id;
                         id = report.get(i);
-                        Log.d(ReportsActivity.this.toString(), "id"+id);
+                        Log.d(ReportsActivity.this.toString(), "id" + id);
 
                         // Do something with the value
                         if (book.getId_book().equals(id)) {
-                            books.add(singleSnapshot.getValue(Book.class));
+                            if (!book.getAvailability().equals("Blocked")) {
+                                books.add(singleSnapshot.getValue(Book.class));
 
-
+                            }
                         }
                     }
 
@@ -177,10 +120,10 @@ public class ReportsActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {//
                         if (!books.get(i).getAvailability().equals("Blocked")) {
 
-                            Intent intent = new Intent(ReportsActivity.this, ViewBookReport.class);
-                            String item = books.get(i).getId_book();
-                            intent.putExtra("id_book", item);
-                            startActivity(intent);
+                        Intent intent = new Intent(ReportsActivity.this, ViewBookReport.class);
+                        String item = books.get(i).getId_book();
+                        intent.putExtra("id_book", item);
+                        startActivity(intent);
                         }
                     }
                 });

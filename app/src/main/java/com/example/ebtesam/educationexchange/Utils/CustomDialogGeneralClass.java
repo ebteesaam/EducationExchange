@@ -31,7 +31,7 @@ public class CustomDialogGeneralClass extends Dialog implements
     public Dialog d;
     public Button unEthical, cancel, unRelated, send;
     FirebaseMethod mFirebaseMethods;
-    String tx;
+    String tx, Id;
     //firebase
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -39,10 +39,10 @@ public class CustomDialogGeneralClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogGeneralClass(Activity a) {
+    public CustomDialogGeneralClass(Activity a, String id) {
         super(a);
-        // TODO Auto-generated constructor stub
         this.c = a;
+        Id=id;
     }
 
     @Override
@@ -52,11 +52,11 @@ public class CustomDialogGeneralClass extends Dialog implements
         setContentView(R.layout.custom_dialog);
         mFirebaseMethods = new FirebaseMethod(getContext());
 
-        unEthical = (Button) findViewById(R.id.unEthical);
-        unRelated = (Button) findViewById(R.id.unrelated);
+        unEthical = findViewById(R.id.unEthical);
+        unRelated = findViewById(R.id.unrelated);
         other = findViewById(R.id.other);
         send = findViewById(R.id.send);
-        cancel = (Button) findViewById(R.id.cancel);
+        cancel = findViewById(R.id.cancel);
 
         unEthical.setOnClickListener(this);
         unRelated.setOnClickListener(this);
@@ -70,7 +70,7 @@ public class CustomDialogGeneralClass extends Dialog implements
         switch (v.getId()) {
             case R.id.unEthical:
 
-                mFirebaseMethods.reportMaterial(ViewGeneralBook.id_material.toString(), getContext().getString(R.string.unEthical).toString());
+                mFirebaseMethods.reportMaterial(ViewGeneralBook.id_material.toString(), getContext().getString(R.string.unEthical).toString(), Id);
                 break;
 
             case R.id.cancel:
@@ -80,15 +80,15 @@ public class CustomDialogGeneralClass extends Dialog implements
             case R.id.send:
                 tx = other.getText().toString();
                 if (tx != null) {
-                    mFirebaseMethods.reportMaterial(ViewGeneralBook.id_material.toString(), tx);
-                    break;
+                    mFirebaseMethods.reportMaterial(ViewGeneralBook.id_material.toString(), tx, Id);
+
                 } else {
                     Toast.makeText(c, getContext().getString(R.string.fill_other).toString(), Toast.LENGTH_LONG).show();
                 }
                 break;
 
             case R.id.unrelated:
-                mFirebaseMethods.reportMaterial(ViewGeneralBook.id_material.toString(), getContext().getString(R.string.unRelated).toString());
+                mFirebaseMethods.reportMaterial(ViewGeneralBook.id_material.toString(), getContext().getString(R.string.unRelated).toString(), Id);
                 break;
 
             default:

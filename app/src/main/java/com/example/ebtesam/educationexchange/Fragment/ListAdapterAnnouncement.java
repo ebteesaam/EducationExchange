@@ -27,10 +27,6 @@ public class ListAdapterAnnouncement extends ArrayAdapter<Announcement> {
         super(context, resource, items);
     }
 
-//    public ListAdapter(ValueEventListener context, List<Book> items) {
-//
-//        super(context, 0,items);
-//    }
 
 
     @Override
@@ -45,25 +41,25 @@ public class ListAdapterAnnouncement extends ArrayAdapter<Announcement> {
         Announcement announcement = getItem(position);
 
         // Lookup view for data population
-            TextView name = (TextView) convertView.findViewById(R.id.title);
-         TextView courseID = (TextView) convertView.findViewById(R.id.courseIdBook);
-        TextView courseIDname = (TextView) convertView.findViewById(R.id.courseIdBookName);
-        TextView facultyname = (TextView) convertView.findViewById(R.id.facultyname);
-        TextView faculty = (TextView) convertView.findViewById(R.id.faculty);
+        TextView name = convertView.findViewById(R.id.title);
+        TextView courseID = convertView.findViewById(R.id.courseIdBook);
+        TextView courseIDname = convertView.findViewById(R.id.courseIdBookName);
+        TextView facultyname = convertView.findViewById(R.id.facultyname);
+        TextView faculty = convertView.findViewById(R.id.faculty);
 
-        TextView text=(TextView)convertView.findViewById(R.id.bookText);
-          TextView type=(TextView) convertView.findViewById(R.id.booktype);
-        TextView date=(TextView) convertView.findViewById(R.id.date);
+        TextView text = convertView.findViewById(R.id.bookText);
+        TextView type = convertView.findViewById(R.id.booktype);
+        TextView date = convertView.findViewById(R.id.date);
 
         name.setText(announcement.getTitle());
         text.setText(announcement.getText());
         type.setText(announcement.getType());
         date.setText(announcement.getDate_created());
 
-        if(announcement.getCourse_id()!=null||announcement.getFaculty()!=null){
+        if (announcement.getCourse_id() != null || announcement.getFaculty() != null) {
             courseID.setText(announcement.getCourse_id());
             faculty.setText(announcement.getFaculty());
-        }else {
+        } else {
             courseID.setVisibility(View.GONE);
             courseIDname.setVisibility(View.GONE);
             faculty.setVisibility(View.GONE);
@@ -71,9 +67,9 @@ public class ListAdapterAnnouncement extends ArrayAdapter<Announcement> {
         }
 
 
-
         // Return the completed view to render on screen
         return convertView;
     }
+
 }
 

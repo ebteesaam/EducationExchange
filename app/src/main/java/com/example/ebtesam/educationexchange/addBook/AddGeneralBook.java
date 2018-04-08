@@ -46,7 +46,7 @@ public class AddGeneralBook extends AppCompatActivity {
     private static final String TAG = "addBookActivity";
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     public int imageCount = 0;
-    ArrayAdapter<CharSequence> adapter3 ;
+    ArrayAdapter<CharSequence> adapter3;
     ImageLoader imageLoader;
     //firebase
     private FirebaseAuth mAuth;
@@ -59,13 +59,13 @@ public class AddGeneralBook extends AppCompatActivity {
     //vars
     private String mAppend = "file:/";
     private String imgUrl;
-    private String type, bookId,  myBook;
+    private String type, bookId, myBook;
     private Context mContext = AddGeneralBook.this;
     private ImageButton takePhoto;
     private ImageView bookPhoto;
     private ViewPager mViewPager;
     private EditText editName, editPrice, numOfCourse;
-    private Spinner spinner1, spinner2,spinner3,spinner4,spinner5;
+    private Spinner spinner1, spinner2, spinner3, spinner4, spinner5;
     private RelativeLayout relativeLayout3, relativeLayout9;
 
     @Override
@@ -79,10 +79,8 @@ public class AddGeneralBook extends AppCompatActivity {
         bookPhoto = findViewById(R.id.book_photo);
         editName = findViewById(R.id.edit_name);
         editPrice = findViewById(R.id.edit_price);
-        spinner1=findViewById(R.id.spinner1);
-        spinner2=findViewById(R.id.spinner2);
-
-
+        spinner1 = findViewById(R.id.spinner1);
+        spinner2 = findViewById(R.id.spinner2);
 
 
         setupFirebaseAuth();
@@ -112,11 +110,11 @@ public class AddGeneralBook extends AppCompatActivity {
 
     }
 
-    private int getIndex(Spinner spinner, String v){
-        int index=0;
-        for(int i=0;i<spinner.getCount();i++){
-            if(spinner.getItemAtPosition(i).toString().equalsIgnoreCase(v)){
-                index=i;
+    private int getIndex(Spinner spinner, String v) {
+        int index = 0;
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(v)) {
+                index = i;
                 break;
             }
         }
@@ -142,12 +140,12 @@ public class AddGeneralBook extends AppCompatActivity {
 
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
-                        myBook=singleSnapshot.getKey().toString();
+                        myBook = singleSnapshot.getKey().toString();
                         Log.d(TAG, myBook);
                         editName.setText(book.getBook_name().toString());
                         editPrice.setText(book.getPrice().toString());
-                        spinner1.setSelection(getIndex(spinner1,book.getStatus()));
-                        spinner2.setSelection(getIndex(spinner2,book.getAvailability()));
+                        spinner1.setSelection(getIndex(spinner1, book.getStatus()));
+                        spinner2.setSelection(getIndex(spinner2, book.getAvailability()));
 
                         imageLoader = ImageLoader.getInstance();
 //
@@ -190,7 +188,6 @@ public class AddGeneralBook extends AppCompatActivity {
             }
         });
     }
-
 
 
     /**
@@ -260,7 +257,7 @@ public class AddGeneralBook extends AppCompatActivity {
             Log.d(TAG, "setImage: got new image url: " + imgUrl);
             UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
         } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
-            bitmap = (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
+            bitmap = intent.getParcelableExtra(getString(R.string.selected_bitmap));
             Log.d(TAG, "setImage: got new bitmap");
             bookPhoto.setImageBitmap(bitmap);
 
@@ -345,7 +342,7 @@ public class AddGeneralBook extends AppCompatActivity {
 
                 String bookNmae = "";
                 String price = "";
-                String type="General Books";
+                String type = "General Books";
                 String available;
                 String state;
 
@@ -364,31 +361,32 @@ public class AddGeneralBook extends AppCompatActivity {
 //                    }
                     price = editPrice.getText().toString();
                     if (price.equals("")) {
-                        price="Free";
+                        price = "Free";
                     }
 
                 } catch (NullPointerException e) {
 
                 }
-                state=spinner1.getSelectedItem().toString();
-                available=spinner2.getSelectedItem().toString();
+                state = spinner1.getSelectedItem().toString();
+                available = spinner2.getSelectedItem().toString();
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddGeneralBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae,  price,type, available,state, imageCount, imgUrl, null);
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, price, type, available, state, imageCount, imgUrl, null);
 
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AddGeneralBook.this);
-                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, price,type, available,state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
-                }else if(intent.hasExtra("id_book")){
+                    firebaseMethod.uploadNewBook(getString(R.string.new_book), bookNmae, price, type, available, state, imageCount, null, (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap)));
+                } else if (intent.hasExtra("id_book")) {
                     try {
-                        Log.d(TAG, "onCancelled: query cancelled."+myBook);
+                        Log.d(TAG, "onCancelled: query cancelled." + myBook);
 
-                        mFirebaseMethods.updateBook(bookNmae, null, price, null, available, state,myBook);
+                        mFirebaseMethods.updateBook(bookNmae, null, price, null, available, state, myBook);
 
-                    }catch (Exception e){}
+                    } catch (Exception e) {
+                    }
                     AddGeneralBook.this.finish();
                     Intent intent1 = new Intent(AddGeneralBook.this, MyBooksActivity.class);
                     startActivity(intent1);

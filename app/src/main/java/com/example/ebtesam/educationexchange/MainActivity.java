@@ -196,6 +196,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, SearchBook.class);
                 startActivity(i);
                 return true;
+            case R.id.message:
+                Intent rm = new Intent(MainActivity.this, UserList.class);
+                startActivity(rm);
+                return true;
 
             case R.id.user:
                 Intent in = new Intent(MainActivity.this, UserList.class);
@@ -209,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.announcement:
                 Intent a = new Intent(MainActivity.this, AnnouncementList.class);
+
                 startActivity(a);
                 return true;
 

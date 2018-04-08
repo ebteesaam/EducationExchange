@@ -244,7 +244,7 @@
             android:paddingBottom="5dp">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/my_book"
+                android:id="@+id/request_book"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 

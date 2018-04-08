@@ -2,7 +2,6 @@ package com.example.ebtesam.educationexchange.Utils;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
-import com.example.ebtesam.educationexchange.profile.ProfilePage;
 import com.example.ebtesam.educationexchange.profile.ViewMyAnnouncement;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +30,7 @@ public class CustomDialogBlockAnnoncementClass extends Dialog implements
     public Activity c;
     public Dialog d;
     public Button yes, no;
+    String Id;
     FirebaseMethod mFirebaseMethods;
     //firebase
     private FirebaseAuth mAuth;
@@ -40,10 +39,11 @@ public class CustomDialogBlockAnnoncementClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogBlockAnnoncementClass(Activity a) {
+    public CustomDialogBlockAnnoncementClass(Activity a, String id) {
         super(a);
 
         this.c = a;
+        Id=id;
     }
 
     @Override
@@ -54,8 +54,8 @@ public class CustomDialogBlockAnnoncementClass extends Dialog implements
         mFirebaseMethods = new FirebaseMethod(getContext());
 TextView report=findViewById(R.id.report);
 report.setText(R.string.blocked_dialog);
-        yes = (Button) findViewById(R.id.yes);
-        no = (Button) findViewById(R.id.no);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
 
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
@@ -71,11 +71,12 @@ report.setText(R.string.blocked_dialog);
                 break;
             case R.id.yes:
                 try {
-                    mFirebaseMethods.updateAvailabilityAnnuoncement(ViewMyAnnouncement.myBook);
+                    mFirebaseMethods.updateAvailabilityAnnuoncement(ViewMyAnnouncement.myBook, Id);
+
                 }catch (Exception e){}
                 c.finish();
-                Intent i =new Intent(getContext(), ProfilePage.class);
-                c.startActivity(i);
+//                Intent i =new Intent(getContext(), AnnouncementList.class);
+//                c.startActivity(i);
                 break;
 
             default:

@@ -45,6 +45,7 @@ public class ProfilePage extends AppCompatActivity {
     private TextView user_name,email;
     private ImageView mProfilePhoto, setting;
     private ProgressBar progressBar;
+    private TextView  txtUserAlphabet;
 
 
 
@@ -135,6 +136,9 @@ public class ProfilePage extends AppCompatActivity {
 
         user_name.setText(user.getUsername());
         email.setText(user.getEmail());
+//        String alphabet = user.getUsername().substring(0, 1);
+//
+//       txtUserAlphabet.setText(alphabet);
 //        mWebsite.setText(settings.getWebsite());
 //        mDescription.setText(settings.getDescription());
 //        mPosts.setText(String.valueOf(settings.getPosts()));
