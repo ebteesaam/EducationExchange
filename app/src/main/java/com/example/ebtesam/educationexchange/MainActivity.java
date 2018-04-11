@@ -24,6 +24,7 @@ import com.example.ebtesam.educationexchange.admin.ReportsActivity;
 import com.example.ebtesam.educationexchange.admin.UserList;
 import com.example.ebtesam.educationexchange.login.LoginPage;
 import com.example.ebtesam.educationexchange.models.User;
+import com.example.ebtesam.educationexchange.profile.MyRequestsActivity;
 import com.example.ebtesam.educationexchange.profile.ProfilePage;
 import com.example.ebtesam.educationexchange.search.SearchBook;
 import com.google.firebase.auth.FirebaseAuth;
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 return true;
             case R.id.message:
-                Intent rm = new Intent(MainActivity.this, UserList.class);
+                Intent rm = new Intent(MainActivity.this, MyRequestsActivity.class);
                 startActivity(rm);
                 return true;
 

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
     private TextView availability, price, state, type, name_of_book;
     private ImageView photo;
     private ProgressBar progressBar;
+    private Button b1;
     private FirebaseMethod firebaseMethod;
 
     @Override
@@ -73,6 +75,8 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
         type = findViewById(R.id.type_of_book);
         name_of_book = findViewById(R.id.name_of_book);
         photo = findViewById(R.id.relative1);
+        b1 = findViewById(R.id.request_book);
+        b1.setVisibility(View.GONE);
         setupGridView();
     }
 

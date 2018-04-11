@@ -57,7 +57,7 @@
     <string name="view_my_announcement">My announcement</string>
     <string name="edit">Edit Profile</string>
     <string name="name">Name</string>
-    <string name="email">Email</string>
+    <string name="email">Email:</string>
     <string name="un_known_email">unKnown email</string>
     <string name="un_known_name">unKnown name</string>
     <string name="change_photo">Change photo</string>
@@ -137,6 +137,7 @@
     <string name="availability" translatable="false">availability</string>
     <string name="status" translatable="false">status</string>
     <string name="message">Message</string>
+    <string name="Status">Status:</string>
     <string name="report">report the material</string>
     <string name="why_report">Why are you reporting this material?</string>
     <string name="unEthical">Un Ethical Material</string>
@@ -1055,6 +1056,22 @@
     <string name="user">Users</string>
     <string name="you_blocked">You can not add Materials,you have been blocked</string>
     <string name="request_your_book">You can\'t request your material</string>
+    <string name="new_report">New Reports</string>
+    <string name="all_report">All Reports</string>
+    <string name="mobile_n">Mobile number:</string>
+    <string name="mobile">Enter the mobile number</string>
+    <string name="enter_email">Enter the email</string>
+    <string name="request_book">Request Material</string>
+    <string name="fill_requirement">please enter all information</string>
+    <string name="no_request">There is no any request yet</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+    <string name="view_my_request">Request</string>
+    <string name="done_request">The request was sent</string>
+    <string name="reject_request">The request was rejected</string>
+    <string name="accept_request">The request was accepted</string>
+    <string name="all_request">All Requests</string>
+    <string name="new_request">New Requests</string>
 
     <!--end-->
 

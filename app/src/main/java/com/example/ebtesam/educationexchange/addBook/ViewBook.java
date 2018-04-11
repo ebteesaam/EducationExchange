@@ -1,6 +1,7 @@
 package com.example.ebtesam.educationexchange.addBook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -41,9 +42,9 @@ import java.util.ArrayList;
 
 public class ViewBook extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
-    public static String id_material;
+    public static String id_material,bookName;
     TabLayout tabLayout;
-    String bookId, myBook, id_user, email, bookName;
+    String bookId, myBook, id_user, email;
 
     ImageLoader imageLoader;
     private Context mContext = ViewBook.this;
@@ -84,13 +85,18 @@ public class ViewBook extends AppCompatActivity {
         requestBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(id_user.equals(mAuth.getInstance().getCurrentUser().getUid())){
+                if(id_user.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                     //Log.d(ViewBook.this.toString(), "View: not mine."+mAuth.getInstance().getCurrentUser().getUid());
                     Toast.makeText(mContext, getString(R.string.request_your_book), Toast.LENGTH_SHORT).show();
                 }else {
-                    Log.d(ViewBook.this.toString(), "View: not mine."+mAuth.getInstance().getCurrentUser().getUid());
+                    Log.d(ViewBook.this.toString(), "View: not mine."+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    Intent intent=new Intent(ViewBook.this,RequestBook.class);
+                    intent.putExtra("id_materials", id_material);
+                    intent.putExtra("id_user",id_user);
+                    intent.putExtra("nameBook",bookName);
 
-                    mFirebaseMethods.RequestBook(id_user,bookName,id_material,email);
+                    startActivity(intent);
+                   // mFirebaseMethods.RequestBook(id_user,bookName,id_material,email);
                     Log.d(ViewBook.this.toString(), "View:  mine.");
                 }
             }

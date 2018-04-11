@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ebtesam.educationexchange.addBook.AddTextBook">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1">
+
+
+
+
+
+            <!--name of book-->
+            <RelativeLayout
+                android:id="@+id/relative2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative1"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+                <!--this is left space-->
+                <!-- Overview category -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Label -->
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="@string/name_of_book"
+                        />
+
+                    <!-- Input fields -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp"
+                        >
+
+                        <!-- Name field -->
+                        <EditText
+                            android:id="@+id/edit_name"
+                            style="@style/EditorFieldStyle"
+                            android:layout_height="match_parent"
+                            android:hint="@string/nameBook"
+                            android:paddingTop="12dp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+
+            <!-- price category -->
+            <RelativeLayout
+                android:id="@+id/relative3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative2"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Label -->
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="@string/mobile_n"
+                        />
+
+                    <!-- Input fields -->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp">
+
+                        <!-- price -->
+                        <EditText
+                            android:id="@+id/mobileNum"
+                            style="@style/EditorFieldStyle"
+                            android:hint="@string/mobile"
+                            android:inputType="number"
+                            />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <!-- price category -->
+            <RelativeLayout
+                android:id="@+id/relative7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative2"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Label -->
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="@string/email"
+                        />
+
+                    <!-- Input fields -->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp">
+
+                        <!-- price -->
+                        <EditText
+                            android:id="@+id/email"
+                            style="@style/EditorFieldStyle"
+                            android:hint="@string/enter_email"
+                            android:inputType="textEmailAddress"
+                            />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relative2"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+                <!-- Overview category -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Label -->
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="@string/text" />
+
+                    <!-- Input fields -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical"
+                        android:paddingLeft="4dp">
+
+                        <!-- Name field -->
+                        <EditText
+                            android:id="@+id/edit_text"
+                            style="@style/EditorFieldStyle"
+                            android:layout_height="match_parent"
+                            android:hint="@string/enter_the_text"
+                            android:inputType="text"
+                            android:minLines="1"
+                            android:paddingTop="14dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!--&lt;!&ndash;button &ndash;&gt;-->
+            <!--<RelativeLayout>-->
+
+
+                <!--<android.support.v7.widget.AppCompatButton-->
+                    <!--android:id="@+id/add_book"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="15dp"-->
+                    <!--android:background="@drawable/white_rounded_buttom"-->
+                    <!--android:text="@string/add_book_activity"-->
+
+                    <!--/>-->
+
+            <!--</RelativeLayout>-->
+
+
+        </TableLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
+
+
+
+

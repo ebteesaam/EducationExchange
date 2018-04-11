@@ -775,20 +775,41 @@ sendEmail("Book", email);
             Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-    public void RequestBook(String id_user, String bookName, String id_material, String email) {
-        String request_id = myRef.push().getKey();
-        Request request=new Request(id_material, request_id,"false",bookName, id_user);
+    public void updateStatus(String status,String id) {
         myRef.child(mContext.getString(R.string.dbname_Request))
-                .child(id_material)
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child(id)
+                .child("status").setValue(status);
+
+//        sendEmailRequest(bookName, email );
+    }
+
+    public void RequestBook(String bookName, String mobile, String text, String email ,String id_user, String id_material,int count) {
+        String request_id = myRef.push().getKey();
+        long mobileNum=Long.parseLong(mobile);
+        Request request=new Request(id_material, request_id,"new",bookName, id_user, mobile,email,text,getTimestamp(),FirebaseAuth.getInstance().getCurrentUser().getUid());
+        myRef.child(mContext.getString(R.string.dbname_Request))
+                .child("request" + (count + 1))
                 .setValue(request);
-        sendEmailRequest(bookName, email );
+        Toast.makeText(mContext, mContext.getString(R.string.done_request), Toast.LENGTH_SHORT).show();
+
+//        sendEmailRequest(bookName, email );
 
 
 
     }
+
+    public int getRequestCount(DataSnapshot dataSnapshot) {
+        int count = 0;
+        //BookCount=count;
+        for (DataSnapshot ds : dataSnapshot
+                .child(mContext.getString(R.string.dbname_Request))
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .getChildren()) {
+            count++;
+        }
+        return count;
+    }
+
     @SuppressLint("LongLogTag")
     protected void sendEmailRequest(String bookName, String email) {
 

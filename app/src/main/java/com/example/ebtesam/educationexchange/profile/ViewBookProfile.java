@@ -80,7 +80,7 @@ public class ViewBookProfile extends AppCompatActivity {
         photo = findViewById(R.id.relative1);
         facultyname = findViewById(R.id.facultyname);
         number_of_coursename = findViewById(R.id.number_of_coursename);
-        b1 = findViewById(R.id.my_book);
+        b1 = findViewById(R.id.request_book);
         b1.setVisibility(View.GONE);
 //        myBook=getIntent().getStringExtra("myBook");
 

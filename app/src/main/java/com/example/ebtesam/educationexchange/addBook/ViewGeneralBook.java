@@ -1,6 +1,7 @@
 package com.example.ebtesam.educationexchange.addBook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -77,11 +78,17 @@ public class ViewGeneralBook extends AppCompatActivity {
         requestBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(id_user.equals(mAuth.getInstance().getCurrentUser().getUid())){
+                if(id_user.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                     Log.d(ViewGeneralBook.this.toString(), "View: not mine.");
                     Toast.makeText(mContext, getString(R.string.request_your_book), Toast.LENGTH_SHORT).show();
                 }else {
-                    mFirebaseMethods.RequestBook(id_user,bookName,id_material,email);
+                    Intent intent=new Intent(ViewGeneralBook.this,RequestBook.class);
+                    intent.putExtra("id_materials", id_material);
+                    intent.putExtra("id_user",id_user);
+                    intent.putExtra("nameBook",bookName);
+
+                    startActivity(intent);
+                   // mFirebaseMethods.RequestBook(id_user,bookName,id_material,email);
                     Log.d(ViewGeneralBook.this.toString(), "View:  mine.");
                 }
             }
