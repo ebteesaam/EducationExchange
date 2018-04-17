@@ -424,7 +424,7 @@ public class FirebaseMethod {
 
 
     public void addNewUser(String email, String username, String password, String profile_photo, String status, String report) {
-        User user = new User(StringManipulation.condenseUsername(username), userID,  password,email, profile_photo, "active", report,"Student");
+        User user = new User(StringManipulation.condenseUsername(username), userID, password, email, profile_photo, "active", report, "Student");
 
         myRef.child(mContext.getString(R.string.dbname_users))
                 .child(userID)
@@ -525,23 +525,34 @@ public class FirebaseMethod {
 
 
     }
-    public void updateAvailability( String book, String email) {
+
+    public void updateAvailability(String book, String email, String bookName) {
 
         myRef.child(mContext.getString(R.string.dbname_material))
                 .child(book)
                 .child("availability").setValue("Blocked");
-sendEmail("Book", email);
+        sendEmail("Book", email, bookName);
         Toast.makeText(mContext, mContext.getString(R.string.block_matreial), Toast.LENGTH_LONG).show();
 
     }
-    public void deleteBook(String book,String email) {
+
+    public void deleteBook(String book, String email) {
 
 
         myRef.child(mContext.getString(R.string.dbname_material))
                 .child(book).removeValue();
-        sendEmailD("Book",email);
+        //sendEmailD("Book", email);
         Toast.makeText(mContext, mContext.getString(R.string.deleteBook), Toast.LENGTH_SHORT).show();
     }
+
+    public void deleteReport(String book, String email, String bookId, String BookName) {
+
+
+        myRef.child(mContext.getString(R.string.dbname_report))
+                .child(bookId).removeValue();
+        Toast.makeText(mContext, mContext.getString(R.string.ignoreReport), Toast.LENGTH_SHORT).show();
+    }
+
     public void deleteBook(String book) {
 
 
@@ -551,12 +562,12 @@ sendEmail("Book", email);
     }
 
 
-    public void removeAnnouncement(String book, String email) {
+    public void removeAnnouncement(String book, String email, String bookName) {
 
 
         myRef.child(mContext.getString(R.string.dbname_announcement))
                 .child(book).removeValue();
-        sendEmailD("Announcement",email);
+        sendEmailD("Announcement", email, bookName);
         Toast.makeText(mContext, mContext.getString(R.string.deleteAnnouncement), Toast.LENGTH_SHORT).show();
 
 
@@ -571,7 +582,8 @@ sendEmail("Book", email);
 
 
     }
-    protected void sendEmailD(String announcement, String email) {
+
+    protected void sendEmailD(String announcement, String email, String bn) {
 
         Log.i("Send email", "");
         String[] TO = {email};
@@ -582,8 +594,8 @@ sendEmail("Book", email);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
 //       emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Deleted your "+announcement);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "your "+announcement+" was deleted");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Deleted your " + announcement + " (" + bn + ")");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your " + announcement + " was deleted");
 
 
         try {
@@ -675,14 +687,15 @@ sendEmail("Book", email);
 
     public void reportMaterial(String s, String w, String email) {
         String report_id = myRef.push().getKey();
-        Report report = new Report(s, report_id, "new", w,FirebaseAuth.getInstance().getCurrentUser().getUid() );
+        Report report = new Report(s, report_id, "new", w, FirebaseAuth.getInstance().getCurrentUser().getUid());
         myRef.child(mContext.getString(R.string.dbname_report))
                 .child(s)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(report);
-        sendEmailReport(w,email);
-        Toast.makeText(mContext,mContext.getString(R.string.send_report) , Toast.LENGTH_SHORT).show();
+        sendEmailReport(w, email);
+        Toast.makeText(mContext, mContext.getString(R.string.send_report), Toast.LENGTH_SHORT).show();
     }
+
     protected void sendEmailReport(String announcement, String email) {
 
         Log.i("Send email", "");
@@ -693,7 +706,8 @@ sendEmail("Book", email);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Report your Material by Student ");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "your material was repored in Education Exchange becuase "+announcement);}
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your material was repored in Education Exchange becuase " + announcement);
+    }
 
     public void updateUser(String type, String status, String id) {
 
@@ -717,6 +731,7 @@ sendEmail("Book", email);
                 .child("status").setValue(status);
         sendEmailUser("Account", blocked);
     }
+
     protected void sendEmailUser(String announcement, String email) {
 
         Log.i("Send email", "");
@@ -726,32 +741,32 @@ sendEmail("Book", email);
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blocked your "+announcement);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "your "+announcement+" was block in Education Exchange");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blocked your " + announcement);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your " + announcement + " was block in Education Exchange");
 
 
         try {
             mContext.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
 
 
-
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
-    public void updateAvailabilityAnnuoncement(String myBook, String email) {
+    public void updateAvailabilityAnnuoncement(String myBook, String email, String bookName) {
 
         myRef.child(mContext.getString(R.string.dbname_announcement))
                 .child(myBook)
                 .child("status").setValue("Blocked");
-    sendEmail("Announcement", email);
+        sendEmail("Announcement", email, bookName);
         Toast.makeText(mContext, mContext.getString(R.string.block_announcement), Toast.LENGTH_LONG).show();
 
 
-
     }
+
     @SuppressLint("LongLogTag")
-    protected void sendEmail(String announcement, String email) {
+    protected void sendEmail(String announcement, String email, String bn) {
 
         Log.i("Send email", "");
         String[] TO = {email};
@@ -762,8 +777,8 @@ sendEmail("Book", email);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
 //       emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blocked you "+announcement);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "your "+announcement+" was block");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Blocked you " + announcement + " (" + bn + ")");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "your " + announcement + " was blocked ");
 
 
         try {
@@ -775,7 +790,8 @@ sendEmail("Book", email);
             Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
-    public void updateStatus(String status,String id) {
+
+    public void updateStatus(String status, String id) {
         myRef.child(mContext.getString(R.string.dbname_Request))
                 .child(id)
                 .child("status").setValue(status);
@@ -783,17 +799,16 @@ sendEmail("Book", email);
 //        sendEmailRequest(bookName, email );
     }
 
-    public void RequestBook(String bookName, String mobile, String text, String email ,String id_user, String id_material,int count) {
+    public void RequestBook(String bookName, String mobile, String text, String email, String id_user, String id_material, int count) {
         String request_id = myRef.push().getKey();
-        long mobileNum=Long.parseLong(mobile);
-        Request request=new Request(id_material, request_id,"new",bookName, id_user, mobile,email,text,getTimestamp(),FirebaseAuth.getInstance().getCurrentUser().getUid());
+        long mobileNum = Long.parseLong(mobile);
+        Request request = new Request(id_material, request_id, "new", bookName, id_user, mobile, email, text, getTimestamp(), FirebaseAuth.getInstance().getCurrentUser().getUid());
         myRef.child(mContext.getString(R.string.dbname_Request))
                 .child("request" + (count + 1))
                 .setValue(request);
         Toast.makeText(mContext, mContext.getString(R.string.done_request), Toast.LENGTH_SHORT).show();
 
 //        sendEmailRequest(bookName, email );
-
 
 
     }
@@ -822,8 +837,8 @@ sendEmail("Book", email);
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
 //       emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Request you "+bookName+" (Material)");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "I want to request your "+bookName+" (Material)");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Request you " + bookName + " (Material)");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "I want to request your " + bookName + " (Material)");
 
 
         try {

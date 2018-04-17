@@ -132,6 +132,7 @@
 
     <string name="confirm">CONFIRM</string>
     <string name="block">Block this material</string>
+    <string name="ignoreThisMaterial">Ignore this material</string>
 
     <string name="blocked">Blocked</string>
     <string name="availability" translatable="false">availability</string>
@@ -149,11 +150,12 @@
 
     <!--array for add material pag-->
     <string-array name="availability">
-        <item>Available</item>
-        <!--<item>Blocked</item>-->
-        <item>Pied</item>
+        <item>@string/available</item>
+        <item>@string/pied</item>
     </string-array>
 
+    <string name="available">Available</string>
+    <string name="pied">Pied</string>
     <string-array name="major">
         <item>@string/faculty_of_computing_and_information_technology</item>
         <item>@string/faculty_of_medicine_in_rabigh</item>
@@ -169,15 +171,19 @@
     </string-array>
 
     <string-array name="status">
-        <item>active</item>
-        <item>blocked</item>
+        <item>@string/active</item>
+        <item>@string/blocked</item>
     </string-array>
+<string name="active">Active</string>
 
 
     <string-array name="type_user">
-        <item>Student</item>
-        <item>Admin</item>
+        <item>@string/student</item>
+        <item>@string/admin</item>
     </string-array>
+
+    <string name="student">Student</string>
+    <string name="admin">Admin</string>
 
     <string-array name="major_course_college_of_sciences">
         <item>@string/BIO200</item>
@@ -329,11 +335,14 @@
 
 
     <string-array name="state">
-        <item>New</item>
-        <item>Used</item>
+        <item>@string/new_b</item>
+        <item>@string/used</item>
     </string-array>
-    <!--end array for adding pag-->
 
+    <string name="new_b">New</string>
+    <string name="used">Used</string>
+    <!--end array for adding pag-->
+<string name="requests">Requests</string>
     <string name="faculty_of_computing_and_information_technology">Faculty of Computing and Information Technology</string>
     <string name="faculty_of_medicine_in_rabigh">Faculty Of Medicine In Rabigh</string>
     <string name="college_of_business_cob">College of Business(COB)</string>
@@ -1040,10 +1049,13 @@
     <string name="MATH471">Intermittent mathematics</string>
     <string name="MATH481">History of Mathematics</string>
     <string name="deleteBook">The book was deleted</string>
+    <string name="ignoreReport">The report was ignored</string>
+
     <string name="deleteAnnouncement">The announcement was deleted</string>
     <string name="success_update">Successfuly updated</string>
     <string name="delete_dialog">Are you sure you want to delete this?</string>
     <string name="blocked_dialog">Are you sure you want to block this material?</string>
+    <string name="ignore_dialog">Are you sure you want to ignore this material?</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -1072,6 +1084,19 @@
     <string name="accept_request">The request was accepted</string>
     <string name="all_request">All Requests</string>
     <string name="new_request">New Requests</string>
+    <string name="plz_photo">please Take photo!</string>
+    <string name="fill_feild">All fields must be filled out.</string>
+    <string name="password_six">The password must be at least 6 digits.</string>
+    <string name="password_match">The tow passwords must be match each other.</string>
+    <string name="sent_email">Email sent, Check your email please..</string>
+    <string name="email_not_verified">Email is not verified \\n check your email inbox.</string>
+    <string name="enter_password">you must enter a password</string>
+    <string name="email_used">That email is already in use</string>
+    <string name="email_update">Email was updated</string>
+    <string name="username_used">The username already exist</string>
+    <string name="seve_username">Save username..</string>
+    <string name="rejected">Rejected</string>
+    <string name="accepted">Accepted</string>
 
     <!--end-->
 

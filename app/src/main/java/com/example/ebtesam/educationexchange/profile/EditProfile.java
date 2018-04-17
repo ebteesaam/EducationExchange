@@ -90,7 +90,7 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
                                         try{
                                             if(task.getResult().getProviders().size() == 1){
                                                 Log.d(TAG, "onComplete: that email is already in use.");
-                                                Toast.makeText(EditProfile.this, "That email is already in use", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(EditProfile.this,EditProfile.this.getString(R.string.email_used) , Toast.LENGTH_SHORT).show();
                                             }
                                             else{
                                                 Log.d(TAG, "onComplete: That email is available.");
@@ -102,7 +102,7 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()) {
                                                                     Log.d(TAG, "User email address updated.");
-                                                                    Toast.makeText(EditProfile.this, "email updated", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(EditProfile.this, EditProfile.this.getString(R.string.email_update), Toast.LENGTH_SHORT).show();
                                                                     firebaseMethod.updateEmail(email.getText().toString());
                                                                 }
                                                             }
@@ -368,13 +368,13 @@ public class EditProfile extends AppCompatActivity implements ConfirmPasswordDia
                 if (!dataSnapshot.exists()) {
                     //add the username
                     firebaseMethod.updateUsername(username);
-                    Toast.makeText(EditProfile.this, "saved username.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this, EditProfile.this.getString(R.string.seve_username), Toast.LENGTH_SHORT).show();
 
                 }
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     if (singleSnapshot.exists()) {
                         Log.d(TAG, "checkIfUsernameExists: FOUND A MATCH: " + singleSnapshot.getValue(User.class).getUsername());
-                        Toast.makeText(EditProfile.this, "That username already exists.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, EditProfile.this.getString(R.string.username_used), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

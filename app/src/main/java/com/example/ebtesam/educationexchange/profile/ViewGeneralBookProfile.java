@@ -164,11 +164,13 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
 
         MenuItem block = menu.findItem(R.id.block);
         MenuItem setting = menu.findItem(R.id.action_setting);
+        MenuItem ignore = menu.findItem(R.id.ignore);
 
 
         if (MainActivity.type1 == true) {
 
             block.setVisible(false);
+            ignore.setVisible(false);
         }else {
             setting.setVisible(false);
         }
@@ -210,10 +212,12 @@ public class ViewGeneralBookProfile extends AppCompatActivity {
                     return true;
                 }
             case R.id.block:
-                CustomDialogBlockGClass cd= new CustomDialogBlockGClass(ViewGeneralBookProfile.this, AnnouncementList.Id);
+                CustomDialogBlockGClass cd= new CustomDialogBlockGClass(ViewGeneralBookProfile.this, AnnouncementList.Id,(String) name_of_book.getText());
                 cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.show();
                 return true;
+
+
 
 
         }

@@ -167,27 +167,7 @@ public class TextBook extends Fragment {
                 }
             }
         });
-     //   mDisplayName = (TextView) view.findViewById(R.id.display_name);
-//        mbookname = (TextView) view.findViewById(R.id.nameBook);
-//        courseIdBook = (TextView) view.findViewById(R.id.courseIdBook);
-//      //  mDescription = (TextView) view.findViewById(R.id.description);
-////        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-////        mPosts = (TextView) view.findViewById(R.id.tvPosts);
-////        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
-////        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
-//        mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
-//        gridView =  view.findViewById(R.id.list);
-//        View emptyView = view.findViewById(R.id.empty_view);
-//        gridView.setEmptyView(emptyView);
-//        setupFirebaseAuth();
-//        setupGridView();
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(getActivity(), ViewBook.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         return view;
 
@@ -211,14 +191,8 @@ public class TextBook extends Fragment {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
                     if(user.getUser_id().equals(user1.getUid())){
-                        if (user.getStatus().equals("active")) {
-                            type = true;
-
-                        } else {
-                            type = false;
-
-
-                        }}
+                        type = user.getStatus().equals("Active") || user.getStatus().equals("نشط");
+                    }
                     users.add(singleSnapshot.getValue(User.class));
 
                 }

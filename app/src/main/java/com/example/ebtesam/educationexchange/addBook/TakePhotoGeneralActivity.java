@@ -44,10 +44,10 @@ public class TakePhotoGeneralActivity extends AppCompatActivity {
         adapter.addFragment(new GalleryFragment());
         adapter.addFragment(new PhotoFragment());
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
+        TabLayout tabLayout = findViewById(R.id.tabsBottom);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setText(getString(R.string.gallery));
@@ -85,16 +85,7 @@ public class TakePhotoGeneralActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_next:
                 Log.d(TAG, "onClick: navigating to the next share screen.");
-//                if(GalleryFragment.isRootTask()){
-//                    Intent intent = new Intent(TakePhotoActivity.this, .class);
-//                    intent.putExtra(getString(R.string.selected_image), GalleryFragment.mSelectedImage);
-//                    startActivity(intent);
-//                }else{
-//                    Intent intent = new Intent(TakePhotoActivity.this, EditProfile.class);
-//                    intent.putExtra(getString(R.string.selected_image), GalleryFragment.mSelectedImage);
-//                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile));
-//                    startActivity(intent);
-//                }
+
                 Intent intent = new Intent(TakePhotoGeneralActivity.this, AddGeneralBook.class);
                 intent.putExtra(getString(R.string.selected_image), GalleryFragment.image);
                 startActivity(intent);

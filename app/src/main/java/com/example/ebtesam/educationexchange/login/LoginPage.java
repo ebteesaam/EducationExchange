@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
-import com.example.ebtesam.educationexchange.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -44,7 +43,7 @@ public class LoginPage extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(mContext, "Email sent, Check your email please..", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(mContext, mContext.getString(R.string.sent_email), Toast.LENGTH_LONG).show();
                                     Log.d(TAG, "Email sent.");
                                 }
                             }
@@ -60,11 +59,7 @@ public class LoginPage extends AppCompatActivity {
     private boolean isStringNull(String string) {
         Log.d(TAG, "isStringNull: checking string if null.");
 
-        if (string.equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return string.equals("");
     }
     //............................Firebase.................................//
 
@@ -109,7 +104,7 @@ public class LoginPage extends AppCompatActivity {
                                                 Intent intent = new Intent(LoginPage.this, MainActivity.class);
                                                 startActivity(intent);
                                             } else {
-                                                Toast.makeText(mContext, "Email is not verified \n check your email inbox.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(mContext, mContext.getString(R.string.email_not_verified), Toast.LENGTH_SHORT).show();
                                                 mAuth.signOut();
                                             }
                                         } catch (NullPointerException e) {
@@ -140,20 +135,20 @@ public class LoginPage extends AppCompatActivity {
          If the user is logged in then navigate to HomeActivity and call 'finish()'
           */
 
-        User user=new User();
-        if (mAuth.getCurrentUser() != null&& user.getType().equals("Student")) {
-            Log.d(TAG, "onClick: Student");
-
-            Intent intent = new Intent(LoginPage.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }else  if (mAuth.getCurrentUser() != null&& user.getType().equals("Admin")) {
-
-            Log.d(TAG, "onClick: Admin");
-
-            //startActivity(intent);
-            //finish();
-        }
+//        User user=new User();
+//        if (mAuth.getCurrentUser() != null&& (user.getType().equals("Student")||user.getType().equals("طالب"))) {
+//            Log.d(TAG, "onClick: Student");
+//
+//            Intent intent = new Intent(LoginPage.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }else  if (mAuth.getCurrentUser() != null&& user.getType().equals("Admin")||user.getType().equals("مدير")) {
+//
+//            Log.d(TAG, "onClick: Admin");
+//
+//            //startActivity(intent);
+//            //finish();
+//        }
     }
 
 

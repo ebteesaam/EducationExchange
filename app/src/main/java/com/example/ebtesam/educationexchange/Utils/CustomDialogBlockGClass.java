@@ -30,7 +30,7 @@ public class CustomDialogBlockGClass extends Dialog implements
     public Activity c;
     public Dialog d;
     public Button yes, no;
-    String Id;
+    String Id, bookName;
     FirebaseMethod mFirebaseMethods;
     //firebase
     private FirebaseAuth mAuth;
@@ -39,10 +39,11 @@ public class CustomDialogBlockGClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogBlockGClass(Activity a, String id) {
+    public CustomDialogBlockGClass(Activity a, String id, String bn) {
         super(a);
         this.c = a;
         Id=id;
+        bookName=bn;
     }
 
 
@@ -74,7 +75,7 @@ report.setText(R.string.blocked_dialog);
 //                    if(Id.equals(null)){
 //                        mFirebaseMethods.updateAvailability(ViewBookReport.myBook);
 //                    }else {
-                    mFirebaseMethods.updateAvailability(ViewBookReport.myBook,Id);
+                    mFirebaseMethods.updateAvailability(ViewBookReport.myBook,Id, bookName);
                 }catch (Exception e){}
                 c.finish();
 //                Intent i =new Intent(getContext(), ProfilePage.class);

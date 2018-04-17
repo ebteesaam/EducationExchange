@@ -128,19 +128,19 @@ public class ReportedMaterial extends Fragment {
 
                 }
 
-                ListAdapter adapter = new ListAdapter(getActivity(), R.layout.list_material_activity, books);
+                ListAdapterReport adapter = new ListAdapterReport(getActivity(), R.layout.list_material_activity, books);
                 // Attach the adapter to a ListView
                 gridView.setAdapter(adapter);
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {//
-                        if (!books.get(i).getAvailability().equals("Blocked")) {
+                        //if (!books.get(i).getAvailability().equals("Blocked")&&!books.get(i).getAvailability().equals("محظور")) {
 
                             Intent intent = new Intent(getActivity(), ViewBookReport.class);
                             String item = books.get(i).getId_book();
                             intent.putExtra("id_book", item);
                             startActivity(intent);
-                        }
+                      //  }
                     }
                 });
 

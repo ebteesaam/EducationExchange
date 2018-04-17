@@ -21,4 +21,9 @@
         android:id="@+id/block"
         android:title="@string/block"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/ignore"
+        android:title="@string/ignoreThisMaterial"
+        app:showAsAction="never" />
 </menu>

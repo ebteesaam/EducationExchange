@@ -57,31 +57,7 @@ public class GalleryProfileFragment extends Fragment {
         mProgressBar = view.findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.GONE);
 
-//
-//        ImageView shareClose = view.findViewById(R.id.ivCloseShare);
-//        shareClose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "onClick: closing the gallery fragment.");
-//                getActivity().finish();
-//            }
-//        });
-//
-//
-//        TextView nextScreen = view.findViewById(R.id.tvNext);
-//        nextScreen.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "onClick: navigating to the final share screen.");
-//
-//
-//                    Intent intent = new Intent(getActivity(), EditProfile.class);
-//                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-//                    startActivity(intent);
-//
-//
-//            }
-//        });
+
         init();
 
         return view;

@@ -76,11 +76,7 @@ public class RequestNewFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Request book = singleSnapshot.getValue(Request.class);
-//                    Log.d(TAG, "singleSnapshot.getKey()onAuthStateChanged:signed_in:" + singleSnapshot.getKey());
-//                    Log.d(TAG, "singleSnapshot.getKey()onAuthStateChanged:signed_in:" + user.getUid());
 
-                    // if (book.getType().equals("Lecture Notes") && book.getFaculty().toString().equals(getString(R.string.college_of_english))) {
-                    // books.add(singleSnapshot.getValue(Announcement.class));
                     if(book.getId_user().equals(user.getUid())&&(book.getStatus().equals("new")||book.getStatus().equals("جديد"))){
                         // Book book1=singleSnapshot.getValue(Book.class);
                         books.add(singleSnapshot.getValue(Request.class));
@@ -91,27 +87,7 @@ public class RequestNewFragment extends Fragment {
                     ListAdapterRequset adapter = new ListAdapterRequset(getActivity(), R.layout.list_announcement_activity, books, requestParent);
                     // Attach the adapter to a ListView
                     listView.setAdapter(adapter);
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Intent intent = new Intent(MyRequestsActivity.this, ViewMyAnnouncement.class);
-//                        String item =  books.get(i).getRequest_id();
-//                        intent.putExtra("id_request", item);
-//                        startActivity(intent);
-//                    }
-//                });
 
-
-//                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Intent intent = new Intent(Material.this, ViewBook.class);
-//                        String item = books.get(i).getId_book();
-//                        intent.putExtra("id_announcement", item);
-////                        books.get(i);
-//                        startActivity(intent);
-//                    }
-//                });
 
                 }}
 

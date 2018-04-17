@@ -25,7 +25,7 @@ public class UserList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.users_list);
-
+setTitle(UserList.this.getString(R.string.user));
         listView = findViewById(R.id.users);
 setupUserView();
     }
@@ -66,5 +66,11 @@ setupUserView();
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        return;
     }
 }

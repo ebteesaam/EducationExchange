@@ -30,7 +30,7 @@ public class CustomDialogBlocktClass extends Dialog implements
     public Activity c;
     public Dialog d;
     public Button yes, no;
-    String Id;
+    String Id, bookNmae;
     FirebaseMethod mFirebaseMethods;
     //firebase
     private FirebaseAuth mAuth;
@@ -39,10 +39,11 @@ public class CustomDialogBlocktClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogBlocktClass(Activity a,String id) {
+    public CustomDialogBlocktClass(Activity a,String id, String bn) {
         super(a);
         this.c = a;
         Id=id;
+        bookNmae=bn;
     }
     public CustomDialogBlocktClass(Activity a) {
         super(a);
@@ -78,7 +79,7 @@ report.setText(R.string.blocked_dialog);
 //                    if(Id.equals(null)){
 //                        mFirebaseMethods.updateAvailability(ViewBookReport.myBook);
 //                    }else {
-                    mFirebaseMethods.updateAvailability(ViewBookReport.myBook,Id);
+                    mFirebaseMethods.updateAvailability(ViewBookReport.myBook,Id, bookNmae);
                 }catch (Exception e){}
                 c.finish();
 //                Intent i =new Intent(getContext(), ProfilePage.class);

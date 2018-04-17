@@ -350,7 +350,7 @@ public class AddGeneralBook extends AppCompatActivity {
                 try {
                     bookNmae = editName.getText().toString();
                     if (bookNmae.equals("")) {
-                        Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, mContext.getString(R.string.fill_requirement), Toast.LENGTH_SHORT).show();
                         return false;
                         //                        throw new IllegalArgumentException("Book requires Name");
                     }
@@ -392,7 +392,7 @@ public class AddGeneralBook extends AppCompatActivity {
                     startActivity(intent1);
                     return true;
                 } else {
-                    Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, mContext.getString(R.string.plz_photo), Toast.LENGTH_SHORT).show();
                     return false;
                 }
 

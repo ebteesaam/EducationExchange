@@ -216,14 +216,8 @@ public class HomeActivity extends Fragment {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
                     if(user.getUser_id().equals(user1.getUid())){
-                        if (user.getStatus().equals("active")) {
-                            type = true;
-
-                        } else {
-                            type = false;
-
-
-                        }}
+                        type = user.getStatus().equals("Active") || user.getStatus().equals("نشط");
+                    }
                     users.add(singleSnapshot.getValue(User.class));
 
                 }
@@ -253,7 +247,7 @@ public class HomeActivity extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Announcement book = singleSnapshot.getValue(Announcement.class);
-                    if (book.getStatus().equals("active")) {
+                    if (book.getStatus().equals("Active")||book.getStatus().equals("نشط")) {
                         books.add(singleSnapshot.getValue(Announcement.class));
                     }
 

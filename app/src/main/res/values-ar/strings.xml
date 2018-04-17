@@ -532,6 +532,43 @@
     <string name="block">حظر هذه المادة</string>
     <string name="announcements">الإعلانات</string>
     <string name="unRelated">"مادة ليس لها علاقة "</string>
+    <string name="seve_username">حفظ اسم المستخدم..</string>
+    <string name="username_used">اسم المستخدم تم استخدامه من قبل مستخدم آخر..</string>
+    <string name="email_update">تم تحديث البريد الالكتروني</string>
+    <string name="email_used">البريد الالكتروني تم استخدامه من قبل مستخدم آخر</string>
+    <string name="enter_password">يجب أن تدخل الرمز السري</string>
+    <string name="email_not_verified">تحقق من صندوق البريد ..</string>
+    <string name="sent_email">أرسل البريد الالكتروني .. تحقق من صندوق البريد ارجوك..</string>
+    <string name="password_match">يجب أن يكون الرمز السري متطابق .</string>
+    <string name="password_six">يجب أن يكون الرمز السري ليس أقل من 6 أرقام</string>
+    <string name="fill_feild">يجب تعبئة كل الحقول</string>
+    <string name="plz_photo">أرجوك إلتقط صورة للمادة</string>
+    <string name="new_request">طلب جديد</string>
+    <string name="all_request">جميع الطلبات</string>
+    <string name="accept_request">تم قبول الطلب</string>
+    <string name="reject_request">تم رفض الطلب</string>
+    <string name="done_request">تم إرسال الطلب</string>
+    <string name="view_my_request">الطلب</string>
+    <string name="accept">أقبل</string>
+    <string name="reject">أرفض</string>
+    <string name="no_request">ليس هنا أي طلبات حتى الآن</string>
+    <string name="fill_requirement">أرجوك ادخل كل معلوماتك</string>
+    <string name="request_book">طلب المادة</string>
+    <string name="enter_email">أدخل البريد الالكتروني</string>
+    <string name="mobile">أدخل رقم الجوال</string>
+    <string name="mobile_n">رقم الجوال:</string>
+    <string name="all_report">جميع الإبلاغات</string>
+    <string name="new_report">إبلاغات جديدة</string>
+    <string name="foundation_of_321">أساسيات</string>
+    <string name="requests">طلبات</string>
+    <string name="used">مستخدم</string>
+    <string name="new_b">جديد</string>
+    <string name="admin">مدير</string>
+    <string name="student">طالب</string>
+    <string name="active">نشط</string>
+    <string name="pied">مباع</string>
+    <string name="available">متوفر</string>
+    <string name="Status">الحالة:</string>
 
 
     <!--end-->

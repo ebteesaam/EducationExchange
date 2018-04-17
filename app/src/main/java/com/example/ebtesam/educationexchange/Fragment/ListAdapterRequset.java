@@ -59,10 +59,13 @@ public class ListAdapterRequset extends ArrayAdapter<Request> {
         final TextView status = convertView.findViewById(R.id.status);
         TextView date = convertView.findViewById(R.id.date);
         TextView mobile = convertView.findViewById(R.id.mobile);
+        TextView mobileName = convertView.findViewById(R.id.mobile_num);
+        TextView emailName = convertView.findViewById(R.id.email_name);
+
         TextView email = convertView.findViewById(R.id.email);
         Button reject = convertView.findViewById(R.id.reject);
         Button accept = convertView.findViewById(R.id.accept);
-        final ImageButton send = convertView.findViewById(R.id.sendEmail);
+        ImageButton send = convertView.findViewById(R.id.sendEmail);
         ImageButton call = convertView.findViewById(R.id.callUser);
 
 
@@ -76,8 +79,8 @@ public class ListAdapterRequset extends ArrayAdapter<Request> {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseMethod.updateStatus(getContext().getString(R.string.reject), id);
-                status.setText(R.string.reject);
+                firebaseMethod.updateStatus(getContext().getString(R.string.rejected), id);
+                status.setText(R.string.rejected);
                 Toast.makeText(getContext(), getContext().getString(R.string.reject_request), Toast.LENGTH_SHORT).show();
             }
         });
@@ -85,8 +88,8 @@ public class ListAdapterRequset extends ArrayAdapter<Request> {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseMethod.updateStatus(getContext().getString(R.string.accept), id);
-                status.setText(R.string.accept);
+                firebaseMethod.updateStatus(getContext().getString(R.string.accepted), id);
+                status.setText(R.string.accepted);
                 Toast.makeText(getContext(), getContext().getString(R.string.accept_request), Toast.LENGTH_SHORT).show();
             }
         });
@@ -100,26 +103,30 @@ public class ListAdapterRequset extends ArrayAdapter<Request> {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + Long.parseLong(announcement.getMobile())));
-//                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-//
-//                    //    ActivityCompat#requestPermissions
-//                    // here to request the missing permissions, and then overriding
-//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                    //                                          int[] grantResults)
-//                    // to handle the case where the user grants the permission. See the documentation
-//                    // for ActivityCompat#requestPermissions for more details.
-//                    return;
-//                }
-//                context.startActivity(intent);
 
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:"+ Long.parseLong(announcement.getMobile())));
+                callIntent.setData(Uri.parse("tel:" + Long.parseLong(announcement.getMobile())));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(callIntent);
             }
         });
+        if (!status.getText().equals("new")&&status.getText().equals("Accepted")) {
+            reject.setVisibility(View.GONE);
+            accept.setVisibility(View.GONE);
 
+
+
+
+        }else if(!status.getText().equals("new")&&status.getText().equals("Rejected")){
+            reject.setVisibility(View.GONE);
+            accept.setVisibility(View.GONE);
+            mobile.setVisibility(View.GONE);
+            email.setVisibility(View.GONE);
+            mobileName.setVisibility(View.GONE);
+            emailName.setVisibility(View.GONE);
+            send.setVisibility(View.GONE);
+            call.setVisibility(View.GONE);
+        }
         // Return the completed view to render on screen
         return convertView;
     }

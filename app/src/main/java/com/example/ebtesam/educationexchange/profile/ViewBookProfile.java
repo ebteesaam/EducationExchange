@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
@@ -283,9 +284,18 @@ public class ViewBookProfile extends AppCompatActivity {
 //        final FirebaseUser user = mAuth.getCurrentUser();
 
         MenuItem block = menu.findItem(R.id.block);
+        MenuItem setting = menu.findItem(R.id.action_setting);
+        MenuItem ignore = menu.findItem(R.id.ignore);
 
 
-        block.setVisible(false);
+        if (MainActivity.type1 == true) {
+
+            block.setVisible(false);
+            ignore.setVisible(false);
+        }else {
+            setting.setVisible(false);
+        }
+
 
 
         return true;
@@ -296,12 +306,7 @@ public class ViewBookProfile extends AppCompatActivity {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.delete:
-//                try {
-//                    Log.d(TAG, "onCancelled: query cancelled."+myBook);
-//
-//                    firebaseMethod.deleteBook(myBook);
-//
-//                }catch (Exception e){}
+
                 CustomDialogDeleteClass cdd = new CustomDialogDeleteClass(ViewBookProfile.this);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cdd.show();
@@ -325,11 +330,6 @@ public class ViewBookProfile extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 }
-
-//            case R.id.search:
-//                Intent i=new Intent(MainActivity.this, CustomListActivity.class) ;
-//                startActivity(i);
-//                return true;
 
         }
         return super.onOptionsItemSelected(item);

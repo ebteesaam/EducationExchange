@@ -22,6 +22,7 @@ import com.example.ebtesam.educationexchange.MainActivity;
 import com.example.ebtesam.educationexchange.R;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogBlocktClass;
 import com.example.ebtesam.educationexchange.Utils.CustomDialogDeleteClass;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogIgnoreClass;
 import com.example.ebtesam.educationexchange.Utils.FirebaseMethod;
 import com.example.ebtesam.educationexchange.addBook.AddGeneralBook;
 import com.example.ebtesam.educationexchange.addBook.AddLectureNotes;
@@ -112,6 +113,7 @@ public class ViewBookReport extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     Report book = singleSnapshot.getValue(Report.class);
                     User user = singleSnapshot.getValue(User.class);
+                    Log.d(TAG, "s.  "+singleSnapshot.getKey());
 
                     books.add(singleSnapshot.getValue(Report.class));
 
@@ -150,6 +152,8 @@ public class ViewBookReport extends AppCompatActivity {
                     if (book.getId_book().equals(bookId)) {
                         books.add(singleSnapshot.getValue(Book.class));
                         myBook = singleSnapshot.getKey().toString();
+                        Log.d(TAG, "."+ myBook);
+
                         Log.d(TAG, myBook);
                         availability.setText(book.getAvailability().toString());
                         name_of_book.setText(book.getBook_name().toString());
@@ -255,11 +259,13 @@ public class ViewBookReport extends AppCompatActivity {
         MenuItem block = menu.findItem(R.id.block);
 
         MenuItem setting = menu.findItem(R.id.action_setting);
+        MenuItem ignore = menu.findItem(R.id.ignore);
 
 
         if (MainActivity.type1 == true) {
 
             block.setVisible(false);
+            ignore.setVisible(false);
         } else {
             setting.setVisible(false);
         }
@@ -298,10 +304,17 @@ public class ViewBookReport extends AppCompatActivity {
                 }
 
             case R.id.block:
-                CustomDialogBlocktClass cd = new CustomDialogBlocktClass(ViewBookReport.this, Idemail);
+                CustomDialogBlocktClass cd = new CustomDialogBlocktClass(ViewBookReport.this, Idemail, (String) name_of_book.getText());
                 cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.show();
                 return true;
+            case R.id.ignore:
+                CustomDialogIgnoreClass f = new CustomDialogIgnoreClass(ViewBookReport.this, Idemail, bookId, (String) name_of_book.getText());
+                f.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                f.show();
+                return true;
+
+
 
         }
         return super.onOptionsItemSelected(item);

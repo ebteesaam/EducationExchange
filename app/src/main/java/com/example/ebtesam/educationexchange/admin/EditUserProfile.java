@@ -166,7 +166,7 @@ public class EditUserProfile extends AppCompatActivity {
         // final String displayName = mDisplayName.getText().toString();
         String type = spinner2.getSelectedItem().toString();
         String status = spinner1.getSelectedItem().toString();
-        if (status.equals(status.equals("blocked"))) {
+        if (status.equals(("Blocked"))||status.equals("محظور")) {
             FirebaseMethod firebaseMethod = new FirebaseMethod(EditUserProfile.this);
             firebaseMethod.updateUser(type, status, id, emailT);
         } else {

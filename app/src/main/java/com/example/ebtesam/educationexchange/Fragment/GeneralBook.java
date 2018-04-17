@@ -108,7 +108,8 @@ public class GeneralBook extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for ( DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
                     Book book=singleSnapshot.getValue(Book.class);
-                    if(book.getType().equals("General Books")&&!book.getAvailability().toString().equals("Blocked")&& !book.getAvailability().equals("Pied")){
+                    if(book.getType().equals("General Books")&&!book.getAvailability().toString().equals("Blocked")
+                            &&!book.getAvailability().toString().equals("محظور")&& !book.getAvailability().equals("Pied")&&!book.getAvailability().toString().equals("مباع")){
                     books.add(singleSnapshot.getValue(Book.class));}
                 }
 
@@ -208,14 +209,8 @@ public class GeneralBook extends Fragment {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
                     if(user.getUser_id().equals(user1.getUid())){
-                        if (user.getStatus().equals("active")) {
-                            type = true;
-
-                        } else {
-                            type = false;
-
-
-                        }}
+                        type = user.getStatus().equals("Active") || user.getStatus().equals("نشط");
+                    }
                     users.add(singleSnapshot.getValue(User.class));
 
                 }

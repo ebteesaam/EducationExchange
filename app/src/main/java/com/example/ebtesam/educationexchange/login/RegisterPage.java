@@ -71,17 +71,17 @@ public class RegisterPage extends AppCompatActivity {
     private boolean checkInputs(String email, String username, String password, String confirmPasswords) {
         Log.d(TAG, "checkInputs: checking inputs for null values.");
         if (email.equals("") || username.equals("") || password.equals("")||confirmPasswords.equals("")) {
-            Toast.makeText(mContext, "All fields must be filled out.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, mContext.getString(R.string.fill_feild), Toast.LENGTH_SHORT).show();
             return false;
         }
         String p=password.toString();
         if (p.length()<6) {
-            Toast.makeText(mContext, "The password must be at least 6 digits.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, mContext.getString(R.string.password_six), Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(!password.equals(confirmPasswords)){
-            Toast.makeText(mContext, "The tow passwords must be match each other.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, mContext.getString(R.string.password_match), Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -105,11 +105,7 @@ public class RegisterPage extends AppCompatActivity {
     private boolean isStringNull(String string) {
         Log.d(TAG, "isStringNull: checking string if null.");
 
-        if (string.equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return string.equals("");
     }
 
     //............................Firebase.................................//

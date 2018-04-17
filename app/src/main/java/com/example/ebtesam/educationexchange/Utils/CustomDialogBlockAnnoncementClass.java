@@ -30,7 +30,7 @@ public class CustomDialogBlockAnnoncementClass extends Dialog implements
     public Activity c;
     public Dialog d;
     public Button yes, no;
-    String Id;
+    String Id, bN ;
     FirebaseMethod mFirebaseMethods;
     //firebase
     private FirebaseAuth mAuth;
@@ -39,11 +39,12 @@ public class CustomDialogBlockAnnoncementClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogBlockAnnoncementClass(Activity a, String id) {
+    public CustomDialogBlockAnnoncementClass(Activity a, String id, String bookName) {
         super(a);
 
         this.c = a;
         Id=id;
+        bN=bookName;
     }
 
     @Override
@@ -71,12 +72,11 @@ report.setText(R.string.blocked_dialog);
                 break;
             case R.id.yes:
                 try {
-                    mFirebaseMethods.updateAvailabilityAnnuoncement(ViewMyAnnouncement.myBook, Id);
+                    mFirebaseMethods.updateAvailabilityAnnuoncement(ViewMyAnnouncement.myBook, Id, bN);
 
                 }catch (Exception e){}
                 c.finish();
-//                Intent i =new Intent(getContext(), AnnouncementList.class);
-//                c.startActivity(i);
+
                 break;
 
             default:

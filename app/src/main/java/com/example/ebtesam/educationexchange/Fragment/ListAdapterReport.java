@@ -43,7 +43,7 @@ public class ListAdapterReport extends ArrayAdapter<Book> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_report, parent, false);
         }
 
         // Get the data item for this position
@@ -52,11 +52,13 @@ public class ListAdapterReport extends ArrayAdapter<Book> {
 
         // Lookup view for data population
          ImageView image=convertView.findViewById(R.id.relative1);
-            TextView name = (TextView) convertView.findViewById(R.id.nameBook);
-         TextView courseID = (TextView) convertView.findViewById(R.id.courseIdBook);
-          TextView bookprice=(TextView)convertView.findViewById(R.id.bookPrice);
-          TextView courseName=(TextView) convertView.findViewById(R.id.courseIdBookName);
+            TextView name = convertView.findViewById(R.id.nameBook);
+         TextView courseID = convertView.findViewById(R.id.courseIdBook);
+          TextView bookprice= convertView.findViewById(R.id.bookPrice);
+          TextView courseName= convertView.findViewById(R.id.courseIdBookName);
 //
+        TextView status= convertView.findViewById(R.id.state);
+status.setText(book.getAvailability());
         // Populate the data into the template view using the data object
         name.setText(book.getBook_name());
         if(book.getCourse_id()!=null){

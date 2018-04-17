@@ -107,7 +107,6 @@ public class AddTextBook extends AppCompatActivity {
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     adapter3.notifyDataSetChanged();
-                    ;
 
                     spinner4.setAdapter(adapter3);
                 } else if (spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh") || spinner1.getSelectedItem().equals("كلية الطب في رابغ")) {
@@ -115,7 +114,6 @@ public class AddTextBook extends AppCompatActivity {
                     adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adapter3.notifyDataSetChanged();
-                    ;
                     spinner4.setAdapter(adapter3);
                 } else if (spinner1.getSelectedItem().equals("College of Business(COB)") || spinner1.getSelectedItem().equals("كلية إدارة الأعمال")) {
 //                    s1=spinner1.getSelectedItem().toString();
@@ -123,7 +121,6 @@ public class AddTextBook extends AppCompatActivity {
                     adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adapter3.notifyDataSetChanged();
-                    ;
                     spinner4.setAdapter(adapter3);
                 } else if (spinner1.getSelectedItem().equals("College of Sciences") || spinner1.getSelectedItem().equals("كلية العلوم والآداب")) {
 //                    s1=spinner1.getSelectedItem().toString();
@@ -133,7 +130,6 @@ public class AddTextBook extends AppCompatActivity {
                     adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adapter3.notifyDataSetChanged();
-                    ;
                     spinner4.setAdapter(adapter3);
                 } else if (spinner1.getSelectedItem().equals("General Course Books") || spinner1.getSelectedItem().equals("الكتب الدراسية العامة")) {
 //                    s1=spinner1.getSelectedItem().toString();
@@ -141,7 +137,6 @@ public class AddTextBook extends AppCompatActivity {
                     adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_general_course, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adapter3.notifyDataSetChanged();
-                    ;
                     spinner4.setAdapter(adapter3);
 
                 } else if (spinner1.getSelectedItem().equals("Faculty of English") || spinner1.getSelectedItem().equals("كلية اللغة الانجليزية")) {
@@ -150,7 +145,6 @@ public class AddTextBook extends AppCompatActivity {
                     adapter3 = ArrayAdapter.createFromResource(AddTextBook.this, R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     adapter3.notifyDataSetChanged();
-                    ;
                     spinner4.setAdapter(adapter3);
                 }
 
@@ -369,7 +363,7 @@ public class AddTextBook extends AppCompatActivity {
             Log.d(TAG, "setImage: got new image url: " + imgUrl);
             UnvirsalImageLoader.setImage(imgUrl, bookPhoto, null, mAppend);
         } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
-            bitmap = (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
+            bitmap = intent.getParcelableExtra(getString(R.string.selected_bitmap));
             Log.d(TAG, "setImage: got new bitmap");
             bookPhoto.setImageBitmap(bitmap);
 
@@ -465,7 +459,7 @@ public class AddTextBook extends AppCompatActivity {
                 try {
                     bookNmae = editName.getText().toString();
                     if (bookNmae.equals("")) {
-                        Toast.makeText(mContext, "please enter all information", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, mContext.getString(R.string.fill_requirement), Toast.LENGTH_SHORT).show();
                         return false;
                         //                        throw new IllegalArgumentException("Book requires Name");
                     }
@@ -511,7 +505,7 @@ public class AddTextBook extends AppCompatActivity {
                     startActivity(intent1);
                     return true;
                 } else {
-                    Toast.makeText(mContext, "please Take photo!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, mContext.getString(R.string.plz_photo), Toast.LENGTH_SHORT).show();
                     return false;
                 }
 

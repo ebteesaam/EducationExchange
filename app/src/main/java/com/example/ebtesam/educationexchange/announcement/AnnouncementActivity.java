@@ -71,39 +71,39 @@ public class AnnouncementActivity extends AppCompatActivity {
                     adapter3 = ArrayAdapter.createFromResource(AnnouncementActivity.this,R.array.major_course_faculty_of_computing_and_information_technology, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
 
                     spinner4.setAdapter(adapter3);
                 }else if(spinner1.getSelectedItem().equals("Faculty Of Medicine In Rabigh")||spinner1.getSelectedItem().equals("كلية الطب في رابغ")){
 
                     adapter3 = ArrayAdapter.createFromResource(AnnouncementActivity.this,R.array.major_course_faculty_of_medicine_in_rabigh, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
                     spinner4.setAdapter(adapter3);
                 }else if(spinner1.getSelectedItem().equals("College of Business(COB)")||spinner1.getSelectedItem().equals("كلية إدارة الأعمال")){
 
                     adapter3 = ArrayAdapter.createFromResource(AnnouncementActivity.this,R.array.major_course_college_of_business_cob, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
                     spinner4.setAdapter(adapter3);
                 }else if(spinner1.getSelectedItem().equals("College of Sciences")||spinner1.getSelectedItem().equals("كلية العلوم والآداب")){
 
                     adapter3 = ArrayAdapter.createFromResource(AnnouncementActivity.this,R.array.major_course_college_of_sciences, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
                     spinner4.setAdapter(adapter3);
                 }else if(spinner1.getSelectedItem().equals("General Course Books")||spinner1.getSelectedItem().equals("الكتب الدراسية العامة")){
 
                     adapter3 = ArrayAdapter.createFromResource(AnnouncementActivity.this,R.array.major_course_general_course, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
                     spinner4.setAdapter(adapter3);
 
                 }else if(spinner1.getSelectedItem().equals("Faculty of English")||spinner1.getSelectedItem().equals("كلية اللغة الانجليزية")){
 
                     adapter3 = ArrayAdapter.createFromResource(AnnouncementActivity.this,R.array.major_course_college_of_english, android.R.layout.simple_spinner_item);
                     adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    adapter3.notifyDataSetChanged();;
+                    adapter3.notifyDataSetChanged();
                     spinner4.setAdapter(adapter3);
                 }
 
@@ -255,12 +255,12 @@ setupFirebaseAuth();
                 try {
                     bookNmae = title.getText().toString();
                     if (bookNmae.equals("")) {
-                        Toast.makeText(AnnouncementActivity.this, "please enter all information", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AnnouncementActivity.this, mContext.getString(R.string.fill_requirement), Toast.LENGTH_SHORT).show();
                         return false;
                     }
                         text1 = text.getText().toString();
                         if (text1.equals("")) {
-                            Toast.makeText(AnnouncementActivity.this, "please enter all information", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AnnouncementActivity.this, mContext.getString(R.string.fill_requirement), Toast.LENGTH_SHORT).show();
                             return false;
                         //                        throw new IllegalArgumentException("Book requires Name");
                     }
@@ -285,7 +285,7 @@ setupFirebaseAuth();
                 if(intent.hasExtra("id_book")){
                     try {
 
-                        mFirebaseMethods.updateAnnouncement(bookNmae, courseId, faculty,type, text1,"active",myBook);
+                        mFirebaseMethods.updateAnnouncement(bookNmae, courseId, faculty,type, text1,"Active",myBook);
 
                     }catch (Exception e){}
                     AnnouncementActivity.this.finish();
@@ -295,7 +295,7 @@ setupFirebaseAuth();
                 }
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AnnouncementActivity.this);
-                    firebaseMethod.addAnnouncementToDatabase( bookNmae, courseId, faculty,type, text1,"active",imageCount);
+                    firebaseMethod.addAnnouncementToDatabase( bookNmae, courseId, faculty,type, text1,"Active",imageCount);
 
                     //set the new profile picture
 //                    FirebaseMethod firebaseMethods = new FirebaseMethod(AnnouncementActivity.this);

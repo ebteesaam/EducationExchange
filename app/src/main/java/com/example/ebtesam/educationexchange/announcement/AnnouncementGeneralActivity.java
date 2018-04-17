@@ -189,12 +189,12 @@ setupFirebaseAuth();
                 try {
                     bookNmae = title.getText().toString();
                     if (bookNmae.equals("")) {
-                        Toast.makeText(AnnouncementGeneralActivity.this, "please enter all information", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AnnouncementGeneralActivity.this, mContext.getString(R.string.fill_requirement), Toast.LENGTH_SHORT).show();
                         return false;
                     }
                         text1 = text.getText().toString();
                         if (text1.equals("")) {
-                            Toast.makeText(AnnouncementGeneralActivity.this, "please enter all information", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AnnouncementGeneralActivity.this, mContext.getString(R.string.fill_requirement), Toast.LENGTH_SHORT).show();
                             return false;
                         //                        throw new IllegalArgumentException("Book requires Name");
                     }
@@ -205,7 +205,7 @@ setupFirebaseAuth();
                 if(intent.hasExtra("id_book")){
                     try {
 
-                        mFirebaseMethods.updateAnnouncement(bookNmae, courseId, null,null, text1,"active",myBook);
+                        mFirebaseMethods.updateAnnouncement(bookNmae, courseId, null,null, text1,"Active",myBook);
 
                     }catch (Exception e){}
                     AnnouncementGeneralActivity.this.finish();
@@ -219,7 +219,7 @@ setupFirebaseAuth();
 
                     //set the new profile picture
                     FirebaseMethod firebaseMethod = new FirebaseMethod(AnnouncementGeneralActivity.this);
-                    firebaseMethod.addAnnouncementToDatabase( bookNmae,type, text1,"active",imageCount);
+                    firebaseMethod.addAnnouncementToDatabase( bookNmae,type, text1,"Active",imageCount);
 
                     //set the new profile picture
 //                    FirebaseMethod firebaseMethods = new FirebaseMethod(AnnouncementActivity.this);

@@ -118,7 +118,12 @@
         <activity android:name=".profile.ViewGeneralBookProfile" />
         <activity android:name=".announcement.AnnouncementGeneralActivity" />
         <activity android:name=".profile.ViewMyAnnouncement" />
-        <activity android:name=".admin.UserList" />
+        <activity android:name=".admin.UserList"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".admin.EditUserProfile"
             android:parentActivityName=".admin.UserList">
@@ -133,7 +138,12 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".admin.ViewBookReport"></activity>
-        <activity android:name=".admin.AnnouncementList"></activity>
+        <activity android:name=".admin.AnnouncementList"
+        android:parentActivityName=".MainActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+    </activity>
         <activity android:name=".addBook.RequestBook"
             android:parentActivityName=".MainActivity">
             <meta-data

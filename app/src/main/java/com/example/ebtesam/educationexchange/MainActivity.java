@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
                     if(user.getUser_id().equals(user1.getUid())){
-                    if (user.getType().equals("Student")) {
+                    if (user.getType().equals("Student")||user.getType().equals("طالب")) {
                         type = true;
                         type1=type;
                     } else {

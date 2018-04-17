@@ -31,6 +31,8 @@ public class AnnouncementList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.users_list);
+        setTitle(AnnouncementList.this.getString(R.string.announcements));
+
         Id = "";
         listView = findViewById(R.id.users);
         setupAnnouncementView();
@@ -149,5 +151,10 @@ public class AnnouncementList extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        return;
     }
 }

@@ -8,9 +8,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.ebtesam.educationexchange.R;
-import com.example.ebtesam.educationexchange.profile.ViewMyAnnouncement;
+import com.example.ebtesam.educationexchange.admin.ViewBookReport;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,13 +24,14 @@ import com.google.firebase.database.ValueEventListener;
  * Created by ebtesam on 16/03/2018 AD.
  */
 
-public class CustomDialogDeleteAnnouncementClass extends Dialog implements
+public class CustomDialogIgnoreClass extends Dialog implements
         View.OnClickListener {
     public int count = 0;
     public Activity c;
     public Dialog d;
     public Button yes, no;
     String Id, bookName;
+    String bookId;
     FirebaseMethod mFirebaseMethods;
     //firebase
     private FirebaseAuth mAuth;
@@ -38,18 +40,16 @@ public class CustomDialogDeleteAnnouncementClass extends Dialog implements
     private DatabaseReference myRef;
     private EditText other;
 
-    public CustomDialogDeleteAnnouncementClass(Activity a, String id,String bn) {
+    public CustomDialogIgnoreClass(Activity a, String id, String parent,String bName) {
         super(a);
-
         this.c = a;
         Id=id;
-        bookName=bn;
+        bookId=parent;
+        bookName=bName;
     }
-    public CustomDialogDeleteAnnouncementClass(Activity a) {
+    public CustomDialogIgnoreClass(Activity a) {
         super(a);
-
         this.c = a;
-
 
     }
 
@@ -59,7 +59,8 @@ public class CustomDialogDeleteAnnouncementClass extends Dialog implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.delete_dialog);
         mFirebaseMethods = new FirebaseMethod(getContext());
-
+TextView report=findViewById(R.id.report);
+report.setText(R.string.blocked_dialog);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
 
@@ -77,15 +78,10 @@ public class CustomDialogDeleteAnnouncementClass extends Dialog implements
                 break;
             case R.id.yes:
                 try {
-                    if(Id.equals(null)){
-                    mFirebaseMethods.removeAnnouncement(ViewMyAnnouncement.myBook);}else {
-                        mFirebaseMethods.removeAnnouncement(ViewMyAnnouncement.myBook, Id,bookName);
-                    }
-
+                    mFirebaseMethods.deleteReport(ViewBookReport.myBook,Id,bookId, bookName);
                 }catch (Exception e){}
                 c.finish();
-//                Intent i =new Intent(getContext(), ProfilePage.class);
-//                c.startActivity(i);
+
                 break;
 
             default:

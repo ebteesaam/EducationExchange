@@ -163,7 +163,7 @@ setupGridView();
                 CustomDialogDeleteAnnouncementClass cdd = new CustomDialogDeleteAnnouncementClass(ViewMyAnnouncement.this);
                 cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cdd.show();}else {
-                    CustomDialogDeleteAnnouncementClass cdd = new CustomDialogDeleteAnnouncementClass(ViewMyAnnouncement.this, AnnouncementList.Id);
+                    CustomDialogDeleteAnnouncementClass cdd = new CustomDialogDeleteAnnouncementClass(ViewMyAnnouncement.this, AnnouncementList.Id,  (String) name_of_book.getText());
                     cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     cdd.show();
                 }
@@ -184,7 +184,7 @@ setupGridView();
 
                     }
             case R.id.block:
-                CustomDialogBlockAnnoncementClass cd= new CustomDialogBlockAnnoncementClass(ViewMyAnnouncement.this, AnnouncementList.Id);
+                CustomDialogBlockAnnoncementClass cd= new CustomDialogBlockAnnoncementClass(ViewMyAnnouncement.this, AnnouncementList.Id, (String) name_of_book.getText());
                 cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.show();
                 return true;

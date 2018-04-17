@@ -160,14 +160,8 @@ setupGridView();
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     User user = singleSnapshot.getValue(User.class);
                     if(user.getUser_id().equals(user1.getUid())){
-                        if (user.getStatus().equals("active")) {
-                            type = true;
-
-                        } else {
-                            type = false;
-
-
-                        }}
+                        type = user.getStatus().equals("Active") || user.getStatus().equals("نشط");
+                    }
                     users.add(singleSnapshot.getValue(User.class));
 
                 }

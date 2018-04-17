@@ -17,7 +17,7 @@
 
         <item
             android:id="@+id/message"
-            android:title="@string/message"
+            android:title="@string/requests"
             app:showAsAction="never" />
 
         <item android:id="@+id/user"
