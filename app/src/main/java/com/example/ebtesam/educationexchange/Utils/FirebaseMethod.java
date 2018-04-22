@@ -587,13 +587,11 @@ public class FirebaseMethod {
 
         Log.i("Send email", "");
         String[] TO = {email};
-//      String[] CC = {"1ebteesaam@gmailcom"};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-//       emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Deleted your " + announcement + " (" + bn + ")");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "your " + announcement + " was deleted");
 

@@ -132,7 +132,7 @@
             <!-- Label -->
             <TextView
                 style="@style/TextStyle"
-                android:text="@string/status" />
+                android:text="@string/Status" />
 
             <!-- Input fields -->
             <RelativeLayout
@@ -173,7 +173,7 @@
             <!-- Label -->
             <TextView
                 style="@style/TextStyle"
-                android:text="type" />
+                android:text="@string/type_user" />
 
             <!-- Input fields -->
             <RelativeLayout

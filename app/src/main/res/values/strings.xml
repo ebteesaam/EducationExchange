@@ -5,8 +5,8 @@
     <string name="add_lecture_note">Add Lecture Note</string>
 
     <string name="add_general_activity">Add General Book</string>
-    <string name="general_book">General Book</string>
-    <string name="text_book">Text Book</string>
+    <string name="general_book">General Books</string>
+    <string name="text_book">Text Books</string>
     <string name="lecture_notes">Lecture Notes</string>
 
     <!-- Firebase messages -->
@@ -30,6 +30,11 @@
     <!-- photo types -->
     <string name="new_book" translatable="false">new_book</string>
     <string name="profile_photo" translatable="false">profile_photo</string>
+    <string name="step1">1.Search</string>
+    <string name="step2">2.Request</string>
+    <string name="step3">3.Swap</string>
+    <string name="sign_out_">Are you sure you want to sign out?</string>
+
 
     <!--adding book page-->
     <string name="name_of_book">Book name:</string>
@@ -147,7 +152,7 @@
     <string name="send">Send</string>
     <string name="fill_other">fill the other reasone please or click cancel</string>
     <string name="no_result">There is no result</string>
-
+<string name="type_user">Type:</string>
     <!--array for add material pag-->
     <string-array name="availability">
         <item>@string/available</item>

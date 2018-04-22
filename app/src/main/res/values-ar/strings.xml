@@ -4,9 +4,9 @@
     <string name="add_book_activity">إضافة كتاب</string>
     <string name="please_select_a_faculty">الرجاء اختيار كلية:</string>
     <string name="add_general_activity">إضافة كتاب عام</string>
-    <string name="general_book">كتاب عام</string>
-    <string name="text_book">كتاب دراسي</string>
-    <string name="lecture_notes">محاضرة ورقية</string>
+    <string name="general_book">كتب عامة</string>
+    <string name="text_book">كتب دراسية</string>
+    <string name="lecture_notes">محاضرات ورقية</string>
     <string name="auth_failed">فشل في المصادقة</string>
     <string name="auth_success">نجاح المصادقة</string>
     <string name="name_of_book">اسم الكتاب:</string>
@@ -28,7 +28,7 @@
     <string name="view_my_announcement">إعلاناتي</string>
     <string name="edit">إعادة ضبط الملف الشخصي</string>
     <string name="name">الإسم</string>
-    <string name="email">الإيميل</string>
+    <string name="email">البريد الالكتروني</string>
     <string name="change_photo">تبديل الصورة</string>
     <string name="profile_fragment">الملف الشخصي</string>
     <string name="change">تبديل</string>
@@ -59,6 +59,8 @@
     <string name="general_course">الكتب الدراسية العامة</string>
     <string name="college_of_english">كلية اللغة الانجليزية</string>
     <string name="message">رسالة</string>
+    <string name="type_user">النوع:</string>
+
     <!--<string name="availability">التوفر</string>-->
     <string name="blocked">محظور</string>
     <string name="confirm">تأكيد</string>
@@ -569,6 +571,14 @@
     <string name="pied">مباع</string>
     <string name="available">متوفر</string>
     <string name="Status">الحالة:</string>
+    <string name="ignoreThisMaterial">تجاهل هذه المادة</string>
+    <string name="ignoreReport">تم تجاهل الإبلاغات</string>
+    <string name="ignore_dialog">هل آنت متأكد من أنك تريد تجاهل هذه المادة؟</string>
+    <string name="rejected">مرفوض</string>
+    <string name="accepted">مقبول</string>
+    <string name="step1">1. ابحث</string>
+    <string name="step2">2. اطلب</string>
+    <string name="step3">3. تبادل</string>
 
 
     <!--end-->

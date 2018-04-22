@@ -98,6 +98,7 @@ public class TextBook extends Fragment {
                 Intent intent=new Intent(getActivity(),Material.class);
                 Bundle bundle=new Bundle();
                 bundle.putString("Faculty", "general_course");
+                bundle.putString("Type", "TextBooks");
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

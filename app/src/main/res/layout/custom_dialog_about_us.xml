@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/grey_border_bottom"
+    android:orientation="vertical"
+    >
+
+
+
+
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+
+        android:layout_width="100dp"
+
+        android:layout_height="300dp"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:src="@drawable/homeimage" />
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="40dp"
+
+            android:paddingRight="40dp"
+
+            android:paddingTop="50dp"
+            android:text="@string/step1"
+
+            android:textColor="@color/green"
+            android:textSize="30dp"
+
+            android:textStyle="bold"
+
+            />
+
+
+
+        <TextView
+
+            android:id="@+id/textView"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="40dp"
+android:paddingRight="40dp"
+            android:paddingTop="128dp"
+
+            android:text="@string/step2"
+            android:textColor="@color/yellow"
+
+            android:textSize="30dp"
+
+            android:textStyle="bold" />
+
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+
+            android:paddingTop="200dp"
+
+            android:text="@string/step3"
+
+            android:textColor="@color/blue"
+            android:textSize="30dp"
+
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <!--<Button-->
+        <!--android:id="@+id/cancel"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_below="@id/cancel"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginLeft="12dp"-->
+        <!--android:layout_marginRight="12dp"-->
+
+        <!--android:background="@drawable/white_buttom"-->
+        <!--android:text="@string/cancel"-->
+        <!--android:textAllCaps="false" />-->
+
+
+
+
+<!--</LinearLayout>-->

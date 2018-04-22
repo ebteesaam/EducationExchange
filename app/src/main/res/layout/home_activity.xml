@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,6 +22,10 @@
                     android:orientation="vertical">
 
                     <!--aboutUs-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -29,6 +34,15 @@
                         android:text="@string/about_us"
                         android:textColor="@color/darkgrey"
                         android:textSize="18dp" />
+
+                        <ImageView
+                            android:id="@+id/aboutUs"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/bestlogo"/>
+                    </LinearLayout>
 
                     <!--TEXT-->
                     <TextView
@@ -99,22 +113,62 @@
 
             </RelativeLayout>
 
+<Button
+    android:id="@+id/fab"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_margin="@dimen/fab_margin"
+    android:background="@drawable/circle_accent_advertize"
+    android:scaleType="fitCenter"
+    android:src="@drawable/advertise"
 
+
+
+    />
+            <!--<android.support.design.widget.FloatingActionButton-->
+                <!--android:id="@+id/fab"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_margin="@dimen/fab_margin"-->
+                <!--android:scaleType="fitCenter"-->
+
+                <!--android:src="@drawable/advertise" />-->
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
+                android:id="@+id/fab_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_margin="@dimen/fab_margin"
+                android:layout_marginBottom="50dp"
+                android:layout_marginRight="90dp"
+                android:src="@drawable/whiterular"
+                android:visibility="invisible"
 
-                android:src="@drawable/ic_action_add" />
+                app:backgroundTint="@color/yellow"
+                app:fabSize="mini" />
 
-            <include layout="@layout/floating_buttons"></include>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+android:layout_marginBottom="90dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/whitebook"
+                android:visibility="invisible"
+                app:backgroundTint="@color/red"
+                app:fabSize="mini" />
 
-            <include
-                layout="@layout/floating_secondbuttons"
-               ></include>
+            <!--<include layout="@layout/floating_buttons"></include>-->
+
+            <!--<include-->
+                <!--layout="@layout/floating_secondbuttons"-->
+              <!--/>-->
 
         </RelativeLayout>
 

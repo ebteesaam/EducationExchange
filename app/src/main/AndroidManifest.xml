@@ -10,8 +10,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/logonocircle"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/logonocircle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

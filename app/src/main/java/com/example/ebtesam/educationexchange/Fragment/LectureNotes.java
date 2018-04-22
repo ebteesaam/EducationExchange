@@ -72,7 +72,17 @@ private boolean type=false;
         });
 
         general_course=rootView.findViewById(R.id.general_course);
-        general_course.setVisibility(View.GONE);
+        general_course.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),Material.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("Faculty", "general_course");
+                bundle.putString("Type", "LectureNotes");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         business=rootView.findViewById(R.id.business);
         business.setOnClickListener(new View.OnClickListener() {

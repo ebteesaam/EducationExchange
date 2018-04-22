@@ -111,20 +111,33 @@
                         android:textSize="18sp"
                         />
 
-                    <TextView
-                        android:id="@+id/mobile"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
 
-                    <ImageButton
-                        android:id="@+id/callUser"
-                        android:layout_width="wrap_content"
+
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_call"/>
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp">
+
+                        <TextView
+                            android:id="@+id/mobile"
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                        <ImageButton
+                            android:id="@+id/callUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/ic_call"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
                 <LinearLayout
@@ -140,19 +153,33 @@
                         android:textSize="18sp"
                         />
 
-                    <TextView
-                        android:id="@+id/email"
-                        android:layout_width="260dp"
+
+
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-                    <ImageButton
-                        android:id="@+id/sendEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_email"/>
+                        android:layout_weight="2"
+                        android:paddingLeft="4dp">
+
+                        <TextView
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/sendEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/ic_email"/>
+                    </RelativeLayout>
 
                 </LinearLayout>
                 <LinearLayout

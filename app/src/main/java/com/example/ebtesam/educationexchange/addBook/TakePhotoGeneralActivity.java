@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ebtesam.educationexchange.Fragment.GalleryFragment;
-import com.example.ebtesam.educationexchange.Fragment.PhotoFragment;
+import com.example.ebtesam.educationexchange.Fragment.PhotoFragmentGeneral;
 import com.example.ebtesam.educationexchange.Fragment.SectionsPagerAdapter;
 import com.example.ebtesam.educationexchange.R;
 
@@ -42,7 +42,7 @@ public class TakePhotoGeneralActivity extends AppCompatActivity {
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
-        adapter.addFragment(new PhotoFragment());
+        adapter.addFragment(new PhotoFragmentGeneral());
 
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(adapter);

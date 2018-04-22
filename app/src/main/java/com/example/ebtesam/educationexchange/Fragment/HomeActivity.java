@@ -1,6 +1,8 @@
 package com.example.ebtesam.educationexchange.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,14 +11,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.ebtesam.educationexchange.R;
+import com.example.ebtesam.educationexchange.Utils.CustomDialogAboutUsClass;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementActivity;
 import com.example.ebtesam.educationexchange.announcement.AnnouncementGeneralActivity;
 import com.example.ebtesam.educationexchange.models.Announcement;
@@ -59,19 +60,27 @@ public class HomeActivity extends Fragment {
         View rootView = inflater.inflate(R.layout.home_activity, container, false);
 
         listView = rootView.findViewById(R.id.list_announcement);
-        final FloatingActionButton fab = rootView.findViewById(R.id.fab);
+        final Button fab = rootView.findViewById(R.id.fab);
         final FloatingActionButton fab1 = rootView.findViewById(R.id.fab_1);
         final FloatingActionButton fab2 = rootView.findViewById(R.id.fab_2);
-
+        ImageView imageView=rootView.findViewById(R.id.aboutUs);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialogAboutUsClass cdd = new CustomDialogAboutUsClass(getActivity());
+                cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();
+            }
+        });
 
         View emptyView = rootView.findViewById(R.id.empty_view);
         listView.setEmptyView(emptyView);
         //Animations
-        final Animation show_fab_1 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab1_show);
-        final Animation hide_fab_1 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab1_hide);
-
-        final Animation show_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_show);
-        final Animation hide_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_hide);
+//        final Animation show_fab_1 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab1_show);
+//        final Animation hide_fab_1 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab1_hide);
+//
+//        final Animation show_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_show);
+//        final Animation hide_fab_2 = AnimationUtils.loadAnimation(getActivity(), R.anim.fab2_hide);
 
         setupAnnouncementView();
         setupFirebaseAuth();
@@ -80,33 +89,38 @@ public class HomeActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 if (b == true) {
-                    final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab1.getLayoutParams();
-                    layoutParams.rightMargin += (int) (fab1.getWidth() * 1.6);
-                    layoutParams.bottomMargin += (int) (fab1.getWidth() * 0.25);
-                    fab1.setLayoutParams(layoutParams);
-                    fab1.startAnimation(show_fab_1);
+//                    final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab1.getLayoutParams();
+//                    layoutParams.rightMargin += (int) (fab1.getWidth() * 1.6);
+//                    layoutParams.bottomMargin += (int) (fab1.getWidth() * 0.25);
+//                    fab1.setLayoutParams(layoutParams);
+//                    fab1.startAnimation(show_fab_1);
+                    fab1.setVisibility(View.VISIBLE);
                     fab1.setClickable(true);
 
-                    final RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fab2.getLayoutParams();
-                    layoutParams2.rightMargin += (int) (fab2.getWidth() * 0.25);
-                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * 1.6);
-                    fab2.setLayoutParams(layoutParams2);
-                    fab2.startAnimation(show_fab_2);
+
+//                    final RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fab2.getLayoutParams();
+//                    layoutParams2.rightMargin += (int) (fab2.getWidth() * 0.25);
+//                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * 1.6);
+//                    fab2.setLayoutParams(layoutParams2);
+//                    fab2.startAnimation(show_fab_2);
+                    fab2.setVisibility(View.VISIBLE);
                     fab2.setClickable(true);
                     b = false;
                 } else if (b == false) {
-                    final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab1.getLayoutParams();
-                    layoutParams.rightMargin += (int) (fab1.getWidth() * -1.6);
-                    layoutParams.bottomMargin += (int) (fab1.getWidth() * -0.25);
-                    fab1.setLayoutParams(layoutParams);
-                    fab1.startAnimation(hide_fab_1);
+//                    final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fab1.getLayoutParams();
+//                    layoutParams.rightMargin += (int) (fab1.getWidth() * -1.6);
+//                    layoutParams.bottomMargin += (int) (fab1.getWidth() * -0.25);
+//                    fab1.setLayoutParams(layoutParams);
+                    //fab1.startAnimation(hide_fab_1);
+                    fab2.setVisibility(View.INVISIBLE);
+                    fab1.setVisibility(View.INVISIBLE);
 
-                    final RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fab2.getLayoutParams();
-                    layoutParams2.rightMargin += (int) (fab2.getWidth() * -0.25);
-                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * -1.6);
-                    fab2.setLayoutParams(layoutParams2);
-                    fab2.startAnimation(hide_fab_2);
-                    fab2.setClickable(false);
+//                    final RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fab2.getLayoutParams();
+//                    layoutParams2.rightMargin += (int) (fab2.getWidth() * -0.25);
+//                    layoutParams2.bottomMargin += (int) (fab2.getWidth() * -1.6);
+//                    fab2.setLayoutParams(layoutParams2);
+//                    fab2.startAnimation(hide_fab_2);
+                  //  fab2.setClickable(false);
                     b = true;
                 }
             }

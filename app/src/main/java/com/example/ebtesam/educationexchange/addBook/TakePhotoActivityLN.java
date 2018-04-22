@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ebtesam.educationexchange.Fragment.GalleryFragment;
-import com.example.ebtesam.educationexchange.Fragment.PhotoFragment;
+import com.example.ebtesam.educationexchange.Fragment.PhotoFragmentLN;
 import com.example.ebtesam.educationexchange.Fragment.SectionsPagerAdapter;
 import com.example.ebtesam.educationexchange.R;
 
@@ -42,12 +42,12 @@ public class TakePhotoActivityLN extends AppCompatActivity {
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
-        adapter.addFragment(new PhotoFragment());
+        adapter.addFragment(new PhotoFragmentLN());
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
+        TabLayout tabLayout = findViewById(R.id.tabsBottom);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setText(getString(R.string.gallery));
