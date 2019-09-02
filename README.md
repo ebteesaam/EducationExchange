@@ -49,5 +49,5 @@ and lecture notes easily and get rid of it positively by helping another student
 #### Sequence of admin function
 ![](img/sequenceofadminfunction.png)
 #### Sequence of user function
-![](img/sequenceofuserfunction.png)
-![](img/sequenceofuserfunction2.png)
+![](img/sequenceofuserfunctioncopy.png)
+![](img/sequenceofuserfunction2copy.png)
