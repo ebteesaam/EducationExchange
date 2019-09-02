@@ -23,9 +23,31 @@ databases, messaging and crash reporting. Education Exchange run under android o
 Finally, this application is intended to help students to find and exchange textbooks
 and lecture notes easily and get rid of it positively by helping another student.
 
-##Overall System Development
+## Overall System Development
+
   The interfaces of Education Exchange application are designed by android studio and xml language. 
   The interface can be divided into two types dependent on the type of the user. 
   Each user whether students or administrator each one has different interface
-
-
+#### Home page
+![Home page](img/homepage.png)
+#### Login
+![](img/login.png)
+#### Register
+![](img/register.png)
+#### Add material
+![](img/addmaterial.png)
+#### Add announcement
+![](img/addannouncement..png)
+#### Request material
+![](img/requestmaterial.png)
+#### Search
+![](img/search.png)
+#### Search by faculty
+![](img/searchbyfaculty.png)
+#### Admin interface
+![](img/admininterface.png)
+#### Sequence of admin function
+![](img/sequenceofadminfunction.png)
+#### Sequence of user function
+![](img/sequenceofuserfunction.png)
+![](img/sequenceofuserfunction2.png)
