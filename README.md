@@ -28,4 +28,4 @@ and lecture notes easily and get rid of it positively by helping another student
   The interface can be divided into two types dependent on the type of the user. 
   Each user whether students or administrator each one has different interface
 
-https://github.com/ebteesaam/EducationExchange/issues/2
+
